@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { UserSettingsNavigationItem, UserSettingsTabNavigation } from "./UserSettingsTabNavigation";
 import { SecurityTabContent } from "./Security/SecurityTabContent";
 import { AccountTabContent } from "./Account/AccountTabContent";
+import { IsLoggedIn } from "../IsLoggedIn";
+import { IsLoggedOut } from "../IsLoggedOut";
 
 export interface UserSettingsProps {
     additionalTabs?: UserSettingsNavigationItem[];
@@ -24,9 +26,26 @@ export function UserSettings({ additionalTabs = [] }: UserSettingsProps) {
 
     return (
         <div className=" h-full w-full  divide-y divide-white/5 lg:max-w-5xl">
-            <UserSettingsTabNavigation navigation={navigation} setCurrentTab={setCurrentTab} />
-            <AccountTabContent tab={currentTab} />
-            <SecurityTabContent tab={currentTab} />
+            <IsLoggedOut>
+                <div className="flex h-full w-full flex-col items-center justify-center">
+                    <p className="text-2xl font-bold">You are not logged in.</p>
+                    <p className="text-xl font-bold">
+                        <a href="/sign-in" className="text-violet-500">
+                            Login
+                        </a>{" "}
+                        or{" "}
+                        <a href="/sign-up" className="text-violet-500">
+                            Sign up
+                        </a>{" "}
+                        here.
+                    </p>
+                </div>
+            </IsLoggedOut>
+            <IsLoggedIn>
+                <UserSettingsTabNavigation navigation={navigation} setCurrentTab={setCurrentTab} />
+                <AccountTabContent tab={currentTab} />
+                <SecurityTabContent tab={currentTab} />
+            </IsLoggedIn>
         </div>
     );
 }

@@ -8,7 +8,6 @@ export function mergeThemeCustomizationsAndBase(
     theme: Partial<Theme>,
     baseTheme: Partial<ThemeProperties> | undefined,
 ) {
-    console.log("mergeThemeCustomizationsAndBase", theme?.properties, baseTheme);
     if (!baseTheme) return theme;
 
     const properties = deepMerge(baseTheme, theme?.properties ?? {});

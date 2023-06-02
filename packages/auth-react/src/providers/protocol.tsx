@@ -53,7 +53,6 @@ export const ProtocolAuthProvider = ({
 
     const getInstance = async () => {
         if (state.isLoading || state.isLoaded) return;
-        console.log("getInstance");
         dispatch({ type: "setLoading", payload: true });
 
         const result = await state.client.auth.instances.getByPublicKey({
@@ -75,7 +74,6 @@ export const ProtocolAuthProvider = ({
 
     const internalCreateSignUpAttempt = async (input: CreateSignUpAttemptOptions["body"]) => {
         dispatch({ type: "setCreatingSignUpAttempt", payload: input });
-
         if (state.instance) {
             try {
                 const result = await state.client.auth.signUpAttempts.create({ body: input });
@@ -95,6 +93,8 @@ export const ProtocolAuthProvider = ({
             } catch (err) {
                 console.log("error", err);
             }
+        } else {
+            console.log("No instance");
         }
     };
 
