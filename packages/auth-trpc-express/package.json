@@ -1,0 +1,37 @@
+{
+    "name": "@protoxyz/auth-trpc-express",
+    "version": "0.0.0",
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "build": "tsup src/index.ts --format esm,cjs --minify --dts",
+        "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+        "clean": "rm -rf .turbo node_modules dist",
+        "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@protoxyz/auth-node": "*",
+        "@protoxyz/core": "*",
+        "@trpc/server": "^10.19.1",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^8.5.1"
+    },
+    "peerDependencies": {},
+    "devDependencies": {
+        "@protoxyz/config-tsconfig": "git@github.com:protoxyz/config-tsconfig.git",
+        "@protoxyz/eslint-config-custom-library": "git@github.com:protoxyz/eslint-config-custom-library.git",
+        "@types/express": "^4.17.14",
+        "@types/jsonwebtoken": "^9.0.1",
+        "@types/node": "^18.14.2",
+        "eslint": "^8.32.0",
+        "eslint-config-next": "^13.1.1",
+        "tsup": "^6.2.3",
+        "typescript": "^4.9.5"
+    }
+}

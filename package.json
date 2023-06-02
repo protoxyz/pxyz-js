@@ -1,0 +1,35 @@
+{
+    "name": "pxyz-js",
+    "private": true,
+    "packageManager": "pnpm@7.13.0",
+    "scripts": {
+        "build": "turbo run build",
+        "clean:all": "pnpm run clean:workspaces && pnpm run clean:modules && rm pnpm-lock.yaml",
+        "clean:modules": "rm -rf node_modules",
+        "clean:workspaces": "turbo clean",
+        "dev": "turbo run dev",
+        "dev:apps": "turbo run dev --filter='./apps/*' --concurrency=20",
+        "dev:packages": "turbo run dev --filter='./packages/*' --concurrency=20",
+        "build:apps": "turbo run build --filter='./apps/*'",
+        "build:packages": "turbo run build --filter='./packages/*'",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "lint": "turbo run lint",
+        "FIXME:lint": "turbo lint && manypkg check",
+        "type-check": "turbo type-check",
+        "publish-packages": "turbo run build lint && changeset version && changeset publish",
+        "postinstall": "manypkg check"
+    },
+    "dependencies": {
+        "@changesets/cli": "^2.26.1",
+        "@manypkg/cli": "latest",
+        "@protoxyz/config-tailwind": "git@github.com:protoxyz/config-tailwind.git",
+        "@typescript-eslint/eslint-plugin": "^5.49.0",
+        "@typescript-eslint/parser": "^5.49.0",
+        "eslint": "^8.32.0",
+        "eslint-config-prettier": "^8.6.0",
+        "prettier": "^2.8.3",
+        "prettier-plugin-tailwindcss": "^0.2.2",
+        "turbo": "^1.9.9",
+        "typescript": "^4.9.5"
+    }
+}

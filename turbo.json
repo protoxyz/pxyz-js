@@ -1,0 +1,39 @@
+{
+    "$schema": "https://turborepo.org/schema.json",
+    "pipeline": {
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": [".next/**", ".expo/**", "dist/**", "api/**"]
+        },
+        "lint": {
+            "outputs": []
+        },
+        "clean": {
+            "cache": false
+        },
+        "clean:all": {
+            "cache": false
+        },
+        "clean:workspaces": {
+            "cache": false
+        },
+        "clean:modules": {
+            "cache": false
+        },
+        "type-check": {
+            "cache": false
+        }
+    },
+
+    "globalEnv": [
+        "NODE_ENV",
+        "PROTOCOL_ENV",
+        "VERCEL",
+        "VERCEL_ENV",
+        "NEXT_PUBLIC_VERCEL_ENV"
+    ]
+}
