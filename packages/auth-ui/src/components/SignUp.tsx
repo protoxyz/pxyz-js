@@ -141,8 +141,6 @@ export function SignUp({
                                     </div>
                                 )}
 
-                                <div>{instance.signUpRedirectUri}</div>
-
                                 {instance?.identifierEmailAddress && instance.emailAddressRequired && (
                                     <div className="space-y-1">
                                         <Label key="email" label="Email" />

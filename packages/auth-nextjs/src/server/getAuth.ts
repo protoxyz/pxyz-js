@@ -42,11 +42,11 @@ export function getToken(req: RequestLike) {
     return getSessionToken(req) ?? getBearerToken(req) ?? null;
 }
 
-export async function getProtocolAuth(req: RequestLike) {
+export async function getProtocolAuth(req: RequestLike, jwtKey?: string) {
     const token = getToken(req);
 
     if (token) {
-        const publicKey = (process.env.PXYZ_AUTH_JWT_KEY || "").split(String.raw`\n`).join("\n");
+        const publicKey = (jwtKey ?? process.env.PXYZ_AUTH_JWT_KEY ?? "").split(String.raw`\n`).join("\n");
 
         if (!publicKey) throw new Error("Missing PXYZ_AUTH_JWT_KEY environment variable");
 
