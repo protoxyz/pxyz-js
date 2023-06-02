@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import ReactPhoneInput2 from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+// import "react-phone-input-2/lib/style.css";
 import { InputProps } from "../types";
 import { Label } from "./Label";
 import { useProtocolAuth } from "@protoxyz/auth-react";
