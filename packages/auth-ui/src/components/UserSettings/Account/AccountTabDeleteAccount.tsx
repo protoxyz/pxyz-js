@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useProtocolAuth } from "@protoxyz/auth-react";
 
-export function AccountTabDeleteAccount({}: {}) {
+export function AccountTabDeleteAccount() {
     const { client, instance, logout } = useProtocolAuth();
     const [open, setOpen] = useState(false);
     const cancelButtonRef = useRef(null);

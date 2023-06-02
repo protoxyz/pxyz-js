@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import clsx from "clsx";
 
-export function UserHeader({}: {}) {
+export function UserHeader() {
     const { theme, instance } = useProtocolAuth();
     const navClasses = useMemo(() => {
         return clsx(theme?.headerBgColor, theme?.headerBoxShadow);

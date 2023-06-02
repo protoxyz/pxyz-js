@@ -24,8 +24,8 @@ export default {
     type: "oidc",
     description: "Allow users to connect their Google accounts",
     issuer: new URL("https://accounts.google.com"),
-    clientId: process.env.SHARED_GOOGLE_CLIENT_ID,
-    clientSecret: process.env.SHARED_GOOGLE_CLIENT_SECRET,
+    clientId: "",
+    clientSecret: "",
     scope: ["openid", "profile", "email"],
     checks: ["pkce", "state"],
     profile: (profile: GoogleProfile) => ({

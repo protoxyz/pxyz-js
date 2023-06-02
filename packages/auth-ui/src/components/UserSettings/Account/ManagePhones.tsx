@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Button, PhoneInput, VerificationInput } from "../../../inputs";
 import { Spinner } from "../../Spinner";
 
-export function ManagePhoneNumbers({}: {}) {
+export function ManagePhoneNumbers() {
     const { user, client, theme, instance } = useProtocolAuth();
     const [phones, setPhones] = useState<PhoneNumber[]>([]);
     const [error, setError] = useState<string | undefined>();
@@ -168,7 +168,7 @@ export function ManagePhoneNumbers({}: {}) {
                                                     loading={settingPrimaryId === phone.id}
                                                     onClick={() => setPrimary(phone.id)}
                                                     className={clsx(
-                                                        "h-100 py-1 px-2 text-xs",
+                                                        "h-100 px-2 py-1 text-xs",
                                                         theme?.secondaryButtonBgColor,
                                                         theme?.secondaryButtonBorder,
                                                         theme?.secondaryButtonBorderColor,

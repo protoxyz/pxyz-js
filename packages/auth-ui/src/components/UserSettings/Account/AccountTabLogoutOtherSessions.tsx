@@ -2,7 +2,7 @@ import { useProtocolAuth } from "@protoxyz/auth-react";
 import { UserSettingsSection } from "../UserSettingsSection";
 import clsx from "clsx";
 
-export function AccountTabLogoutOtherSessions({}: {}) {
+export function AccountTabLogoutOtherSessions() {
     const { theme, instance } = useProtocolAuth();
 
     return (

@@ -61,6 +61,6 @@ export default {
             image: profile.avatar_url,
         };
     },
-    clientId: process.env.SHARED_GITLAB_CLIENT_ID,
-    clientSecret: process.env.SHARED_GITLAB_CLIENT_SECRET,
+    clientId: "",
+    clientSecret: "",
 } as OAuthProvider;

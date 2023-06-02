@@ -30,7 +30,7 @@ export function SignUpMinimal({ localization = enUS }: SignUpMinimalProps) {
         const email = formData.get("email")?.toString();
         const phone = formData.get("phone")?.toString();
 
-        let data = { email } as CreateSignUpAttemptOptions["body"];
+        const data = { email } as CreateSignUpAttemptOptions["body"];
 
         createSignUpAttempt(data);
     };

@@ -43,6 +43,6 @@ export default {
         };
     },
 
-    clientId: process.env.SHARED_FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.SHARED_FACEBOOK_CLIENT_SECRET,
+    clientId: "",
+    clientSecret: "",
 } as OAuthProvider;

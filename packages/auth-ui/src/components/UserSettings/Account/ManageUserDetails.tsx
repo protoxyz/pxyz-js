@@ -4,7 +4,7 @@ import { useState } from "react";
 import { NativeSelectTimezone } from "../../../inputs/Timezone";
 import { Button } from "../../../inputs";
 
-export function ManageUserDetails({}: {}) {
+export function ManageUserDetails() {
     const { theme, user, isUpdatingUser, updateUser, instance } = useProtocolAuth();
     const [timezone, setTimezone] = useState<string>(
         user?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,

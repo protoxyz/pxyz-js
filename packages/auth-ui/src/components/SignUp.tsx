@@ -87,7 +87,7 @@ export function SignUp({
         const firstName = formData.get("firstName")?.toString();
         const lastName = formData.get("lastName")?.toString();
 
-        let data = { email, username, password, phone, firstName, lastName } as CreateSignUpAttemptOptions["body"];
+        const data = { email, username, password, phone, firstName, lastName } as CreateSignUpAttemptOptions["body"];
 
         createSignUpAttempt(data);
     };

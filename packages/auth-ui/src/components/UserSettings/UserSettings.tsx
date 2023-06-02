@@ -10,11 +10,15 @@ export function UserSettings({ additionalTabs = [] }: UserSettingsProps) {
     const [currentTab, setCurrentTab] = useState<string>("account");
 
     const navigation = useMemo(() => {
+        const mappedTabs = additionalTabs
+            ? additionalTabs.map((tab) => ({ name: tab.label, tab: tab.tab, current: currentTab === tab.tab }))
+            : [];
+
         return [
             { name: "Account", tab: "account", current: currentTab === "account" },
             { name: "Security", tab: "security", current: currentTab === "security" },
             { name: "Organizations", tab: "organizations", current: currentTab === "organizations" },
-            ...additionalTabs?.map((tab) => ({ name: tab.label, tab: tab.tab, current: currentTab === tab.tab })),
+            ...mappedTabs,
         ];
     }, [currentTab, additionalTabs]);
 

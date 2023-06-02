@@ -721,8 +721,8 @@ export interface StackResource {
 
     name: string;
     type: StackResourceType;
-    cloudTypeId: String;
-    cloudResourceId: String;
+    cloudTypeId: string;
+    cloudResourceId: string;
     status: StackResourceStatus;
     availabilityZoneType: StackResourceAvailabilityZoneType;
     properties: any;
@@ -769,7 +769,7 @@ export interface StarterKit {
     imageUri?: string | null;
     repositoryUri: string;
     status: StarterKitStatus;
-    protocolServices: String[];
+    protocolServices: string[];
     repositories?: StackRepository[] | null | undefined;
 
     createdAt: Date;

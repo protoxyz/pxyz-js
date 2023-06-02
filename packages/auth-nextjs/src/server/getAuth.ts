@@ -7,12 +7,15 @@ import { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { IncomingHttpHeaders } from "http";
 
 export function getBearerToken(req: RequestLike) {
-    if (req.hasOwnProperty("headers") && req.headers.hasOwnProperty("get")) {
+    if (
+        Object.prototype.hasOwnProperty.call(req, "headers") &&
+        Object.prototype.hasOwnProperty.call(req.headers, "get")
+    ) {
         const headers = req.headers;
         if (!headers) return null;
-        if (headers.hasOwnProperty("authorization"))
+        if (Object.prototype.hasOwnProperty.call(headers, "authorization"))
             return (headers as IncomingHttpHeaders).authorization?.replace(/^(?:\s*Bearer)\s*/, "");
-        if (headers.hasOwnProperty("get"))
+        if (Object.prototype.hasOwnProperty.call(headers, "get"))
             return (headers as Headers).get("authorization")?.replace(/^(?:\s*Bearer)\s*/, "");
     }
 
@@ -22,7 +25,7 @@ export function getBearerToken(req: RequestLike) {
 export function getSessionToken(req: RequestLike) {
     const cookies = req.cookies;
 
-    if (cookies.hasOwnProperty("get")) {
+    if (Object.prototype.hasOwnProperty.call(cookies, "get")) {
         const cookie = (cookies as RequestCookies).get("__session")?.value;
         if (cookie) return cookie;
     } else {

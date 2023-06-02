@@ -88,8 +88,8 @@ export default {
     description: "Allow users to connect their Apple accounts",
     type: "oidc",
     issuer: new URL("https://appleid.apple.com"),
-    clientId: process.env.SHARED_APPLE_CLIENT_ID,
-    clientSecret: process.env.SHARED_APPLE_CLIENT_SECRET,
+    clientId: "",
+    clientSecret: "",
     authorization: {
         params: {
             scope: ["name", "email"],

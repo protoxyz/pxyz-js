@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Button } from "../../../inputs";
 import { UserSettingsSection } from "../UserSettingsSection";
 
-export function AccountTabChangePassword({}: {}) {
+export function AccountTabChangePassword() {
     const { theme, instance } = useProtocolAuth();
 
     if (instance?.strategy !== "passwords") return null;

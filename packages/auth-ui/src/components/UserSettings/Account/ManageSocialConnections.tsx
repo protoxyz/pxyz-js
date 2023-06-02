@@ -7,7 +7,7 @@ import { Spinner } from "../../Spinner";
 import { providers } from "@protoxyz/auth-providers";
 import { OAuthMode, SocialButton, SocialIcons, ThemeSocialType } from "../../..";
 
-export function ManageSocialConnections({}: {}) {
+export function ManageSocialConnections() {
     const { instance, user, client, theme } = useProtocolAuth();
     const [connections, setConnections] = useState<SocialConnection[]>([]);
     const [deletingConnectionId, setDeletingConnectionId] = useState<string | undefined>();

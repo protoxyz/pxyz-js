@@ -2,7 +2,7 @@ import { useProtocolAuth } from "@protoxyz/auth-react";
 import { ResponseStatus, Session } from "@protoxyz/core";
 import { useEffect, useState } from "react";
 
-export function SecurityTabSessions({}: {}) {
+export function SecurityTabSessions() {
     const { client } = useProtocolAuth();
     const [sessions, setSessions] = useState<Session[]>([]);
     const [error, setError] = useState<string | null | undefined>(null);

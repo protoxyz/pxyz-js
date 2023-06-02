@@ -65,8 +65,8 @@ export default {
     token: new URL("https://github.com/login/oauth/access_token"),
     userInfo: new URL("https://api.github.com/user"),
     scope: ["read:user", "user:email"],
-    clientId: process.env.SHARED_GITHUB_CLIENT_ID,
-    clientSecret: process.env.SHARED_GITHUB_CLIENT_SECRET,
+    clientId: "",
+    clientSecret: "",
     checks: ["pkce", "state"],
     profile: (profile: GithubProfile) => {
         return {

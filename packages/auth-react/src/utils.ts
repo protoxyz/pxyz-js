@@ -11,7 +11,7 @@ export function mergeThemeCustomizationsAndBase(
     console.log("mergeThemeCustomizationsAndBase", theme?.properties, baseTheme);
     if (!baseTheme) return theme;
 
-    let properties = deepMerge(baseTheme, theme?.properties ?? {});
+    const properties = deepMerge(baseTheme, theme?.properties ?? {});
 
     return {
         ...theme,
