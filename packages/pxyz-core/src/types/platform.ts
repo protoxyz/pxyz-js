@@ -108,19 +108,6 @@ export const StackServiceType = {
 };
 export type StackServiceType = (typeof StackServiceType)[keyof typeof StackServiceType];
 
-export interface StackServiceResourceLink {
-    id: string;
-
-    serviceId: string;
-    service?: StackService | null;
-
-    resourceId: string;
-    resource?: StackResource | null;
-
-    createdAt: Date;
-    updatedAt: Date;
-}
-
 export interface Stack {
     id: string;
 
@@ -164,6 +151,8 @@ export interface StackService {
     repositoryId: string;
     repository?: StackRepository | null;
 
+    config: StackWebServiceConfig;
+
     platform: StackServicePlatform;
     path: string;
     installCmd?: string | null;
@@ -175,30 +164,105 @@ export interface StackService {
     url?: string | null;
     error?: string | null;
 
-    links?: StackServiceResourceLink[];
-
     createdAt: Date;
     updatedAt: Date;
 }
 
-export interface StackResource {
+export interface StackWebServiceConfig {
+    port?: number;
+    cpu?: number;
+    memory?: number;
+    desiredCount?: number;
+    minCapacity?: number;
+    maxCapacity?: number;
+    cpuScalingTargetPercent?: number;
+    cpuScalingCoodownIn?: number;
+    cpuScalingCooldownOut?: number;
+    memoryScalingTargetPercent?: number;
+    memoryScalingCoodownIn?: number;
+    memoryScalingCooldownOut?: number;
+    healthCheck?: StackServiceHealthCheckConfig;
+    environment?: StackServiceEnvironmentVariable[];
+}
+
+export interface StackServiceEnvironmentVariableBase {
+    key: string;
+}
+
+export interface StackServiceEnvironmentVariablePlaintext extends StackServiceEnvironmentVariableBase {
+    value: string;
+}
+
+export interface StackServiceEnvironmentVariableFromResource extends StackServiceEnvironmentVariableBase {
+    valueFrom: string;
+}
+
+export type StackServiceEnvironmentVariable =
+    | StackServiceEnvironmentVariablePlaintext
+    | StackServiceEnvironmentVariableFromResource;
+
+export interface StackServiceHealthCheckConfig {
+    path?: string;
+    interval?: number;
+    timeout?: number;
+    healthyThreshold?: number;
+    unhealthyThreshold?: number;
+}
+
+export interface StackResourceBase {
     id: string;
 
     stackId: string;
     stack?: Stack;
 
     name: string;
-    type: StackResourceType;
-    cloudTypeId: string;
-    cloudResourceId: string;
     status: StackResourceStatus;
-    availabilityZoneType: StackResourceAvailabilityZoneType;
-    properties: any;
     error?: string | null;
-    links?: StackServiceResourceLink[];
 
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface StackResourcePostgres extends StackResourceBase {
+    type: "database_postgres";
+    config?: StackResourcePostgresConfig;
+}
+
+export interface StackResourceRedis extends StackResourceBase {
+    type: "cache_redis";
+    config?: StackResourceRedisConfig;
+}
+
+export interface StackResourceRedisConfig {
+    cacheNodeType?: string;
+    numCacheNodes?: number;
+    azMode?: "single-az" | "multi-az";
+    engineVersion?: string;
+    ipDiscovery?: "ipv4" | "ipv6";
+}
+
+export interface StackResourceMemcachedConfig {
+    cacheNodeType?: string;
+    numCacheNodes?: number;
+    azMode?: "single-az" | "multi-az";
+    engineVersion?: string;
+    ipDiscovery?: "ipv4" | "ipv6";
+}
+
+export interface StackResourceMemcached extends StackResourceBase {
+    type: "cache_mem";
+    config?: StackResourceMemcachedConfig;
+}
+
+export type StackResource = StackResourcePostgres | StackResourceMemcached;
+
+export interface StackResourcePostgresConfig {
+    engineVersion?: string;
+    instanceType?: string;
+    multiAz?: boolean;
+    storageType?: string;
+    allocatedStorage?: number;
+    isPublic?: boolean;
 }
 
 export interface StackRepository {
