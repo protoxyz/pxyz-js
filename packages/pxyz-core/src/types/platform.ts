@@ -152,6 +152,7 @@ export interface StackService {
     repository?: StackRepository | null;
 
     config: StackWebServiceConfig;
+    environment?: StackServiceEnvironmentVariable[];
 
     platform: StackServicePlatform;
     path: string;
@@ -182,7 +183,6 @@ export interface StackWebServiceConfig {
     memoryScalingCooldownIn?: number;
     memoryScalingCooldownOut?: number;
     healthCheck?: StackServiceHealthCheckConfig;
-    environment?: StackServiceEnvironmentVariable[];
 }
 
 export interface StackServiceEnvironmentVariableBase {
