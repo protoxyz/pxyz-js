@@ -176,10 +176,10 @@ export interface StackWebServiceConfig {
     minCapacity?: number;
     maxCapacity?: number;
     cpuScalingTargetPercent?: number;
-    cpuScalingCoodownIn?: number;
+    cpuScalingCooldownIn?: number;
     cpuScalingCooldownOut?: number;
     memoryScalingTargetPercent?: number;
-    memoryScalingCoodownIn?: number;
+    memoryScalingCooldownIn?: number;
     memoryScalingCooldownOut?: number;
     healthCheck?: StackServiceHealthCheckConfig;
     environment?: StackServiceEnvironmentVariable[];
@@ -274,9 +274,14 @@ export interface StackRepository {
     creatorId: string;
     creator?: UserProfile | null;
 
-    name: string;
+    sourceOwner?: string;
+    sourceRepo?: string;
 
-    repositoryUri: string;
+    owner: string;
+    repo: string;
+
+    uri: string;
+
     status: StackRepositoryStatus;
 
     starterKitId?: string | null;
