@@ -123,8 +123,8 @@ export type Stack = {
     resources: StackResource[];
     services: StackService[];
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export const StackServicePlatform = {
@@ -160,8 +160,8 @@ export type StackService = {
     url?: string | null;
     error?: string | null;
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type StackServiceBuildConfig = {
@@ -190,21 +190,11 @@ export type StackWebServiceConfig = {
     healthCheck?: StackServiceHealthCheckConfig;
 };
 
-export type StackServiceEnvironmentVariableBase = {
+export type StackServiceEnvironmentVariable = {
     key: string;
+    value?: string;
+    valueFrom?: string;
 };
-
-export type StackServiceEnvironmentVariablePlaintext = StackServiceEnvironmentVariableBase & {
-    value: string;
-};
-
-export type StackServiceEnvironmentVariableFromResource = StackServiceEnvironmentVariableBase & {
-    valueFrom: string;
-};
-
-export type StackServiceEnvironmentVariable =
-    | StackServiceEnvironmentVariablePlaintext
-    | StackServiceEnvironmentVariableFromResource;
 
 export type StackServiceHealthCheckConfig = {
     path?: string;
@@ -224,8 +214,8 @@ export type StackResourceBase = {
     status: StackResourceStatus;
     error?: string | null;
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type StackResourcePostgres = StackResourceBase & {
@@ -296,6 +286,6 @@ export type StackRepository = {
 
     services?: StackService[];
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
