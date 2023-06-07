@@ -192,8 +192,8 @@ export type StackWebServiceConfig = {
 
 export type StackServiceEnvironmentVariable = {
     key: string;
-    value?: string;
-    valueFrom?: string;
+    value?: string | null;
+    valueFrom?: string | null;
 };
 
 export type StackServiceHealthCheckConfig = {
