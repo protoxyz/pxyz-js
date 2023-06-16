@@ -14,11 +14,9 @@ import { PhoneVerification } from "./PhoneVerification";
 import { EmailVerification } from "./EmailVerification";
 import { SignUpCard } from "./Card";
 import { IsLoggedOut } from "./IsLoggedOut";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { ThemeHeaderPlacement, ThemeSocialPlacement, ThemeSocialType } from "../types";
 import { Label } from "../inputs/Label";
-import { Heading } from "./Heading";
-import Link from "next/link";
 import { Spinner } from "./Spinner";
 
 export interface SignUpProps {
@@ -43,11 +41,11 @@ export function SignUp({
     const { user, instance, createSignUpAttempt, isCreatingSignUpAttempt, signUpAttempt, signUpError } =
         useProtocolAuth();
 
-    useEffect(() => {
-        if (user) {
-            router.push(instance?.homeUri || "/");
-        }
-    }, [user, instance]);
+    // useEffect(() => {
+    //     if (user) {
+    //         router.push(instance?.homeUri || "/");
+    //     }
+    // }, [user, instance]);
 
     const header = useMemo(
         () => (headerPlacement === ThemeHeaderPlacement.none ? null : <Header />),

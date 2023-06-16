@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { useProtocolAuth } from "@protoxyz/auth-react";
 import { Avatar } from "./Avatar";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export interface UserMenuAdditionalItems {
     label: string;
@@ -90,7 +90,7 @@ export function UserDropdown({
                 {
                     <Menu.Button
                         className={clsx(
-                            "focus:ring-secondary-500 inline-flex h-10 w-full items-center justify-center gap-x-2 gap-x-1 rounded-md border px-4 text-sm font-medium shadow-sm hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-100 ",
+                            "focus:ring-secondary-500 inline-flex h-10 w-full items-center justify-center gap-x-1 gap-x-2 rounded-md border px-4 text-sm font-medium shadow-sm hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-100 ",
                             theme?.userDropdownBorderColor,
                             theme?.userDropdownBgColor,
                             theme?.userDropdownTextColor,
@@ -143,12 +143,12 @@ export function UserDropdown({
                         </Menu.Item>
                         {itemsPlacement === "bottom" && additionalItems}
                     </div>
-                    <div className="py-1 px-1">
+                    <div className="px-1 py-1">
                         <Menu.Item>
                             <button
                                 onClick={onLogout}
                                 type="submit"
-                                className="bg-primary-500 w-full py-3 px-5 text-white hover:opacity-75"
+                                className="bg-primary-500 w-full px-5 py-3 text-white hover:opacity-75"
                             >
                                 Log Out
                             </button>

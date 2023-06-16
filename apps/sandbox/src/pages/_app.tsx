@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { ProtocolAuthProvider } from "@protoxyz/auth-react";
-import { light } from "@protoxyz/auth-ui";
+import { ProtocolAuthProvider } from "@protoxyz/auth-nextjs";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (

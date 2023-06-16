@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { Localization } from "../types";
 import { PrimaryButton } from "../inputs/Button";
 import { EmailInput } from "../inputs/EmailInput";
@@ -13,13 +12,12 @@ import { ThemeHeaderPlacement, ThemeSocialPlacement, ThemeSocialType } from "../
 import { AuthenticationStrategy, AuthSignInAttemptStatus, AuthVerificationStrategy } from "@protoxyz/core";
 import { PhoneInput } from "../inputs";
 import { SecuredBy } from "./SecuredBy";
-import Link from "next/link";
+
 import { SignInCard } from "./Card";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { IsLoggedOut } from "./IsLoggedOut";
 import { EmailVerification } from "./EmailVerification";
 import { PhoneVerification } from "./PhoneVerification";
-import { Heading } from "./Heading";
 import { Label } from "../inputs/Label";
 import { Spinner } from "./Spinner";
 
@@ -56,11 +54,11 @@ export function SignIn({
         user,
     } = useProtocolAuth();
 
-    useEffect(() => {
-        if (user) {
-            router.push(instance?.homeUri || "/");
-        }
-    }, [user, instance]);
+    // useEffect(() => {
+    //     if (user) {
+    //         router.push(instance?.homeUri || "/");
+    //     }
+    // }, [user, instance]);
 
     useEffect(function callback() {
         return function () {

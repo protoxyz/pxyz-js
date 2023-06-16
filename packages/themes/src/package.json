@@ -1,6 +1,6 @@
 {
-    "name": "@protoxyz/auth-react",
-    "version": "1.0.2",
+    "name": "@protoxyz/themes",
+    "version": "1.0.0",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -12,38 +12,24 @@
         "url": "https://github.com/protoxyz/pxyz-js/issues"
     },
     "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "files": [
         "dist/**"
     ],
     "scripts": {
-        "build": "tsup",
-        "dev": "tsup --watch ",
+        "build": "tsup src/index.ts --format esm,cjs --minify --dts",
+        "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
         "clean": "rm -rf .turbo node_modules dist",
-        "lint": "eslint \"src/**/*.ts*\"",
+        "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
         "@protoxyz/config-tsconfig": "git@github.com:protoxyz/config-tsconfig.git",
-        "@protoxyz/eslint-config-custom-react": "git@github.com:protoxyz/eslint-config-custom-react.git",
-        "@types/js-cookie": "^3.0.3",
+        "@protoxyz/eslint-config-custom-library": "git@github.com:protoxyz/eslint-config-custom-library.git",
         "@types/node": "^18.14.2",
-        "@types/react": "^18.0.28",
-        "@types/react-dom": "^18.0.11",
         "eslint": "^8.32.0",
-        "next": "^13.3.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
         "tsup": "^6.2.3",
         "typescript": "^4.9.5"
-    },
-    "peerDependencies": {
-        "next": "^13.3.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    },
-    "dependencies": {
-        "@protoxyz/core": "*",
-        "js-cookie": "^3.0.1"
     }
 }

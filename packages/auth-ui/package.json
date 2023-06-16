@@ -1,8 +1,16 @@
 {
     "name": "@protoxyz/auth-ui",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "license": "MIT",
     "private": false,
+    "homepage": "https://pxyz.dev",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/protoxyz/pxyz-js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/protoxyz/pxyz-js/issues"
+    },
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "files": [
