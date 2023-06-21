@@ -41,14 +41,12 @@ import { OrganizationWithRole } from "@protoxyz/types";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
-interface OrganizationSwitcherProps extends PopoverTriggerProps {}
-
 type Group = {
     label: string;
     teams: Pick<OrganizationWithRole, "name" | "slug" | "imageUri">[];
 };
 
-export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
+export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
     const { user } = useProtocolAuth();
     // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
     const { organizations } = useProtocolAuthOrganizationsList({});

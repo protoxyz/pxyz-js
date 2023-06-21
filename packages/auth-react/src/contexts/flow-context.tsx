@@ -35,13 +35,13 @@ const initialState: ProtocolAuthFlowContextState = {
     signIn: {
         route: SignInFlowRoute.signIn,
         setRoute: (route: SignInFlowRoute) => {
-            throw new Error("Not implemented");
+            throw new Error("Not implemented" + route.toString());
         },
     },
     signUp: {
         route: SignUpFlowRoute.signUp,
         setRoute: (route: SignUpFlowRoute) => {
-            throw new Error("Not implemented");
+            throw new Error("Not implemented" + route.toString());
         },
     },
 };

@@ -38,6 +38,8 @@
         "NEXT_PUBLIC_PROTOCOL_ENV",
         "NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY",
         "NEXT_PUBLIC_PXYZ_AUTH_DOMAIN",
-        "PXYZ_AUTH_JWT_KEY"
+        "PXYZ_AUTH_JWT_KEY",
+        "PXYZ_AUTH_DOMAIN",
+        "PXYZ_PUBLIC_KEY"
     ]
 }

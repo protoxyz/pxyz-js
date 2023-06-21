@@ -4,7 +4,7 @@ import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { SignIn } from "../sign-in";
 import { Button, ButtonProps } from "../../ui/button";
 import { DialogContent } from "../../ui/dialog";
-import { useProtocolAuth, useProtocolAuthAppearance } from "../../../contexts/protocol-context";
+import { useProtocolAuth } from "../../../contexts/protocol-context";
 import { useCallback, useMemo } from "react";
 
 interface SignInButtonProps {
@@ -15,7 +15,7 @@ interface SignInButtonProps {
 }
 
 export function SignInButton({ mode = "redirect", children, button, text = "Sign in" }: SignInButtonProps) {
-    const { appearance } = useProtocolAuthAppearance({ component: "signIn" });
+    // const { appearance } = useProtocolAuthAppearance({ component: "signIn" });
     const { instance } = useProtocolAuth();
 
     const redirectToSignIn = useCallback(() => {

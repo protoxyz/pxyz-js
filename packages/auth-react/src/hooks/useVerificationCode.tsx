@@ -14,9 +14,9 @@ export type InputState = {
 };
 
 const useVerificationCode = (codeLength: number): HookReturnValues => {
-    let [code, setCode] = useState<string | null>(null);
-    let inputStates: InputState[] = [];
-    let inputClass = "code-digit"; // classname used to target the inputs
+    const [code, setCode] = useState<string | null>(null);
+    const inputStates: InputState[] = [];
+    const inputClass = "code-digit"; // classname used to target the inputs
 
     for (let i = 0; i < codeLength; i++) {
         const [digit, setDigit] = useState<string>("");
@@ -25,7 +25,7 @@ const useVerificationCode = (codeLength: number): HookReturnValues => {
 
     // jumps to next empty input when code is entered in an input and jumps to previous input when code is deleted from an input
     const handleChange: HookReturnValues["handleChange"] = (e, index) => {
-        let entry = e.target.value as string;
+        const entry = e.target.value as string;
         console.log(":handleChange -> entry", entry);
 
         if (entry.length <= 1 && !Number.isNaN(entry)) {
@@ -36,12 +36,12 @@ const useVerificationCode = (codeLength: number): HookReturnValues => {
                 // move focus to next empty input box unless it's the last one,
                 if (index < codeLength - 1) {
                     console.log("moving to next index");
-                    let nextInput = document.querySelectorAll<HTMLInputElement>(`.${inputClass}`)[index + 1];
+                    const nextInput = document.querySelectorAll<HTMLInputElement>(`.${inputClass}`)[index + 1];
                     if (nextInput.value === "") nextInput.focus();
                 }
             } else if (entry.length === 0) {
                 // user deleted a code, move focus to the previous input box
-                let prevInput = document.querySelectorAll<HTMLInputElement>(`.${inputClass}`)[index - 1];
+                const prevInput = document.querySelectorAll<HTMLInputElement>(`.${inputClass}`)[index - 1];
 
                 // focus if the element exists
                 if (prevInput !== undefined) prevInput.focus();
@@ -55,7 +55,7 @@ const useVerificationCode = (codeLength: number): HookReturnValues => {
 
     // compile the complete code anytime the inputs change
     useEffect(() => {
-        let finalCode = inputStates
+        const finalCode = inputStates
             .map((input) => {
                 return input.digit;
             })

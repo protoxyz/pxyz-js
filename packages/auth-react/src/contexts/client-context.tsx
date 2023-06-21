@@ -14,10 +14,10 @@ export const ProtocolAuthClientContext = createContext<ProtocolAuthClientContext
     signIn: null,
     signUp: null,
     setSignIn: (attempt: SignInAttempt) => {
-        throw new Error("Not implemented");
+        throw new Error("Not implemented: " + attempt.toString());
     },
     setSignUp: (attempt: SignUpAttempt) => {
-        throw new Error("Not implemented");
+        throw new Error("Not implemented" + attempt.toString());
     },
 });
 

@@ -35,16 +35,16 @@ export interface ProtocolAuthSettersState {
 
 export const ProtocolAuthSettersContext = React.createContext<ProtocolAuthSettersState>({
     navigate: (url: string) => {
-        throw new Error("navigate must be implemented");
+        throw new Error("navigate must be implemented" + url.toString());
     },
     redirectToUserProfile: () => {
         throw new Error("redirectToUserProfile must be implemented");
     },
     redirectToSignIn: (props?: RedirectToSignInProps) => {
-        throw new Error("redirectToSignIn must be implemented");
+        throw new Error("redirectToSignIn must be implemented" + props?.toString());
     },
     redirectToSignUp: (props?: RedirectToSignUpProps) => {
-        throw new Error("redirectToSignUp must be implemented");
+        throw new Error("redirectToSignUp must be implemented" + props?.toString());
     },
 });
 

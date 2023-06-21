@@ -64,11 +64,11 @@ export function hexToHSL(H: string) {
     }
 
     // Convert hex to RGB first
-    let { r, g, b } = hexToRGB(H);
+    const { r, g, b } = hexToRGB(H);
     // Then to HSL
-    let numR = parseInt(r) / 255;
-    let numG = parseInt(g) / 255;
-    let numB = parseInt(b) / 255;
+    const numR = parseInt(r) / 255;
+    const numG = parseInt(g) / 255;
+    const numB = parseInt(b) / 255;
 
     const cmin = Math.min(numR, numG, numB);
     const cmax = Math.max(numR, numG, numB);
@@ -140,7 +140,7 @@ export function HSLtoRGB(h: number, s: number, l: number) {
 }
 
 export function HSLToHex(h: number, s: number, l: number) {
-    let { r, g, b } = HSLtoRGB(h, s, l);
+    const { r, g, b } = HSLtoRGB(h, s, l);
 
     // Having obtained RGB, convert channels to hex
     let strR = r.toString(16);
@@ -169,7 +169,7 @@ export function isValidName(name: string) {
     return re.test(name);
 }
 
-export function round(value: number, precision: number = 0) {
+export function round(value: number, precision = 0) {
     const multiplier = Math.pow(10, precision);
     return Math.round(value * multiplier) / multiplier;
 }
@@ -185,17 +185,14 @@ export function titleCase(s: string) {
 export function arrayObjectDiff(before: PaletteConfig[], current: PaletteConfig[]) {
     const defaultKeys = Object.keys(DEFAULT_PALETTE_CONFIG);
 
-    // TODO: Fix this TS string-key-nonsense
     const changedKeys: (string | null)[] = defaultKeys
         .map((key: string) => {
             const beforeValues = before
-                // @ts-ignore
                 .map((p) => p[key])
                 .sort()
                 .join();
 
             const currentValues = current
-                // @ts-ignore
                 .map((p) => p[key])
                 .sort()
                 .join();

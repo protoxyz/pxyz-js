@@ -13,13 +13,13 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
-import { useProtocolAuth, useProtocolAuthAppearance } from "../../../contexts/protocol-context";
+import { useProtocolAuth } from "../../../contexts/protocol-context";
 import { SignOutButton } from "../sign-out-button";
 import { userDisplayName, userImage, userInitials, userSecondaryDisplayName } from "../../../lib/display";
 
 export function UserButton() {
     const { user } = useProtocolAuth();
-    const { appearance } = useProtocolAuthAppearance({ component: "userButton" });
+    // const { appearance } = useProtocolAuthAppearance({ component: "userButton" });
 
     return (
         <DropdownMenu>

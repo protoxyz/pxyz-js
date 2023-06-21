@@ -1,11 +1,7 @@
 import { AuthComponentType } from "@protoxyz/themes";
 import { CardWrapper } from "../../../custom-ui/card-wrapper";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../ui/card";
-import {
-    useProtocolAuth,
-    useProtocolAuthAppearance,
-    useProtocolAuthInstance,
-} from "../../../../contexts/protocol-context";
+import { useProtocolAuth, useProtocolAuthAppearance } from "../../../../contexts/protocol-context";
 import { useBrandName } from "../../../../hooks/useBrand";
 import { useProtocolAuthClient } from "../../../../contexts/client-context";
 import { AuthSignInAttemptStatus, AuthVerificationStrategy } from "@protoxyz/types";
@@ -28,7 +24,6 @@ export function SignInVerifyFirstFactorRoute() {
     const { signIn, setSignIn } = useProtocolAuthClient();
     const { setRoute } = useProtocolAuthSignInFlow();
     const { appearance } = useProtocolAuthAppearance({ component });
-    const { instance } = useProtocolAuthInstance();
     const brandName = useBrandName({ component });
     const [codeResending, setCodeResending] = useState(false);
     const [codeResent, setCodeResent] = useState(false);
@@ -86,6 +81,10 @@ export function SignInVerifyFirstFactorRoute() {
                     <SignInVerifyFirstFactorForm setError={setError} />
 
                     {error && <div className="text-sm text-red-500">{error}</div>}
+
+                    {codeResent && (
+                        <div className="text-sm text-green-500">Verification code resent to {signIn.identifier}</div>
+                    )}
 
                     <div className="flex flex-col gap-y-0">
                         <Button
@@ -200,20 +199,15 @@ export function SignInVerifyFirstFactorForm({ setError }: { setError: (error: st
         }
 
         if (split.length === 1) {
-            // @ts-ignore
-            ref1.current?.focus();
+            if (ref1 && ref1.current && ref1.current) (ref1.current as any).focus();
         } else if (split.length === 2) {
-            // @ts-ignore
-            ref2.current?.focus();
+            if (ref2 && ref2.current && ref2.current) (ref2.current as any).focus();
         } else if (split.length === 3) {
-            // @ts-ignore
-            ref3.current?.focus();
+            if (ref3 && ref3.current && ref3.current) (ref3.current as any).focus();
         } else if (split.length === 4) {
-            // @ts-ignore
-            ref4.current?.focus();
+            if (ref4 && ref4.current && ref4.current) (ref4.current as any).focus();
         } else if (split.length === 5) {
-            // @ts-ignore
-            ref5.current?.focus();
+            if (ref5 && ref5.current && ref5.current) (ref5.current as any).focus();
         }
 
         if (split.length === 6) {

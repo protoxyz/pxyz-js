@@ -1,10 +1,10 @@
-interface BaseRedirectAndOpenProps {
+export type BaseRedirectAndOpenProps = {
     redirectUrl?: string;
     afterSignInUrl?: string;
     afterSignUpUrl?: string;
-}
+};
 
-export interface OpenSignInProps extends BaseRedirectAndOpenProps {}
-export interface OpenSignUpProps extends BaseRedirectAndOpenProps {}
-export interface RedirectToSignInProps extends BaseRedirectAndOpenProps {}
-export interface RedirectToSignUpProps extends BaseRedirectAndOpenProps {}
+export type OpenSignInProps = BaseRedirectAndOpenProps;
+export type OpenSignUpProps = BaseRedirectAndOpenProps;
+export type RedirectToSignInProps = BaseRedirectAndOpenProps;
+export type RedirectToSignUpProps = BaseRedirectAndOpenProps;

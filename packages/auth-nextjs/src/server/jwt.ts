@@ -1,3 +1,4 @@
+import { SessionUser } from "@protoxyz/types";
 import { importSPKI, jwtVerify } from "jose";
 
 export interface VerifyJWTArgs {
@@ -11,5 +12,5 @@ export async function verifyJWT({ token, pem }: VerifyJWTArgs) {
 
     const { payload } = await jwtVerify(token, key);
 
-    return payload as Record<string, any>;
+    return payload as unknown as SessionUser;
 }

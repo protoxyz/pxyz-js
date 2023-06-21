@@ -19,15 +19,28 @@ export function getBearerToken(req: RequestLike) {
     return null;
 }
 
+type CookiesWithGet = {
+    get: (name: string) =>
+        | {
+              key: string;
+              value: string;
+          }
+        | undefined;
+};
+
+type CookiesWithSession = {
+    __session: string;
+};
+
 export function getSessionToken(req: RequestLike) {
     const cookies = req.cookies;
 
     if (Object.prototype.hasOwnProperty.call(cookies, "get")) {
-        const cookie = (cookies as any).get("__session")?.value;
+        const cookie = (cookies as CookiesWithGet).get("__session")?.value;
         if (cookie) return cookie;
     } else {
-        const apiReq = req as unknown as any;
-        const cookies = apiReq.cookies as any;
+        const apiReq = req;
+        const cookies = apiReq.cookies as CookiesWithSession;
         const cookie = cookies.__session;
         if (cookie) return cookie;
     }
