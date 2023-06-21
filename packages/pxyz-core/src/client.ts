@@ -14,17 +14,20 @@ export interface HttpClientConfigOptions {
     accessToken?: string | undefined;
     credentials?: boolean | undefined;
     debug?: boolean | undefined;
+    proxyUrl?: string | undefined;
 }
 export class HttpClient {
     private host?: string | undefined;
     private accessToken?: string | undefined;
     private credentials?: boolean | undefined;
     private debug: boolean;
+    private proxyUrl?: string | undefined;
 
     constructor(options?: HttpClientConfigOptions) {
         this.accessToken = options?.accessToken;
         this.credentials = options?.credentials;
         this.debug = options?.debug || true;
+        this.proxyUrl = options?.proxyUrl;
 
         if (!options?.host) {
             this.host = BACKEND_API_URL;
@@ -91,6 +94,10 @@ export class HttpClient {
 
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
+
+        if (this.proxyUrl !== undefined) {
+            headers.append("Authority", this.proxyUrl);
+        }
 
         if (this.accessToken !== undefined && this.accessToken !== "" && this.accessToken !== null) {
             headers.append("Authorization", `Bearer ${this.accessToken}`);

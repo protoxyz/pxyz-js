@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/core",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -22,15 +22,15 @@
         "dev": "tsup src/index.ts --format esm,cjs --minify --watch --dts",
         "clean": "rm -rf .turbo node_modules dist",
         "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
-        "type-check": "tsc --noEmit"
+        "type-check": "tsc --noEmit",
+        "update-pxyz": "pnpm update \"@protoxyz/*\""
     },
     "dependencies": {
-        "@protoxyz/types": "*"
+        "@protoxyz/types": "^1.0.1"
     },
     "devDependencies": {
-        "@protoxyz/config-tailwind": "git@github.com:protoxyz/config-tailwind.git",
-        "@protoxyz/config-tsconfig": "git@github.com:protoxyz/config-tsconfig.git",
-        "@protoxyz/eslint-config-custom-library": "git@github.com:protoxyz/eslint-config-custom-library.git",
+        "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
+        "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
         "@types/node": "^18.14.2",
         "@types/node-fetch": "2.x",
         "@types/react": "^18.0.28",

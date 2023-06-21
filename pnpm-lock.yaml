@@ -156,12 +156,12 @@ importers:
       '@headlessui/react': ^1.7.15
       '@heroicons/react': ^2.0.18
       '@hookform/resolvers': ^3.1.1
-      '@protoxyz/auth-providers': '*'
-      '@protoxyz/config-tsconfig': git@github.com:protoxyz/config-tsconfig.git
-      '@protoxyz/core': '*'
-      '@protoxyz/eslint-config-custom-react': git@github.com:protoxyz/eslint-config-custom-react.git
-      '@protoxyz/themes': '*'
-      '@protoxyz/types': '*'
+      '@protoxyz/auth-providers': workspace:^1.0.1
+      '@protoxyz/config-tsconfig': github:protoxyz/config-tsconfig
+      '@protoxyz/core': workspace:^1.1.0
+      '@protoxyz/eslint-config-custom-react': github:protoxyz/eslint-config-custom-react
+      '@protoxyz/themes': workspace:^1.0.1
+      '@protoxyz/types': workspace:^1.0.1
       '@radix-ui/react-avatar': ^1.0.3
       '@radix-ui/react-dialog': ^1.0.4
       '@radix-ui/react-dropdown-menu': ^2.0.5
@@ -2032,7 +2032,7 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 20.3.1
     dev: false
 
   /@types/minimist/1.2.2:
@@ -2056,6 +2056,10 @@ packages:
 
   /@types/node/18.16.18:
     resolution: {integrity: sha512-/aNaQZD0+iSBAGnvvN2Cx92HqE5sZCPZtx2TsK+4nvV23fFe09jVDvpArXr2j9DnYlzuU9WuoykDDc6wqvpNcw==}
+
+  /@types/node/20.3.1:
+    resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==}
+    dev: false
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -2089,7 +2093,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 20.3.1
     dev: false
 
   /@types/scheduler/0.16.3:
@@ -2899,6 +2903,11 @@ packages:
       csstype: 3.1.2
     dev: false
 
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: true
+
   /duplexer3/0.1.5:
     resolution: {integrity: sha512-1A8za6ws41LQgv9HrE/66jyC5yuSjQ3L/KOpFtoBilsAK2iA2wuS5rTt1OCzIvtS2V7nVmedsUU+DGRcjBmOYA==}
     dev: false
@@ -3096,6 +3105,15 @@ packages:
       eslint-plugin-turbo: 1.10.3_eslint@8.43.0
     dev: true
 
+  /eslint-config-turbo/1.10.4_eslint@8.43.0:
+    resolution: {integrity: sha512-hmcN373hjDF8sXAJcptL15PCKsDSc3ImcIiH6Q3H0cGbbQgeHpTIwd9WeUbs+9b6xV1jO5rgpNORiJ6Hu20kRg==}
+    peerDependencies:
+      eslint: '>6.6.0'
+    dependencies:
+      eslint: 8.43.0
+      eslint-plugin-turbo: 1.10.4_eslint@8.43.0
+    dev: true
+
   /eslint-import-resolver-node/0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
     dependencies:
@@ -3272,6 +3290,15 @@ packages:
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
+      eslint: 8.43.0
+    dev: true
+
+  /eslint-plugin-turbo/1.10.4_eslint@8.43.0:
+    resolution: {integrity: sha512-FmwJ/s8vqE4COoAxT9oZfZfl4yDDBTnVkAZtkwIRv5QtudeC0vD8fAkLyM3YdBKlHf5nu+qs7zZZW14v8LpnVg==}
+    peerDependencies:
+      eslint: '>6.6.0'
+    dependencies:
+      dotenv: 16.0.3
       eslint: 8.43.0
     dev: true
 
@@ -6207,7 +6234,7 @@ packages:
     version: 0.0.0
     dependencies:
       eslint-config-prettier: 8.8.0_eslint@8.43.0
-      eslint-config-turbo: 1.10.3_eslint@8.43.0
+      eslint-config-turbo: 1.10.4_eslint@8.43.0
       eslint-plugin-react: 7.28.0_eslint@8.43.0
     transitivePeerDependencies:
       - eslint

@@ -18,6 +18,7 @@ export interface ProtocolClientConfiguration {
     accessToken?: string | undefined;
     credentials?: boolean | undefined;
     debug?: boolean;
+    proxyUrl?: string | undefined;
 }
 
 export class Protocol {
@@ -47,6 +48,7 @@ export class Protocol {
             host: config.baseUrl,
             accessToken: config.accessToken,
             credentials: config.credentials,
+            proxyUrl: config.proxyUrl,
             debug: config.debug || process.env.NODE_ENV !== "production",
         });
 

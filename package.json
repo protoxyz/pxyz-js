@@ -17,7 +17,8 @@
         "FIXME:lint": "turbo lint && manypkg check",
         "type-check": "turbo type-check",
         "publish-packages": "turbo run build lint && changeset version && changeset publish",
-        "postinstall": "manypkg check"
+        "postinstall": "manypkg check",
+        "update-pxyz": "turbo run update-pxyz"
     },
     "dependencies": {
         "@changesets/cli": "^2.26.1",

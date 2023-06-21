@@ -9,7 +9,7 @@ export const parseCookieString = (cookie: string | null): Record<string, string>
         .map((v) => v.split("="))
         .reduce((acc, [key, value]) => ({ ...acc, [key.trim()]: decodeURIComponent(value) }), {});
 
-export async function getCookieSession({ headers }: { headers: Headers }) {
+export async function getCookieToken({ headers }: { headers: Headers }) {
     const cookies = parseCookieString(headers.get("cookie"));
     if (!cookies || !cookies["__session"]) return null;
     const token = cookies["__session"];
@@ -38,7 +38,7 @@ export function getPublicKey({ jwtKey }: { jwtKey?: string }) {
 export async function getAuth({ jwtKey }: { jwtKey?: string }): Promise<SessionUser | null> {
     const headers = nextHeaders();
 
-    const token = (await getCookieSession({ headers })) || (await getBearerToken({ headers }));
+    const token = (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
 
     if (!token) return null;
 
@@ -67,10 +67,20 @@ export async function getAuth({ jwtKey }: { jwtKey?: string }): Promise<SessionU
 //     return decoded as SessionUser;
 // }
 
+export async function getToken(): Promise<string | null> {
+    const headers = nextHeaders();
+
+    const token = (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
+
+    if (!token) return null;
+
+    return token;
+}
+
 export async function getUser(): Promise<UserProfile | null> {
     const headers = nextHeaders();
 
-    const token = (await getCookieSession({ headers })) || (await getBearerToken({ headers }));
+    const token = (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
 
     if (!token) return null;
 

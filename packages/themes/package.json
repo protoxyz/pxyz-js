@@ -19,11 +19,12 @@
         "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
         "clean": "rm -rf .turbo node_modules dist",
         "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
-        "type-check": "tsc --noEmit"
+        "type-check": "tsc --noEmit",
+        "update-pxyz": "pnpm update \"@protoxyz/*\""
     },
     "devDependencies": {
-        "@protoxyz/config-tsconfig": "git@github.com:protoxyz/config-tsconfig.git",
-        "@protoxyz/eslint-config-custom-library": "git@github.com:protoxyz/eslint-config-custom-library.git",
+        "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
+        "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
         "@types/node": "^18.14.2",
         "eslint": "^8.32.0",
         "tsup": "^6.2.3",

@@ -30,3 +30,5 @@ export {
 import { ProtocolAuthProviderRSC } from "./server/protocol-provider-rsc";
 
 export { ProtocolAuthProviderRSC };
+
+export * from "./server/getUser";

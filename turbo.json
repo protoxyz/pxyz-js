@@ -26,6 +26,9 @@
         },
         "type-check": {
             "cache": false
+        },
+        "update-pxyz": {
+            "cache": false
         }
     },
 

@@ -17,8 +17,6 @@ export async function ProtocolAuthProviderRSC({
     publicKey,
     appearance,
 }: ProtocolAuthProviderRSCProps) {
-    console.log("This should be called on the server!");
-
     const resolvedDomain = domain ?? process.env.PXYZ_AUTH_DOMAIN ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN ?? "";
     const resolvedPublicKey =
         publicKey ?? process.env.PXYZ_PUBLIC_KEY ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ?? "";

@@ -1,5 +1,5 @@
-import { verifyJWT } from "./jwt";
-import { RequestLike } from "./types";
+import { verifyJWT } from "../server/jwt";
+import { RequestLike } from "../server/types";
 import { IncomingHttpHeaders } from "http";
 import { SessionUser } from "@protoxyz/types";
 
