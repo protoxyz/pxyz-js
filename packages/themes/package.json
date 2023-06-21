@@ -1,0 +1,32 @@
+{
+    "name": "@protoxyz/themes",
+    "version": "1.0.0",
+    "license": "MIT",
+    "private": false,
+    "homepage": "https://pxyz.dev",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/protoxyz/pxyz-js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/protoxyz/pxyz-js/issues"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsup src/index.ts --format esm,cjs --minify --dts",
+        "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+        "clean": "rm -rf .turbo node_modules dist",
+        "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
+        "type-check": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@protoxyz/config-tsconfig": "git@github.com:protoxyz/config-tsconfig.git",
+        "@protoxyz/eslint-config-custom-library": "git@github.com:protoxyz/eslint-config-custom-library.git",
+        "@types/node": "^18.14.2",
+        "eslint": "^8.32.0",
+        "tsup": "^6.2.3",
+        "typescript": "^4.9.5"
+    }
+}

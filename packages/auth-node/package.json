@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@protoxyz/core": "*",
+        "@protoxyz/types": "*",
         "encoding": "^0.1.13",
         "jsonwebtoken": "^8.5.1"
     },

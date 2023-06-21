@@ -24,7 +24,7 @@ export class HttpClient {
     constructor(options?: HttpClientConfigOptions) {
         this.accessToken = options?.accessToken;
         this.credentials = options?.credentials;
-        this.debug = options?.debug || false;
+        this.debug = options?.debug || true;
 
         if (!options?.host) {
             this.host = BACKEND_API_URL;
@@ -109,6 +109,7 @@ export class HttpClient {
             headers,
             body: options?.body ? JSON.stringify(options?.body) : undefined,
             credentials: this.credentials ? "include" : "omit",
+            cache: this.debug ? "no-cache" : "default",
         });
 
         const response = await fetch(request).catch((error) => error);

@@ -3,10 +3,13 @@
         "lib": ["dom", "ES6"],
         "outDir": "./dist",
         "rootDir": "./src",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
         "target": "ES6",
         "allowSyntheticDefaultImports": true
     },
     "extends": "@protoxyz/config-tsconfig/base.json",
-    "include": ["src"],
+    "include": ["src", "../types/src/events.ts"],
     "exclude": ["node_modules", "dist", ".turbo"]
 }

@@ -1,17 +1,17 @@
 import { HttpClient } from "./client";
-import { ProtocolAuthUsersService } from "./services/users";
-import { ProtocolAuthInstancesService } from "./services/instances";
-import { ProtocolAuthSignInAttemptsService } from "./services/signInAttempts";
-import { ProtocolAuthEmailAddresssService } from "./services/emailAddresses";
-import { ProtocolAuthPhoneNumbersService } from "./services/phoneNumbers";
-import { ProtocolAuthSocialConnectionsService } from "./services/socialConnections";
-import { ProtocolAuthSessionsService } from "./services/sessions";
-import { ProtocolAuthSignUpAttemptsService } from "./services/signUpAttempts";
-import { ProtocolAuthWellKnownsService } from "./services/wellKnown";
-import { ProtocolAuthOrganizationsService } from "./services/organizations";
-import { ProtocolAuthOrganizationRolesService } from "./services/organizationRoles";
-import { ProtocolAuthOrganizationMembersService } from "./services/organizationMembers";
-import { ProtocolAuthOrganizationInvitationsService } from "./services/organizationInvitations";
+import { ProtocolAuthUsersService } from "./services/auth/users";
+import { ProtocolAuthInstancesService } from "./services/auth/instances";
+import { ProtocolAuthSignInAttemptsService } from "./services/auth/signInAttempts";
+import { ProtocolAuthEmailAddresssService } from "./services/auth/emailAddresses";
+import { ProtocolAuthPhoneNumbersService } from "./services/auth/phoneNumbers";
+import { ProtocolAuthSocialConnectionsService } from "./services/auth/socialConnections";
+import { ProtocolAuthSessionsService } from "./services/auth/sessions";
+import { ProtocolAuthSignUpAttemptsService } from "./services/auth/signUpAttempts";
+import { ProtocolAuthWellKnownsService } from "./services/auth/wellKnown";
+import { ProtocolAuthOrganizationsService } from "./services/auth/organizations";
+import { ProtocolAuthOrganizationRolesService } from "./services/auth/organizationRoles";
+import { ProtocolAuthOrganizationMembersService } from "./services/auth/organizationMembers";
+import { ProtocolAuthOrganizationInvitationsService } from "./services/auth/organizationInvitations";
 
 export interface ProtocolClientConfiguration {
     baseUrl?: string | undefined;
@@ -47,7 +47,7 @@ export class Protocol {
             host: config.baseUrl,
             accessToken: config.accessToken,
             credentials: config.credentials,
-            debug: config.debug,
+            debug: config.debug || process.env.NODE_ENV !== "production",
         });
 
         this.auth = {

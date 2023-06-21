@@ -1,6 +1,11 @@
 import {
-    EmailAddress,
     AuthInstance,
+    EmailAddress,
+    Organization,
+    OrganizationInvitation,
+    OrganizationMember,
+    OrganizationRole,
+    OrganizationWithRole,
     PaginatedMeta,
     PhoneNumber,
     Session,
@@ -8,11 +13,7 @@ import {
     SignUpAttempt,
     SocialConnection,
     UserProfile,
-    Organization,
-    OrganizationRole,
-    OrganizationMember,
-    OrganizationInvitation,
-} from "./types";
+} from "@protoxyz/types";
 
 export const ResponseStatus = {
     Success: "success",
@@ -132,7 +133,7 @@ export interface SetPhoneNumberPrimary200Response extends Response {
     };
 }
 
-export type ListOrganizations200Response = PaginatedResult<Organization>;
+export type ListOrganizations200Response = PaginatedResult<OrganizationWithRole>;
 export interface CreateOrganization201Response extends Response {
     data: {
         organization: Organization | undefined;
@@ -281,6 +282,12 @@ export interface UpdateSocialConnection200Response extends Response {
 }
 
 export type ListSessions200Response = PaginatedResult<Session>;
+
+export interface IssueSessionToken200Response extends Response {
+    data: {
+        token: string;
+    };
+}
 
 export interface EndSession200Response extends Response {
     data: {

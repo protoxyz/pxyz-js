@@ -1,10 +1,7 @@
 import { verifyJWT } from "./jwt";
 import { RequestLike } from "./types";
-import { SessionUser } from "@protoxyz/core";
-import { NextApiRequest } from "next";
-import { NextApiRequestCookies } from "next/dist/server/api-utils";
-import { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { IncomingHttpHeaders } from "http";
+import { SessionUser } from "@protoxyz/types";
 
 export function getBearerToken(req: RequestLike) {
     if (
@@ -26,11 +23,11 @@ export function getSessionToken(req: RequestLike) {
     const cookies = req.cookies;
 
     if (Object.prototype.hasOwnProperty.call(cookies, "get")) {
-        const cookie = (cookies as RequestCookies).get("__session")?.value;
+        const cookie = (cookies as any).get("__session")?.value;
         if (cookie) return cookie;
     } else {
-        const apiReq = req as unknown as NextApiRequest;
-        const cookies = apiReq.cookies as NextApiRequestCookies;
+        const apiReq = req as unknown as any;
+        const cookies = apiReq.cookies as any;
         const cookie = cookies.__session;
         if (cookie) return cookie;
     }

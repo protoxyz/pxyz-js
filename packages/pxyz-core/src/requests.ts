@@ -1,5 +1,5 @@
+import { AuthVerificationStrategy } from "@protoxyz/types";
 import { RequestOptions } from "./client";
-import { AuthVerificationStrategy } from "./types";
 
 export interface DeleteUserOptions extends RequestOptions {
     body?: never;
@@ -443,6 +443,15 @@ export interface ListSessionsOptions extends RequestOptions {
     };
 }
 
+export interface IssueSessionTokenOptions extends RequestOptions {
+    body: {
+        orgId?: string;
+        ttl?: number;
+    };
+    path?: never;
+    query?: never;
+}
+
 export interface EndSessionOptions extends RequestOptions {
     body?: never;
     path?: never;
@@ -506,6 +515,7 @@ export interface PrepareSignInAttemptFirstFactorOptions extends RequestOptions {
         id: string;
     };
     body: {
+        identifier?: string;
         strategy?: AuthVerificationStrategy;
         redirectUri?: string;
     };

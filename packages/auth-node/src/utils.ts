@@ -17,7 +17,7 @@ export interface CookieOptions {
 }
 export function getCookieOptions(hostWithPort: string | undefined, secure: boolean) {
     if (!hostWithPort) return {} as CookieOptions;
-    const domain = getCookieDomain(hostWithPort);
+    const domain = getCookieDomain(hostWithPort, secure);
 
     return {
         path: "/",
@@ -29,8 +29,8 @@ export function getCookieOptions(hostWithPort: string | undefined, secure: boole
     } as CookieOptions;
 }
 
-export function getCookieDomain(hostWithPort: string | undefined) {
-    if (!hostWithPort) return undefined;
+export function getCookieDomain(hostWithPort: string | undefined, secure: boolean) {
+    if (!hostWithPort || !secure) return "localhost";
     const host = getDomainFromHostnameWithoutPort(hostWithPort);
     const split = host.split(".");
     const domain = process.env.PROTOCOL_ENV === "development" ? undefined : `.${split.slice(-2).join(".")}`;

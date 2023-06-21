@@ -1,359 +1,363 @@
-import { initialState, ProtocolAuthContext, persistReducer, reducer } from "../contexts/protocol";
-import React, { useEffect } from "react";
-import {
-    Protocol,
-    AuthInstance,
-    CreateSignInAttemptOptions,
-    PrepareSignInAttemptFirstFactorOptions,
-    AttemptSignInAttemptSecondFactorOptions,
-    AttemptSignInAttemptFirstFactorOptions,
-    ResponseStatus,
-    PrepareSignInAttemptSecondFactorOptions,
-    AuthSignInAttemptStatus,
-    CreateSignUpAttemptOptions,
-    AttemptSignUpAttemptVerificationOptions,
-    PrepareSignUpAttemptVerificationOptions,
-    AuthVerificationStrategy,
-    AuthSignUpAttemptStatus,
-    UpdateUserProfileOptions,
-    Theme,
-    ThemeProperties,
-} from "@protoxyz/core";
-import { LOCAL_STORAGE_KEY } from "../constants";
-import { mergeThemeCustomizationsAndBase } from "../utils";
+"use client";
+export {};
+// import { initialState, OpenSignInProps, OpenSignUpProps, ProtocolAuthContext, reducer } from "../contexts/protocol";
+// import React, { useEffect } from "react";
 
-export interface ProtocolAuthProviderProps {
-    publicKey: string | undefined;
-    domain: string | undefined;
-    defaultInstance?: AuthInstance;
-    children: React.ReactNode;
-    baseTheme: ThemeProperties;
-}
-export const ProtocolAuthProvider = ({
-    publicKey,
-    domain,
-    children,
-    defaultInstance,
-    baseTheme,
-}: ProtocolAuthProviderProps) => {
-    const [state, dispatch] = React.useReducer(reducer, {
-        ...initialState,
-        theme: { ...defaultInstance?.theme.properties, ...baseTheme },
-        baseTheme,
-        publicKey,
-        domain,
-        client: new Protocol({
-            credentials: true,
-            baseUrl: domain,
-            debug: true,
-        }),
-        instance: defaultInstance ?? null,
-        isLoaded: !!defaultInstance,
-    });
+// import {
+//     Protocol,
+//     CreateSignInAttemptOptions,
+//     PrepareSignInAttemptFirstFactorOptions,
+//     AttemptSignInAttemptSecondFactorOptions,
+//     AttemptSignInAttemptFirstFactorOptions,
+//     ResponseStatus,
+//     PrepareSignInAttemptSecondFactorOptions,
+//     CreateSignUpAttemptOptions,
+//     AttemptSignUpAttemptVerificationOptions,
+//     PrepareSignUpAttemptVerificationOptions,
+//     UpdateUserProfileOptions,
+// } from "@protoxyz/core";
 
-    const getInstance = async () => {
-        if (state.isLoading || state.isLoaded) return;
-        dispatch({ type: "setLoading", payload: true });
+// import { AuthInstance, AuthSignInAttemptStatus, AuthSignUpAttemptStatus, ThemeProperties } from "@protoxyz/types";
+// import { light } from "@protoxyz/themes";
 
-        const result = await state.client.auth.instances.getByPublicKey({
-            path: { publicKey: state.publicKey as string },
-        });
+// export interface ProtocolAuthProviderProps {
+//     publicKey?: string | undefined;
+//     domain?: string | undefined;
+//     defaultInstance?: AuthInstance;
+//     children: React.ReactNode;
+//     baseTheme?: ThemeProperties;
+// }
+// export const ProtocolAuthProvider = ({
+//     publicKey = process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY,
+//     domain = process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN,
+//     children,
+//     defaultInstance,
+//     baseTheme = light,
+// }: ProtocolAuthProviderProps) => {
+//     const [state, dispatch] = React.useReducer(reducer, {
+//         ...initialState,
+//         theme: { ...defaultInstance?.theme.properties, ...baseTheme },
+//         baseTheme,
+//         publicKey,
+//         domain,
+//         client: new Protocol({
+//             credentials: true,
+//             baseUrl: domain,
+//             debug: true,
+//         }),
+//         instance: defaultInstance ?? null,
+//         isLoaded: !!defaultInstance,
+//     });
 
-        if (result.status === ResponseStatus.Success && result.data.instance) {
-            dispatch({ type: "setInstance", payload: result.data.instance });
-        }
-    };
+//     const getInstance = async () => {
+//         if (state.isLoading || state.isLoaded) return;
+//         dispatch({ type: "setLoading", payload: true });
 
-    const internalResetSignInState = async () => {
-        dispatch({ type: "resetSignInState" });
-    };
+//         const result = await state.client.auth.instances.getByPublicKey({
+//             path: { publicKey: state.publicKey as string },
+//         });
 
-    const internalResetSignUpState = async () => {
-        dispatch({ type: "resetSignUpState" });
-    };
+//         if (result.status === ResponseStatus.Success && result.data.instance) {
+//             dispatch({ type: "setInstance", payload: result.data.instance });
+//         }
+//     };
 
-    const internalCreateSignUpAttempt = async (input: CreateSignUpAttemptOptions["body"]) => {
-        dispatch({ type: "setCreatingSignUpAttempt", payload: input });
-        if (state.instance) {
-            try {
-                const result = await state.client.auth.signUpAttempts.create({ body: input });
+//     const resetSignInState = async () => {
+//         dispatch({ type: "resetSignInState" });
+//     };
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setSignUpError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.signUpAttempt) {
-                    dispatch({ type: "setSignUpAttempt", payload: result.data.signUpAttempt });
+//     const resetSignUpState = async () => {
+//         dispatch({ type: "resetSignUpState" });
+//     };
 
-                    if (result.data.signUpAttempt.status === AuthSignUpAttemptStatus.complete) {
-                        internalGetMe();
-                        window.location.href = state.instance.signUpRedirectUri;
-                    } else if (result.data.signUpAttempt.oauthProviderId && result.data.authorizeUri) {
-                        window.location.href = result.data.authorizeUri;
-                    }
-                }
-            } catch (err) {
-                console.log("error", err);
-            }
-        } else {
-            console.log("No instance");
-        }
-    };
+//     const createSignUpAttempt = async (input: CreateSignUpAttemptOptions["body"]) => {
+//         dispatch({ type: "setCreatingSignUpAttempt", payload: input });
+//         if (state.instance) {
+//             try {
+//                 const result = await state.client.auth.signUpAttempts.create({ body: input });
 
-    const internalAttemptSignUpVerification = async (input: AttemptSignUpAttemptVerificationOptions["body"]) => {
-        dispatch({ type: "setAttemptingSignUpVerification", payload: true });
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setSignUpError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.signUpAttempt) {
+//                     dispatch({ type: "setSignUpAttempt", payload: result.data.signUpAttempt });
 
-        if (state.instance && state.signUpAttempt) {
-            try {
-                const result = await state.client.auth.signUpAttempts.attemptVerification({
-                    path: { id: state.signUpAttempt.id },
-                    body: input,
-                });
+//                     if (result.data.signUpAttempt.status === AuthSignUpAttemptStatus.complete) {
+//                         refetchUser();
+//                         window.location.href = state.instance.signUpRedirectUri;
+//                     } else if (result.data.signUpAttempt.oauthProviderId && result.data.authorizeUri) {
+//                         window.location.href = result.data.authorizeUri;
+//                     }
+//                 }
+//             } catch (err) {
+//                 console.log("error", err);
+//             }
+//         } else {
+//             console.log("No instance");
+//         }
+//     };
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setSignUpError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.signUpAttempt) {
-                    dispatch({ type: "setSignUpAttempt", payload: result.data.signUpAttempt });
+//     const attemptSignUpVerification = async (input: AttemptSignUpAttemptVerificationOptions["body"]) => {
+//         dispatch({ type: "setAttemptingSignUpVerification", payload: true });
 
-                    if (result.data.signUpAttempt.status === AuthSignUpAttemptStatus.complete) {
-                        internalGetMe();
-                        window.location.href = state.instance.signUpRedirectUri;
-                    } else if (result.data.signUpAttempt.strategy === "oauth" && result.data.authorizeUri) {
-                        window.location.href = result.data.authorizeUri;
-                    }
-                }
-            } catch (err) {
-                console.log("error", err);
-            }
-        }
-    };
+//         if (state.instance && state.signUpAttempt) {
+//             try {
+//                 const result = await state.client.auth.signUpAttempts.attemptVerification({
+//                     path: { id: state.signUpAttempt.id },
+//                     body: input,
+//                 });
 
-    const internalPrepareSignUpVerification = async (input: PrepareSignUpAttemptVerificationOptions["body"]) => {
-        dispatch({ type: "setPreparingSignUpVerification", payload: true });
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setSignUpError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.signUpAttempt) {
+//                     dispatch({ type: "setSignUpAttempt", payload: result.data.signUpAttempt });
 
-        if (state.instance && state.signUpAttempt) {
-            try {
-                const result = await state.client.auth.signUpAttempts.prepareVerification({
-                    path: { id: state.signUpAttempt.id },
-                    body: input,
-                });
+//                     if (result.data.signUpAttempt.status === AuthSignUpAttemptStatus.complete) {
+//                         refetchUser();
+//                         window.location.href = state.instance.signUpRedirectUri;
+//                     } else if (result.data.signUpAttempt.strategy === "oauth" && result.data.authorizeUri) {
+//                         window.location.href = result.data.authorizeUri;
+//                     }
+//                 }
+//             } catch (err) {
+//                 console.log("error", err);
+//             }
+//         }
+//     };
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setSignUpError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.signUpAttempt) {
-                    dispatch({ type: "setSignUpAttempt", payload: result.data.signUpAttempt });
-                }
-            } catch (err) {
-                console.log("error", err);
-            }
-        }
-    };
+//     const prepareSignUpVerification = async (input: PrepareSignUpAttemptVerificationOptions["body"]) => {
+//         dispatch({ type: "setPreparingSignUpVerification", payload: true });
 
-    const internalCreateSignInAttempt = async (input: CreateSignInAttemptOptions["body"]) => {
-        dispatch({ type: "setCreatingSignInAttempt", payload: input });
+//         if (state.instance && state.signUpAttempt) {
+//             try {
+//                 const result = await state.client.auth.signUpAttempts.prepareVerification({
+//                     path: { id: state.signUpAttempt.id },
+//                     body: input,
+//                 });
 
-        if (state.instance) {
-            try {
-                const result = await state.client.auth.signInAttempts.create({ body: input });
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setSignUpError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.signUpAttempt) {
+//                     dispatch({ type: "setSignUpAttempt", payload: result.data.signUpAttempt });
+//                 }
+//             } catch (err) {
+//                 console.log("error", err);
+//             }
+//         }
+//     };
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setSignInError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.signInAttempt) {
-                    dispatch({ type: "setSignInAttempt", payload: result.data.signInAttempt });
+//     const createSignInAttempt = async (input: CreateSignInAttemptOptions["body"]) => {
+//         dispatch({ type: "setCreatingSignInAttempt", payload: input });
 
-                    if (result.data.signInAttempt.status === AuthSignInAttemptStatus.complete) {
-                        internalGetMe();
-                        window.location.href = state.instance.signInRedirectUri;
-                    } else if (result.data.signInAttempt.strategy === "oauth" && result.data.authorizeUri) {
-                        window.location.href = result.data.authorizeUri;
-                    }
-                }
-            } catch (err) {
-                console.log("error", err);
-            }
-        }
-    };
+//         if (state.instance) {
+//             try {
+//                 const result = await state.client.auth.signInAttempts.create({ body: input });
 
-    const internalPrepareSignInFirstFactor = async (input: PrepareSignInAttemptFirstFactorOptions["body"]) => {
-        dispatch({ type: "setPreparingSignInFirstFactor", payload: true });
-        try {
-            if (state.instance && state.signInAttempt) {
-                const result = await state.client.auth.signInAttempts.prepareFirstFactor({
-                    path: { id: state.signInAttempt.id },
-                    body: input,
-                });
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setSignInError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.signInAttempt) {
+//                     dispatch({ type: "setSignInAttempt", payload: result.data.signInAttempt });
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setSignInError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.signInAttempt) {
-                    dispatch({ type: "setSignInAttempt", payload: result.data.signInAttempt });
+//                     if (result.data.signInAttempt.status === AuthSignInAttemptStatus.complete) {
+//                         refetchUser();
+//                         window.location.href = state.instance.signInRedirectUri;
+//                     } else if (result.data.signInAttempt.strategy === "oauth" && result.data.authorizeUri) {
+//                         window.location.href = result.data.authorizeUri;
+//                     }
+//                 }
+//             } catch (err) {
+//                 console.log("error", err);
+//             }
+//         }
+//     };
 
-                    if (result.data.signInAttempt.strategy === "oauth" && result.data.authorizeUri) {
-                        window.location.href = result.data.authorizeUri;
-                    }
-                }
-            }
-        } catch (err) {
-            console.log("error", err);
-        }
-    };
+//     const prepareSignInFirstFactor = async (input: PrepareSignInAttemptFirstFactorOptions["body"]) => {
+//         dispatch({ type: "setPreparingSignInFirstFactor", payload: true });
+//         try {
+//             if (state.instance && state.signInAttempt) {
+//                 const result = await state.client.auth.signInAttempts.prepareFirstFactor({
+//                     path: { id: state.signInAttempt.id },
+//                     body: input,
+//                 });
 
-    const internalAttemptSignInFirstFactor = async (input: AttemptSignInAttemptFirstFactorOptions["body"]) => {
-        dispatch({ type: "setAttemptingSignInFirstFactor", payload: true });
-        try {
-            if (state.instance && state.signInAttempt) {
-                const result = await state.client.auth.signInAttempts.attemptFirstFactor({
-                    path: { id: state.signInAttempt.id },
-                    body: input,
-                });
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setSignInError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.signInAttempt) {
+//                     dispatch({ type: "setSignInAttempt", payload: result.data.signInAttempt });
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setSignInError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.signInAttempt) {
-                    dispatch({ type: "setSignInAttempt", payload: result.data.signInAttempt });
+//                     if (result.data.signInAttempt.strategy === "oauth" && result.data.authorizeUri) {
+//                         window.location.href = result.data.authorizeUri;
+//                     }
+//                 }
+//             }
+//         } catch (err) {
+//             console.log("error", err);
+//         }
+//     };
 
-                    if (result.data.signInAttempt.status === AuthSignInAttemptStatus.complete) {
-                        internalGetMe();
+//     const attemptSignInFirstFactor = async (input: AttemptSignInAttemptFirstFactorOptions["body"]) => {
+//         dispatch({ type: "setAttemptingSignInFirstFactor", payload: true });
+//         try {
+//             if (state.instance && state.signInAttempt) {
+//                 const result = await state.client.auth.signInAttempts.attemptFirstFactor({
+//                     path: { id: state.signInAttempt.id },
+//                     body: input,
+//                 });
 
-                        window.location.href = state.instance.signInRedirectUri;
-                    }
-                }
-            }
-        } catch (err) {
-            console.log("error", err);
-        }
-    };
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setSignInError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.signInAttempt) {
+//                     dispatch({ type: "setSignInAttempt", payload: result.data.signInAttempt });
 
-    const internalPrepareSignInSecondFactor = async (input: PrepareSignInAttemptSecondFactorOptions["body"]) => {
-        dispatch({ type: "setPreparingSignInSecondFactor", payload: true });
-        try {
-            if (state.instance && state.signInAttempt) {
-                console.log("internalPrepareSignInSecondFactor");
-            }
-        } catch (err) {
-            console.log("error", err);
-        }
-    };
+//                     if (result.data.signInAttempt.status === AuthSignInAttemptStatus.complete) {
+//                         refetchUser();
 
-    const internalAttemptSignInSecondFactor = async (input: AttemptSignInAttemptSecondFactorOptions["body"]) => {
-        dispatch({ type: "setAttemptingSignInSecondFactor", payload: true });
-        try {
-            if (state.instance && state.signInAttempt) {
-                console.log("internalAttemptSignInSecondFactor");
-            }
-        } catch (err) {
-            console.log("error", err);
-        }
-    };
+//                         window.location.href = state.instance.signInRedirectUri;
+//                     }
+//                 }
+//             }
+//         } catch (err) {
+//             console.log("error", err);
+//         }
+//     };
 
-    const internalLogout = async () => {
-        if (state.instance) {
-            await state.client.auth.sessions.end();
-        }
-        dispatch({ type: "logout" });
-    };
+//     const prepareSignInSecondFactor = async (input: PrepareSignInAttemptSecondFactorOptions["body"]) => {
+//         dispatch({ type: "setPreparingSignInSecondFactor", payload: true });
+//         try {
+//             if (state.instance && state.signInAttempt) {
+//                 console.log("internalPrepareSignInSecondFactor");
+//             }
+//         } catch (err) {
+//             console.log("error", err);
+//         }
+//     };
 
-    const internalUpdateUser = async (input: UpdateUserProfileOptions["body"]) => {
-        dispatch({ type: "setUpdatingUser", payload: true });
+//     const attemptSignInSecondFactor = async (input: AttemptSignInAttemptSecondFactorOptions["body"]) => {
+//         dispatch({ type: "setAttemptingSignInSecondFactor", payload: true });
+//         try {
+//             if (state.instance && state.signInAttempt) {
+//                 console.log("internalAttemptSignInSecondFactor");
+//             }
+//         } catch (err) {
+//             console.log("error", err);
+//         }
+//     };
 
-        if (state.instance && state.user) {
-            try {
-                const result = await state.client.auth.users.updateProfile({
-                    body: input,
-                });
+//     const logout = async () => {
+//         if (state.instance) {
+//             await state.client.auth.sessions.end();
+//         }
+//         dispatch({ type: "logout" });
+//     };
 
-                if (result.status === ResponseStatus.Error && result.error) {
-                    dispatch({ type: "setUpdateUserError", payload: { error: result.error } });
-                } else if (result.status === ResponseStatus.Success && result.data.user) {
-                    dispatch({ type: "setUser", payload: result.data.user });
-                }
+//     const updateUser = async (input: UpdateUserProfileOptions["body"]) => {
+//         dispatch({ type: "setUpdatingUser", payload: true });
 
-                dispatch({ type: "setUpdatingUser", payload: false });
-            } catch (err) {
-                console.log("error", err);
-            }
+//         if (state.instance && state.user) {
+//             try {
+//                 const result = await state.client.auth.users.updateProfile({
+//                     body: input,
+//                 });
 
-            dispatch({ type: "setUpdatingUser", payload: false });
-        }
-    };
+//                 if (result.status === ResponseStatus.Error && result.error) {
+//                     dispatch({ type: "setUpdateUserError", payload: { error: result.error } });
+//                 } else if (result.status === ResponseStatus.Success && result.data.user) {
+//                     dispatch({ type: "setUser", payload: result.data.user });
+//                 }
 
-    const internalGetMe = async () => {
-        dispatch({ type: "setUserLoading", payload: true });
+//                 dispatch({ type: "setUpdatingUser", payload: false });
+//             } catch (err) {
+//                 console.log("error", err);
+//             }
 
-        if (state.instance && state.instance.frontendApiUri) {
-            const result = await state.client.auth.users.profile();
+//             dispatch({ type: "setUpdatingUser", payload: false });
+//         }
+//     };
 
-            if (result.status === ResponseStatus.Success && result.data.user) {
-                dispatch({ type: "setUser", payload: result.data.user });
+//     const refetchUser = async () => {
+//         dispatch({ type: "setUserLoading", payload: true });
 
-                try {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    if (state.instance.googleAnalyticsTrackingId) {
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
-                        gtag("config", state.instance.googleAnalyticsTrackingId, {
-                            user_id: result.data.user.id,
-                        });
-                    }
-                } catch (err) {
-                    console.log("gtag error", err);
-                }
-            } else {
-                dispatch({ type: "logout" });
-            }
-        }
-    };
+//         if (state.instance && state.instance.frontendApiUri) {
+//             const result = await state.client.auth.users.profile();
 
-    useEffect(() => {
-        if (publicKey && !state.isLoaded) {
-            // const localState = localStorage.getItem(LOCAL_STORAGE_KEY);
-            // if (localState) {
-            //     dispatch({ type: "setStateFromLocalStorage", payload: JSON.parse(localState) });
-            // }
-        }
+//             if (result.status === ResponseStatus.Success && result.data.user) {
+//                 dispatch({ type: "setUser", payload: result.data.user });
 
-        if (!state.instance && !state.isLoading) getInstance();
-    }, [publicKey, state.instance, state.isLoaded, state.isLoading]);
+//                 try {
+//                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//                     // @ts-ignore
+//                     if (state.instance.googleAnalyticsTrackingId) {
+//                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//                         // @ts-ignore
+//                         gtag("config", state.instance.googleAnalyticsTrackingId, {
+//                             user_id: result.data.user.id,
+//                         });
+//                     }
+//                 } catch (err) {
+//                     console.log("gtag error", err);
+//                 }
+//             } else {
+//                 dispatch({ type: "logout" });
+//             }
+//         }
+//     };
 
-    useEffect(() => {
-        if (publicKey && state.isLoaded && state.instance?.frontendApiUri) internalGetMe();
-    }, [publicKey, state.isLoaded, state.instance?.frontendApiUri]);
+//     const openSignIn = async ({ redirectUrl, afterSignInUrl, afterSignUpUrl }: OpenSignInProps) => {};
 
-    return (
-        <ProtocolAuthContext.Provider
-            value={{
-                ...state,
-                createSignInAttempt: internalCreateSignInAttempt,
-                prepareSignInFirstFactor: internalPrepareSignInFirstFactor,
-                attemptSignInFirstFactor: internalAttemptSignInFirstFactor,
-                prepareSignInSecondFactor: internalPrepareSignInSecondFactor,
-                attemptSignInSecondFactor: internalAttemptSignInSecondFactor,
-                createSignUpAttempt: internalCreateSignUpAttempt,
-                prepareSignUpVerification: internalPrepareSignUpVerification,
-                attemptSignUpVerification: internalAttemptSignUpVerification,
-                logout: internalLogout,
-                resetSignInState: internalResetSignInState,
-                resetSignUpState: internalResetSignUpState,
-                updateUser: internalUpdateUser,
-                refetchUser: internalGetMe,
-            }}
-        >
-            {children}
-        </ProtocolAuthContext.Provider>
-    );
-};
+//     const redirectToSignIn = async ({ redirectUrl, afterSignInUrl, afterSignUpUrl }: OpenSignUpProps) => {};
 
-export const useInstance = () => {
-    const context = React.useContext(ProtocolAuthContext);
-    if (!context) {
-        throw new Error("useInstance must be used within a ProtocolAuthProvider");
-    }
-    return { instance: context.instance, loaded: context.isLoaded, loading: context.isLoading };
-};
+//     useEffect(() => {
+//         if (publicKey && !state.isLoaded) {
+//             // const localState = localStorage.getItem(LOCAL_STORAGE_KEY);
+//             // if (localState) {
+//             //     dispatch({ type: "setStateFromLocalStorage", payload: JSON.parse(localState) });
+//             // }
+//         }
 
-export const useProtocolAuth = () => {
-    const context = React.useContext(ProtocolAuthContext);
-    if (!context) {
-        throw new Error("useInstance must be used within a ProtocolAuthProvider");
-    }
-    return context;
-};
+//         if (!state.instance && !state.isLoading) getInstance();
+//     }, [publicKey, state.instance, state.isLoaded, state.isLoading]);
+
+//     useEffect(() => {
+//         if (publicKey && state.isLoaded && state.instance?.frontendApiUri) refetchUser();
+//     }, [publicKey, state.isLoaded, state.instance?.frontendApiUri]);
+
+//     return (
+//         <ProtocolAuthContext.Provider
+//             value={{
+//                 ...state,
+//                 createSignInAttempt,
+//                 prepareSignInFirstFactor,
+//                 attemptSignInFirstFactor,
+//                 prepareSignInSecondFactor,
+//                 attemptSignInSecondFactor,
+//                 createSignUpAttempt,
+//                 prepareSignUpVerification,
+//                 attemptSignUpVerification,
+//                 logout,
+//                 resetSignInState,
+//                 resetSignUpState,
+//                 updateUser,
+//                 refetchUser,
+//                 openSignIn,
+//                 redirectToSignIn,
+//             }}
+//         >
+//             {children}
+//         </ProtocolAuthContext.Provider>
+//     );
+// };
+
+// export const useInstance = () => {
+//     const context = React.useContext(ProtocolAuthContext);
+//     if (!context) {
+//         throw new Error("useInstance must be used within a ProtocolAuthProvider");
+//     }
+//     return { instance: context.instance, loaded: context.isLoaded, loading: context.isLoading };
+// };
+
+// export const useProtocolAuth = () => {
+//     const context = React.useContext(ProtocolAuthContext);
+//     if (!context) {
+//         throw new Error("useInstance must be used within a ProtocolAuthProvider");
+//     }
+//     return context;
+// };

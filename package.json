@@ -4,7 +4,7 @@
     "packageManager": "pnpm@7.13.0",
     "scripts": {
         "build": "turbo run build",
-        "clean:all": "pnpm run clean:workspaces && pnpm run clean:modules && rm pnpm-lock.yaml",
+        "clean": "pnpm run clean:workspaces && pnpm run clean:modules && rm pnpm-lock.yaml",
         "clean:modules": "rm -rf node_modules",
         "clean:workspaces": "turbo clean",
         "dev": "turbo run dev",
