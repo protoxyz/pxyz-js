@@ -1,5 +1,4 @@
 import { ProtocolThemeVariables } from "@protoxyz/themes";
-import { useProtocolAuthAppearance } from "../../contexts/protocol-context";
 import { createSwatches } from "../../lib/colors";
 import { DEFAULT_PALETTE_CONFIG } from "../../lib/constants";
 

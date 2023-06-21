@@ -16,7 +16,7 @@ export function CardFooterLinks({ component }: { component: AuthComponentType })
     const { appearance } = useProtocolAuthAppearance({ component });
 
     const footerLinks = useMemo(() => {
-        let links: React.ReactNode[] = [];
+        const links: React.ReactNode[] = [];
 
         if (appearance?.layout?.helpUrl) {
             links.push(<FooterLink key="Help" text="Help" href={appearance.layout.helpUrl} />);

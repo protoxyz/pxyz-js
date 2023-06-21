@@ -3,8 +3,6 @@ import { AuthInstance } from "@protoxyz/types";
 import { FooterLink } from "./footer-link";
 
 export function FooterLinks({
-    appearance,
-    instance,
     usingPasswords,
     component,
 }: {
@@ -13,7 +11,7 @@ export function FooterLinks({
     usingPasswords: boolean;
     component: AuthComponentType;
 }) {
-    let links = [];
+    const links = [];
 
     if (component === "signIn") {
         if (usingPasswords) {

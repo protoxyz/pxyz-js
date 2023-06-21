@@ -3,7 +3,7 @@ import { AuthInstance } from "@protoxyz/types";
 import { IconButton } from "./icon-button";
 import CompanyIcons from "../icons/companies";
 
-export function SocialLinks({ appearance, instance }: { appearance: AuthAppearance; instance: AuthInstance }) {
+export function SocialLinks({ instance }: { appearance: AuthAppearance; instance: AuthInstance }) {
     const filteredProviders = instance?.socialProviders?.filter((p) => p.enabled) ?? [];
     let gridCols = "";
 

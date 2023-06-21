@@ -28,7 +28,7 @@ import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select";
-import { useProtocolAuth, useProtocolAuthAppearance } from "../../../contexts/protocol-context";
+import { useProtocolAuth } from "../../../contexts/protocol-context";
 import {
     organizationImage,
     organizationInitials,
@@ -37,7 +37,7 @@ import {
     userInitials,
 } from "../../../lib/display";
 import { useProtocolAuthOrganizationsList } from "../../../hooks/useOrganizationsList";
-import { OrganizationWithRole, UserProfile } from "@protoxyz/types";
+import { OrganizationWithRole } from "@protoxyz/types";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
@@ -50,7 +50,7 @@ type Group = {
 
 export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
     const { user } = useProtocolAuth();
-    const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
+    // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
     const { organizations } = useProtocolAuthOrganizationsList({});
 
     const groups: Group[] = [
