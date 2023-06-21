@@ -1,3 +1,4 @@
+export {};
 // import { ThemeProperties } from "../types";
 
 // export const base = {

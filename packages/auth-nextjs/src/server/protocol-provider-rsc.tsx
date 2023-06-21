@@ -2,7 +2,7 @@ import { ProtocolAuthProvider } from "@protoxyz/auth-react";
 import { Protocol } from "@protoxyz/core";
 import { AuthAppearance } from "@protoxyz/themes";
 import { AuthInstance } from "@protoxyz/types";
-import { getAuth, getUser } from "./getUser";
+import { getUser } from "./getUser";
 
 interface ProtocolAuthProviderRSCProps {
     children: React.ReactNode;
@@ -34,18 +34,13 @@ export async function ProtocolAuthProviderRSC({
         const result = await protocolClient.auth.instances.getByPublicKey({
             path: { publicKey: resolvedPublicKey },
         });
-        console.log("result", result);
         instance = result.data.instance;
-        console.log(`Instance loaded: ${instance?.brandingApplicationName || instance?.id}`);
     } catch (e) {
         console.log("ERROR!!!!!");
         console.log(e);
     }
 
     const user = await getUser();
-    const auth = await getAuth({});
-
-    console.log("auth", auth);
 
     return (
         <ProtocolAuthProvider

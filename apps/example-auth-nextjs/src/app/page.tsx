@@ -53,7 +53,7 @@ export default function Home() {
 
                             <IsLoggedOut>
                                 <div className="text-muted-foreground relative">
-                                    You aren't logged in.{" "}
+                                    You aren&apos;t logged in.{" "}
                                     <Link href="/sign-in" className="text-blue-500 hover:underline">
                                         Log in
                                     </Link>{" "}

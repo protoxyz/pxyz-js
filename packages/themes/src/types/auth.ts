@@ -47,8 +47,8 @@ export type AuthAppearance<T = AuthTheme> = T & {
     // Overrides the <UserProfile /> component theme
     userProfile?: T;
 
-    // Overrides the <OrganizationSelect /> component theme
-    organizationSelect?: T;
+    // Overrides the <OrganizationSwitcher /> component theme
+    organizationSwitcher?: T;
 
     // Overrides the <OrganizationProfile /> component theme
     organizationProfile?: T;

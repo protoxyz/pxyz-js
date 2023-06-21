@@ -24,6 +24,7 @@ export {
     OrganizationProfile,
     OrganizationSwitcher,
     CreateOrganization,
+    ForgotPassword,
 } from "@protoxyz/auth-react";
 
 import { ProtocolAuthProviderRSC } from "./server/protocol-provider-rsc";

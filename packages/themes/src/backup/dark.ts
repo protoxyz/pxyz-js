@@ -1,3 +1,4 @@
+export {};
 // import { base } from "./base";
 // import { ThemeProperties } from "./types";
 

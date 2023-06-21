@@ -9,6 +9,6 @@
         "strict": false
     },
     "extends": "@protoxyz/config-tsconfig/react-library.json",
-    "include": ["src", "../auth-nextjs/src/server/protocol-provider-rsc.tsx"],
+    "include": ["src"],
     "exclude": ["node_modules", "dist", ".turbo"]
 }

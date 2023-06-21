@@ -30,6 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactEl
     return (
         <html>
             <body className={inter.className}>
+                {/* @ts-ignore */}
                 <ProtocolAuthProviderRSC appearance={appearance}>{children}</ProtocolAuthProviderRSC>
             </body>
         </html>

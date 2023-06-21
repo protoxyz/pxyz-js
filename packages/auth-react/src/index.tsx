@@ -25,6 +25,8 @@ export * from "./components/public/organization-profile";
 export * from "./components/public/organization-switcher";
 export * from "./components/public/create-organization";
 
+export * from "./components/public/forgot-password";
+
 export * from "./localizations";
 export * from "./types";
 export * from "./lib/utils";
