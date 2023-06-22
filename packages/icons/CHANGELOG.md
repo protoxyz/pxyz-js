@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.4
+
+### Patch Changes
+
+-   30e5063: fix build script hopefully
+
 ## 2.0.3
 
 ### Patch Changes

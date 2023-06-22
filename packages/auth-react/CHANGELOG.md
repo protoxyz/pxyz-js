@@ -1,5 +1,16 @@
 # @protoxyz/auth-react
 
+## 2.0.3
+
+### Patch Changes
+
+-   30e5063: fix build script hopefully
+-   Updated dependencies [30e5063]
+    -   @protoxyz/auth-providers@2.0.2
+    -   @protoxyz/core@2.0.2
+    -   @protoxyz/themes@2.0.2
+    -   @protoxyz/types@2.0.2
+
 ## 2.0.2
 
 ### Patch Changes
