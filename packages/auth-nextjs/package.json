@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/auth-nextjs",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -43,10 +43,10 @@
         "react-dom": "^18.2.0"
     },
     "dependencies": {
-        "@protoxyz/auth-react": "^1.0.4",
-        "@protoxyz/core": "^1.1.0",
-        "@protoxyz/themes": "^1.0.1",
-        "@protoxyz/types": "^1.0.1",
+        "@protoxyz/auth-react": "^1.0.5",
+        "@protoxyz/core": "^1.1.2",
+        "@protoxyz/themes": "^1.0.2",
+        "@protoxyz/types": "^1.0.3",
         "cookies-next": "^2.1.2",
         "jose": "^4.12.0"
     }

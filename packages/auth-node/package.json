@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/auth-node",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -26,8 +26,8 @@
         "update-pxyz": "pnpm update \"@protoxyz/*\""
     },
     "dependencies": {
-        "@protoxyz/core": "^1.1.0",
-        "@protoxyz/types": "^1.0.1",
+        "@protoxyz/core": "^1.1.2",
+        "@protoxyz/types": "^1.0.3",
         "encoding": "^0.1.13",
         "jsonwebtoken": "^8.5.1"
     },
