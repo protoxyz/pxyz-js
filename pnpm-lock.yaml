@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -331,6 +327,30 @@ importers:
         specifier: ^4.9.5
         version: 4.9.5
 
+  packages/icons:
+    devDependencies:
+      '@protoxyz/config-tsconfig':
+        specifier: github:protoxyz/config-tsconfig
+        version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
+      '@protoxyz/eslint-config-custom-react':
+        specifier: github:protoxyz/eslint-config-custom-react
+        version: github.com/protoxyz/eslint-config-custom-react/22e492e99b07359907960b0a707f85f003bc0abc(eslint@8.43.0)
+      eslint:
+        specifier: ^8.32.0
+        version: 8.43.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsup:
+        specifier: ^6.2.3
+        version: 6.7.0(typescript@4.9.5)
+      typescript:
+        specifier: ^4.9.5
+        version: 4.9.5
+
   packages/pxyz-core:
     dependencies:
       '@protoxyz/types':
@@ -369,7 +389,7 @@ importers:
         version: 0.13.0
       node-fetch:
         specifier: 2.x
-        version: 2.6.11(encoding@0.1.13)
+        version: 2.6.11
       tsup:
         specifier: ^6.2.3
         version: 6.7.0(typescript@4.9.5)
@@ -3197,7 +3217,7 @@ packages:
       eslint: 8.43.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.5(@typescript-eslint/parser@5.60.0)(eslint-import-resolver-node@0.3.7)(eslint-plugin-import@2.27.5)(eslint@8.43.0)
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.60.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.43.0)
+      eslint-plugin-import: 2.27.5(eslint@8.43.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.43.0)
       eslint-plugin-react: 7.32.2(eslint@8.43.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.43.0)
@@ -3243,7 +3263,7 @@ packages:
       enhanced-resolve: 5.15.0
       eslint: 8.43.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.60.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.5)(eslint@8.43.0)
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.60.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.43.0)
+      eslint-plugin-import: 2.27.5(eslint@8.43.0)
       get-tsconfig: 4.6.0
       globby: 13.2.0
       is-core-module: 2.12.1
@@ -3284,7 +3304,34 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.60.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.43.0):
+  /eslint-module-utils@2.8.0(eslint-import-resolver-node@0.3.7)(eslint@8.43.0):
+    resolution: {integrity: sha512-aWajIYfsqCKRDgUfjEXNN/JlrzauMuSEy5sbd7WXbtW3EH6A6MpwEh42c7qD+MqQo9QMJ6fWLAeIJynx0g6OAw==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+      eslint: '*'
+      eslint-import-resolver-node: '*'
+      eslint-import-resolver-typescript: '*'
+      eslint-import-resolver-webpack: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
+      eslint:
+        optional: true
+      eslint-import-resolver-node:
+        optional: true
+      eslint-import-resolver-typescript:
+        optional: true
+      eslint-import-resolver-webpack:
+        optional: true
+    dependencies:
+      debug: 3.2.7
+      eslint: 8.43.0
+      eslint-import-resolver-node: 0.3.7
+    transitivePeerDependencies:
+      - supports-color
+
+  /eslint-plugin-import@2.27.5(eslint@8.43.0):
     resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -3294,7 +3341,6 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.60.0(eslint@8.43.0)(typescript@4.9.5)
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -3302,7 +3348,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.43.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.60.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.5)(eslint@8.43.0)
+      eslint-module-utils: 2.8.0(eslint-import-resolver-node@0.3.7)(eslint@8.43.0)
       has: 1.0.3
       is-core-module: 2.12.1
       is-glob: 4.0.3
@@ -4558,6 +4604,18 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+
+  /node-fetch@2.6.11:
+    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: true
 
   /node-fetch@2.6.11(encoding@0.1.13):
     resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
@@ -6299,3 +6357,7 @@ packages:
     transitivePeerDependencies:
       - eslint
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
