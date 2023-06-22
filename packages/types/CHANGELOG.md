@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.1
+
+### Patch Changes
+
+-   a3234ea: fix build
+
 ## 2.0.0
 
 ### Major Changes
