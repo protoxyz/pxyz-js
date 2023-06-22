@@ -11,3 +11,9 @@ export type PaginatedArgs = {
     cursor?: string | null;
     perPage?: number;
 };
+
+export const ResponseStatus = {
+    Success: "success",
+    Error: "error",
+};
+export type ResponseStatus = (typeof ResponseStatus)[keyof typeof ResponseStatus];

@@ -1,7 +1,8 @@
 import { headers as nextHeaders } from "next/headers";
 import { verifyJWT } from "./jwt";
 import { SessionUser, UserProfile } from "@protoxyz/types";
-import { Protocol, ResponseStatus } from "@protoxyz/core";
+import { Protocol } from "@protoxyz/core";
+import { ResponseStatus } from "@protoxyz/types";
 
 export const parseCookieString = (cookie: string | null): Record<string, string> =>
     (cookie || "")

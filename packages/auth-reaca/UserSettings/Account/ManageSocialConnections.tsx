@@ -1,11 +1,10 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-import { ResponseStatus } from "@protoxyz/core";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/Spinner";
 import { providers } from "@protoxyz/auth-providers";
-import { AuthSocialConnectionStatus, SocialConnection } from "@protoxyz/types";
+import { ResponseStatus, AuthSocialConnectionStatus, SocialConnection } from "@protoxyz/types";
 import SocialIcons from "@/components/ui/icons/social";
 import { OAuthMode, SocialButton } from "@/components/ui/Social";
 import { useProtocolAuth } from "@/providers/protocol";

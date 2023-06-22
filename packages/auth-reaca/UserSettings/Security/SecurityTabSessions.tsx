@@ -1,5 +1,4 @@
-import { ResponseStatus } from "@protoxyz/core";
-import { Session } from "@protoxyz/types";
+import { ResponseStatus, Session } from "@protoxyz/types";
 import { useEffect, useState } from "react";
 import { useProtocolAuth } from "@/providers/protocol";
 

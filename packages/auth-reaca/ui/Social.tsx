@@ -1,5 +1,4 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import { ResponseStatus } from "@protoxyz/core";
 import { useProtocolAuth } from "@/providers/protocol";
 import clsx from "clsx";
 import { useMemo, useState } from "react";
@@ -7,7 +6,7 @@ import { Divider } from "./Divider";
 import { providers } from "@protoxyz/auth-providers";
 import SocialIcons from "@/components/ui/icons/social";
 import { Spinner } from "./Spinner";
-import { AuthVerificationStrategy, SocialConnection, SocialProvider } from "@protoxyz/types";
+import { ResponseStatus, AuthVerificationStrategy, SocialConnection, SocialProvider } from "@protoxyz/types";
 import { ThemeSocialPlacement, ThemeSocialType } from "@protoxyz/themes";
 
 export enum OAuthMode {

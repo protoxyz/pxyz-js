@@ -4,14 +4,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../..
 import { useProtocolAuth, useProtocolAuthAppearance } from "../../../../contexts/protocol-context";
 import { useBrandName } from "../../../../hooks/useBrand";
 import { useProtocolAuthClient } from "../../../../contexts/client-context";
-import { AuthSignInAttemptStatus, AuthVerificationStrategy } from "@protoxyz/types";
+import { ResponseStatus, AuthSignInAttemptStatus, AuthVerificationStrategy } from "@protoxyz/types";
 import { BrandLogo, BrandLogoWrapper } from "../../../custom-ui/brand-logo";
 import { SignInFlowRoute, useProtocolAuthSignInFlow } from "../../../../contexts/flow-context";
 import { z } from "zod";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ResponseStatus } from "@protoxyz/core";
 import { Form, FormControl, FormField } from "../../../custom-ui/form";
 import { Button } from "../../../ui/button";
 import { Input } from "../../../ui/input";

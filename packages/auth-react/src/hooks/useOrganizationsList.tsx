@@ -1,7 +1,7 @@
-import { PaginatedArgs } from "@protoxyz/types";
+import { ResponseStatus, PaginatedArgs } from "@protoxyz/types";
 import { useProtocolAuth } from "../contexts/protocol-context";
 import useSWR from "swr";
-import { ListOrganizations200Response, ListOrganizationsPath, ResponseStatus } from "@protoxyz/core";
+import { ListOrganizations200Response, ListOrganizationsPath } from "@protoxyz/core";
 
 function createCacheKey({ userId, cursor, perPage }: PaginatedArgs & { userId?: string }) {
     return [ListOrganizationsPath, userId, cursor, perPage].filter(Boolean).join(":");

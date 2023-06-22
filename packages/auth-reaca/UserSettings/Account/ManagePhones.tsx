@@ -1,12 +1,11 @@
 import { CheckCircleIcon, ExclamationCircleIcon, PhoneIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import { ResponseStatus } from "@protoxyz/core";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/inputs/Button";
 import { PhoneInput } from "@/components/ui/inputs/PhoneInput";
 import { VerificationInput } from "@/components/ui/inputs/VerificationCodeInput";
 import { Spinner } from "@/components/ui/Spinner";
-import { PhoneNumber } from "@protoxyz/types";
+import { ResponseStatus, PhoneNumber } from "@protoxyz/types";
 import { useProtocolAuth } from "@/providers/protocol";
 
 export function ManagePhoneNumbers() {

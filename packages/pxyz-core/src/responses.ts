@@ -13,13 +13,8 @@ import {
     SignUpAttempt,
     SocialConnection,
     UserProfile,
+    ResponseStatus,
 } from "@protoxyz/types";
-
-export const ResponseStatus = {
-    Success: "success",
-    Error: "error",
-};
-export type ResponseStatus = (typeof ResponseStatus)[keyof typeof ResponseStatus];
 
 export interface Response {
     status: ResponseStatus;
