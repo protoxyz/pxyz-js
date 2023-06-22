@@ -18,7 +18,7 @@
         "type-check": "turbo type-check",
         "changeset": "changeset",
         "version-packages": "changeset version",
-        "release": "turbo build --filter=example-^... && changeset publish",
+        "release": "turbo build --filter=\"example*^...\" && changeset publish",
         "update-pxyz": "turbo run update-pxyz"
     },
     "dependencies": {
