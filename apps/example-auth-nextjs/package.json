@@ -3,15 +3,16 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "clean": "rm -rf .turbo node_modules dist .next",
         "dev": "next dev -p 3003",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"
     },
     "dependencies": {
-        "@protoxyz/auth-nextjs": "*",
-        "@protoxyz/auth-react": "*",
-        "@protoxyz/themes": "*",
+        "@protoxyz/auth-nextjs": "workspace:*",
+        "@protoxyz/auth-react": "workspace:*",
+        "@protoxyz/themes": "workspace:*",
         "@types/node": "^18.14.2",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",

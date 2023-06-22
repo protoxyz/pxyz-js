@@ -30,9 +30,9 @@ importers:
 
   apps/example-auth-nextjs:
     specifiers:
-      '@protoxyz/auth-nextjs': '*'
-      '@protoxyz/auth-react': '*'
-      '@protoxyz/themes': '*'
+      '@protoxyz/auth-nextjs': workspace:*
+      '@protoxyz/auth-react': workspace:*
+      '@protoxyz/themes': workspace:*
       '@types/node': ^18.14.2
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
@@ -64,12 +64,12 @@ importers:
 
   packages/auth-nextjs:
     specifiers:
-      '@protoxyz/auth-react': ^1.0.4
+      '@protoxyz/auth-react': workspace:*
       '@protoxyz/config-tsconfig': github:protoxyz/config-tsconfig
-      '@protoxyz/core': ^1.1.0
+      '@protoxyz/core': workspace:*
       '@protoxyz/eslint-config-custom-next': github:protoxyz/eslint-config-custom-next
-      '@protoxyz/themes': ^1.0.1
-      '@protoxyz/types': ^1.0.1
+      '@protoxyz/themes': workspace:*
+      '@protoxyz/types': workspace:*
       '@types/node': ^18.14.2
       cookies-next: ^2.1.2
       eslint: ^8.32.0
@@ -102,9 +102,9 @@ importers:
   packages/auth-node:
     specifiers:
       '@protoxyz/config-tsconfig': github:protoxyz/config-tsconfig
-      '@protoxyz/core': ^1.1.0
+      '@protoxyz/core': workspace:*
       '@protoxyz/eslint-config-custom-library': github:protoxyz/eslint-config-custom-library
-      '@protoxyz/types': ^1.0.1
+      '@protoxyz/types': workspace:*
       '@types/jsonwebtoken': ^9.0.1
       '@types/node': ^18.14.2
       '@types/node-fetch': 2.x
@@ -156,12 +156,12 @@ importers:
       '@headlessui/react': ^1.7.15
       '@heroicons/react': ^2.0.18
       '@hookform/resolvers': ^3.1.1
-      '@protoxyz/auth-providers': '*'
+      '@protoxyz/auth-providers': workspace:*
       '@protoxyz/config-tsconfig': github:protoxyz/config-tsconfig
-      '@protoxyz/core': '*'
+      '@protoxyz/core': workspace:*
       '@protoxyz/eslint-config-custom-react': github:protoxyz/eslint-config-custom-react
-      '@protoxyz/themes': '*'
-      '@protoxyz/types': '*'
+      '@protoxyz/themes': workspace:*
+      '@protoxyz/types': workspace:*
       '@radix-ui/react-avatar': ^1.0.3
       '@radix-ui/react-dialog': ^1.0.4
       '@radix-ui/react-dropdown-menu': ^2.0.5
@@ -236,7 +236,7 @@ importers:
     specifiers:
       '@protoxyz/config-tsconfig': github:protoxyz/config-tsconfig
       '@protoxyz/eslint-config-custom-library': github:protoxyz/eslint-config-custom-library
-      '@protoxyz/types': ^1.0.1
+      '@protoxyz/types': workspace:*
       '@types/node': ^18.14.2
       '@types/node-fetch': 2.x
       '@types/react': ^18.0.28
@@ -285,7 +285,7 @@ importers:
     specifiers:
       '@protoxyz/config-tsconfig': github:protoxyz/config-tsconfig
       '@protoxyz/eslint-config-custom-library': github:protoxyz/eslint-config-custom-library
-      '@protoxyz/themes': ^1.0.1
+      '@protoxyz/themes': workspace:*
       '@types/node': ^18.14.2
       csstype: ^3.1.2
       eslint: ^8.32.0
@@ -2455,7 +2455,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001506
-      electron-to-chromium: 1.4.436
+      electron-to-chromium: 1.4.437
       node-releases: 2.0.12
       update-browserslist-db: 1.0.11_browserslist@4.21.9
     dev: false
@@ -2912,8 +2912,8 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /electron-to-chromium/1.4.436:
-    resolution: {integrity: sha512-aktOxo8fnrMC8vOIBMVS3PXbT1nrPQ+SouUuN7Y0a+Rw3pOMrvIV92Ybnax7x4tugA+ZpYA5fOHTby7ama8OQQ==}
+  /electron-to-chromium/1.4.437:
+    resolution: {integrity: sha512-ZFekRuBOHUXp21wrR5lshT6pZa/KmjkhKBAtmZz4NN5sCWlHOk3kdhiwFINrDBsRLX6FjyBAb1TRN+KBeNlyzQ==}
     dev: false
 
   /emoji-regex/8.0.0:

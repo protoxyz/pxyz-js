@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/core",
-    "version": "1.1.2",
+    "version": "0.0.0",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -23,10 +23,10 @@
         "clean": "rm -rf .turbo node_modules dist",
         "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
         "type-check": "tsc --noEmit",
-        "update-pxyz": "pnpm update \"@protoxyz/*\""
+        "update-pxyz": "pnpm update \"@protoxyz/auth-*\" && pnpm update @protoxyz/types && pnpm update @protoxyz/core"
     },
     "dependencies": {
-        "@protoxyz/types": "^1.0.3"
+        "@protoxyz/types": "workspace:*"
     },
     "devDependencies": {
         "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",

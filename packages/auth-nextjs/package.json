@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/auth-nextjs",
-    "version": "1.0.9",
+    "version": "0.0.0",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -23,7 +23,7 @@
         "clean": "rm -rf .turbo node_modules dist",
         "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
         "type-check": "tsc --noEmit",
-        "update-pxyz": "pnpm update \"@protoxyz/*\""
+        "update-pxyz": "pnpm update \"@protoxyz/auth-*\" && pnpm update @protoxyz/types && pnpm update @protoxyz/core"
     },
     "devDependencies": {
         "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
@@ -43,10 +43,10 @@
         "react-dom": "^18.2.0"
     },
     "dependencies": {
-        "@protoxyz/auth-react": "^1.0.5",
-        "@protoxyz/core": "^1.1.2",
-        "@protoxyz/themes": "^1.0.2",
-        "@protoxyz/types": "^1.0.3",
+        "@protoxyz/auth-react": "workspace:*",
+        "@protoxyz/core": "workspace:*",
+        "@protoxyz/themes": "workspace:*",
+        "@protoxyz/types": "workspace:*",
         "cookies-next": "^2.1.2",
         "jose": "^4.12.0"
     }

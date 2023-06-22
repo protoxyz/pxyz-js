@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/auth-providers",
-    "version": "1.0.2",
+    "version": "0.0.0",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -23,7 +23,7 @@
         "clean": "rm -rf .turbo node_modules dist",
         "lint": "eslint \"src/**/*.ts*\"",
         "type-check": "tsc --noEmit",
-        "update-pxyz": "pnpm update \"@protoxyz/*\""
+        "update-pxyz": "pnpm update \"@protoxyz/auth-*\" && pnpm update @protoxyz/types && pnpm update @protoxyz/core"
     },
     "dependencies": {
         "oauth4webapi": "^2.1.0"

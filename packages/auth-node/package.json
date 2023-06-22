@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/auth-node",
-    "version": "1.0.2",
+    "version": "0.0.0",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -23,11 +23,11 @@
         "clean": "rm -rf .turbo node_modules dist",
         "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
         "type-check": "tsc --noEmit",
-        "update-pxyz": "pnpm update \"@protoxyz/*\""
+        "update-pxyz": "pnpm update \"@protoxyz/auth-*\" && pnpm update @protoxyz/types && pnpm update @protoxyz/core"
     },
     "dependencies": {
-        "@protoxyz/core": "^1.1.2",
-        "@protoxyz/types": "^1.0.3",
+        "@protoxyz/core": "workspace:*",
+        "@protoxyz/types": "workspace:*",
         "encoding": "^0.1.13",
         "jsonwebtoken": "^8.5.1"
     },

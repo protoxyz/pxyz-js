@@ -4,10 +4,10 @@
     "packageManager": "pnpm@7.13.0",
     "scripts": {
         "build": "turbo run build",
-        "clean": "pnpm run clean:workspaces && pnpm run clean:modules && rm pnpm-lock.yaml",
+        "clean": "pnpm run clean:workspaces && pnpm run clean:modules && rm pnpm-lock.yaml && rm -rf .turbo",
         "clean:modules": "rm -rf node_modules",
         "clean:workspaces": "turbo clean",
-        "dev": "turbo run dev",
+        "dev": "turbo run dev --no-cache --continue",
         "dev:apps": "turbo run dev --filter='./apps/*' --concurrency=20",
         "dev:packages": "turbo run dev --filter='./packages/*' --concurrency=20",
         "build:apps": "turbo run build --filter='./apps/*'",
@@ -16,8 +16,9 @@
         "lint": "turbo run lint",
         "FIXME:lint": "turbo lint && manypkg check",
         "type-check": "turbo type-check",
-        "publish-packages": "turbo run build lint && changeset && changeset publish",
-        "postinstall": "manypkg check",
+        "changeset": "changeset",
+        "version-packages": "changeset version",
+        "release": "turbo build --filter=example-^... && changeset publish",
         "update-pxyz": "turbo run update-pxyz"
     },
     "dependencies": {
