@@ -1,5 +1,16 @@
 # @protoxyz/core
 
+## 2.0.0
+
+### Major Changes
+
+-   e7194ba: major bump to fix versions
+
+### Patch Changes
+
+-   Updated dependencies [e7194ba]
+    -   @protoxyz/types@2.0.0
+
 ## 1.0.0
 
 ### Major Changes
