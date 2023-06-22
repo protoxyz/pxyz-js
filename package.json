@@ -16,7 +16,7 @@
         "lint": "turbo run lint",
         "FIXME:lint": "turbo lint && manypkg check",
         "type-check": "turbo type-check",
-        "publish-packages": "turbo run build lint && changeset version && changeset publish",
+        "publish-packages": "turbo run build lint && changeset && changeset publish",
         "postinstall": "manypkg check",
         "update-pxyz": "turbo run update-pxyz"
     },
