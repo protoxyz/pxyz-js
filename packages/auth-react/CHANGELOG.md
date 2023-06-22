@@ -1,5 +1,19 @@
 # @protoxyz/auth-react
 
+## 1.0.0
+
+### Major Changes
+
+-   fb860a0: bump
+
+### Patch Changes
+
+-   Updated dependencies [fb860a0]
+    -   @protoxyz/auth-providers@1.0.0
+    -   @protoxyz/core@1.0.0
+    -   @protoxyz/themes@1.0.0
+    -   @protoxyz/types@1.0.0
+
 ## 0.0.1
 
 ### Patch Changes

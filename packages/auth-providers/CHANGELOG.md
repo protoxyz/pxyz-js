@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 1.0.0
+
+### Major Changes
+
+-   fb860a0: bump
+
 ## 0.0.1
 
 ### Patch Changes
