@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.0.1
+
+### Patch Changes
+
+-   0a9e3c3: Fix auth-react import
+-   Updated dependencies [0a9e3c3]
+    -   @protoxyz/auth-react@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
