@@ -3,6 +3,7 @@
         "lib": ["dom", "ES2015"],
         "outDir": "./dist",
         "rootDir": "./src",
+        "isolatedModules": true,
         "declaration": true,
         "declarationMap": false,
         "sourceMap": false,

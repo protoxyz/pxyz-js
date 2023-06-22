@@ -33,7 +33,7 @@ export {
 
     // Localizations
     enUS,
-} from "@protoxyz/react";
+} from "@protoxyz/auth-react";
 
 export { ProtocolAuthProviderRSC } from "./server/protocol-provider-rsc";
 export { getUser, getAuth, getToken } from "./server/getUser";

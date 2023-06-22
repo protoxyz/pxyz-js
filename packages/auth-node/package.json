@@ -29,12 +29,12 @@
         "@protoxyz/core": "workspace:*",
         "@protoxyz/types": "workspace:*",
         "encoding": "^0.1.13",
-        "jsonwebtoken": "^8.5.1"
+        "jsonwebtoken": "^9.0.0"
     },
     "devDependencies": {
         "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
         "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
-        "@types/jsonwebtoken": "^9.0.1",
+        "@types/jsonwebtoken": "^9.0.2",
         "@types/node": "^18.14.2",
         "@types/node-fetch": "2.x",
         "eslint": "^8.32.0",
