@@ -34,3 +34,5 @@ export { enUS } from "./localizations/en-US";
 // Custom hooks
 export { useProtocolAuthLogout } from "./hooks/useProtocolAuthLogout";
 export { useProtocolAuthOrganizationsList } from "./hooks/useOrganizationsList";
+
+export { tailwindPaths } from "./tailwind";

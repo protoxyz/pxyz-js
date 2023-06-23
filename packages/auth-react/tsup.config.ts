@@ -11,7 +11,7 @@ export default defineConfig((overrideOptions) => {
 
         bundle: true,
         clean: true,
-        minify: false,
+        minify: true,
         dts: true,
         format: ["esm", "cjs"],
 
