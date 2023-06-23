@@ -92,9 +92,6 @@ importers:
 
   packages/auth-nextjs:
     dependencies:
-      '@protoxyz/auth-react':
-        specifier: ^2.0.5
-        version: link:../auth-react
       '@protoxyz/core':
         specifier: workspace:*
         version: link:../pxyz-core
@@ -111,6 +108,9 @@ importers:
         specifier: ^4.12.0
         version: 4.12.0
     devDependencies:
+      '@protoxyz/auth-react':
+        specifier: workspace:*
+        version: link:../auth-react
       '@protoxyz/config-tsconfig':
         specifier: github:protoxyz/config-tsconfig
         version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
