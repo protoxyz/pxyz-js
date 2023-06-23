@@ -1,4 +1,3 @@
-"use client";
 import { SignInAttempt, SignUpAttempt } from "@protoxyz/types";
 import { createContext, useContext } from "react";
 

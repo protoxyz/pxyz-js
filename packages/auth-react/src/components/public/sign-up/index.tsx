@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "../../ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../ui/card";
 import { Label } from "../../ui/label";

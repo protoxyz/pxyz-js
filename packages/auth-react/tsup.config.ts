@@ -9,7 +9,7 @@ export default defineConfig((overrideOptions) => {
     const common: Options = {
         entry: ["./src/**/*.{ts,tsx,js,jsx}"],
 
-        bundle: false,
+        bundle: true,
         clean: true,
         minify: false,
         dts: true,
@@ -21,7 +21,7 @@ export default defineConfig((overrideOptions) => {
             __DEV__: `${!isProd}`,
         },
 
-        esbuildOptions: (options, context) => {
+        esbuildOptions: (options) => {
             options.banner = { js: `"use client";` };
         },
     };

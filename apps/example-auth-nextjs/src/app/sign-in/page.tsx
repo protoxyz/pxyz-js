@@ -1,5 +1,5 @@
 import { Wrapper } from "@/components/wrapper";
-import { SignIn } from "@protoxyz/auth-nextjs";
+import { SignIn } from "@protoxyz/auth-react";
 
 export default function SignInPage() {
     return (

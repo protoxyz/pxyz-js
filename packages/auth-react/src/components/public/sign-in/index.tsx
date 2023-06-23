@@ -1,4 +1,3 @@
-"use client";
 import { SignInFlowRoute, useProtocolAuthSignInFlow } from "../../../contexts/flow-context";
 import { useProtocolAuthAppearance } from "../../../contexts/protocol-context";
 import { Variables } from "../../custom-ui/variables";

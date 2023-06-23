@@ -1,11 +1,9 @@
-import { ProtocolAuthProviderRSC, tailwindPaths } from "@protoxyz/auth-nextjs";
+import { ProtocolAuthProviderRSC } from "@protoxyz/auth-nextjs";
 import "./globals.css";
 import type { AuthAppearance } from "@protoxyz/themes";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
-
-console.log(tailwindPaths);
 
 export const metadata = {
     title: "Protocol Auth Demo",

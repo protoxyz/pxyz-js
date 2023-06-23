@@ -1,4 +1,3 @@
-"use client";
 import { RedirectToSignInProps, RedirectToSignUpProps } from "../types/auth";
 import { Protocol } from "@protoxyz/core";
 import { AuthAppearance, AuthComponentType, getMergedTheme } from "@protoxyz/themes";

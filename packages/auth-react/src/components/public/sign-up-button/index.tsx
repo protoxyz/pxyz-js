@@ -1,5 +1,3 @@
-"use client";
-
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { SignUp } from "../sign-up";
 import { Button, ButtonProps } from "../../ui/button";

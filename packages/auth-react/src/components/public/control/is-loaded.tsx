@@ -1,4 +1,3 @@
-// "use client";
 import { useProtocolAuth } from "../../../contexts/protocol-context";
 
 export interface IsLoaded {

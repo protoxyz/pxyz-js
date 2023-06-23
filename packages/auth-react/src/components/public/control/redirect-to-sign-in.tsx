@@ -1,4 +1,3 @@
-"use client";
 import { useProtocolAuth } from "../../../contexts/protocol-context";
 import { RedirectToSignInProps } from "../../../types/auth";
 import { useEffect } from "react";

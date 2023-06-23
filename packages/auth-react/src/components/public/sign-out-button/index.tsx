@@ -1,5 +1,3 @@
-"use client";
-
 import { useProtocolAuthLogout } from "../../../hooks/useProtocolAuthLogout";
 import { Button, ButtonProps } from "../../ui/button";
 import { Spinner } from "../../ui/spinner";

@@ -1,4 +1,3 @@
-"use client";
 export {};
 // import { initialState, OpenSignInProps, OpenSignUpProps, ProtocolAuthContext, reducer } from "../contexts/protocol";
 // import React, { useEffect } from "react";

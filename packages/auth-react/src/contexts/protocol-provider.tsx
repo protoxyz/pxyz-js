@@ -1,4 +1,3 @@
-"use client";
 import { ProtocolAuthContext, ProtocolAuthProviderState } from "./protocol-context";
 import { Protocol } from "@protoxyz/core";
 import React, { useEffect } from "react";

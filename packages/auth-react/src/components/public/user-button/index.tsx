@@ -1,4 +1,3 @@
-"use client";
 import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
