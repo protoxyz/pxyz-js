@@ -41,7 +41,10 @@ export async function ProtocolAuthProviderRSC({
         console.log(e);
     }
 
-    const user = await getUser();
+    const user = await getUser({
+        domain: resolvedDomain,
+        publicKey: resolvedPublicKey,
+    });
 
     return (
         <ProtocolAuthProvider
