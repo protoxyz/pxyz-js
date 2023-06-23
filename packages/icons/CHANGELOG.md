@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.5
+
+### Patch Changes
+
+-   9c19a58: Add missing icons
+
 ## 2.0.4
 
 ### Patch Changes
