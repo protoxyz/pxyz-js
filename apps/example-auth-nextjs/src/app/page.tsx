@@ -1,7 +1,7 @@
 import { IsLoggedIn, IsLoggedOut } from "@protoxyz/auth-nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { SignOutButton, UserButton, SignInButton, SignUpButton } from "@protoxyz/auth-react";
+import { SignOutButton, UserButton, SignInButton, SignUpButton } from "@protoxyz/auth-nextjs";
 import { OrganizationSwitcher } from "@protoxyz/auth-nextjs";
 
 export default function Home() {

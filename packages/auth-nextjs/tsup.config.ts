@@ -23,27 +23,4 @@ export default defineConfig((overrideOptions) => {
     };
 
     return common;
-
-    // const esm: Options = {
-    //     ...common,
-    //     format: "esm",
-    // };
-
-    // const cjs: Options = {
-    //     ...common,
-    //     format: "cjs",
-    //     outDir: "./dist/cjs",
-    // };
-
-    // return [esm, cjs];
-
-    // format: ["esm", "cjs"],
-    // external: ["react", "react-dom", "next"],
-    // dts: true,
-    // clean: true,
-    // minify: true,
-    // esbuildOptions: (options, context) => {
-    //     console.log("CONTEXT!!!", context);
-    //     options.banner = { js: `"use client";` };
-    // },
 });

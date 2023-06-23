@@ -21,6 +21,9 @@ export async function ProtocolAuthProviderRSC({
     const resolvedPublicKey =
         publicKey ?? process.env.PXYZ_PUBLIC_KEY ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ?? "";
 
+    if (!resolvedDomain) throw new Error("No domain provided in ProtocolAuthProvider");
+    if (!resolvedPublicKey) throw new Error("No public key provided in ProtocolAuthProvider");
+
     const protocolClient = new Protocol({
         debug: process.env.NODE_ENV !== "production",
         baseUrl: resolvedDomain,

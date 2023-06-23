@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    transpilePackages: ["@protoxyz/auth-next", "@protoxyz/auth-react", "@protoxyz/themes"],
+    transpilePackages: ["@protoxyz/themes"],
 };
 
 module.exports = nextConfig;
