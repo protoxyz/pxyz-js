@@ -1,5 +1,7 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
+console.log("tailwindPaths", require("@protoxyz/auth-nextjs/dist/tailwind").tailwindPaths);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
