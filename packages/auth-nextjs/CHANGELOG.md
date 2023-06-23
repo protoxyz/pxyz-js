@@ -1,5 +1,15 @@
 # @protoxyz/auth-nextjs
 
+## 2.0.4
+
+### Patch Changes
+
+-   8849f70: Add additionalScopes to social provider
+-   Updated dependencies [8849f70]
+    -   @protoxyz/types@2.0.3
+    -   @protoxyz/auth-react@2.0.4
+    -   @protoxyz/core@2.0.3
+
 ## 2.0.3
 
 ### Patch Changes

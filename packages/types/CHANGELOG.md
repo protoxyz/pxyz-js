@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.3
+
+### Patch Changes
+
+-   8849f70: Add additionalScopes to social provider
+
 ## 2.0.2
 
 ### Patch Changes
