@@ -93,7 +93,7 @@ importers:
   packages/auth-nextjs:
     dependencies:
       '@protoxyz/auth-react':
-        specifier: ^2.0.4
+        specifier: ^2.0.5
         version: link:../auth-react
       '@protoxyz/core':
         specifier: workspace:*
