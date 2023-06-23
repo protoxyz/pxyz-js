@@ -1,5 +1,12 @@
 # @protoxyz/auth-react
 
+## 2.0.5
+
+### Patch Changes
+
+-   a3f4d60: cleanup
+-   9aa6add: Fix client boundary
+
 ## 2.0.4
 
 ### Patch Changes

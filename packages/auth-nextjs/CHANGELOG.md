@@ -1,5 +1,15 @@
 # @protoxyz/auth-nextjs
 
+## 2.0.5
+
+### Patch Changes
+
+-   49c5d83: Update tailwind path
+-   9aa6add: Fix client boundary
+-   Updated dependencies [a3f4d60]
+-   Updated dependencies [9aa6add]
+    -   @protoxyz/auth-react@2.0.5
+
 ## 2.0.4
 
 ### Patch Changes
