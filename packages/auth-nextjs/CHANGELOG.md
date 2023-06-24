@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.0.8
+
+### Patch Changes
+
+-   94904cd: Change cookie name
+-   Updated dependencies [94904cd]
+    -   @protoxyz/auth-react@2.0.7
+
 ## 2.0.7
 
 ### Patch Changes
