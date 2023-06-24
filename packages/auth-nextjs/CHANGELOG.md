@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.0.7
+
+### Patch Changes
+
+-   a4d1ba1: add default to getCookieOptions
+-   Updated dependencies [a4d1ba1]
+    -   @protoxyz/auth-react@2.0.6
+
 ## 2.0.6
 
 ### Patch Changes
