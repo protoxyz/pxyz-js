@@ -29,19 +29,19 @@ type CookiesWithGet = {
 };
 
 type CookiesWithSession = {
-    __session: string;
+    __pxyz_session: string;
 };
 
 export function getSessionToken(req: RequestLike) {
     const cookies = req.cookies;
 
     if (Object.prototype.hasOwnProperty.call(cookies, "get")) {
-        const cookie = (cookies as CookiesWithGet).get("__session")?.value;
+        const cookie = (cookies as CookiesWithGet).get("__pxyz_session")?.value;
         if (cookie) return cookie;
     } else {
         const apiReq = req;
         const cookies = apiReq.cookies as CookiesWithSession;
-        const cookie = cookies.__session;
+        const cookie = cookies.__pxyz_session;
         if (cookie) return cookie;
     }
 

@@ -11,8 +11,8 @@ export const parseCookieString = (cookie: string | null): Record<string, string>
 
 export async function getCookieToken({ headers }: { headers: Headers }) {
     const cookies = parseCookieString(headers.get("cookie"));
-    if (!cookies || !cookies["__session"]) return null;
-    const token = cookies["__session"];
+    if (!cookies || !cookies["__pxyz_session"]) return null;
+    const token = cookies["__pxyz_session"];
     if (!token) return null;
 
     return token;
@@ -69,6 +69,8 @@ export async function getAuth({ jwtKey }: { jwtKey?: string }): Promise<SessionU
 
 export async function getToken(): Promise<string | null> {
     const headers = nextHeaders();
+
+    console.log("headers", headers);
 
     const token = (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
 
