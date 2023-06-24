@@ -15,7 +15,10 @@ export interface CookieOptions {
     sameSite: "lax" | "strict" | "none";
     secure: boolean;
 }
-export function getCookieOptions(hostWithPort: string | undefined, secure: boolean) {
+export function getCookieOptions(
+    hostWithPort: string | undefined,
+    secure: boolean = process.env.NODE_ENV === "production",
+) {
     if (!hostWithPort) return {} as CookieOptions;
     const domain = getCookieDomain(hostWithPort, secure);
 

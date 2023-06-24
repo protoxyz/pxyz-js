@@ -1,7 +1,7 @@
 import { ProtocolAuthProvider } from "@protoxyz/auth-react";
 import { Protocol } from "@protoxyz/core";
 import { AuthAppearance } from "@protoxyz/themes";
-import { AuthInstance } from "@protoxyz/types";
+import { AuthInstance, ResponseStatus } from "@protoxyz/types";
 import { getUser } from "./getUser";
 
 interface ProtocolAuthProviderRSCProps {
@@ -35,6 +35,9 @@ export async function ProtocolAuthProviderRSC({
         const result = await protocolClient.auth.instances.getByPublicKey({
             path: { publicKey: resolvedPublicKey },
         });
+        if (result.status !== ResponseStatus.Success) {
+            throw new Error("Could not retrieve instance: pkey=" + resolvedPublicKey + " domain=" + resolvedDomain);
+        }
         instance = result.data.instance;
     } catch (e) {
         console.log("ERROR!!!!!");

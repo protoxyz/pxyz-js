@@ -30,7 +30,7 @@ export function NativeSelectTimezone({ selectOptions, className, value, onChange
                 theme?.inputText,
             )}
         >
-            {options.map((option) => (
+            {options?.map((option) => (
                 <option value={option.value}>{option.label}</option>
             ))}
         </select>

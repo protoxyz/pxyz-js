@@ -56,7 +56,7 @@ const useVerificationCode = (codeLength: number): HookReturnValues => {
     // compile the complete code anytime the inputs change
     useEffect(() => {
         const finalCode = inputStates
-            .map((input) => {
+            ?.map((input) => {
                 return input.digit;
             })
             .join("");

@@ -25,7 +25,7 @@ export function SocialLinks({ instance }: { appearance: AuthAppearance; instance
 
     return (
         <div className={`grid ${gridCols} gap-x-6 gap-y-3`}>
-            {filteredProviders.map((provider) => (
+            {filteredProviders?.map((provider) => (
                 <IconButton
                     key={provider.providerKey}
                     icon={CompanyIcons[provider.providerKey]}

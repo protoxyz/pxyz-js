@@ -34,12 +34,12 @@ export function UserDropdown({
 
     const primaryEmail = useMemo(() => {
         if (!user) return "";
-        return user.emailAddresses.find((e) => e.id === user.primaryEmailId)?.email || "";
+        return user.emailAddresses?.find((e) => e.id === user.primaryEmailId)?.email || "";
     }, [user]);
 
     const primaryPhone = useMemo(() => {
         if (!user) return "";
-        return user.phoneNumbers.find((e) => e.id === user.primaryPhoneId)?.phone || "";
+        return user.phoneNumbers?.find((e) => e.id === user.primaryPhoneId)?.phone || "";
     }, [user]);
 
     const fullName = useMemo(() => {
@@ -50,7 +50,7 @@ export function UserDropdown({
 
     const additionalItems = useMemo(() => {
         if (!items) return null;
-        return items.map((item) => {
+        return items?.map((item) => {
             if (item.href) {
                 return (
                     <Menu.Item key={item.label}>

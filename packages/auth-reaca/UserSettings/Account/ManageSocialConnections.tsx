@@ -50,7 +50,7 @@ export function ManageSocialConnections() {
             <div className="mt-2 flex flex-col gap-y-2">
                 {instance?.socialProviders?.map((p) => {
                     const provider = providers[p.providerKey];
-                    const connection = connections.find(
+                    const connection = connections?.find(
                         (connection) => connection.instanceSocialProvider.providerKey === p.providerKey,
                     );
                     type SocialIconType = keyof typeof SocialIcons;

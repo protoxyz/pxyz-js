@@ -23,7 +23,7 @@ export function UserSettingsTabNavigation({
                     role="list"
                     className="flex min-w-full flex-none gap-x-6  text-sm font-semibold leading-6 text-zinc-400 "
                 >
-                    {navigation.map((item) => (
+                    {navigation?.map((item) => (
                         <li key={item.name}>
                             <button
                                 className={item.current ? "text-primary-500" : ""}

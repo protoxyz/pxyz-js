@@ -13,7 +13,7 @@ export function UserSettings({ additionalTabs = [] }: UserSettingsProps) {
 
     const navigation = useMemo(() => {
         const mappedTabs = additionalTabs
-            ? additionalTabs.map((tab) => ({ name: tab.label, tab: tab.tab, current: currentTab === tab.tab }))
+            ? additionalTabs?.map((tab) => ({ name: tab.label, tab: tab.tab, current: currentTab === tab.tab }))
             : [];
 
         return [

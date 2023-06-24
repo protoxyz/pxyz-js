@@ -70,7 +70,7 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
     const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
     const [selectedTeamSlug, setSelectedTeamSlug] = React.useState<string>("personal");
 
-    const selectedTeam = organizations.data.find((org) => org.slug === selectedTeamSlug);
+    const selectedTeam = organizations?.data?.find((org) => org.slug === selectedTeamSlug);
 
     return (
         <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
@@ -100,9 +100,9 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                         <CommandList>
                             <CommandInput placeholder="Search team..." />
                             <CommandEmpty>No team found.</CommandEmpty>
-                            {groups.map((group) => (
+                            {groups?.map((group) => (
                                 <CommandGroup key={group.label} heading={group.label}>
-                                    {group.teams.map((team) => (
+                                    {group.teams?.map((team) => (
                                         <CommandItem
                                             key={team.name}
                                             onSelect={() => {

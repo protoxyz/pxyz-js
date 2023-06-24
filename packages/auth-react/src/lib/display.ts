@@ -27,12 +27,12 @@ export const userInitials = (
     }
 
     if (user.emailAddresses && user.emailAddresses.length > 0) {
-        const primaryEmail = user.emailAddresses.find((email) => user.primaryEmailId === email.id);
+        const primaryEmail = user.emailAddresses?.find((email) => user.primaryEmailId === email.id);
         return primaryEmail?.email.substring(0, 2).toUpperCase();
     }
 
     if (user.phoneNumbers && user.phoneNumbers.length > 0) {
-        const primaryPhone = user.phoneNumbers.find((phone) => user.primaryPhoneId === phone.id);
+        const primaryPhone = user.phoneNumbers?.find((phone) => user.primaryPhoneId === phone.id);
         return primaryPhone?.phone.substring(0, 2).toUpperCase();
     }
 
@@ -82,12 +82,12 @@ export const userDisplayName = (
     }
 
     if (user.emailAddresses && user.emailAddresses.length > 0) {
-        const primaryEmail = user.emailAddresses.find((email) => user.primaryEmailId === email.id);
+        const primaryEmail = user.emailAddresses?.find((email) => user.primaryEmailId === email.id);
         return primaryEmail?.email;
     }
 
     if (user.phoneNumbers && user.phoneNumbers.length > 0) {
-        const primaryPhone = user.phoneNumbers.find((phone) => user.primaryPhoneId === phone.id);
+        const primaryPhone = user.phoneNumbers?.find((phone) => user.primaryPhoneId === phone.id);
         return primaryPhone?.phone;
     }
 
@@ -102,12 +102,12 @@ export const userSecondaryDisplayName = (
     }
 
     if (user.emailAddresses && user.emailAddresses.length > 0) {
-        const primaryEmail = user.emailAddresses.find((email) => user.primaryEmailId === email.id);
+        const primaryEmail = user.emailAddresses?.find((email) => user.primaryEmailId === email.id);
         return primaryEmail?.email;
     }
 
     if (user.phoneNumbers && user.phoneNumbers.length > 0) {
-        const primaryPhone = user.phoneNumbers.find((phone) => user.primaryPhoneId === phone.id);
+        const primaryPhone = user.phoneNumbers?.find((phone) => user.primaryPhoneId === phone.id);
         return primaryPhone?.phone;
     }
 

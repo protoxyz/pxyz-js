@@ -71,7 +71,7 @@ export function ManageEmailAddresses() {
         if (result.status === ResponseStatus.Success) {
             setError(undefined);
             setEmails((emails) =>
-                emails.map((email) => {
+                emails?.map((email) => {
                     if (email.id === emailId) {
                         return result.data.emailAddress;
                     }
@@ -101,7 +101,7 @@ export function ManageEmailAddresses() {
         if (result.status === ResponseStatus.Success) {
             setError(undefined);
             setEmails((emails) =>
-                emails.map((email) => {
+                emails?.map((email) => {
                     if (email.id === emailId) {
                         return result.data.emailAddress;
                     }
@@ -120,7 +120,7 @@ export function ManageEmailAddresses() {
     return (
         <div className="md:col-span-3">
             <div className="mt-2 flex flex-col gap-y-2">
-                {emails.map((email) => {
+                {emails?.map((email) => {
                     return (
                         <div key={email.id}>
                             <div
