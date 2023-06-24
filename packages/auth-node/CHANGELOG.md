@@ -1,5 +1,11 @@
 # @protoxyz/auth-node
 
+## 2.0.5
+
+### Patch Changes
+
+-   a4d1ba1: add default to getCookieOptions
+
 ## 2.0.4
 
 ### Patch Changes
