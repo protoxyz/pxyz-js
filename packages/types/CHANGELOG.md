@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.5
+
+### Patch Changes
+
+-   b01a782: update SessionUser
+
 ## 2.0.4
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @protoxyz/auth-react
 
+## 2.0.9
+
+### Patch Changes
+
+-   b01a782: update SessionUser
+-   Updated dependencies [b01a782]
+    -   @protoxyz/types@2.0.5
+    -   @protoxyz/core@2.0.5
+
 ## 2.0.8
 
 ### Patch Changes
