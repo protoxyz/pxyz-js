@@ -58,9 +58,11 @@ export async function ProtocolAuthProviderRSC({
             publicKey={resolvedPublicKey}
             instance={instance}
             user={user}
-            sessionId={sessionUser?.sessionId}
-            orgId={sessionUser?.orgId}
-            orgRole={sessionUser?.orgRole}
+            userId={sessionUser?.sub}
+            sessionId={sessionUser?.claims?.sessionId}
+            org={user?.organizations?.find((org) => org.id === sessionUser?.claims?.orgId)}
+            orgId={sessionUser?.claims?.orgId}
+            // orgRole={sessionUser?.claims?.orgRole}
         >
             {children}
         </ProtocolAuthProvider>
