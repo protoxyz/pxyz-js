@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.4
+
+### Patch Changes
+
+-   2cd0965: Change issue token response key
+-   Updated dependencies [2cd0965]
+    -   @protoxyz/types@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes

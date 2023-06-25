@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.3
+
+### Patch Changes
+
+-   2cd0965: Change issue token response key
+
 ## 2.0.2
 
 ### Patch Changes

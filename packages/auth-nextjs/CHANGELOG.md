@@ -1,5 +1,16 @@
 # @protoxyz/auth-nextjs
 
+## 2.0.9
+
+### Patch Changes
+
+-   2cd0965: Change issue token response key
+-   Updated dependencies [2cd0965]
+    -   @protoxyz/auth-react@2.0.8
+    -   @protoxyz/core@2.0.4
+    -   @protoxyz/themes@2.0.3
+    -   @protoxyz/types@2.0.4
+
 ## 2.0.8
 
 ### Patch Changes
