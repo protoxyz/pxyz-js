@@ -15,7 +15,7 @@ export function SignIn() {
 
     return (
         <>
-            <Variables variables={appearance.variables} />
+            <Variables variables={appearance?.variables} />
             {route === SignInFlowRoute.signIn && <SignInRoute />}
             {route === SignInFlowRoute["signIn:verifyFirstFactor"] && <SignInVerifyFirstFactorRoute />}
             {route === SignInFlowRoute["signIn:verifySecondFactor"] && <SignInVerifySecondFactorRoute />}

@@ -1,14 +1,13 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: ["class"],
     content: [
         require("@protoxyz/auth-react/dist/tailwind").tailwindPaths,
-        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+        "./pages/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./app/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
     ],
-    darkMode: ["class"],
     theme: {
         container: {
             center: true,
@@ -18,12 +17,7 @@ module.exports = {
             },
         },
         extend: {
-            backgroundImage: {
-                "radial-gradient": "radial-gradient(var(--tw-gradient-stops))",
-                "conic-gradient": "conic-gradient(from 225deg, #FFC876, #79FFF7, #9F53FF, #FF98E2, #FFC876)",
-            },
             colors: {
-                // Defaults
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
@@ -58,8 +52,10 @@ module.exports = {
                     foreground: "hsl(var(--card-foreground))",
                 },
             },
-            fontFamily: {
-                sans: ["var(--font-sans)", ...fontFamily.sans],
+            borderRadius: {
+                lg: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
+                sm: "calc(var(--radius) - 4px)",
             },
             keyframes: {
                 "accordion-down": {
@@ -77,4 +73,5 @@ module.exports = {
             },
         },
     },
+    plugins: [require("tailwindcss-animate")],
 };

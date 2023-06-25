@@ -8,8 +8,8 @@ export function SignInVerifySecondFactorRoute() {
     const { appearance } = useProtocolAuthAppearance({ component });
 
     return (
-        <CardWrapper className={appearance.elements.cardWrapper}>
-            <Card className={appearance.elements.card}>SignInVerifySecondFactorRoute</Card>
+        <CardWrapper className={appearance?.elements?.cardWrapper}>
+            <Card className={appearance?.elements?.card}>SignInVerifySecondFactorRoute</Card>
         </CardWrapper>
     );
 }

@@ -1,5 +1,5 @@
 import { Card } from "../../ui/card";
 
 export function UserProfile() {
-    return <Card className="lg:max-w-sm">hi</Card>;
+    return <Card className="w-full lg:max-w-lg"></Card>;
 }

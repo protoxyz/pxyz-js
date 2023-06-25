@@ -1,11 +1,5 @@
-import {
-    OrganizationSwitcher,
-    IsLoggedIn,
-    IsLoggedOut,
-    UserButton,
-    SignInButton,
-    SignUpButton,
-} from "@protoxyz/auth-react";
+import { Header } from "@/components/header";
+import { IsLoggedIn, IsLoggedOut, SignInButton, SignUpButton } from "@protoxyz/auth-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,25 +7,7 @@ export default function Home() {
     return (
         <>
             <main className="bg-background h-100 relative flex min-h-screen flex-1 flex-col">
-                <div className="bg-background fixed top-0 z-40 w-full border-b">
-                    <div className="flex h-16 items-center px-4">
-                        <IsLoggedIn>
-                            <OrganizationSwitcher />
-                            {/* <MainNav className="mx-6" /> */}
-                            <div className="ml-auto flex items-center space-x-4">
-                                {/* <Search /> */}
-                                <UserButton />
-                            </div>
-                        </IsLoggedIn>
-
-                        <IsLoggedOut>
-                            <div className="ml-auto flex items-center space-x-4">
-                                <SignInButton mode="redirect" button={{ variant: "outline" }} />
-                                <SignUpButton mode="redirect" />
-                            </div>
-                        </IsLoggedOut>
-                    </div>
-                </div>
+                <Header />
 
                 <div className=" relative flex-1 items-center justify-between ">
                     <div className="mx-auto flex h-screen flex-1 flex-grow flex-col justify-between p-24 lg:max-w-5xl">

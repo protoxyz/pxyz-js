@@ -60,21 +60,21 @@ export function SignInVerifyFirstFactorRoute() {
     };
 
     return (
-        <CardWrapper className={appearance.elements.cardWrapper}>
-            <Card className={appearance.elements.card}>
+        <CardWrapper className={appearance?.elements?.cardWrapper}>
+            <Card className={appearance?.elements?.card}>
                 {signIn.strategy === AuthVerificationStrategy.email_code && (
-                    <CardHeader className={appearance.elements.cardHeader}>
+                    <CardHeader className={appearance?.elements?.cardHeader}>
                         <BrandLogoWrapper>
                             <BrandLogo component={component} />
                         </BrandLogoWrapper>
-                        <CardTitle className={appearance.elements.cardHeaderTitle}>Check your email</CardTitle>
-                        <CardDescription className={appearance.elements.cardHeaderDescription}>
+                        <CardTitle className={appearance?.elements?.cardHeaderTitle}>Check your email</CardTitle>
+                        <CardDescription className={appearance?.elements?.cardHeaderDescription}>
                             to continue to {brandName}
                         </CardDescription>
                     </CardHeader>
                 )}
 
-                <CardContent className={appearance.elements.cardContent}>
+                <CardContent className={appearance?.elements?.cardContent}>
                     <Button variant="outline">{signIn.identifier}</Button>
 
                     <SignInVerifyFirstFactorForm setError={setError} />

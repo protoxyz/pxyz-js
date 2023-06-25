@@ -11,4 +11,6 @@ export interface SessionUser {
     image: string;
     timezone: string;
     locale: string;
+    orgId: string;
+    orgRole: string;
 }

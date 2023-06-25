@@ -8,8 +8,8 @@ export function SignInSuccessRoute() {
     const { appearance } = useProtocolAuthAppearance({ component });
 
     return (
-        <CardWrapper className={appearance.elements.cardWrapper}>
-            <Card className={appearance.elements.card}>SignInSuccessRoute</Card>
+        <CardWrapper className={appearance?.elements?.cardWrapper}>
+            <Card className={appearance?.elements?.card}>SignInSuccessRoute</Card>
         </CardWrapper>
     );
 }

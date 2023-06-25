@@ -8,8 +8,8 @@ export function SignInResetPasswordSuccessRoute() {
     const { appearance } = useProtocolAuthAppearance({ component });
 
     return (
-        <CardWrapper className={appearance.elements.cardWrapper}>
-            <Card className={appearance.elements.card}>SignInResetPasswordSuccessRoute</Card>
+        <CardWrapper className={appearance?.elements?.cardWrapper}>
+            <Card className={appearance?.elements?.card}>SignInResetPasswordSuccessRoute</Card>
         </CardWrapper>
     );
 }

@@ -2,7 +2,7 @@ import { ProtocolAuthProvider } from "@protoxyz/auth-react";
 import { Protocol } from "@protoxyz/core";
 import { AuthAppearance } from "@protoxyz/themes";
 import { AuthInstance, ResponseStatus } from "@protoxyz/types";
-import { getUser } from "./getUser";
+import { getAuth, getUser } from "./getUser";
 
 interface ProtocolAuthProviderRSCProps {
     children: React.ReactNode;
@@ -44,6 +44,8 @@ export async function ProtocolAuthProviderRSC({
         console.log(e);
     }
 
+    const sessionUser = await getAuth({});
+
     const user = await getUser({
         domain: resolvedDomain,
         publicKey: resolvedPublicKey,
@@ -56,6 +58,9 @@ export async function ProtocolAuthProviderRSC({
             publicKey={resolvedPublicKey}
             instance={instance}
             user={user}
+            sessionId={sessionUser?.sessionId}
+            orgId={sessionUser?.orgId}
+            orgRole={sessionUser?.orgRole}
         >
             {children}
         </ProtocolAuthProvider>

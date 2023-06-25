@@ -36,16 +36,18 @@ import {
 } from "../../../lib/display";
 import { useProtocolAuthOrganizationsList } from "../../../hooks/useOrganizationsList";
 import { OrganizationWithRole } from "@protoxyz/types";
+import { CreateOrganization } from "../create-organization";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
+type Team = Pick<OrganizationWithRole, "name" | "slug" | "imageUri" | "id">;
 
 type Group = {
     label: string;
-    teams: Pick<OrganizationWithRole, "name" | "slug" | "imageUri">[];
+    teams: Team[];
 };
 
 export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
-    const { user } = useProtocolAuth();
+    const { user, protocol } = useProtocolAuth();
     // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
     const { organizations } = useProtocolAuthOrganizationsList({});
 
@@ -57,6 +59,7 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                     slug: "personal",
                     name: userDisplayName(user),
                     imageUri: userImage(user),
+                    id: null,
                 },
             ],
         },
@@ -69,6 +72,16 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
     const [open, setOpen] = React.useState(false);
     const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
     const [selectedTeamSlug, setSelectedTeamSlug] = React.useState<string>("personal");
+
+    const createOrgToken = React.useCallback(async (orgId: string | null) => {
+        const response = await protocol.auth.sessions.issueToken({
+            body: {
+                orgId,
+            },
+        });
+
+        console.log(response);
+    }, []);
 
     const selectedTeam = organizations?.data?.find((org) => org.slug === selectedTeamSlug);
 
@@ -108,6 +121,7 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                                             onSelect={() => {
                                                 setSelectedTeamSlug(team.slug);
                                                 setOpen(false);
+                                                createOrgToken(team.id);
                                             }}
                                             className="text-sm"
                                         >
@@ -154,30 +168,7 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                     <DialogDescription>Add a new team to manage products and customers.</DialogDescription>
                 </DialogHeader>
                 <div>
-                    <div className="space-y-4 py-2 pb-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="name">Team name</Label>
-                            <Input id="name" placeholder="Acme Inc." />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="plan">Subscription plan</Label>
-                            <Select>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a plan" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="free">
-                                        <span className="font-medium">Free</span> -{" "}
-                                        <span className="text-muted-foreground">Trial for two weeks</span>
-                                    </SelectItem>
-                                    <SelectItem value="pro">
-                                        <span className="font-medium">Pro</span> -{" "}
-                                        <span className="text-muted-foreground">$9/month per user</span>
-                                    </SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </div>
+                    <CreateOrganization />
                 </div>
                 <DialogFooter>
                     <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>

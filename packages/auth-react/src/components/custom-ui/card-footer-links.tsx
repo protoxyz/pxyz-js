@@ -19,15 +19,15 @@ export function CardFooterLinks({ component }: { component: AuthComponentType })
         const links: React.ReactNode[] = [];
 
         if (appearance?.layout?.helpUrl) {
-            links.push(<FooterLink key="Help" text="Help" href={appearance.layout.helpUrl} />);
+            links.push(<FooterLink key="Help" text="Help" href={appearance?.layout?.helpUrl} />);
         }
 
         if (appearance?.layout?.privacyPolicyUrl) {
-            links.push(<FooterLink key="Privacy" text="Privacy" href={appearance.layout.privacyPolicyUrl} />);
+            links.push(<FooterLink key="Privacy" text="Privacy" href={appearance?.layout?.privacyPolicyUrl} />);
         }
 
         if (appearance?.layout?.tosUrl) {
-            links.push(<FooterLink key="Terms" text="Terms" href={appearance.layout.tosUrl} />);
+            links.push(<FooterLink key="Terms" text="Terms" href={appearance?.layout?.tosUrl} />);
         }
 
         return links;

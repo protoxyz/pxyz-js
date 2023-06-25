@@ -280,7 +280,7 @@ export type ListSessions200Response = PaginatedResult<Session>;
 
 export interface IssueSessionToken200Response extends Response {
     data: {
-        token: string;
+        jwt: string;
     };
 }
 

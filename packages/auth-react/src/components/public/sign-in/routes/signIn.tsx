@@ -375,18 +375,18 @@ export function SignInRoute() {
     );
 
     return (
-        <CardWrapper className={appearance.elements.cardWrapper}>
-            <Card className={appearance.elements.card}>
-                <CardHeader className={appearance.elements.cardHeader}>
+        <CardWrapper className={appearance?.elements?.cardWrapper}>
+            <Card className={appearance?.elements?.card}>
+                <CardHeader className={appearance?.elements?.cardHeader}>
                     <BrandLogoWrapper>
                         <BrandLogo component={component} />
                     </BrandLogoWrapper>
-                    <CardTitle className={appearance.elements.cardHeaderTitle}>Welcome back!</CardTitle>
-                    <CardDescription className={appearance.elements.cardHeaderDescription}>
+                    <CardTitle className={appearance?.elements?.cardHeaderTitle}>Welcome back!</CardTitle>
+                    <CardDescription className={appearance?.elements?.cardHeaderDescription}>
                         Log in to {brandName} to continue
                     </CardDescription>
                 </CardHeader>
-                <CardContent className={appearance.elements.cardContent}>
+                <CardContent className={appearance?.elements?.cardContent}>
                     <SocialLinks appearance={appearance} instance={instance} />
 
                     <Divider />
@@ -397,7 +397,7 @@ export function SignInRoute() {
                         setFirstFactorIdentifierType={setFirstFactorIdentifierType}
                     />
                 </CardContent>
-                <CardFooter className={appearance.elements.cardFooter}>
+                <CardFooter className={appearance?.elements?.cardFooter}>
                     <FooterLinks
                         appearance={appearance}
                         instance={instance}
