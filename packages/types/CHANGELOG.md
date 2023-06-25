@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.4
+
+### Patch Changes
+
+-   2cd0965: Change issue token response key
+
 ## 2.0.3
 
 ### Patch Changes
