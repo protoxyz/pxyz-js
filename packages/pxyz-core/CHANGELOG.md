@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.6
+
+### Patch Changes
+
+-   cea4859: Lots of updates
+-   Updated dependencies [cea4859]
+    -   @protoxyz/types@2.0.6
+
 ## 2.0.5
 
 ### Patch Changes

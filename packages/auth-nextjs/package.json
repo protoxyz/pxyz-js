@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/auth-nextjs",
-    "version": "2.0.10",
+    "version": "2.0.11",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -42,7 +42,7 @@
         "next": ">=13",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "@protoxyz/auth-react": "^2.0.9"
+        "@protoxyz/auth-react": "^2.0.10"
     },
     "dependencies": {
         "@protoxyz/core": "workspace:*",
