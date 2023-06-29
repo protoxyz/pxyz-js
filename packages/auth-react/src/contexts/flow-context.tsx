@@ -63,31 +63,31 @@ const initialState: ProtocolAuthFlowContextState = {
     signIn: {
         route: SignInFlowRoute.signIn,
         params: {},
-        setRoute: (route: SignInFlowRoute) => {
+        setRoute: (route: SignInFlowRoute, params?: Record<string, string>) => {
             throw new Error("Not implemented" + route.toString());
         },
     },
 
     signUp: {
         route: SignUpFlowRoute.signUp,
-        routeParams: {},
-        setRoute: (route: SignUpFlowRoute) => {
+        params: {},
+        setRoute: (route: SignUpFlowRoute, params?: Record<string, string>) => {
             throw new Error("Not implemented" + route.toString());
         },
     },
 
     organizationProfile: {
         route: OrganizationProfileFlowRoute["organizationProfile:members"],
-        routeParams: {},
-        setRoute: (route: OrganizationProfileFlowRoute) => {
+        params: {},
+        setRoute: (route: OrganizationProfileFlowRoute, params?: Record<string, string>) => {
             throw new Error("Not implemented" + route.toString());
         },
     },
 
     userProfile: {
         route: UserProfileFlowRoute["userProfile:settings"],
-        routeParams: {},
-        setRoute: (route: UserProfileFlowRoute) => {
+        params: {},
+        setRoute: (route: UserProfileFlowRoute, params?: Record<string, string>) => {
             throw new Error("Not implemented" + route.toString());
         },
     },
