@@ -18,28 +18,76 @@ export enum SignUpFlowRoute {
     "signUp:success" = "signUp:success",
 }
 
+export enum OrganizationProfileFlowRoute {
+    "organizationProfile:members" = "organizationProfile:members",
+    "organizationProfile:invite" = "organizationProfile:invite",
+    "organizationProfile:settings" = "organizationProfile:settings",
+}
+
+export enum UserProfileFlowRoute {
+    "userProfile:settings" = "userProfile:settings",
+    "userProfile:security" = "userProfile:security",
+    "userProfile:sessions" = "userProfile:sessions",
+    "userProfile:emails" = "userProfile:emails",
+    "userProfile:phones" = "userProfile:phones",
+    "userProfile:connections" = "userProfile:connections",
+}
+
 export interface ProtocolAuthFlowContextState {
     signIn: {
         route: SignInFlowRoute;
-        setRoute: (route: SignInFlowRoute) => void;
+        params: Record<string, string>;
+        setRoute: (route: SignInFlowRoute, params?: Record<string, string>) => void;
     };
 
     signUp: {
         route: SignUpFlowRoute;
-        setRoute: (route: SignUpFlowRoute) => void;
+        params: Record<string, string>;
+        setRoute: (route: SignUpFlowRoute, params?: Record<string, string>) => void;
+    };
+
+    organizationProfile: {
+        route: OrganizationProfileFlowRoute;
+        params: Record<string, string>;
+        setRoute: (route: OrganizationProfileFlowRoute, params?: Record<string, string>) => void;
+    };
+
+    userProfile: {
+        route: UserProfileFlowRoute;
+        params: Record<string, string>;
+        setRoute: (route: UserProfileFlowRoute, params?: Record<string, string>) => void;
     };
 }
 
 const initialState: ProtocolAuthFlowContextState = {
     signIn: {
         route: SignInFlowRoute.signIn,
+        params: {},
         setRoute: (route: SignInFlowRoute) => {
             throw new Error("Not implemented" + route.toString());
         },
     },
+
     signUp: {
         route: SignUpFlowRoute.signUp,
+        routeParams: {},
         setRoute: (route: SignUpFlowRoute) => {
+            throw new Error("Not implemented" + route.toString());
+        },
+    },
+
+    organizationProfile: {
+        route: OrganizationProfileFlowRoute["organizationProfile:members"],
+        routeParams: {},
+        setRoute: (route: OrganizationProfileFlowRoute) => {
+            throw new Error("Not implemented" + route.toString());
+        },
+    },
+
+    userProfile: {
+        route: UserProfileFlowRoute["userProfile:settings"],
+        routeParams: {},
+        setRoute: (route: UserProfileFlowRoute) => {
             throw new Error("Not implemented" + route.toString());
         },
     },
@@ -93,4 +141,24 @@ export const useProtocolAuthSignUpFlow = () => {
     }
 
     return ctx.signUp;
+};
+
+export const useProtocolAuthOrganizationProfileFlow = () => {
+    const ctx = React.useContext(ProtocolAuthFlowContext);
+
+    if (!ctx) {
+        throw new Error("useProtocolAuthOrganizationProfileFlow must be used within a ProtocolAuthFlowProvider");
+    }
+
+    return ctx.organizationProfile;
+};
+
+export const useProtocolAuthUserProfileFlow = () => {
+    const ctx = React.useContext(ProtocolAuthFlowContext);
+
+    if (!ctx) {
+        throw new Error("useProtocolAuthUserProfileFlow must be used within a ProtocolAuthFlowProvider");
+    }
+
+    return ctx.userProfile;
 };

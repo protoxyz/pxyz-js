@@ -41,6 +41,10 @@ export class Protocol {
         organizationInvitations: ProtocolAuthOrganizationInvitationsService;
     };
 
+    setAccessToken(accessToken: string): void {
+        this.client.setAccessToken(accessToken);
+    }
+
     constructor(config: ProtocolClientConfiguration) {
         this.config = config;
 

@@ -14,11 +14,13 @@ import {
     UpdateOrganizationMember200Response,
 } from "../../responses";
 
-export const ListOrganizationMembersPath = "/api/auth/frontend/v0/organizations/{organizationId}/members";
-export const GetOrganizationMemberPath = "/api/auth/frontend/v0/organizations/{organizationId}/members/{userId}";
-export const CreateOrganizationMemberPath = "/api/auth/frontend/v0/organizations/{organizationId}/members";
-export const UpdateOrganizationMemberPath = "/api/auth/frontend/v0/organizations/{organizationId}/members/{userId}";
-export const DeleteOrganizationMemberPath = "/api/auth/frontend/v0/organizations/{organizationId}/members/{userId}";
+export const ListOrganizationMembersPath = "/api/auth/frontend/v0/user/organizations/{organizationId}/members";
+export const GetOrganizationMemberPath = "/api/auth/frontend/v0/user/organizations/{organizationId}/members/{userId}";
+export const CreateOrganizationMemberPath = "/api/auth/frontend/v0/user/organizations/{organizationId}/members";
+export const UpdateOrganizationMemberPath =
+    "/api/auth/frontend/v0/user/organizations/{organizationId}/members/{userId}";
+export const DeleteOrganizationMemberPath =
+    "/api/auth/frontend/v0/user/organizations/{organizationId}/members/{userId}";
 
 export class ProtocolAuthOrganizationMembersService {
     private protocol: Protocol;

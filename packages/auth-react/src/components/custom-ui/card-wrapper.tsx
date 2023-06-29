@@ -1,9 +1,13 @@
+import { AuthComponentType } from "@protoxyz/themes";
 import { cn } from "../../lib/utils";
+import { ComponentCardWidths } from "../../lib/sizes";
 
 interface CardWrapperProps {
     children: React.ReactNode;
     className?: string;
+    component: AuthComponentType;
 }
-export function CardWrapper({ children, className }: CardWrapperProps) {
-    return <div className={cn("pxyz-auth-card-wrapper w-full lg:max-w-md", className)}>{children}</div>;
+export function CardWrapper({ children, className, component }: CardWrapperProps) {
+    const width = ComponentCardWidths[component];
+    return <div className={cn("pxyz-auth-card-wrapper mx-auto grid w-full", width, className)}>{children}</div>;
 }

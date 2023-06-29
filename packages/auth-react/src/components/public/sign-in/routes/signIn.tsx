@@ -48,10 +48,12 @@ export function SignInIdentifierForm({
     instance,
     firstFactorIdentifierType,
     setFirstFactorIdentifierType,
+    afterSignInRedirectUri,
 }: {
     instance: AuthInstance;
     firstFactorIdentifierType: AllowedIdentifierType | null;
     setFirstFactorIdentifierType: (type: AllowedIdentifierType) => void;
+    afterSignInRedirectUri?: string;
 }) {
     const { setRoute } = useProtocolAuthSignInFlow();
     const { protocol } = useProtocolAuth();
@@ -89,7 +91,6 @@ export function SignInIdentifierForm({
     });
 
     function handleResponse(response: CreateSignInAttempt201Response) {
-        console.log(response);
         if (response.status === ResponseStatus.Success) {
             setSignIn(response.data.signInAttempt);
             switch (response.data.signInAttempt.status) {
@@ -125,7 +126,7 @@ export function SignInIdentifierForm({
                     handleResponse(
                         await protocol.auth.signInAttempts.create({
                             body: {
-                                redirectUri: window.location.origin,
+                                redirectUri: afterSignInRedirectUri ?? window.location.origin,
                                 strategy: AuthVerificationStrategy.email_code,
                                 identifier: strategyValues.emailAddress,
                                 password: strategyValues.password,
@@ -141,7 +142,7 @@ export function SignInIdentifierForm({
                 handleResponse(
                     await protocol.auth.signInAttempts.create({
                         body: {
-                            redirectUri: window.location.origin,
+                            redirectUri: afterSignInRedirectUri ?? window.location.origin,
                             strategy: AuthVerificationStrategy.phone_code,
                             identifier: strategyValues.phoneNumber,
                             password: strategyValues.password,
@@ -352,7 +353,10 @@ export function SignInIdentifierForm({
     );
 }
 
-export function SignInRoute() {
+interface SIgnInRouteOptions {
+    afterSignInRedirectUri?: string;
+}
+export function SignInRoute({ afterSignInRedirectUri }: SIgnInRouteOptions) {
     const component: AuthComponentType = "signIn";
     const { appearance } = useProtocolAuthAppearance({ component });
     const { instance } = useProtocolAuthInstance();
@@ -375,7 +379,7 @@ export function SignInRoute() {
     );
 
     return (
-        <CardWrapper className={appearance?.elements?.cardWrapper}>
+        <CardWrapper component={component} className={appearance?.elements?.cardWrapper}>
             <Card className={appearance?.elements?.card}>
                 <CardHeader className={appearance?.elements?.cardHeader}>
                     <BrandLogoWrapper>
@@ -393,6 +397,7 @@ export function SignInRoute() {
 
                     <SignInIdentifierForm
                         instance={instance}
+                        afterSignInRedirectUri={afterSignInRedirectUri}
                         firstFactorIdentifierType={firstFactorIdentifierType}
                         setFirstFactorIdentifierType={setFirstFactorIdentifierType}
                     />

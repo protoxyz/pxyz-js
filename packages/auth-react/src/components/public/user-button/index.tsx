@@ -1,4 +1,4 @@
-import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { Button } from "../../ui/button";
@@ -16,10 +16,14 @@ import { useProtocolAuth } from "../../../contexts/protocol-context";
 import { SignOutButton } from "../sign-out-button";
 import { userDisplayName, userImage, userInitials, userSecondaryDisplayName } from "../../../lib/display";
 import { useCallback, useMemo, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
+import { Dialog, DialogContent } from "../../ui/dialog";
 import { UserProfile } from "../user-profile";
 
-export function UserButton({ mode = "popup" }: { mode?: "redirect" | "popup" }) {
+interface UserButtonOptions {
+    mode?: "redirect" | "popup";
+    display?: "avatar" | "name" | "both";
+}
+export function UserButton({ mode = "popup", display = "avatar" }: UserButtonOptions) {
     const { user } = useProtocolAuth();
     const [showUserProfileDialog, setShowUserProfileDialog] = useState(false);
     const [open, setOpen] = useState(false);
@@ -31,17 +35,52 @@ export function UserButton({ mode = "popup" }: { mode?: "redirect" | "popup" }) 
 
     // const { appearance } = useProtocolAuthAppearance({ component: "userButton" });
 
-    return (
-        <Dialog open={showUserProfileDialog} onOpenChange={setShowUserProfileDialog}>
-            <DropdownMenu open={open} onOpenChange={setOpen}>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="relative z-10 h-8 w-8 rounded-full">
-                        <Avatar className="h-8 w-8">
+    const triggerContent = useMemo(() => {
+        switch (display) {
+            case "avatar":
+                return (
+                    <Avatar className="h-8 w-8 cursor-pointer" onClick={redirectToUserProfile}>
+                        <AvatarImage src={userImage(user)} alt={userDisplayName(user)} />
+                        <AvatarFallback>{userInitials(user)}</AvatarFallback>
+                    </Avatar>
+                );
+            case "name":
+                return (
+                    <Button onClick={redirectToUserProfile} size="lg" variant="ghost">
+                        <div className="flex flex-col items-start gap-1  ">
+                            <p className="text-lg font-medium leading-none">{userDisplayName(user)}</p>
+                            <p className="text-muted-foreground text-xs leading-none">
+                                {userSecondaryDisplayName(user)}
+                            </p>
+                        </div>
+                    </Button>
+                );
+            case "both":
+                return (
+                    <Button onClick={redirectToUserProfile} size="lg" variant="ghost">
+                        <Avatar className="h-8 w-8 cursor-pointer" onClick={redirectToUserProfile}>
                             <AvatarImage src={userImage(user)} alt={userDisplayName(user)} />
                             <AvatarFallback>{userInitials(user)}</AvatarFallback>
                         </Avatar>
+                        <div className="flex flex-col items-start gap-1  ">
+                            <p className="text-lg font-medium leading-none">{userDisplayName(user)}</p>
+                            <p className="text-muted-foreground text-xs leading-none">
+                                {userSecondaryDisplayName(user)}
+                            </p>
+                        </div>
                     </Button>
-                </DropdownMenuTrigger>
+                );
+        }
+    }, [display, user]);
+
+    if (mode === "redirect") {
+        return triggerContent;
+    }
+
+    return (
+        <Dialog open={showUserProfileDialog} onOpenChange={setShowUserProfileDialog}>
+            <DropdownMenu open={open} onOpenChange={setOpen}>
+                <DropdownMenuTrigger asChild>{triggerContent}</DropdownMenuTrigger>
                 <DropdownMenuContent className="w-64" align="end" forceMount>
                     <DropdownMenuLabel className="font-normal">
                         <div className="flex flex-col space-y-1">
@@ -90,7 +129,7 @@ export function UserButton({ mode = "popup" }: { mode?: "redirect" | "popup" }) 
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent>
                 <UserProfile />
             </DialogContent>
         </Dialog>

@@ -1,6 +1,6 @@
 import { RedirectToSignInProps, RedirectToSignUpProps } from "../types/auth";
 import { Protocol } from "@protoxyz/core";
-import { AuthAppearance, AuthComponentType, getMergedTheme } from "@protoxyz/themes";
+import { AuthAppearance, AuthComponentType } from "@protoxyz/themes";
 import { AuthInstance, OrganizationWithRole, SessionUser, UserProfile } from "@protoxyz/types";
 import React from "react";
 
@@ -31,14 +31,14 @@ export const ProtocolAuthContext = React.createContext({});
 
 export interface ProtocolAuthSettersState {
     navigate: (url: string) => void;
-    redirectToUserProfile: () => void;
-    redirectToSignIn: (props?: RedirectToSignInProps) => void;
-    redirectToSignUp: (props?: RedirectToSignUpProps) => void;
+    redirectToUserProfile?: () => void;
+    redirectToSignIn?: (props?: RedirectToSignInProps) => void;
+    redirectToSignUp?: (props?: RedirectToSignUpProps) => void;
 }
 
 export const ProtocolAuthSettersContext = React.createContext<ProtocolAuthSettersState>({
     navigate: (url: string) => {
-        throw new Error("navigate must be implemented" + url.toString());
+        window.location.href = url ?? "/";
     },
     redirectToUserProfile: () => {
         throw new Error("redirectToUserProfile must be implemented");
@@ -60,6 +60,7 @@ export function useProtocolAuth() {
     }
 
     return {
+        setState: authCtx?.setState,
         publicKey: authCtx?.state?.publicKey,
         domain: authCtx?.state?.domain,
         protocol: authCtx?.state?.protocol,
@@ -75,6 +76,7 @@ export function useProtocolAuth() {
         redirectToUserProfile: settersCtx?.redirectToUserProfile,
         redirectToSignIn: settersCtx?.redirectToSignIn,
         redirectToSignUp: settersCtx?.redirectToSignUp,
+        navigate: settersCtx?.navigate,
     };
 }
 
@@ -95,7 +97,7 @@ export function useProtocolAuthAppearance({ component }: { component: AuthCompon
         throw new Error("useProtocolAuthAppearance must be used within a ProtocolAuthProvider");
     }
 
-    const appearance = getMergedTheme({ appearance: ctx?.state?.appearance, component });
+    // const appearance = getMergedTheme({ appearance: ctx?.state?.appearance, component });
 
-    return { appearance };
+    return { appearance: ctx?.state?.appearance };
 }

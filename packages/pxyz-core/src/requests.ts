@@ -264,11 +264,11 @@ export interface CreateOrganizationMemberOptions extends RequestOptions {
 
 export interface UpdateOrganizationMemberOptions extends RequestOptions {
     body: {
-        roleId: string;
+        role: string;
     };
     path: {
         organizationId: string;
-        userId: string;
+        memberId: string;
     };
     query?: never;
 }
@@ -277,7 +277,7 @@ export interface DeleteOrganizationMemberOptions extends RequestOptions {
     body?: never;
     path: {
         organizationId: string;
-        userId: string;
+        memberId: string;
     };
     query?: never;
 }

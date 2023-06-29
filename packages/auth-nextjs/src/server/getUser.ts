@@ -70,8 +70,6 @@ export async function getAuth({ jwtKey }: { jwtKey?: string }): Promise<SessionU
 export async function getToken(): Promise<string | null> {
     const headers = nextHeaders();
 
-    console.log("headers", headers);
-
     const token = (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
 
     if (!token) return null;

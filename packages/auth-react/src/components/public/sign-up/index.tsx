@@ -19,7 +19,7 @@ export function SignUp() {
     const usingPasswords = instance?.strategy === "passwords";
 
     return (
-        <CardWrapper>
+        <CardWrapper component={component}>
             <Variables variables={appearance?.variables} />
             <Card className={appearance?.elements?.card}>
                 <CardHeader className={appearance?.elements?.cardHeader}>

@@ -36,6 +36,10 @@ export class HttpClient {
         }
     }
 
+    setAccessToken(accessToken: string): void {
+        this.accessToken = accessToken;
+    }
+
     private formatHost(host: string): string {
         if (IS_PROTOCOL_DEV && !host.startsWith("http://")) {
             return `http://${host}`;

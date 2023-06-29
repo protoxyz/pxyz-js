@@ -7,7 +7,7 @@ export type AuthComponentType =
     | "userProfile"
     | "organizationSwitcher"
     | "organizationProfile"
-    | "organizationCreate";
+    | "createOrganization";
 
 function getSignInAppearances({ appearance }: { appearance: AuthAppearance | undefined }) {
     return {
@@ -42,10 +42,12 @@ export function mergeAppearance({ appearance }: { appearance: AuthAppearance | u
             ...BaseAppearance?.layout,
             ...appearance?.layout,
         },
+
         variables: {
             ...BaseAppearance?.variables,
             ...appearance?.variables,
         },
+
         elements: {
             card: deepMerge(BaseAppearance?.elements?.card, appearance?.elements?.card),
             cardWrapper: deepMerge(BaseAppearance?.elements?.cardWrapper, appearance?.elements?.cardWrapper),
@@ -75,31 +77,31 @@ export function mergeAppearance({ appearance }: { appearance: AuthAppearance | u
     return mergedTheme;
 }
 
-export function getMergedTheme({
-    appearance,
-    component,
-}: {
-    appearance: AuthAppearance;
-    component: AuthComponentType;
-}): AuthTheme {
-    const theme: AuthTheme = {
-        variables: {
-            ...appearance?.variables,
-            ...appearance?.[component]?.variables,
-        },
-        layout: {
-            ...appearance?.layout,
-            ...appearance?.[component]?.layout,
-        },
-        elements: {
-            ...appearance?.elements,
-            ...appearance?.[component]?.elements,
-            ...getSignInAppearances({ appearance }),
-        },
-    };
+// export function getMergedTheme({
+//     appearance,
+//     component,
+// }: {
+//     appearance: AuthAppearance;
+//     component: AuthComponentType;
+// }): AuthTheme {
+//     const theme: AuthTheme = {
+//         variables: {
+//             ...appearance?.variables,
+//             ...appearance?.[component]?.variables,
+//         },
+//         layout: {
+//             ...appearance?.layout,
+//             ...appearance?.[component]?.layout,
+//         },
+//         elements: {
+//             ...appearance?.elements,
+//             ...appearance?.[component]?.elements,
+//             ...getSignInAppearances({ appearance }),
+//         },
+//     };
 
-    return theme;
-}
+//     return theme;
+// }
 
 // export function mergeAuthTheme({ appearance }: { appearance: AuthAppearance }): AuthTheme {
 //     const variables = mergeAuthThemeVariables({ base: appearance.base, override: appearance. });

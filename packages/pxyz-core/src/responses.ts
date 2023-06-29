@@ -56,19 +56,19 @@ export interface GetWellKnownOpenIDConfiguration200Response extends Response {
 
 export interface GetUserProfile200Response extends Response {
     data: {
-        user: UserProfile | undefined;
+        user: UserProfile | null;
     };
 }
 
 export interface DeleteUser200Response extends Response {
     data: {
-        user: UserProfile | undefined;
+        user: UserProfile | null;
     };
 }
 
 export interface GetAuthInstance200Response extends Response {
     data: {
-        instance: AuthInstance | undefined;
+        instance: AuthInstance | null;
     };
 }
 

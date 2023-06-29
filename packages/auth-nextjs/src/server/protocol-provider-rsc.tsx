@@ -29,7 +29,7 @@ export async function ProtocolAuthProviderRSC({
         baseUrl: resolvedDomain,
     });
 
-    let instance: AuthInstance | undefined;
+    let instance: AuthInstance | null = null;
 
     try {
         const result = await protocolClient.auth.instances.getByPublicKey({

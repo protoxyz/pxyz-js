@@ -11,6 +11,7 @@ export interface UserProfile {
     imageUri: string | null | undefined;
     lastSignInAt: Date | null;
     lastActiveAt: Date | null;
+    identifier: string;
     status: any;
     role: string | null | undefined;
     primaryEmailId: string | null | undefined;

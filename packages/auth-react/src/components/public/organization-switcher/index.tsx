@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Check, ChevronsUpDown, PlusCircle } from "lucide-react";
+import { Check, ChevronsUpDown, CogIcon, PlusCircle } from "lucide-react";
 
 import { cn } from "../../../lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
@@ -13,20 +13,8 @@ import {
     CommandList,
     CommandSeparator,
 } from "../../ui/command";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "../../ui/dialog";
-import { Input } from "../../ui/input";
-import { Label } from "../../ui/label";
+import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select";
-import { useProtocolAuth } from "../../../contexts/protocol-context";
 import {
     organizationImage,
     organizationInitials,
@@ -35,11 +23,13 @@ import {
     userInitials,
 } from "../../../lib/display";
 import { useProtocolAuthOrganizationsList } from "../../../hooks/useOrganizationsList";
-import { OrganizationWithRole } from "@protoxyz/types";
+import { OrganizationWithRole, ResponseStatus } from "@protoxyz/types";
 import { CreateOrganization } from "../create-organization";
+import { useProtocolAuth } from "../../../contexts/protocol-context";
+import { OrganizationProfile } from "../organization-profile";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
-type Team = Pick<OrganizationWithRole, "name" | "slug" | "imageUri" | "id">;
+type Team = Pick<OrganizationWithRole, "name" | "imageUri" | "id">;
 
 type Group = {
     label: string;
@@ -47,7 +37,7 @@ type Group = {
 };
 
 export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
-    const { user, protocol } = useProtocolAuth();
+    const { user, orgId, protocol, setState } = useProtocolAuth();
     // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
     const { organizations } = useProtocolAuthOrganizationsList({});
 
@@ -56,7 +46,6 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
             label: "Personal Account",
             teams: [
                 {
-                    slug: "personal",
                     name: userDisplayName(user),
                     imageUri: userImage(user),
                     id: null,
@@ -70,8 +59,8 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
     ];
 
     const [open, setOpen] = React.useState(false);
-    const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
-    const [selectedTeamSlug, setSelectedTeamSlug] = React.useState<string>("personal");
+    const [showDialog, setShowDialog] = React.useState<"newTeam" | "manageTeam">(null);
+    const [selectedTeamId, setSelectedTeamId] = React.useState<string>(orgId);
 
     const createOrgToken = React.useCallback(async (orgId: string | null) => {
         const response = await protocol.auth.sessions.issueToken({
@@ -80,13 +69,18 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
             },
         });
 
-        console.log(response);
+        if (response.status === ResponseStatus.Success) {
+            setState((state) => ({
+                ...state,
+                orgId,
+            }));
+        }
     }, []);
 
-    const selectedTeam = organizations?.data?.find((org) => org.slug === selectedTeamSlug);
+    const selectedTeam = organizations?.data?.find((org) => org.id === selectedTeamId) ?? null;
 
     return (
-        <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
+        <Dialog open={showDialog !== null} onOpenChange={() => setShowDialog(null)}>
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                     <Button
@@ -95,14 +89,16 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                         role="combobox"
                         aria-expanded={open}
                         aria-label="Select a team"
-                        className={cn("w-[200px] justify-between", className)}
+                        className={cn("w-[200px] justify-between truncate", className)}
                     >
                         <Avatar className="mr-2 h-8 w-8">
                             <AvatarImage
                                 src={selectedTeam ? organizationImage(selectedTeam) : userImage(user)}
                                 alt={selectedTeam ? selectedTeam.name : userDisplayName(user)}
                             />
-                            <AvatarFallback>{userInitials(user)}</AvatarFallback>
+                            <AvatarFallback>
+                                {selectedTeam ? organizationInitials(selectedTeam) : userInitials(user)}
+                            </AvatarFallback>
                         </Avatar>
                         {selectedTeam ? selectedTeam.name : userDisplayName(user)}
                         <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
@@ -119,9 +115,14 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                                         <CommandItem
                                             key={team.name}
                                             onSelect={() => {
-                                                setSelectedTeamSlug(team.slug);
+                                                setSelectedTeamId(team.id);
                                                 setOpen(false);
                                                 createOrgToken(team.id);
+                                                setState((state) => ({
+                                                    ...state,
+                                                    org: organizations.data.find((org) => org.id === team.id),
+                                                    orgId: team.id,
+                                                }));
                                             }}
                                             className="text-sm"
                                         >
@@ -133,9 +134,7 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                                             <Check
                                                 className={cn(
                                                     "ml-auto h-4 w-4",
-                                                    selectedTeamSlug && selectedTeamSlug === team.slug
-                                                        ? "opacity-100"
-                                                        : "opacity-0",
+                                                    selectedTeamId === team.id ? "opacity-100" : "opacity-0",
                                                 )}
                                             />
                                         </CommandItem>
@@ -145,12 +144,27 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                         </CommandList>
                         <CommandSeparator />
                         <CommandList>
+                            {orgId && (
+                                <CommandGroup>
+                                    <DialogTrigger asChild>
+                                        <CommandItem
+                                            onSelect={() => {
+                                                setOpen(false);
+                                                setShowDialog("manageTeam");
+                                            }}
+                                        >
+                                            <CogIcon className="mr-2 h-5 w-5" />
+                                            Manage Team
+                                        </CommandItem>
+                                    </DialogTrigger>
+                                </CommandGroup>
+                            )}
                             <CommandGroup>
                                 <DialogTrigger asChild>
                                     <CommandItem
                                         onSelect={() => {
                                             setOpen(false);
-                                            setShowNewTeamDialog(true);
+                                            setShowDialog("newTeam");
                                         }}
                                     >
                                         <PlusCircle className="mr-2 h-5 w-5" />
@@ -163,19 +177,10 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                 </PopoverContent>
             </Popover>
             <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Create team</DialogTitle>
-                    <DialogDescription>Add a new team to manage products and customers.</DialogDescription>
-                </DialogHeader>
-                <div>
-                    <CreateOrganization />
-                </div>
-                <DialogFooter>
-                    <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>
-                        Cancel
-                    </Button>
-                    <Button type="submit">Continue</Button>
-                </DialogFooter>
+                {showDialog === "newTeam" && <CreateOrganization onCancel={() => setShowDialog(null)} />}
+                {showDialog === "manageTeam" && (
+                    <OrganizationProfile onDeleteOrganization={() => setShowDialog(null)} />
+                )}
             </DialogContent>
         </Dialog>
     );

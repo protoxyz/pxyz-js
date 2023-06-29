@@ -2,6 +2,7 @@ import { ProtocolAuthProviderRSC } from "@protoxyz/auth-nextjs";
 import "./globals.css";
 import type { AuthAppearance } from "@protoxyz/themes";
 import { Inter } from "next/font/google";
+import { Header } from "@/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,10 @@ export default async function RootLayout({ children }: { children: React.ReactEl
         <html>
             <body className={inter.className}>
                 {/* @ts-ignore */}
-                <ProtocolAuthProviderRSC>{children}</ProtocolAuthProviderRSC>
+                <ProtocolAuthProviderRSC>
+                    <Header />
+                    {children}
+                </ProtocolAuthProviderRSC>
             </body>
         </html>
     );

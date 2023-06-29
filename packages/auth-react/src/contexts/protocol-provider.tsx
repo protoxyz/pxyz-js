@@ -12,10 +12,12 @@ import {
 } from "@protoxyz/types";
 import { IsLoaded } from "../components/public/control/is-loaded";
 import {
+    OrganizationProfileFlowRoute,
     ProtocolAuthFlowContextState,
     ProtocolAuthFlowProvider,
     SignInFlowRoute,
     SignUpFlowRoute,
+    UserProfileFlowRoute,
 } from "./flow-context";
 import { ProtocolAuthClientContextState, ProtocolAuthClientProvider } from "./client-context";
 import { Variables } from "../components/custom-ui/variables";
@@ -61,6 +63,7 @@ export function ProtocolAuthProvider({
     session,
     sessionId,
     appearance,
+    navigate,
 }: ProtocolAuthProviderProps) {
     /*
      * This is the flow state. It is used to store the current flow route and the function to update it
@@ -68,11 +71,13 @@ export function ProtocolAuthProvider({
     const [routeState, setRouteState] = React.useState<ProtocolAuthFlowContextState>({
         signIn: {
             route: SignInFlowRoute.signIn,
-            setRoute: (route: SignInFlowRoute) => {
+            params: {},
+            setRoute: (route: SignInFlowRoute, params: Record<string, string> = {}) => {
                 setRouteState((state) => ({
                     ...state,
                     signIn: {
                         ...state.signIn,
+                        params,
                         route,
                     },
                 }));
@@ -80,12 +85,42 @@ export function ProtocolAuthProvider({
         },
         signUp: {
             route: SignUpFlowRoute.signUp,
-            setRoute: (route: SignUpFlowRoute) => {
+            params: {},
+            setRoute: (route: SignUpFlowRoute, params: Record<string, string> = {}) => {
                 setRouteState((state) => ({
                     ...state,
                     signUp: {
                         ...state.signUp,
                         route,
+                        params,
+                    },
+                }));
+            },
+        },
+        organizationProfile: {
+            route: OrganizationProfileFlowRoute["organizationProfile:members"],
+            params: {},
+            setRoute: (route: OrganizationProfileFlowRoute, params: Record<string, string> = {}) => {
+                setRouteState((state) => ({
+                    ...state,
+                    organizationProfile: {
+                        ...state.organizationProfile,
+                        route,
+                        params,
+                    },
+                }));
+            },
+        },
+        userProfile: {
+            route: UserProfileFlowRoute["userProfile:settings"],
+            params: {},
+            setRoute: (route: UserProfileFlowRoute, params: Record<string, string> = {}) => {
+                setRouteState((state) => ({
+                    ...state,
+                    userProfile: {
+                        ...state.userProfile,
+                        route,
+                        params,
                     },
                 }));
             },

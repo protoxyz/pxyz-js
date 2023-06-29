@@ -60,7 +60,7 @@ export function SignInVerifyFirstFactorRoute() {
     };
 
     return (
-        <CardWrapper className={appearance?.elements?.cardWrapper}>
+        <CardWrapper component={component} className={appearance?.elements?.cardWrapper}>
             <Card className={appearance?.elements?.card}>
                 {signIn.strategy === AuthVerificationStrategy.email_code && (
                     <CardHeader className={appearance?.elements?.cardHeader}>

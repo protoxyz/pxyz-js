@@ -8,7 +8,7 @@ export function SignInForgotPasswordRoute() {
     const { appearance } = useProtocolAuthAppearance({ component });
 
     return (
-        <CardWrapper className={appearance?.elements?.cardWrapper}>
+        <CardWrapper component={component} className={appearance?.elements?.cardWrapper}>
             <Card className={appearance?.elements.card}>SignInForgotPasswordRoute</Card>
         </CardWrapper>
     );

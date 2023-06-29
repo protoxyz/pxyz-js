@@ -1,5 +1,16 @@
 import { OrganizationWithRole, UserProfile } from "@protoxyz/types";
 
+export const initials = (name: string[]) => {
+    if (name) {
+        return name
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase();
+    }
+
+    return null;
+};
+
 export const userInitials = (
     user: Pick<
         UserProfile,
