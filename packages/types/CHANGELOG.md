@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.6
+
+### Patch Changes
+
+-   cea4859: Lots of updates
+
 ## 2.0.5
 
 ### Patch Changes

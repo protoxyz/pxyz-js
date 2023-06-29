@@ -1,5 +1,15 @@
 # @protoxyz/auth-react
 
+## 2.0.10
+
+### Patch Changes
+
+-   cea4859: Lots of updates
+-   Updated dependencies [cea4859]
+    -   @protoxyz/core@2.0.6
+    -   @protoxyz/themes@2.0.4
+    -   @protoxyz/types@2.0.6
+
 ## 2.0.9
 
 ### Patch Changes

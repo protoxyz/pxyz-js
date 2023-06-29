@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.4
+
+### Patch Changes
+
+-   cea4859: Lots of updates
+
 ## 2.0.3
 
 ### Patch Changes
