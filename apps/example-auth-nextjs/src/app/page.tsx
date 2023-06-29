@@ -49,7 +49,7 @@ export default function Home() {
                                             variant: "secondary",
                                             size: "lg",
                                         }}
-                                        afterSignInUrl="/dashboard"
+                                        afterSignInRedirectUri="/dashboard"
                                     />{" "}
                                     <span className="text-muted-foreground">or</span>{" "}
                                     <SignUpButton
@@ -58,7 +58,7 @@ export default function Home() {
                                             variant: "secondary",
                                             size: "lg",
                                         }}
-                                        afterSignUpUrl="/dashboard"
+                                        afterSignUpRedirectUri="/dashboard"
                                     />
                                 </div>
                             </IsLoggedOut>

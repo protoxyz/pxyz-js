@@ -12,7 +12,10 @@ import { AuthComponentType } from "@protoxyz/themes";
 import { SocialLinks } from "../../custom-ui/social-links";
 import { Divider } from "../../custom-ui/divider";
 
-export function SignUp() {
+interface SignUpOptions {
+    afterSignUpRedirectUri?: string;
+}
+export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
     const component: AuthComponentType = "signUp";
     const { appearance } = useProtocolAuthAppearance({ component });
     const { instance } = useProtocolAuthInstance();

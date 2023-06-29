@@ -1,0 +1,6 @@
+---
+"@protoxyz/auth-react": patch
+"@protoxyz/types": patch
+---
+
+fixes

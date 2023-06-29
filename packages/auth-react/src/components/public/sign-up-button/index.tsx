@@ -10,9 +10,16 @@ interface SignUpButtonProps {
     children?: React.ReactNode;
     text?: string;
     button?: ButtonProps;
+    afterSignUpRedirectUri?: string;
 }
 
-export function SignUpButton({ mode = "redirect", children, button, text = "Sign up" }: SignUpButtonProps) {
+export function SignUpButton({
+    mode = "redirect",
+    children,
+    button,
+    afterSignUpRedirectUri,
+    text = "Sign up",
+}: SignUpButtonProps) {
     // const { appearance } = useProtocolAuthAppearance({ component: "signUp" });
     const { instance } = useProtocolAuth();
 
@@ -41,7 +48,7 @@ export function SignUpButton({ mode = "redirect", children, button, text = "Sign
                 <Dialog>
                     <DialogTrigger asChild>{childContent}</DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
-                        <SignUp />
+                        <SignUp afterSignUpRedirectUri={afterSignUpRedirectUri} />
                     </DialogContent>
                 </Dialog>
             );
