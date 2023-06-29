@@ -528,9 +528,9 @@ export interface AttemptSignInAttemptFirstFactorOptions extends RequestOptions {
     body: {
         strategy?: AuthVerificationStrategy;
         code?: string;
-        profile?: any;
-        rawProfile?: any;
-        tokens?: any;
+        // profile?: any;
+        // rawProfile?: any;
+        // tokens?: any;
     };
 }
 
