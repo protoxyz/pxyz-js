@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.7
+
+### Patch Changes
+
+-   e3f5d72: fixes
+
 ## 2.0.6
 
 ### Patch Changes
