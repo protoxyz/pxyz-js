@@ -9,9 +9,9 @@ export default defineConfig((overrideOptions) => {
     const common: Options = {
         entry: ["./src/**/*.{ts,tsx,js,jsx}"],
 
-        bundle: false,
+        bundle: true,
         clean: true,
-        minify: false,
+        minify: true,
         dts: true,
         format: ["esm", "cjs"],
 

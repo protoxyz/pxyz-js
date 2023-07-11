@@ -24,6 +24,9 @@ export type AuthLayout = {
 };
 
 export type AuthTheme = {
+    // base theme
+    base?: AuthAppearance<AuthTheme>;
+
     // Override the layout properties
     layout?: AuthLayout;
 

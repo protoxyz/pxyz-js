@@ -1,5 +1,5 @@
 import { BaseAppearance } from "@/appearances/auth/base";
-import { AuthAppearance, AuthTheme } from "..";
+import { AuthAppearance } from "..";
 export type AuthComponentType =
     | "signIn"
     | "signUp"
@@ -39,39 +39,63 @@ function deepMerge(target: any, source: any) {
 export function mergeAppearance({ appearance }: { appearance: AuthAppearance | undefined }) {
     const mergedTheme: AuthAppearance = {
         layout: {
-            ...BaseAppearance?.layout,
+            ...(appearance?.base?.layout || BaseAppearance?.layout),
             ...appearance?.layout,
         },
 
         variables: {
-            ...BaseAppearance?.variables,
+            ...(appearance?.base?.variables || BaseAppearance?.variables),
             ...appearance?.variables,
         },
 
         elements: {
-            card: deepMerge(BaseAppearance?.elements?.card, appearance?.elements?.card),
-            cardWrapper: deepMerge(BaseAppearance?.elements?.cardWrapper, appearance?.elements?.cardWrapper),
-            cardHeader: deepMerge(BaseAppearance?.elements?.cardHeader, appearance?.elements?.cardHeader),
+            card: deepMerge(
+                appearance?.base?.elements?.card || BaseAppearance?.elements?.card,
+                appearance?.elements?.card,
+            ),
+            cardWrapper: deepMerge(
+                appearance?.base?.elements?.cardWrapper || BaseAppearance?.elements?.cardWrapper,
+                appearance?.elements?.cardWrapper,
+            ),
+            cardHeader: deepMerge(
+                appearance?.base?.elements?.cardHeader || BaseAppearance?.elements?.cardHeader,
+                appearance?.elements?.cardHeader,
+            ),
             cardHeaderTitle: deepMerge(
-                BaseAppearance?.elements?.cardHeaderTitle,
+                appearance?.base?.elements?.cardHeaderTitle || BaseAppearance?.elements?.cardHeaderTitle,
                 appearance?.elements?.cardHeaderTitle,
             ),
             cardHeaderDescription: deepMerge(
-                BaseAppearance?.elements?.cardHeaderDescription,
+                appearance?.base?.elements?.cardHeaderDescription || BaseAppearance?.elements?.cardHeaderDescription,
                 appearance?.elements?.cardHeaderDescription,
             ),
-            cardContent: deepMerge(BaseAppearance?.elements?.cardContent, appearance?.elements?.cardContent),
-            cardFooter: deepMerge(BaseAppearance?.elements?.cardFooter, appearance?.elements?.cardFooter),
+            cardContent: deepMerge(
+                appearance?.base?.elements?.cardContent || BaseAppearance?.elements?.cardContent,
+                appearance?.elements?.cardContent,
+            ),
+            cardFooter: deepMerge(
+                appearance?.base?.elements?.cardFooter || BaseAppearance?.elements?.cardFooter,
+                appearance?.elements?.cardFooter,
+            ),
             ...appearance?.elements,
         },
 
-        signIn: deepMerge(BaseAppearance?.signIn, appearance?.signIn),
-        signUp: deepMerge(BaseAppearance?.signUp, appearance?.signUp),
-        userButton: deepMerge(BaseAppearance?.userButton, appearance?.userButton),
-        userProfile: deepMerge(BaseAppearance?.userProfile, appearance?.userProfile),
-        organizationSwitcher: deepMerge(BaseAppearance?.organizationSwitcher, appearance?.organizationSwitcher),
-        organizationProfile: deepMerge(BaseAppearance?.organizationProfile, appearance?.organizationProfile),
-        organizationCreate: deepMerge(BaseAppearance?.organizationCreate, appearance?.organizationCreate),
+        signIn: deepMerge(appearance?.base?.signIn || BaseAppearance?.signIn, appearance?.signIn),
+        signUp: deepMerge(appearance?.base?.signUp || BaseAppearance?.signUp, appearance?.signUp),
+        userButton: deepMerge(appearance?.base?.userButton || BaseAppearance?.userButton, appearance?.userButton),
+        userProfile: deepMerge(appearance?.base?.userProfile || BaseAppearance?.userProfile, appearance?.userProfile),
+        organizationSwitcher: deepMerge(
+            appearance?.base?.organizationSwitcher || BaseAppearance?.organizationSwitcher,
+            appearance?.organizationSwitcher,
+        ),
+        organizationProfile: deepMerge(
+            appearance?.base?.organizationProfile || BaseAppearance?.organizationProfile,
+            appearance?.organizationProfile,
+        ),
+        organizationCreate: deepMerge(
+            appearance?.base?.organizationCreate || BaseAppearance?.organizationCreate,
+            appearance?.organizationCreate,
+        ),
     };
 
     return mergedTheme;
