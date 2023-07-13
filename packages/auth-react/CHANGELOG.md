@@ -1,5 +1,17 @@
 # @protoxyz/auth-react
 
+## 2.0.13
+
+### Patch Changes
+
+- 6f0f38c: refactor to fix client components
+- Updated dependencies [6d12dd1]
+- Updated dependencies [6f0f38c]
+  - @protoxyz/themes@2.0.5
+  - @protoxyz/auth-providers@2.0.3
+  - @protoxyz/core@2.0.9
+  - @protoxyz/types@2.0.8
+
 ## 2.0.12
 
 ### Patch Changes

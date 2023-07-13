@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.6
+
+### Patch Changes
+
+- 6f0f38c: refactor to fix client components
+
 ## 2.0.5
 
 ### Patch Changes

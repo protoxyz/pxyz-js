@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.11
+
+### Patch Changes
+
+- 6f0f38c: refactor to fix client components
+- Updated dependencies [6f0f38c]
+  - @protoxyz/core@2.0.9
+  - @protoxyz/types@2.0.8
+
 ## 2.0.10
 
 ### Patch Changes

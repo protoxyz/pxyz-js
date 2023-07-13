@@ -1,5 +1,12 @@
 # @protoxyz/themes
 
+## 2.0.5
+
+### Patch Changes
+
+- 6d12dd1: Add base override to themes
+- 6f0f38c: refactor to fix client components
+
 ## 2.0.4
 
 ### Patch Changes
