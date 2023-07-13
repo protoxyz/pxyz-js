@@ -1,4 +1,3 @@
-import 'server-only';
 import { SessionUser } from '@protoxyz/types';
 import { importSPKI, jwtVerify } from 'jose';
 

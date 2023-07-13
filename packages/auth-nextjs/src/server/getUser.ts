@@ -1,4 +1,3 @@
-import 'server-only';
 import { headers as nextHeaders } from 'next/headers';
 import { verifyJWT } from './jwt';
 import { ResponseStatus, SessionUser, UserProfile } from '@protoxyz/types';

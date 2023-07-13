@@ -34,7 +34,8 @@
     "@protoxyz/themes": "workspace:*",
     "@protoxyz/types": "workspace:*",
     "cookies-next": "^2.1.2",
-    "jose": "^4.12.0"
+    "jose": "^4.12.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@protoxyz/auth-react": "workspace:*",

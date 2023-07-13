@@ -17,7 +17,7 @@ export default defineConfig((overrideOptions) => {
     sourcemap: true,
     dts: true,
     format: ['esm', 'cjs'],
-    external: ['server-only', '@protoxyz/auth-react'],
+    external: ['@protoxyz/auth-react'],
 
     define: {
       PACKAGE_NAME: `"${name}"`,
