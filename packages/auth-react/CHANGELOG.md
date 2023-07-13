@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.14
+
+### Patch Changes
+
+- 978d4f9: clean up debugging
+
 ## 2.0.13
 
 ### Patch Changes
