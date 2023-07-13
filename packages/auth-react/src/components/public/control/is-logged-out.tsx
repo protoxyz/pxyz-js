@@ -1,14 +1,14 @@
-import { useProtocolAuth } from "../../../contexts/protocol-context";
+import { useProtocolAuth } from '../../../contexts/protocol-context';
 
 export interface IsLoggedOutProps {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }
 export function IsLoggedOut({ children }: IsLoggedOutProps) {
-    const { user } = useProtocolAuth();
+  const { user } = useProtocolAuth();
 
-    if (user) {
-        return null;
-    }
+  if (user) {
+    return null;
+  }
 
-    return <>{children}</>;
+  return <>{children}</>;
 }

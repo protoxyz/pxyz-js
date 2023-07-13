@@ -1,103 +1,139 @@
-import { RedirectToSignInProps, RedirectToSignUpProps } from "../types/auth";
-import { Protocol } from "@protoxyz/core";
-import { AuthAppearance, AuthComponentType } from "@protoxyz/themes";
-import { AuthInstance, OrganizationWithRole, SessionUser, UserProfile } from "@protoxyz/types";
-import React from "react";
+import { RedirectToSignInProps, RedirectToSignUpProps } from '../types/auth';
+import { Protocol } from '@protoxyz/core';
+import { AuthAppearance, AuthComponentType } from '@protoxyz/themes';
+import {
+  AuthInstance,
+  OrganizationWithRole,
+  SessionUser,
+  UserProfile,
+} from '@protoxyz/types';
+import * as React from 'react';
+import { isBrowser } from '../lib/utils';
 
 export interface ProtocolAuthProviderState {
-    protocol: Protocol;
-    loaded: boolean;
-    instance: AuthInstance | null;
-    domain: string;
-    publicKey: string;
+  protocol: Protocol;
+  loaded: boolean;
+  instance: AuthInstance | null;
+  domain: string;
+  publicKey: string;
 
-    appearance: AuthAppearance;
+  appearance: AuthAppearance;
 
-    user: UserProfile | null;
-    userId: string | null;
-    org: OrganizationWithRole | null;
-    orgId: string | null;
-    orgRole: string | null;
-    session: SessionUser | null;
-    sessionId: string | null;
+  user: UserProfile | null;
+  userId: string | null;
+  org: OrganizationWithRole | null;
+  orgId: string | null;
+  orgRole: string | null;
+  session: SessionUser | null;
+  sessionId: string | null;
 }
 
 export interface ProtocolAuthContextState {
-    state: ProtocolAuthProviderState;
-    setState: React.Dispatch<React.SetStateAction<ProtocolAuthProviderState>>;
+  state: ProtocolAuthProviderState;
+  setState: React.Dispatch<React.SetStateAction<ProtocolAuthProviderState>>;
 }
 
 export const ProtocolAuthContext = React.createContext({});
 
 export interface ProtocolAuthSettersState {
-    navigate: (url: string) => void;
-    redirectToUserProfile?: () => void;
-    redirectToSignIn?: (props?: RedirectToSignInProps) => void;
-    redirectToSignUp?: (props?: RedirectToSignUpProps) => void;
+  navigate: (url: string) => void;
+  redirectToUserProfile?: () => void;
+  redirectToSignIn?: (props?: RedirectToSignInProps) => void;
+  redirectToSignUp?: (props?: RedirectToSignUpProps) => void;
 }
 
-export const ProtocolAuthSettersContext = React.createContext<ProtocolAuthSettersState>({
+export const ProtocolAuthSettersContext =
+  React.createContext<ProtocolAuthSettersState>({
     navigate: (url: string) => {
-        window.location.href = url ?? "/";
+      window.location.href = url ?? '/';
     },
     redirectToUserProfile: () => {
-        throw new Error("redirectToUserProfile must be implemented");
+      throw new Error('redirectToUserProfile must be implemented');
     },
     redirectToSignIn: (props?: RedirectToSignInProps) => {
-        throw new Error("redirectToSignIn must be implemented" + props?.toString());
+      throw new Error(
+        'redirectToSignIn must be implemented' + props?.toString(),
+      );
     },
     redirectToSignUp: (props?: RedirectToSignUpProps) => {
-        throw new Error("redirectToSignUp must be implemented" + props?.toString());
+      throw new Error(
+        'redirectToSignUp must be implemented' + props?.toString(),
+      );
     },
-});
+  });
 
-export function useProtocolAuth() {
-    const authCtx = React.useContext(ProtocolAuthContext) as ProtocolAuthContextState;
-    const settersCtx = React.useContext(ProtocolAuthSettersContext) as ProtocolAuthSettersState;
+export const useProtocolAuth = () => {
+  if (!isBrowser()) {
+    throw new Error('useProtocolAuth must be used on the client');
+  }
 
-    if (!authCtx || !settersCtx) {
-        throw new Error("useProtocolAuth must be used within a ProtocolAuthProvider");
-    }
+  const authCtx = React.useContext(
+    ProtocolAuthContext,
+  ) as ProtocolAuthContextState;
+  const settersCtx = React.useContext(
+    ProtocolAuthSettersContext,
+  ) as ProtocolAuthSettersState;
 
-    return {
-        setState: authCtx?.setState,
-        publicKey: authCtx?.state?.publicKey,
-        domain: authCtx?.state?.domain,
-        protocol: authCtx?.state?.protocol,
-        loaded: authCtx?.state?.loaded,
-        user: authCtx?.state?.user,
-        userId: authCtx?.state?.userId,
-        instance: authCtx?.state?.instance,
-        org: authCtx?.state?.org,
-        orgId: authCtx?.state?.orgId,
-        orgRole: authCtx?.state?.orgRole,
-        session: authCtx?.state?.session,
-        sessionId: authCtx?.state?.sessionId,
-        redirectToUserProfile: settersCtx?.redirectToUserProfile,
-        redirectToSignIn: settersCtx?.redirectToSignIn,
-        redirectToSignUp: settersCtx?.redirectToSignUp,
-        navigate: settersCtx?.navigate,
-    };
-}
+  if (!authCtx || !settersCtx) {
+    throw new Error(
+      'useProtocolAuth must be used within a ProtocolAuthProvider',
+    );
+  }
 
-export function useProtocolAuthInstance() {
-    const ctx = React.useContext(ProtocolAuthContext) as ProtocolAuthContextState;
+  console.log('*** THIS SHOULD BE CLIENT ONLY ***');
+  console.log('orgId in useProtocolAuth', authCtx?.state?.orgId);
+  console.log('instance in useProtocolAuth', authCtx?.state?.instance);
 
-    if (!ctx) {
-        throw new Error("useProtocolAuthInstance must be used within a ProtocolAuthProvider");
-    }
+  return {
+    setState: authCtx.setState,
+    ...(authCtx.state ?? {}),
+    ...(settersCtx ?? {}),
+    // setState: authCtx?.setState,
+    // publicKey: authCtx?.state?.publicKey,
+    // domain: authCtx?.state?.domain,
+    // protocol: authCtx?.state?.protocol,
+    // loaded: authCtx?.state?.loaded,
+    // user: authCtx?.state?.user,
+    // userId: authCtx?.state?.userId,
+    // instance: authCtx?.state?.instance,
+    // org: authCtx?.state?.org,
+    // orgId: authCtx?.state?.orgId,
+    // orgRole: authCtx?.state?.orgRole,
+    // session: authCtx?.state?.session,
+    // sessionId: authCtx?.state?.sessionId,
+    // redirectToUserProfile: settersCtx?.redirectToUserProfile,
+    // redirectToSignIn: settersCtx?.redirectToSignIn,
+    // redirectToSignUp: settersCtx?.redirectToSignUp,
+    // navigate: settersCtx?.navigate,
+  };
+};
 
-    return { instance: ctx?.state?.instance };
-}
+export const useProtocolAuthInstance = () => {
+  const ctx = React.useContext(ProtocolAuthContext) as ProtocolAuthContextState;
 
-export function useProtocolAuthAppearance({ component }: { component: AuthComponentType }) {
-    const ctx = React.useContext(ProtocolAuthContext) as ProtocolAuthContextState;
+  if (!ctx) {
+    throw new Error(
+      'useProtocolAuthInstance must be used within a ProtocolAuthProvider',
+    );
+  }
 
-    if (!ctx) {
-        throw new Error("useProtocolAuthAppearance must be used within a ProtocolAuthProvider");
-    }
+  return { instance: ctx?.state?.instance };
+};
 
-    // const appearance = getMergedTheme({ appearance: ctx?.state?.appearance, component });
+export const useProtocolAuthAppearance = ({
+  component,
+}: {
+  component: AuthComponentType;
+}) => {
+  const ctx = React.useContext(ProtocolAuthContext) as ProtocolAuthContextState;
 
-    return { appearance: ctx?.state?.appearance };
-}
+  if (!ctx) {
+    throw new Error(
+      'useProtocolAuthAppearance must be used within a ProtocolAuthProvider',
+    );
+  }
+
+  // const appearance = getMergedTheme({ appearance: ctx?.state?.appearance, component });
+
+  return { appearance: ctx?.state?.appearance };
+};

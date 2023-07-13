@@ -4,22 +4,22 @@
 
 ### Patch Changes
 
--   9c19a58: Add missing icons
+- 9c19a58: Add missing icons
 
 ## 2.0.4
 
 ### Patch Changes
 
--   30e5063: fix build script hopefully
+- 30e5063: fix build script hopefully
 
 ## 2.0.3
 
 ### Patch Changes
 
--   a3234ea: fix build
+- a3234ea: fix build
 
 ## 2.0.2
 
 ### Patch Changes
 
--   3e1896a: add icons
+- 3e1896a: add icons

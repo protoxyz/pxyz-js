@@ -1,21 +1,21 @@
-import { ProtocolThemeVariables } from "@protoxyz/themes";
-import { createSwatches } from "../../lib/colors";
-import { DEFAULT_PALETTE_CONFIG } from "../../lib/constants";
+import { ProtocolThemeVariables } from '@protoxyz/themes';
+import { createSwatches } from '../../lib/colors';
+import { DEFAULT_PALETTE_CONFIG } from '../../lib/constants';
 
 interface SwatchProps {
-    name: string;
-    value: string;
+  name: string;
+  value: string;
 }
 export function swatch({ name, value }: SwatchProps) {
-    if (!value) return "";
+  if (!value) return '';
 
-    const swatches = createSwatches({
-        ...DEFAULT_PALETTE_CONFIG,
-        name,
-        value: value ?? "#FF1F57",
-    });
+  const swatches = createSwatches({
+    ...DEFAULT_PALETTE_CONFIG,
+    name,
+    value: value ?? '#FF1F57',
+  });
 
-    return `
+  return `
         --${name}: ${swatches[6]?.h} ${swatches[6]?.s}% ${swatches[6]?.l}%;
         --${name}-${swatches[0]?.stop}: ${swatches[0]?.h} ${swatches[0]?.s}% ${swatches[0]?.l}%;
         --${name}-${swatches[1]?.stop}: ${swatches[1]?.h} ${swatches[1]?.s}% ${swatches[1]?.l}%;
@@ -33,55 +33,101 @@ export function swatch({ name, value }: SwatchProps) {
      `;
 }
 
-export function Variables({ variables }: { variables: ProtocolThemeVariables }) {
-    const {
-        background,
-        foreground,
-        muted,
-        mutedForeground,
-        popover,
-        popoverForeground,
-        card,
-        cardForeground,
-        border,
-        input,
-        primary,
-        primaryForeground,
-        secondary,
-        secondaryForeground,
-        accent,
-        accentForeground,
-        destructive,
-        destructiveForeground,
-        ring,
-        radius,
-    } = variables ?? {};
+export function Variables({
+  variables,
+}: {
+  variables: ProtocolThemeVariables;
+}) {
+  const {
+    background,
+    foreground,
+    muted,
+    mutedForeground,
+    popover,
+    popoverForeground,
+    card,
+    cardForeground,
+    border,
+    input,
+    primary,
+    primaryForeground,
+    secondary,
+    secondaryForeground,
+    accent,
+    accentForeground,
+    destructive,
+    destructiveForeground,
+    ring,
+    radius,
+  } = variables ?? {};
 
-    return (
-        <style type="text/css">
-            {`:root {
-                ${background && swatch({ name: "background", value: background })}
-                ${foreground && swatch({ name: "foreground", value: foreground })}
-                ${muted && swatch({ name: "muted", value: muted })}
-                ${mutedForeground && swatch({ name: "muted-foreground", value: mutedForeground })}
-                ${popover && swatch({ name: "popover", value: popover })}
-                ${popoverForeground && swatch({ name: "popover-foreground", value: popoverForeground })}
-                ${card && swatch({ name: "card", value: card })}
-                ${cardForeground && swatch({ name: "card-foreground", value: cardForeground })}
-                ${border && swatch({ name: "border", value: border })}
-                ${input && swatch({ name: "input", value: input })}
-                ${primary && swatch({ name: "primary", value: primary })}
-                ${primaryForeground && swatch({ name: "primary-foreground", value: primaryForeground })}
-                ${secondary && swatch({ name: "secondary", value: secondary })}
-                ${secondaryForeground && swatch({ name: "secondary-foreground", value: secondaryForeground })}
-                ${accent && swatch({ name: "accent", value: accent })}
-                ${accentForeground && swatch({ name: "accent-foreground", value: accentForeground })}
-                ${destructive && swatch({ name: "destructive", value: destructive })}
-                ${destructiveForeground && swatch({ name: "destructive-foreground", value: destructiveForeground })}
-                ${ring && swatch({ name: "ring", value: ring })}
+  return (
+    <style type="text/css">
+      {`:root {
+                ${
+                  background &&
+                  swatch({ name: 'background', value: background })
+                }
+                ${
+                  foreground &&
+                  swatch({ name: 'foreground', value: foreground })
+                }
+                ${muted && swatch({ name: 'muted', value: muted })}
+                ${
+                  mutedForeground &&
+                  swatch({ name: 'muted-foreground', value: mutedForeground })
+                }
+                ${popover && swatch({ name: 'popover', value: popover })}
+                ${
+                  popoverForeground &&
+                  swatch({
+                    name: 'popover-foreground',
+                    value: popoverForeground,
+                  })
+                }
+                ${card && swatch({ name: 'card', value: card })}
+                ${
+                  cardForeground &&
+                  swatch({ name: 'card-foreground', value: cardForeground })
+                }
+                ${border && swatch({ name: 'border', value: border })}
+                ${input && swatch({ name: 'input', value: input })}
+                ${primary && swatch({ name: 'primary', value: primary })}
+                ${
+                  primaryForeground &&
+                  swatch({
+                    name: 'primary-foreground',
+                    value: primaryForeground,
+                  })
+                }
+                ${secondary && swatch({ name: 'secondary', value: secondary })}
+                ${
+                  secondaryForeground &&
+                  swatch({
+                    name: 'secondary-foreground',
+                    value: secondaryForeground,
+                  })
+                }
+                ${accent && swatch({ name: 'accent', value: accent })}
+                ${
+                  accentForeground &&
+                  swatch({ name: 'accent-foreground', value: accentForeground })
+                }
+                ${
+                  destructive &&
+                  swatch({ name: 'destructive', value: destructive })
+                }
+                ${
+                  destructiveForeground &&
+                  swatch({
+                    name: 'destructive-foreground',
+                    value: destructiveForeground,
+                  })
+                }
+                ${ring && swatch({ name: 'ring', value: ring })}
                 ${radius && `--radius: ${radius};`}
               }
             `}
-        </style>
-    );
+    </style>
+  );
 }

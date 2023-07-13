@@ -1,14 +1,14 @@
-import { useProtocolAuth } from "../../../contexts/protocol-context";
+import { useProtocolAuth } from '../../../contexts/protocol-context';
 
-export interface IsLoaded {
-    children?: React.ReactNode;
+export interface IsLoadedProps {
+  children?: React.ReactNode;
 }
-export function IsLoaded({ children }: IsLoaded): JSX.Element | null {
-    const { loaded } = useProtocolAuth();
+export function IsLoaded({ children }: IsLoadedProps) {
+  const { loaded } = useProtocolAuth();
 
-    if (!loaded) {
-        return null;
-    }
+  if (loaded !== true) {
+    return null;
+  }
 
-    return <>{children}</>;
+  return <>{children}</>;
 }

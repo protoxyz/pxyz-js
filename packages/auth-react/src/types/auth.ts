@@ -1,7 +1,7 @@
 export type BaseRedirectAndOpenProps = {
-    redirectUrl?: string;
-    afterSignInUrl?: string;
-    afterSignUpUrl?: string;
+  redirectUrl?: string;
+  afterSignInUrl?: string;
+  afterSignUpUrl?: string;
 };
 
 export type OpenSignInProps = BaseRedirectAndOpenProps;

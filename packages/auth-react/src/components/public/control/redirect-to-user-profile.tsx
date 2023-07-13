@@ -1,10 +1,10 @@
-import { useProtocolAuth } from "../../../contexts/protocol-context";
-import { useEffect } from "react";
+import { useProtocolAuth } from '../../../contexts/protocol-context';
+import { useEffect } from 'react';
 
 export function RedirectToUserProfile() {
-    const { redirectToUserProfile } = useProtocolAuth();
+  const { redirectToUserProfile } = useProtocolAuth();
 
-    useEffect(() => {
-        redirectToUserProfile();
-    }, []);
+  useEffect(() => {
+    redirectToUserProfile();
+  }, []);
 }

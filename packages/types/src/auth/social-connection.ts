@@ -1,20 +1,20 @@
-import { AuthSocialConnectionStatus } from "./social-connection-status";
-import { SocialProvider } from "./social-provider";
+import { AuthSocialConnectionStatus } from './social-connection-status';
+import { SocialProvider } from './social-provider';
 
 export interface SocialConnection {
-    id: string;
+  id: string;
 
-    status: AuthSocialConnectionStatus;
-    userId: string;
-    providerId: string | null;
-    scope: string | null;
-    accessToken?: string | null;
-    refreshToken?: string | null;
-    expiresAt?: Date | null;
+  status: AuthSocialConnectionStatus;
+  userId: string;
+  providerId: string | null;
+  scope: string | null;
+  accessToken?: string | null;
+  refreshToken?: string | null;
+  expiresAt?: Date | null;
 
-    instanceSocialProviderId: string;
-    instanceSocialProvider: SocialProvider;
+  instanceSocialProviderId: string;
+  instanceSocialProvider: SocialProvider;
 
-    createdAt: Date | string;
-    updatedAt: Date | string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
 }

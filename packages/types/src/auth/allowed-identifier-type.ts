@@ -1,1 +1,1 @@
-export type AllowedIdentifierType = "emailAddress" | "phoneNumber" | "username";
+export type AllowedIdentifierType = 'emailAddress' | 'phoneNumber' | 'username';

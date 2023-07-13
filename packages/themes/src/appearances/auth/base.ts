@@ -1,20 +1,20 @@
-import { AuthAppearance, AuthTheme } from "@/types/auth";
+import { AuthAppearance, AuthTheme } from '@/types/auth';
 
 export const BaseAppearance: AuthAppearance<AuthTheme> = {
-    layout: {
-        logoPlacement: "inside",
-        logoImageUrl: null,
-        socialButtonsVariant: "auto",
-        socialButtonsPlacement: "bottom",
-        showOptionalFields: true,
-        tosUrl: null,
-        privacyPolicyUrl: null,
-        helpUrl: null,
-    },
+  layout: {
+    logoPlacement: 'inside',
+    logoImageUrl: null,
+    socialButtonsVariant: 'auto',
+    socialButtonsPlacement: 'bottom',
+    showOptionalFields: true,
+    tosUrl: null,
+    privacyPolicyUrl: null,
+    helpUrl: null,
+  },
 
-    variables: {},
+  variables: {},
 
-    elements: {
-        card: "",
-    },
+  elements: {
+    card: '',
+  },
 };

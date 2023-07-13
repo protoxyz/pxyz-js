@@ -1,31 +1,31 @@
 export type ProtocolThemeVariables = {
-    background?: string;
-    foreground?: string;
+  background?: string;
+  foreground?: string;
 
-    muted?: string;
-    mutedForeground?: string;
+  muted?: string;
+  mutedForeground?: string;
 
-    popover?: string;
-    popoverForeground?: string;
+  popover?: string;
+  popoverForeground?: string;
 
-    card?: string;
-    cardForeground?: string;
+  card?: string;
+  cardForeground?: string;
 
-    border?: string;
-    input?: string;
+  border?: string;
+  input?: string;
 
-    primary?: string;
-    primaryForeground?: string;
+  primary?: string;
+  primaryForeground?: string;
 
-    secondary?: string;
-    secondaryForeground?: string;
+  secondary?: string;
+  secondaryForeground?: string;
 
-    accent?: string;
-    accentForeground?: string;
+  accent?: string;
+  accentForeground?: string;
 
-    destructive?: string;
-    destructiveForeground?: string;
+  destructive?: string;
+  destructiveForeground?: string;
 
-    ring?: string;
-    radius?: string;
+  ring?: string;
+  radius?: string;
 };

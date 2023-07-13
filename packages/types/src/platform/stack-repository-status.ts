@@ -1,7 +1,8 @@
 export const StackRepositoryStatus = {
-    created: "created",
-    cloning: "cloning",
-    cloned: "cloned",
-    error: "error",
+  created: 'created',
+  cloning: 'cloning',
+  cloned: 'cloned',
+  error: 'error',
 };
-export type StackRepositoryStatus = (typeof StackRepositoryStatus)[keyof typeof StackRepositoryStatus];
+export type StackRepositoryStatus =
+  (typeof StackRepositoryStatus)[keyof typeof StackRepositoryStatus];

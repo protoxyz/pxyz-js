@@ -1,70 +1,77 @@
-import { AllowedFirstFactorStrategy, AllowedIdentifierType, AllowedSecondFactorStrategy } from "..";
-import { Domain } from "../platform/domain";
-import { AuthenticationStrategy } from "./authentication-strategy";
-import { SocialProvider } from "./social-provider";
+import {
+  AllowedFirstFactorStrategy,
+  AllowedIdentifierType,
+  AllowedSecondFactorStrategy,
+} from '..';
+import { Domain } from '../platform/domain';
+import { AuthenticationStrategy } from './authentication-strategy';
+import { SocialProvider } from './social-provider';
 
 export interface AuthInstance {
-    id: string;
-    projectId: string;
-    environment: "development" | "staging" | "production";
+  id: string;
+  projectId: string;
+  environment: 'development' | 'staging' | 'production';
 
-    identifierName: boolean;
-    identifierEmailAddress: boolean;
-    identifierPhoneNumber: boolean;
-    identifierUsername: boolean;
-    strategy: AuthenticationStrategy;
+  identifierName: boolean;
+  identifierEmailAddress: boolean;
+  identifierPhoneNumber: boolean;
+  identifierUsername: boolean;
+  strategy: AuthenticationStrategy;
 
-    publicKey: string;
+  publicKey: string;
 
-    nameRequired: boolean;
-    emailAddressRequired: boolean;
-    phoneNumberRequired: boolean;
-    usernameRequired: boolean;
+  nameRequired: boolean;
+  emailAddressRequired: boolean;
+  phoneNumberRequired: boolean;
+  usernameRequired: boolean;
 
-    emailVerificationRequired: boolean;
-    phoneVerificationRequired: boolean;
+  emailVerificationRequired: boolean;
+  phoneVerificationRequired: boolean;
 
-    emailSignInEnabled: boolean;
-    phoneSignInEnabled: boolean;
-    usernameSignInEnabled: boolean;
+  emailSignInEnabled: boolean;
+  phoneSignInEnabled: boolean;
+  usernameSignInEnabled: boolean;
 
-    emailVerificationLinkEnabled: boolean;
-    emailVerificationCodeEnabled: boolean;
-    smsVerificationEnabled: boolean;
+  emailVerificationLinkEnabled: boolean;
+  emailVerificationCodeEnabled: boolean;
+  smsVerificationEnabled: boolean;
 
-    mfaSMSEnabled: boolean;
-    mfaAuthenticatorEnabled: boolean;
-    mfaSecurityKeyEnabled: boolean;
+  mfaSMSEnabled: boolean;
+  mfaAuthenticatorEnabled: boolean;
+  mfaSecurityKeyEnabled: boolean;
 
-    brandingApplicationName: string | null | undefined;
-    brandingApplicationLogoUri: string | null | undefined;
-    brandingApplicationIconUri: string | null | undefined;
-    brandingApplicationFaviconUri: string | null | undefined;
+  brandingApplicationName: string | null | undefined;
+  brandingApplicationLogoUri: string | null | undefined;
+  brandingApplicationIconUri: string | null | undefined;
+  brandingApplicationFaviconUri: string | null | undefined;
 
-    hideProtocolBranding: boolean;
+  hideProtocolBranding: boolean;
 
-    // theme: Partial<Theme>;
+  // theme: Partial<Theme>;
 
-    domains: Domain[];
+  domains: Domain[];
 
-    socialProviders: SocialProvider[];
+  socialProviders: SocialProvider[];
 
-    homeUri: string;
-    frontendApiUri: string;
-    signUpUri: string;
-    signInRedirectUri: string;
-    signInUri: string;
-    signUpRedirectUri: string;
-    logoutRedirectUri: string;
-    userSettingsUri: string;
-    organizationSettingsUri: string;
-    createOrganizationUri: string;
-    createOrganizationRedirectUri: string;
+  homeUri: string;
+  frontendApiUri: string;
+  signUpUri: string;
+  signInRedirectUri: string;
+  signInUri: string;
+  signUpRedirectUri: string;
+  logoutRedirectUri: string;
+  userSettingsUri: string;
+  organizationSettingsUri: string;
+  createOrganizationUri: string;
+  createOrganizationRedirectUri: string;
 
-    allowedIdentifierTypes: AllowedIdentifierType[];
-    allowedFirstFactorStrategies: AllowedFirstFactorStrategy[];
-    allowedSecondFactorStrategies: (AllowedFirstFactorStrategy | AllowedSecondFactorStrategy)[];
+  allowedIdentifierTypes: AllowedIdentifierType[];
+  allowedFirstFactorStrategies: AllowedFirstFactorStrategy[];
+  allowedSecondFactorStrategies: (
+    | AllowedFirstFactorStrategy
+    | AllowedSecondFactorStrategy
+  )[];
 
-    createdAt: Date | string;
-    updatedAt: Date | string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
 }

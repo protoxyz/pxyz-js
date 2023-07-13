@@ -1,11 +1,11 @@
 export interface InstanceSocialProvider {
-    id: string;
-    providerKey: string;
-    enabled: boolean;
-    additionalScopes: string[];
+  id: string;
+  providerKey: string;
+  enabled: boolean;
+  additionalScopes: string[];
 }
 
 export interface SocialProvider {
-    enabled: boolean;
-    providerKey: string;
+  enabled: boolean;
+  providerKey: string;
 }
