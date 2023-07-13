@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.3
+
+### Patch Changes
+
+- 6e1525f: move server-only import only to rsc
+
 ## 2.1.2
 
 ### Patch Changes
