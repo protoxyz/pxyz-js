@@ -38,7 +38,15 @@ type Group = {
   teams: Team[];
 };
 
-export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
+interface OrganizationSwitcherProps extends PopoverTriggerProps {
+  className?: string;
+  onOrganizationSelect?: (orgId: string | null) => void;
+}
+
+export function OrganizationSwitcher({
+  className,
+  onOrganizationSelect,
+}: OrganizationSwitcherProps) {
   const { user, orgId, protocol, setState } = useProtocolAuth();
   // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
   const { organizations } = useProtocolAuthOrganizationsList({});
@@ -129,6 +137,7 @@ export function OrganizationSwitcher({ className }: PopoverTriggerProps) {
                         setSelectedTeamId(team.id);
                         setOpen(false);
                         createOrgToken(team.id);
+                        onOrganizationSelect?.(team.id);
                         setState((state) => ({
                           ...state,
                           org: organizations.data.find(
