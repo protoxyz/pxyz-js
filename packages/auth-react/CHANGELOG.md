@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.15
+
+### Patch Changes
+
+- 5342dcb: Add onOrganizationSelect callback
+
 ## 2.0.14
 
 ### Patch Changes
