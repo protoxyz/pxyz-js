@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.3
+
+### Patch Changes
+
+- 6f0f38c: refactor to fix client components
+
 ## 2.0.2
 
 ### Patch Changes

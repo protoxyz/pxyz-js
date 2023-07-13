@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.8
+
+### Patch Changes
+
+- 6f0f38c: refactor to fix client components
+
 ## 2.0.7
 
 ### Patch Changes
