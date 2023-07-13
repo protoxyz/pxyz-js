@@ -176,7 +176,6 @@ export function SignInVerifyFirstFactorForm({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (verifying) return;
-    console.log('onSubmit', values);
     setVerifying(true);
 
     const code = [
@@ -269,7 +268,6 @@ export function SignInVerifyFirstFactorForm({
     field: any,
     nextRef: React.MutableRefObject<HTMLInputElement> | null,
   ) {
-    console.log(e.target.value.length, e.target.value);
     if (e.target.value.length === 1) {
       // make sure it's numeric
       if (!/^\d+$/.test(e.target.value)) {

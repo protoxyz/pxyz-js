@@ -406,8 +406,6 @@ export function SignInRoute({ afterSignInRedirectUri }: SIgnInRouteOptions) {
   const brandName = useBrandName({ component });
   const usingPasswords = instance?.strategy === 'passwords';
 
-  console.log('instance in signIn ***** ', instance);
-
   const initialFirstFactorIdentifierType = useMemo(() => {
     if (instance?.allowedIdentifierTypes.includes('emailAddress')) {
       return 'emailAddress';

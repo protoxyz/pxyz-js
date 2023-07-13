@@ -80,10 +80,6 @@ export const useProtocolAuth = () => {
     );
   }
 
-  console.log('*** THIS SHOULD BE CLIENT ONLY ***');
-  console.log('orgId in useProtocolAuth', authCtx?.state?.orgId);
-  console.log('instance in useProtocolAuth', authCtx?.state?.instance);
-
   return {
     setState: authCtx.setState,
     ...(authCtx.state ?? {}),
