@@ -1,5 +1,12 @@
 # @protoxyz/auth-react
 
+## 2.0.17
+
+### Patch Changes
+
+- d6eeb00: fix variables
+- 8fbc1ad: fix dts
+
 ## 2.0.16
 
 ### Patch Changes
