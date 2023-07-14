@@ -63,10 +63,6 @@ export const ProtocolAuthSettersContext =
   });
 
 export const useProtocolAuth = () => {
-  if (!isBrowser()) {
-    throw new Error('useProtocolAuth must be used on the client');
-  }
-
   const authCtx = React.useContext(
     ProtocolAuthContext,
   ) as ProtocolAuthContextState;
