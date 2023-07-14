@@ -17,6 +17,7 @@ export default defineConfig([
     ],
     format: ['esm'],
     outDir: 'dist/',
+    dts: true,
     esbuildOptions(options, context) {
       options.banner = { js: `"use client";` };
       // the directory structure will be the same as the source
@@ -34,6 +35,7 @@ export default defineConfig([
     bundle: false,
     format: ['esm'],
     outDir: 'dist',
+    dts: true,
     esbuildOptions(options, context) {
       options.banner = { js: `"use client";` };
       // options.outbase = './';
