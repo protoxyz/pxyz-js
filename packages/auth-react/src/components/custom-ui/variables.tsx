@@ -12,7 +12,7 @@ export function swatch({ name, value }: SwatchProps) {
   const swatches = createSwatches({
     ...DEFAULT_PALETTE_CONFIG,
     name,
-    value: value ?? '#FF1F57',
+    value,
   });
 
   return `
@@ -65,67 +65,87 @@ export function Variables({
     <style type="text/css">
       {`:root {
                 ${
-                  background &&
-                  swatch({ name: 'background', value: background })
+                  background
+                    ? swatch({ name: 'background', value: background })
+                    : ''
                 }
                 ${
-                  foreground &&
-                  swatch({ name: 'foreground', value: foreground })
+                  foreground
+                    ? swatch({ name: 'foreground', value: foreground })
+                    : ''
                 }
-                ${muted && swatch({ name: 'muted', value: muted })}
+                ${muted ? swatch({ name: 'muted', value: muted }) : ''}
                 ${
-                  mutedForeground &&
-                  swatch({ name: 'muted-foreground', value: mutedForeground })
+                  mutedForeground
+                    ? swatch({
+                        name: 'muted-foreground',
+                        value: mutedForeground,
+                      })
+                    : ''
                 }
-                ${popover && swatch({ name: 'popover', value: popover })}
+                ${popover ? swatch({ name: 'popover', value: popover }) : ''}
                 ${
-                  popoverForeground &&
-                  swatch({
-                    name: 'popover-foreground',
-                    value: popoverForeground,
-                  })
+                  popoverForeground
+                    ? swatch({
+                        name: 'popover-foreground',
+                        value: popoverForeground,
+                      })
+                    : ''
                 }
-                ${card && swatch({ name: 'card', value: card })}
+                ${card ? swatch({ name: 'card', value: card }) : ''}
                 ${
-                  cardForeground &&
-                  swatch({ name: 'card-foreground', value: cardForeground })
+                  cardForeground
+                    ? swatch({ name: 'card-foreground', value: cardForeground })
+                    : ''
                 }
-                ${border && swatch({ name: 'border', value: border })}
-                ${input && swatch({ name: 'input', value: input })}
-                ${primary && swatch({ name: 'primary', value: primary })}
+                ${border ? swatch({ name: 'border', value: border }) : ''}
+                ${input ? swatch({ name: 'input', value: input }) : ''}
+                ${primary ? swatch({ name: 'primary', value: primary }) : ''}
                 ${
-                  primaryForeground &&
-                  swatch({
-                    name: 'primary-foreground',
-                    value: primaryForeground,
-                  })
-                }
-                ${secondary && swatch({ name: 'secondary', value: secondary })}
-                ${
-                  secondaryForeground &&
-                  swatch({
-                    name: 'secondary-foreground',
-                    value: secondaryForeground,
-                  })
-                }
-                ${accent && swatch({ name: 'accent', value: accent })}
-                ${
-                  accentForeground &&
-                  swatch({ name: 'accent-foreground', value: accentForeground })
+                  primaryForeground
+                    ? swatch({
+                        name: 'primary-foreground',
+                        value: primaryForeground,
+                      })
+                    : ''
                 }
                 ${
-                  destructive &&
-                  swatch({ name: 'destructive', value: destructive })
+                  secondary
+                    ? swatch({ name: 'secondary', value: secondary })
+                    : ''
                 }
                 ${
-                  destructiveForeground &&
-                  swatch({
-                    name: 'destructive-foreground',
-                    value: destructiveForeground,
-                  })
+                  secondaryForeground
+                    ? swatch({
+                        name: 'secondary-foreground',
+                        value: secondaryForeground,
+                      })
+                    : ''
                 }
-                ${ring && swatch({ name: 'ring', value: ring })}
-                ${radius && `--radius: ${radius};`}
+                ${accent ? swatch({ name: 'accent', value: accent }) : ''}
+                ${
+                  accentForeground
+                    ? swatch({
+                        name: 'accent-foreground',
+                        value: accentForeground,
+                      })
+                    : ''
+                }
+                ${
+                  destructive
+                    ? swatch({ name: 'destructive', value: destructive })
+                    : ''
+                }
+                ${
+                  destructiveForeground
+                    ? swatch({
+                        name: 'destructive-foreground',
+                        value: destructiveForeground,
+                      })
+                    : ''
+                }
+                ${ring ? swatch({ name: 'ring', value: ring }) : ''}
+                ${radius ? `--radius: ${radius};` : ''}
               }
             `}
     </style>
