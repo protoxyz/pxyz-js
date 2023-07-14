@@ -1,5 +1,12 @@
 # @protoxyz/auth-react
 
+## 2.0.18
+
+### Patch Changes
+
+- 3ad6565: bump
+- 5890ddd: fix empty export
+
 ## 2.0.17
 
 ### Patch Changes
