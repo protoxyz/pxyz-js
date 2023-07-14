@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.16
+
+### Patch Changes
+
+- cccc192: Add authMiddleware
+
 ## 2.0.15
 
 ### Patch Changes

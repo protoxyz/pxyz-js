@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.4
+
+### Patch Changes
+
+- cccc192: Add authMiddleware
+- Updated dependencies [cccc192]
+  - @protoxyz/auth-react@2.0.16
+
 ## 2.1.3
 
 ### Patch Changes
