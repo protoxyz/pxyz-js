@@ -5,6 +5,7 @@ import { AuthAppearance } from '@protoxyz/themes';
 import { AuthInstance, ResponseStatus } from '@protoxyz/types';
 import { getUser } from './getUser';
 import { getAuth } from './getAuth';
+import { headers as nextheaders } from 'next/headers';
 
 interface ProtocolAuthProviderRSCProps {
   children: React.ReactNode;
@@ -19,13 +20,17 @@ export async function ProtocolAuthProviderRSC({
   publicKey,
   appearance,
 }: ProtocolAuthProviderRSCProps) {
+  const headers = nextheaders();
+
   const resolvedDomain =
     domain ??
+    headers.get('x-protocol-hostname') ??
     process.env.PXYZ_AUTH_DOMAIN ??
     process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN ??
     '';
   const resolvedPublicKey =
     publicKey ??
+    headers.get('x-protocol-instance-pkey') ??
     process.env.PXYZ_PUBLIC_KEY ??
     process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ??
     '';
