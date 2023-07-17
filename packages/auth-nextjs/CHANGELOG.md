@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.5
+
+### Patch Changes
+
+- 2b462e7: get domain and pkey from headers
+
 ## 2.1.4
 
 ### Patch Changes
