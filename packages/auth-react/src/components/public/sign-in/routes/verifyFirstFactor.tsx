@@ -208,7 +208,7 @@ export function SignInVerifyFirstFactorForm({
         }
         case AuthSignInAttemptStatus.complete: {
           // setRoute(SignInFlowRoute["signIn:success"]);
-          window.location.href = signInResponse.data.signInAttempt.redirectUri;
+          // window.location.href = signInResponse.data.signInAttempt.redirectUri;
           break;
         }
       }
