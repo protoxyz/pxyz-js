@@ -1,5 +1,11 @@
 # @protoxyz/auth-node
 
+## 2.0.14
+
+### Patch Changes
+
+- a6bdf5a: fix cookie domain
+
 ## 2.0.13
 
 ### Patch Changes
