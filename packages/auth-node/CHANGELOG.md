@@ -1,5 +1,11 @@
 # @protoxyz/auth-node
 
+## 2.0.12
+
+### Patch Changes
+
+- 591fbd3: debug
+
 ## 2.0.11
 
 ### Patch Changes
