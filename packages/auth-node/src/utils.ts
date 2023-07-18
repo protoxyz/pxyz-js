@@ -22,11 +22,11 @@ export interface CookieOptions {
   secure: boolean;
 }
 export function getCookieOptions(
-  hostWithPort: string | undefined,
+  origin: string | undefined,
   secure: boolean = process.env.NODE_ENV === 'production',
 ) {
-  if (!hostWithPort) return {} as CookieOptions;
-  const domain = getCookieDomain(hostWithPort, secure);
+  if (!origin) return {} as CookieOptions;
+  const domain = getCookieDomain(origin, secure);
 
   return {
     path: '/',
@@ -38,17 +38,16 @@ export function getCookieOptions(
   } as CookieOptions;
 }
 
-export function getCookieDomain(
-  hostWithPort: string | undefined,
-  secure: boolean,
-) {
-  if (!hostWithPort || !secure) return 'localhost';
-  const host = getDomainFromHostnameWithoutPort(hostWithPort);
-  const split = host.split('.');
-  const domain =
-    process.env.PROTOCOL_ENV === 'development'
-      ? undefined
-      : `.${split.slice(-2).join('.')}`;
+export function getHostnameFromOrigin(origin: string) {
+  const url = new URL(origin);
+  return url.hostname;
+}
 
-  return domain;
+export function getCookieDomain(origin: string | undefined, secure: boolean) {
+  if (!origin || !secure) return 'localhost';
+  const hostname = getHostnameFromOrigin(origin);
+
+  return process.env.PROTOCOL_ENV === 'development'
+    ? undefined
+    : `.${hostname}`;
 }
