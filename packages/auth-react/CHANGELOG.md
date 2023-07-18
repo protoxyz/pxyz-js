@@ -1,5 +1,16 @@
 # @protoxyz/auth-react
 
+## 2.0.23
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+- Updated dependencies [62ac2c2]
+  - @protoxyz/auth-providers@2.0.4
+  - @protoxyz/core@2.0.10
+  - @protoxyz/themes@2.0.6
+  - @protoxyz/types@2.0.9
+
 ## 2.0.22
 
 ### Patch Changes

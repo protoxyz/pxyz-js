@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.9
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+
 ## 2.0.8
 
 ### Patch Changes

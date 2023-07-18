@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.7
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+
 ## 2.0.6
 
 ### Patch Changes

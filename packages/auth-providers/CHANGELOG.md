@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.4
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+
 ## 2.0.3
 
 ### Patch Changes
