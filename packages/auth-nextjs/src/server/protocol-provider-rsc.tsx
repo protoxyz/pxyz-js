@@ -22,6 +22,8 @@ export async function ProtocolAuthProviderRSC({
 }: ProtocolAuthProviderRSCProps) {
   const headers = nextheaders();
 
+  console.log('headers', headers);
+
   const resolvedDomain =
     domain ??
     headers.get('x-protocol-hostname') ??
