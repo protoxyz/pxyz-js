@@ -40,14 +40,18 @@ export function getCookieOptions(
 
 export function getHostnameFromOrigin(origin: string) {
   const url = new URL(origin);
+
   return url.hostname;
+}
+
+export function getTLDFromHostname(hostname: string | undefined) {
+  return hostname?.split('.').slice(-2).join('.') ?? '';
 }
 
 export function getCookieDomain(origin: string | undefined, secure: boolean) {
   if (!origin || !secure) return 'localhost';
   const hostname = getHostnameFromOrigin(origin);
+  const tld = getTLDFromHostname(hostname);
 
-  return process.env.PROTOCOL_ENV === 'development'
-    ? undefined
-    : `.${hostname}`;
+  return process.env.PROTOCOL_ENV === 'development' ? undefined : `.${tld}`;
 }
