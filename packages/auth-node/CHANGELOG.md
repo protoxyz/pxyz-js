@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.15
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+- Updated dependencies [62ac2c2]
+  - @protoxyz/core@2.0.10
+  - @protoxyz/types@2.0.9
+
 ## 2.0.14
 
 ### Patch Changes

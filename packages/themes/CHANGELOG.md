@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.6
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+
 ## 2.0.5
 
 ### Patch Changes

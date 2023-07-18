@@ -1,5 +1,16 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.9
+
+### Patch Changes
+
+- 62ac2c2: update cookie domain
+- Updated dependencies [62ac2c2]
+  - @protoxyz/auth-react@2.0.23
+  - @protoxyz/core@2.0.10
+  - @protoxyz/themes@2.0.6
+  - @protoxyz/types@2.0.9
+
 ## 2.1.8
 
 ### Patch Changes
