@@ -167,7 +167,7 @@ export const ProtocolAuthProvider = ({
     publicKey: publicKey ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ?? '',
     protocol: new Protocol({
       credentials: true,
-      baseUrl: process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN,
+      baseUrl: domain ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN,
       debug: true,
     }),
   });
