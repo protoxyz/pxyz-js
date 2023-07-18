@@ -21,11 +21,11 @@ export function SignUpButton({
   text = 'Sign up',
 }: SignUpButtonProps) {
   // const { appearance } = useProtocolAuthAppearance({ component: "signUp" });
-  const { instance } = useProtocolAuth();
+  const { instance, navigate } = useProtocolAuth();
 
   const redirectToSignUp = useCallback(() => {
     if (mode === 'popup') return;
-    window.location.href = instance?.signUpUri ?? '/sign-up';
+    navigate(instance?.signUpUri ?? '/sign-up');
   }, [instance, mode]);
 
   const childContent = useMemo(() => {

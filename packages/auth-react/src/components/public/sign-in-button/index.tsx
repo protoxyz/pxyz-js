@@ -21,11 +21,11 @@ export function SignInButton({
   text = 'Sign in',
 }: SignInButtonProps) {
   // const { appearance } = useProtocolAuthAppearance({ component: "signIn" });
-  const { instance } = useProtocolAuth();
+  const { instance, navigate } = useProtocolAuth();
 
   const redirectToSignIn = useCallback(() => {
     if (mode === 'popup') return;
-    window.location.href = instance?.signInUri ?? '/sign-in';
+    navigate(instance?.signInUri ?? '/sign-in');
   }, [instance, mode]);
 
   const childContent = useMemo(() => {

@@ -18,7 +18,7 @@ export function useProtocolAuthLogout(
   const { setSignIn: setClientSignIn, setSignUp: setClientSignUp } =
     useProtocolAuthClient();
   const { signIn, signUp } = useProtocolAuthFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
 
   const logout = async () => {
@@ -35,7 +35,7 @@ export function useProtocolAuthLogout(
       console.error(error);
     }
     setIsLoggingOut(false);
-    window.location.href = afterSignOutUrl;
+    navigate(afterSignOutUrl);
   };
 
   return { isLoggingOut, logout };

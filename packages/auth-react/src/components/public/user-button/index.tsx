@@ -32,13 +32,13 @@ export function UserButton({
   mode = 'popup',
   display = 'avatar',
 }: UserButtonOptions) {
-  const { user } = useProtocolAuth();
+  const { user, navigate } = useProtocolAuth();
   const [showUserProfileDialog, setShowUserProfileDialog] = useState(false);
   const [open, setOpen] = useState(false);
 
   const redirectToUserProfile = useCallback(() => {
     if (mode === 'popup') return;
-    window.location.href = '/user';
+    navigate('/user');
   }, [mode]);
 
   // const { appearance } = useProtocolAuthAppearance({ component: "userButton" });

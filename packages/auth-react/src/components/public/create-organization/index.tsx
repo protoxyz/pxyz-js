@@ -1,5 +1,8 @@
 import { AuthComponentType } from '@protoxyz/themes';
-import { useProtocolAuthAppearance } from '../../../contexts/protocol-context';
+import {
+  useProtocolAuth,
+  useProtocolAuthAppearance,
+} from '../../../contexts/protocol-context';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {
   Card,
@@ -43,6 +46,7 @@ export function CreateOrganizationForm({
 }: CreateOrganizationFormOptions) {
   const { isCreating, createOrganization, createError } =
     useProtocolAuthOrganizationsList({});
+  const { navigate } = useProtocolAuth();
 
   const form = useForm<z.infer<typeof CreateOrganizationFormSchema>>({
     resolver: zodResolver(CreateOrganizationFormSchema),
@@ -57,7 +61,7 @@ export function CreateOrganizationForm({
     const response = await createOrganization({ name: values.name });
     if (response.status === ResponseStatus.Success) {
       onSubmit?.(response);
-      window.location.href = afterCreateOrganizationRedirectUri ?? '/dashboard';
+      navigate(afterCreateOrganizationRedirectUri ?? '/dashboard');
     }
   }
 

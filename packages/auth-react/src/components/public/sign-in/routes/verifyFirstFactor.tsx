@@ -147,7 +147,7 @@ export function SignInVerifyFirstFactorForm({
   setError: (error: string) => void;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { signIn, setSignIn } = useProtocolAuthClient();
   const [verifying, setVerifying] = useState(false);
 
@@ -207,8 +207,8 @@ export function SignInVerifyFirstFactorForm({
           break;
         }
         case AuthSignInAttemptStatus.complete: {
-          // setRoute(SignInFlowRoute["signIn:success"]);
-          // window.location.href = signInResponse.data.signInAttempt.redirectUri;
+          setRoute(SignInFlowRoute['signIn:success']);
+          navigate(signInResponse.data.signInAttempt.redirectUri);
           break;
         }
       }

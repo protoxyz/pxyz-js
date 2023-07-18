@@ -43,6 +43,7 @@ export function SocialButton({
     isCreatingOAuthSignUpAttempt,
     createSignUpAttempt,
     oauthSignUpAttemptProvider,
+    navigate,
   } = useProtocolAuth();
   const provider = useMemo(() => providers[providerKey], [providerKey]);
   const Icon = SocialIcons[providerKey as keyof typeof SocialIcons];
@@ -60,8 +61,7 @@ export function SocialButton({
 
     if (result.status === ResponseStatus.Success) {
       if (result.data.connection) onAddConnection?.(result.data.connection);
-      if (result.data.authorizeUri)
-        window.location.href = result.data.authorizeUri;
+      if (result.data.authorizeUri) navigate(result.data.authorizeUri);
     }
   };
 

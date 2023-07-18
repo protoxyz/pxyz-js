@@ -118,7 +118,7 @@ export function UpdateOrganizationForm({
   onSubmit,
   afterUpdateOrganizationRedirectUri,
 }: UpdateOrganizationFormOptions) {
-  const { orgId } = useProtocolAuth();
+  const { orgId, navigate } = useProtocolAuth();
   const { organizations, isUpdating, updateOrganization, updateError } =
     useProtocolAuthOrganizationsList({});
 
@@ -136,8 +136,9 @@ export function UpdateOrganizationForm({
   ) {
     const response = await updateOrganization({ name: values.name });
     if (response.status === ResponseStatus.Success) {
-      // console.log(response);
-      // window.location.href = `${afterUpdateOrganizationRedirectUri}?organizationId=${response.data.organization.id}`;
+      navigate(
+        `${afterUpdateOrganizationRedirectUri}?organizationId=${response.data.organization.id}`,
+      );
     }
   }
 

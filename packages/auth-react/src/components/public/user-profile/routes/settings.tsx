@@ -64,7 +64,7 @@ export function UpdateUserForm({
   onSubmit,
   afterUpdateUserRedirectUri,
 }: UpdateUserFormOptions) {
-  const { user, instance } = useProtocolAuth();
+  const { user, instance, navigate } = useProtocolAuth();
   const { updateProfile, isUpdating, updateError } = useProtocolAuthProfile({});
 
   const form = useForm<z.infer<typeof UpdateUserFormSchema>>({
@@ -83,8 +83,7 @@ export function UpdateUserForm({
   ) {
     const response = await updateProfile({ ...values });
     if (response.status === ResponseStatus.Success) {
-      if (afterUpdateUserRedirectUri)
-        window.location.href = afterUpdateUserRedirectUri;
+      if (afterUpdateUserRedirectUri) navigate(afterUpdateUserRedirectUri);
       onSubmit?.(response);
     }
   }

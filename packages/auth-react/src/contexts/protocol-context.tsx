@@ -8,7 +8,6 @@ import {
   UserProfile,
 } from '@protoxyz/types';
 import * as React from 'react';
-import { isBrowser } from '../lib/utils';
 
 export interface ProtocolAuthProviderState {
   protocol: Protocol;
