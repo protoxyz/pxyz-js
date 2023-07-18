@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.19
+
+### Patch Changes
+
+- b905114: fix baseUrl
+
 ## 2.0.18
 
 ### Patch Changes
