@@ -91,8 +91,6 @@ export function OrganizationSettingsRoute({
   const isOwner = org?.membership?.role?.name === 'Owner';
   const isAdmin = org?.membership?.role?.name === 'Admin';
 
-  console.log('role', org?.membership);
-
   return (
     <div className="grid gap-8">
       <SectionHeader

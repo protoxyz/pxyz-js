@@ -22,8 +22,6 @@ export async function ProtocolAuthProviderRSC({
 }: ProtocolAuthProviderRSCProps) {
   const headers = nextheaders();
 
-  console.log('headers', headers);
-
   const resolvedDomain =
     domain ??
     headers.get('x-protocol-hostname') ??
@@ -41,6 +39,8 @@ export async function ProtocolAuthProviderRSC({
     throw new Error('No domain provided in ProtocolAuthProvider');
   if (!resolvedPublicKey)
     throw new Error('No public key provided in ProtocolAuthProvider');
+
+  console.log('resolvedDomain', resolvedDomain);
 
   const protocolClient = new Protocol({
     debug: process.env.NODE_ENV !== 'production',

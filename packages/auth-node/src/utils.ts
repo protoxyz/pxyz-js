@@ -50,6 +50,5 @@ export function getCookieDomain(
       ? undefined
       : `.${split.slice(-2).join('.')}`;
 
-  console.log('domain', domain);
   return domain;
 }
