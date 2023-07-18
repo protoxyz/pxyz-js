@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.21
+
+### Patch Changes
+
+- 386e3da: debug
+
 ## 2.0.20
 
 ### Patch Changes
