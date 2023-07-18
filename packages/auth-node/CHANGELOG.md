@@ -1,5 +1,11 @@
 # @protoxyz/auth-node
 
+## 2.0.13
+
+### Patch Changes
+
+- 04ec32d: cleanup
+
 ## 2.0.12
 
 ### Patch Changes
