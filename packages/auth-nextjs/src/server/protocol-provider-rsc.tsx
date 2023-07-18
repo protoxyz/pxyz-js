@@ -54,6 +54,7 @@ export async function ProtocolAuthProviderRSC({
       path: { publicKey: resolvedPublicKey },
     });
     if (result.status !== ResponseStatus.Success) {
+      console.log(result);
       throw new Error(
         'Could not retrieve instance: pkey=' +
           resolvedPublicKey +
