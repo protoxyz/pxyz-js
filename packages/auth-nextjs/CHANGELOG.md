@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.7
+
+### Patch Changes
+
+- 591fbd3: debug
+
 ## 2.1.6
 
 ### Patch Changes
