@@ -31,7 +31,7 @@ export async function ProtocolAuthProviderRSC({
   const resolvedPublicKey =
     publicKey ??
     headers.get('x-protocol-instance-pkey') ??
-    process.env.PXYZ_PUBLIC_KEY ??
+    process.env.PXYZ_AUTH_PUBLIC_KEY ??
     process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ??
     '';
 
@@ -40,7 +40,11 @@ export async function ProtocolAuthProviderRSC({
   if (!resolvedPublicKey)
     throw new Error('No public key provided in ProtocolAuthProvider');
 
-  console.log('resolvedDomain', resolvedDomain);
+  if (process.env.NODE_ENV === 'development') {
+    console.log('[Protocol Auth]');
+    console.log('resolvedDomain', resolvedDomain);
+    console.log('resolvedPublicKey', resolvedPublicKey);
+  }
 
   const protocolClient = new Protocol({
     debug: process.env.NODE_ENV !== 'production',
