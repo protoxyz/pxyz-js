@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.24
+
+### Patch Changes
+
+- bc07538: sign in success
+
 ## 2.0.23
 
 ### Patch Changes
