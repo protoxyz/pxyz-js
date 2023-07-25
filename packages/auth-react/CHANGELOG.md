@@ -1,5 +1,14 @@
 # @protoxyz/auth-react
 
+## 2.0.27
+
+### Patch Changes
+
+- 33a9b2e: fix sessio user
+- Updated dependencies [33a9b2e]
+  - @protoxyz/core@2.0.13
+  - @protoxyz/types@2.0.12
+
 ## 2.0.26
 
 ### Patch Changes
