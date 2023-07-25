@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.10
+
+### Patch Changes
+
+- f20e70d: refactor
+
 ## 2.0.9
 
 ### Patch Changes

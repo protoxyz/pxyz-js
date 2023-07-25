@@ -1,5 +1,14 @@
 # @protoxyz/auth-react
 
+## 2.0.25
+
+### Patch Changes
+
+- f20e70d: refactor
+- Updated dependencies [f20e70d]
+  - @protoxyz/core@2.0.11
+  - @protoxyz/types@2.0.10
+
 ## 2.0.24
 
 ### Patch Changes
