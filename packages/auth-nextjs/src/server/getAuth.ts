@@ -1,12 +1,12 @@
 import { SessionUser } from '@protoxyz/types';
 import { headers as nextHeaders } from 'next/headers';
 import { verifyJWT } from './jwt';
-import { getBearerToken, getCookieToken, getPublicKey } from './util';
+import { getBearerToken, getCookieToken, getSecretKey } from './util';
 
 export async function getAuth({
-  jwtKey,
+  key,
 }: {
-  jwtKey?: string;
+  key?: string;
 }): Promise<SessionUser | null> {
   const headers = nextHeaders();
 
@@ -15,9 +15,9 @@ export async function getAuth({
 
   if (!token) return null;
 
-  const publicKey = getPublicKey({ jwtKey });
+  const secretKey = getSecretKey({ key });
 
-  const decoded = await verifyJWT({ token, pem: publicKey });
+  const decoded = await verifyJWT({ token, key: secretKey });
 
   return decoded as SessionUser;
 }

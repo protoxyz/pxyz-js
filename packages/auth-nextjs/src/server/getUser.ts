@@ -23,7 +23,7 @@ export async function getUser({
   const userResponse = await protocol.auth.users.profile({
     headers: {
       'x-protocol-hostname': domain,
-      'x-protocol-instance-pkey': publicKey,
+      'x-protocol-tenant-pkey': publicKey,
     },
   });
 

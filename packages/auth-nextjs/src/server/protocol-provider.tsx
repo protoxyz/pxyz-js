@@ -30,7 +30,7 @@ export async function ProtocolAuthProvider({
     '';
   const resolvedPublicKey =
     publicKey ??
-    headers.get('x-protocol-instance-pkey') ??
+    headers.get('x-protocol-tenant-pkey') ??
     process.env.PXYZ_AUTH_PUBLIC_KEY ??
     process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ??
     '';

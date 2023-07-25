@@ -28,9 +28,16 @@ export interface AuthProperties {
   sessionTemplate: string | undefined;
 
   // URLs
-  signInUri: string;
+  homeUri: string;
   signUpUri: string;
-  signOutUri: string;
+  signInRedirectUri: string;
+  signInUri: string;
+  signUpRedirectUri: string;
+  logoutRedirectUri: string;
+  userSettingsUri: string;
+  organizationSettingsUri: string;
+  createOrganizationUri: string;
+  createOrganizationRedirectUri: string;
 
   createdAt: Date | string;
   updatedAt: Date | string;

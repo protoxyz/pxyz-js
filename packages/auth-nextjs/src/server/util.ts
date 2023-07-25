@@ -32,13 +32,13 @@ export async function getBearerToken({ headers }: { headers: Headers }) {
   return token;
 }
 
-export function getPublicKey({ jwtKey }: { jwtKey?: string }) {
-  const publicKey = (jwtKey ?? process.env.PXYZ_AUTH_JWT_KEY ?? '')
-    .split(String.raw`\n`)
-    .join('\n');
+export function getSecretKey({ key }: { key?: string }) {
+  const secretKey = key ?? process.env.PXYZ_AUTH_SECRET_KEY ?? '';
+  // .split(String.raw`\n`)
+  // .join('\n');
 
-  if (!publicKey)
-    throw new Error('Missing PXYZ_AUTH_JWT_KEY environment variable');
+  if (!secretKey)
+    throw new Error('Missing PXYZ_AUTH_SECRET_KEY environment variable');
 
-  return publicKey;
+  return secretKey;
 }

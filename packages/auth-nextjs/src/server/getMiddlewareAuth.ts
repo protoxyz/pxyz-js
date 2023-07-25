@@ -1,14 +1,14 @@
 import { NextRequest } from 'next/server';
-import { getBearerToken, getCookieToken, getPublicKey } from './util';
+import { getBearerToken, getCookieToken, getSecretKey } from './util';
 import { verifyJWT } from './jwt';
 import { SessionUser } from '@protoxyz/types';
 
 export async function getMiddlewareAuth({
   req,
-  jwtKey,
+  key,
 }: {
   req: NextRequest;
-  jwtKey?: string;
+  key?: string;
 }) {
   const headers = req.headers;
 
@@ -17,9 +17,9 @@ export async function getMiddlewareAuth({
 
   if (!token) return null;
 
-  const publicKey = getPublicKey({ jwtKey });
+  const secretKey = getSecretKey({ key });
 
-  const decoded = await verifyJWT({ token, pem: publicKey });
+  const decoded = await verifyJWT({ token, key: secretKey });
 
   return decoded as SessionUser;
 }
