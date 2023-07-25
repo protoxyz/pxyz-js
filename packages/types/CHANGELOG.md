@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.11
+
+### Patch Changes
+
+- f581bdf: fixes
+
 ## 2.0.10
 
 ### Patch Changes
