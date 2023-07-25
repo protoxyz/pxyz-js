@@ -13,8 +13,7 @@ export interface GetUserProfileOptions extends RequestOptions {
 
 export interface UpdateUserProfileOptions extends RequestOptions {
   body: {
-    firstName?: string | null | undefined;
-    lastName?: string | null | undefined;
+    name?: string | null | undefined;
     username?: string | null | undefined;
     timezone?: string | null | undefined;
     locale?: string | null | undefined;
@@ -564,8 +563,7 @@ export interface CreateSignUpAttemptOptions extends RequestOptions {
     phoneNumber?: string;
     emailAddress?: string;
     username?: string;
-    firstName?: string;
-    lastName?: string;
+    name?: string;
     password?: string;
   };
 }
@@ -587,8 +585,7 @@ export interface UpdateSignUpAttemptOptions extends RequestOptions {
     phoneNumber?: string;
     emailAddress?: string;
     username?: string;
-    firstName?: string;
-    lastName?: string;
+    name?: string;
     password?: string;
   };
 }

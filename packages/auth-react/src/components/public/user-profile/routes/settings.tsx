@@ -47,8 +47,7 @@ export function UserSettingsRoute({}: UserSettingsOptions) {
 }
 
 const UpdateUserFormSchema = z.object({
-  firstName: z.string().min(3).max(100).optional().nullable(),
-  lastName: z.string().min(3).max(100).optional().nullable(),
+  name: z.string().min(3).max(100).optional().nullable(),
   username: z.string().min(3).max(100).optional().nullable(),
   locale: z.string().min(3).max(100).optional().nullable(),
   timezone: z.string().min(3).max(100).optional().nullable(),
@@ -70,8 +69,7 @@ export function UpdateUserForm({
   const form = useForm<z.infer<typeof UpdateUserFormSchema>>({
     resolver: zodResolver(UpdateUserFormSchema),
     defaultValues: {
-      firstName: user.firstName,
-      lastName: user.lastName,
+      name: user.name,
       username: user.username,
       locale: user.locale,
       timezone: user.timezone,
@@ -112,30 +110,14 @@ export function UpdateUserForm({
           <>
             <FormField
               control={form.control}
-              name="firstName"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <div className="flex items-center justify-between">
                     <FormLabel>First Name</FormLabel>
                   </div>
                   <FormControl>
-                    <Input name="firstName" placeholder="John" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between">
-                    <FormLabel>Last Name</FormLabel>
-                  </div>
-                  <FormControl>
-                    <Input name="lastName" placeholder="Doe" {...field} />
+                    <Input name="name" placeholder="John" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

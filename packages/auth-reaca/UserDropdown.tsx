@@ -49,8 +49,7 @@ export function UserDropdown({
 
   const fullName = useMemo(() => {
     if (!user) return '';
-    if (user.firstName || user.lastName)
-      return [user.firstName, user.lastName].join(' ');
+    if (user.name) return user.name;
     return user.username ?? 'Unknown';
   }, [user]);
 

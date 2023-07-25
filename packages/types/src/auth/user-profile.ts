@@ -5,8 +5,7 @@ import { SocialConnection } from './social-connection';
 
 export interface UserProfile {
   id: string;
-  firstName: string | null | undefined;
-  lastName: string | null | undefined;
+  name: string | null | undefined;
   imageUri: string | null | undefined;
   lastSignInAt: Date | null;
   lastActiveAt: Date | null;

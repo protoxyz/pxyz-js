@@ -10,8 +10,7 @@ export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
 
   const updateProfile = useCallback(
     async ({
-      firstName,
-      lastName,
+      name,
       username,
       locale,
       timezone,
@@ -19,8 +18,7 @@ export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
       setIsUpdating(true);
       const response = await protocol.auth.users.updateProfile({
         body: {
-          firstName,
-          lastName,
+          name,
           username,
           locale,
           timezone,

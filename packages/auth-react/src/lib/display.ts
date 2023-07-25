@@ -14,8 +14,7 @@ export const initials = (name: string[]) => {
 export const userInitials = (
   user: Pick<
     UserProfile,
-    | 'firstName'
-    | 'lastName'
+    | 'name'
     | 'username'
     | 'emailAddresses'
     | 'phoneNumbers'
@@ -27,16 +26,8 @@ export const userInitials = (
     return null;
   }
 
-  if (user.firstName && user.lastName) {
-    return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase();
-  }
-
-  if (user.firstName) {
-    return user.firstName.substring(0, 2).toUpperCase();
-  }
-
-  if (user.lastName) {
-    return user.lastName.substring(0, 2).toUpperCase();
+  if (user.name) {
+    return `${user.name.substring(0, 2)}`.toUpperCase();
   }
 
   if (user.username) {
@@ -83,8 +74,7 @@ export const organizationImage = (
 export const userDisplayName = (
   user: Pick<
     UserProfile,
-    | 'firstName'
-    | 'lastName'
+    | 'name'
     | 'username'
     | 'emailAddresses'
     | 'phoneNumbers'
@@ -96,16 +86,12 @@ export const userDisplayName = (
     return null;
   }
 
-  if (user.firstName && user.lastName) {
-    return `${user.firstName} ${user.lastName}`;
+  if (user.name) {
+    return user.name;
   }
 
-  if (user.firstName) {
-    return user.firstName;
-  }
-
-  if (user.lastName) {
-    return user.lastName;
+  if (user.name) {
+    return user.name;
   }
 
   if (user.username) {

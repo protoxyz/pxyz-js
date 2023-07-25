@@ -21,8 +21,7 @@ export interface Localization {
   signUp_label_email: string;
   signUp_label_password: string;
   signUp_label_phone: string;
-  signUp_label_firstName: string;
-  signUp_label_lastName: string;
+  signUp_label_name: string;
   signUp_submit_text: string;
   signUp_divider_text: string;
   signUp_link_haveAnAccount: string;

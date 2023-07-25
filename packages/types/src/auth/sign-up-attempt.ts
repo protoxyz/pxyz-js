@@ -7,8 +7,7 @@ export interface SignUpAttempt {
 
   userId: string | null | undefined;
 
-  firstName: string | null | undefined;
-  lastName: string | null | undefined;
+  name: string | null | undefined;
   email: string | null | undefined;
   phone: string | null | undefined;
   username: string | null | undefined;

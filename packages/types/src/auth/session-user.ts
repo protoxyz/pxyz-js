@@ -6,8 +6,7 @@ export interface SessionUser {
   aud: string;
   claims?: {
     sessionId: string;
-    firstName: string;
-    lastName: string;
+    name: string;
     username: string;
     image: string;
     email: string;
@@ -17,7 +16,7 @@ export interface SessionUser {
 
   // id: string;
   // sessionId: string;
-  // firstName: string;
+  // name: string;
   // lastName: string;
   // username: string;
   // email: string;

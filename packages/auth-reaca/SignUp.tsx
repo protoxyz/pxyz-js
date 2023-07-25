@@ -111,8 +111,7 @@ export function SignUp({
     const username = formData.get('username')?.toString();
     const password = formData.get('password')?.toString();
     const phone = formData.get('phone')?.toString();
-    const firstName = formData.get('firstName')?.toString();
-    const lastName = formData.get('lastName')?.toString();
+    const name = formData.get('name')?.toString();
     const redirectUri = redirectUrl || afterSignInUrl;
 
     const data = {
@@ -121,8 +120,7 @@ export function SignUp({
       username,
       password,
       phone,
-      firstName,
-      lastName,
+      name,
     } as CreateSignUpAttemptOptions['body'];
 
     createSignUpAttempt(data);

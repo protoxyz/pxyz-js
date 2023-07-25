@@ -59,18 +59,15 @@ export function OrganizationMembersRoute() {
                     <Avatar className="h-10 w-10 cursor-pointer">
                       <AvatarImage
                         src={userImage(member.user)}
-                        alt={member?.user?.firstName}
+                        alt={member?.user?.name}
                       />
                       <AvatarFallback>
-                        {initials([
-                          member?.user?.firstName,
-                          member?.user?.lastName,
-                        ])}
+                        {initials(member?.user?.name?.split(' '))}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col items-start gap-1  ">
                       <p className="text-lg font-medium leading-none">
-                        {member?.user?.firstName} {member?.user?.lastName}
+                        {member?.user?.name}
                       </p>
                       <p className="text-muted-foreground text-xs leading-none">
                         {member?.user?.identifier}
