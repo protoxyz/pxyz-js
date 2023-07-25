@@ -12,8 +12,8 @@ export interface SocialConnection {
   refreshToken?: string | null;
   expiresAt?: Date | null;
 
-  instanceSocialProviderId: string;
-  instanceSocialProvider: SocialProvider;
+  socialProviderId: string;
+  socialProvider: SocialProvider;
 
   createdAt: Date | string;
   updatedAt: Date | string;

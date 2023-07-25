@@ -21,12 +21,12 @@ export function SignUpButton({
   text = 'Sign up',
 }: SignUpButtonProps) {
   // const { appearance } = useProtocolAuthAppearance({ component: "signUp" });
-  const { instance, navigate } = useProtocolAuth();
+  const { tenant, navigate } = useProtocolAuth();
 
   const redirectToSignUp = useCallback(() => {
     if (mode === 'popup') return;
-    navigate(instance?.signUpUri ?? '/sign-up');
-  }, [instance, mode]);
+    navigate(tenant?.auth?.signUpUri ?? '/sign-up');
+  }, [tenant, mode]);
 
   const childContent = useMemo(() => {
     if (children) {

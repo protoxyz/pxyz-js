@@ -6,7 +6,7 @@ import { Protocol } from '@protoxyz/core';
 import React, { useEffect } from 'react';
 import { AuthAppearance, mergeAppearance } from '@protoxyz/themes';
 import {
-  AuthInstance,
+  Tenant,
   OrganizationWithRole,
   SessionUser,
   SignInAttempt,
@@ -29,7 +29,7 @@ import {
 import { Variables } from '../components/custom-ui/variables';
 
 const initialState = {
-  instance: null,
+  tenant: null,
   appearance: {},
   user: null,
   loaded: false,
@@ -41,7 +41,7 @@ const initialState = {
 };
 
 export interface ProtocolAuthProviderProps {
-  instance?: AuthInstance | null;
+  tenant?: Tenant | null;
   user?: UserProfile | null;
   userId?: string | null;
   org?: OrganizationWithRole | null;
@@ -60,7 +60,7 @@ export const ProtocolAuthProvider = ({
   children,
   domain,
   publicKey,
-  instance,
+  tenant,
   user,
   userId,
   org,
@@ -147,12 +147,12 @@ export const ProtocolAuthProvider = ({
     });
 
   /*
-   * This is the protocol state. It is used to store the protocol instance, the appearance data, and the protocol client
+   * This is the protocol state. It is used to store the protocol tenant, the appearance data, and the protocol client
    */
   const [state, setState] = React.useState<ProtocolAuthProviderState>({
     ...initialState,
-    loaded: !!instance,
-    instance: { ...instance },
+    loaded: !!tenant,
+    tenant: { ...tenant },
     user,
     userId,
     org,
@@ -196,7 +196,7 @@ export const ProtocolAuthProvider = ({
     });
 
   /*
-        Load the instance if it hasn't already been provided by the server component.
+        Load the tenant if it hasn't already been provided by the server component.
     */
   useEffect(() => {
     if (state.loaded) {
@@ -204,20 +204,20 @@ export const ProtocolAuthProvider = ({
     }
 
     async function loadInstance() {
-      const response = await state.protocol.auth.instances.getByPublicKey({
+      const response = await state.protocol.auth.tenants.getByPublicKey({
         path: { publicKey: state.publicKey ?? '' },
       });
 
-      if (response.status !== 'success' || !response.data.instance) {
-        throw new Error('Failed to get instance');
+      if (response.status !== 'success' || !response.data.tenant) {
+        throw new Error('Failed to get tenant');
       }
 
-      const instance = response.data.instance;
+      const tenant = response.data.tenant;
 
       setState((state) => ({
         ...state,
         loaded: true,
-        instance,
+        tenant,
       }));
     }
 

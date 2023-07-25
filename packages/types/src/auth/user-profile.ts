@@ -1,6 +1,5 @@
 import { OrganizationWithRole } from '..';
 import { EmailAddress } from './email-address';
-import { FeatureFlag } from './feature-flag';
 import { PhoneNumber } from './phone-number';
 import { SocialConnection } from './social-connection';
 
@@ -19,7 +18,6 @@ export interface UserProfile {
   connections: SocialConnection[];
   emailAddresses: EmailAddress[];
   phoneNumbers: PhoneNumber[];
-  featureFlags: FeatureFlag[];
   organizations: OrganizationWithRole[];
   username?: string | null | undefined;
   timezone?: string | null | undefined;

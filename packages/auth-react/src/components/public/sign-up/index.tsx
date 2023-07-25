@@ -13,7 +13,7 @@ import { CardWrapper } from '../../custom-ui/card-wrapper';
 import { Variables } from '../../custom-ui/variables';
 import {
   useProtocolAuthAppearance,
-  useProtocolAuthInstance,
+  useProtocolAuthTenant,
 } from '../../../contexts/protocol-context';
 import { CardFooterLinks } from '../../custom-ui/card-footer-links';
 import { FooterLinks } from '../../custom-ui/footer-links';
@@ -28,8 +28,8 @@ interface SignUpOptions {
 export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
   const component: AuthComponentType = 'signUp';
   const { appearance } = useProtocolAuthAppearance({ component });
-  const { instance } = useProtocolAuthInstance();
-  const usingPasswords = instance?.strategy === 'passwords';
+  const { tenant } = useProtocolAuthTenant();
+  const usingPasswords = tenant?.auth?.passwordsEnabled;
 
   return (
     <CardWrapper component={component}>
@@ -49,7 +49,7 @@ export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
           </CardDescription>
         </CardHeader>
         <CardContent className={appearance?.elements?.cardContent}>
-          <SocialLinks appearance={appearance} instance={instance} />
+          <SocialLinks appearance={appearance} tenant={tenant} />
           <Divider />
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
@@ -64,7 +64,7 @@ export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
           <Button className="w-full">Create account</Button>
           <FooterLinks
             appearance={appearance}
-            instance={instance}
+            tenant={tenant}
             usingPasswords={usingPasswords}
             component={component}
           />

@@ -13,7 +13,7 @@ interface UserConnectionsRouteOptions {}
 export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
-  const { user, instance } = useProtocolAuth();
+  const { user, tenant } = useProtocolAuth();
   const { connections } = useProtocolAuthConnectionsList({});
 
   return (
@@ -39,7 +39,7 @@ export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
           </div>
         );
       })}
-      {instance?.socialProviders?.map((provider) => {
+      {tenant?.socialProviders?.map((provider) => {
         const Icon = CompanyIcons[provider.providerKey];
         return (
           <Button variant="outline">

@@ -1,6 +1,7 @@
 export interface Domain {
-  domain: string;
-  default: boolean;
+  id: string;
+  tenantId: string;
+  name: string;
   primary: boolean;
   enabled: boolean;
 }

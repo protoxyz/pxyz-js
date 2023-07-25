@@ -1,25 +1,25 @@
 // import 'server-only';
-import { ProtocolAuthProvider } from '@protoxyz/auth-react';
+import { ProtocolAuthProvider as ProtocolAuthProviderReact } from '@protoxyz/auth-react';
 import { Protocol } from '@protoxyz/core';
 import { AuthAppearance } from '@protoxyz/themes';
-import { AuthInstance, ResponseStatus } from '@protoxyz/types';
+import { Tenant, ResponseStatus } from '@protoxyz/types';
 import { getUser } from './getUser';
 import { getAuth } from './getAuth';
 import { headers as nextheaders } from 'next/headers';
 
-interface ProtocolAuthProviderRSCProps {
+interface ProtocolAuthProviderProps {
   children: React.ReactNode;
   domain?: string;
   publicKey?: string;
   appearance?: AuthAppearance;
 }
 
-export async function ProtocolAuthProviderRSC({
+export async function ProtocolAuthProvider({
   children,
   domain,
   publicKey,
   appearance,
-}: ProtocolAuthProviderRSCProps) {
+}: ProtocolAuthProviderProps) {
   const headers = nextheaders();
 
   const resolvedDomain =
@@ -51,10 +51,10 @@ export async function ProtocolAuthProviderRSC({
     baseUrl: resolvedDomain,
   });
 
-  let instance: AuthInstance | null = null;
+  let tenant: Tenant | null = null;
 
   try {
-    const result = await protocolClient.auth.instances.getByPublicKey({
+    const result = await protocolClient.auth.tenants.getByPublicKey({
       path: { publicKey: resolvedPublicKey },
     });
     if (result.status !== ResponseStatus.Success) {
@@ -66,7 +66,7 @@ export async function ProtocolAuthProviderRSC({
           resolvedDomain,
       );
     }
-    instance = result.data.instance;
+    tenant = result.data.tenant;
   } catch (e) {
     console.log('ERROR!!!!!');
     console.log(e);
@@ -80,11 +80,11 @@ export async function ProtocolAuthProviderRSC({
   });
 
   return (
-    <ProtocolAuthProvider
+    <ProtocolAuthProviderReact
       appearance={appearance}
       domain={resolvedDomain}
       publicKey={resolvedPublicKey}
-      instance={instance}
+      tenant={tenant}
       user={user}
       userId={sessionUser?.sub}
       sessionId={sessionUser?.claims?.sessionId}
@@ -95,6 +95,6 @@ export async function ProtocolAuthProviderRSC({
       // orgRole={sessionUser?.claims?.orgRole}
     >
       {children}
-    </ProtocolAuthProvider>
+    </ProtocolAuthProviderReact>
   );
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from './client';
 import { ProtocolAuthUsersService } from './services/auth/users';
-import { ProtocolAuthInstancesService } from './services/auth/instances';
+import { ProtocolAuthTenantsService } from './services/auth/tenants';
 import { ProtocolAuthSignInAttemptsService } from './services/auth/signInAttempts';
 import { ProtocolAuthEmailAddresssService } from './services/auth/emailAddresses';
 import { ProtocolAuthPhoneNumbersService } from './services/auth/phoneNumbers';
@@ -27,7 +27,7 @@ export class Protocol {
 
   auth: {
     users: ProtocolAuthUsersService;
-    instances: ProtocolAuthInstancesService;
+    tenants: ProtocolAuthTenantsService;
     signInAttempts: ProtocolAuthSignInAttemptsService;
     signUpAttempts: ProtocolAuthSignUpAttemptsService;
     emailAddresses: ProtocolAuthEmailAddresssService;
@@ -58,7 +58,7 @@ export class Protocol {
 
     this.auth = {
       users: new ProtocolAuthUsersService(this),
-      instances: new ProtocolAuthInstancesService(this),
+      tenants: new ProtocolAuthTenantsService(this),
       signInAttempts: new ProtocolAuthSignInAttemptsService(this),
       signUpAttempts: new ProtocolAuthSignUpAttemptsService(this),
       emailAddresses: new ProtocolAuthEmailAddresssService(this),

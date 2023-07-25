@@ -1,5 +1,5 @@
 import { AuthAppearance, AuthComponentType } from '@protoxyz/themes';
-import { AuthInstance } from '@protoxyz/types';
+import { Tenant } from '@protoxyz/types';
 import { FooterLink } from './footer-link';
 
 export function FooterLinks({
@@ -7,7 +7,7 @@ export function FooterLinks({
   component,
 }: {
   appearance: AuthAppearance;
-  instance: AuthInstance;
+  tenant: Tenant;
   usingPasswords: boolean;
   component: AuthComponentType;
 }) {

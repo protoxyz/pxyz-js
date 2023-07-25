@@ -1,4 +1,4 @@
-import { InstanceSocialProvider } from './social-provider';
+import { AuthSocialProvider } from './social-provider';
 import { AuthSignInAttemptStatus } from './sign-in-attempt-status';
 import { AuthVerificationStrategy } from './verification-strategy';
 
@@ -11,7 +11,7 @@ export interface SignInAttempt {
   status: AuthSignInAttemptStatus;
   strategy: AuthVerificationStrategy | null | undefined;
   oauthProviderId?: string | null | undefined;
-  oauthProvider?: InstanceSocialProvider | null | undefined;
+  oauthProvider?: AuthSocialProvider | null | undefined;
 
   redirectUri: string | null | undefined;
   authorizeUri?: string | undefined;

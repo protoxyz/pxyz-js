@@ -2,7 +2,7 @@
 export {
   ProtocolAuthContext,
   useProtocolAuth,
-  useProtocolAuthInstance,
+  useProtocolAuthTenant,
   useProtocolAuthAppearance,
 } from './contexts/protocol-context.js';
 export { ProtocolAuthProvider } from './contexts/protocol-provider.js';

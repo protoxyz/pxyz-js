@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   ResponseStatus,
   AllowedIdentifierType,
-  AuthInstance,
+  Tenant,
   AuthSignInAttemptStatus,
   AuthVerificationStrategy,
 } from '@protoxyz/types';
@@ -23,7 +23,7 @@ import { AuthComponentType } from '@protoxyz/themes';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useProtocolAuthInstance,
+  useProtocolAuthTenant,
 } from '../../../../contexts/protocol-context';
 import { useBrandName } from '../../../../hooks/useBrand';
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
@@ -62,12 +62,12 @@ const UsernameFormSchema = z.object({
 });
 
 export function SignInIdentifierForm({
-  instance,
+  tenant,
   firstFactorIdentifierType,
   setFirstFactorIdentifierType,
   afterSignInRedirectUri,
 }: {
-  instance: AuthInstance;
+  tenant: Tenant;
   firstFactorIdentifierType: AllowedIdentifierType | null;
   setFirstFactorIdentifierType: (type: AllowedIdentifierType) => void;
   afterSignInRedirectUri?: string;
@@ -75,7 +75,7 @@ export function SignInIdentifierForm({
   const { setRoute } = useProtocolAuthSignInFlow();
   const { protocol } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
-  const usingPasswords = instance?.strategy === 'passwords';
+  const usingPasswords = tenant?.auth?.passwordsEnabled;
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
 
@@ -95,7 +95,7 @@ export function SignInIdentifierForm({
         return null;
       }
     }
-  }, [firstFactorIdentifierType, instance?.strategy]);
+  }, [firstFactorIdentifierType]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -183,32 +183,32 @@ export function SignInIdentifierForm({
 
   // const signInsEnabled = useMemo(() => {
   //     return {
-  //         email: instance?.allowedIdentifierTypes.includes("emailAddress"),
-  //         phone: instance?.allowedIdentifierTypes.includes("phoneNumber"),
-  //         username: instance?.allowedIdentifierTypes.includes("username"),
+  //         email: tenant?.allowedIdentifierTypes.includes("emailAddress"),
+  //         phone: tenant?.allowedIdentifierTypes.includes("phoneNumber"),
+  //         username: tenant?.allowedIdentifierTypes.includes("username"),
   //     };
-  // }, [instance]);
+  // }, [tenant]);
 
   const alternativeUsernameSignInsEnabled = useMemo(() => {
     return {
-      email: instance?.allowedIdentifierTypes.includes('emailAddress'),
-      phone: instance?.allowedIdentifierTypes.includes('phoneNumber'),
+      email: tenant?.auth?.emailSignInEnabled,
+      phone: tenant?.auth?.phoneSignInEnabled,
     };
-  }, [instance]);
+  }, [tenant]);
 
   const alternativeEmailSignInsEnabled = useMemo(() => {
     return {
-      username: instance?.allowedIdentifierTypes.includes('username'),
-      phone: instance?.allowedIdentifierTypes.includes('phoneNumber'),
+      username: tenant?.auth?.usernameSignInEnabled,
+      phone: tenant?.auth?.phoneSignInEnabled,
     };
-  }, [instance]);
+  }, [tenant]);
 
   const alternativePhoneSignInsEnabled = useMemo(() => {
     return {
-      username: instance?.allowedIdentifierTypes.includes('username'),
-      email: instance?.allowedIdentifierTypes.includes('emailAddress'),
+      username: tenant?.auth?.usernameSignInEnabled,
+      email: tenant?.auth?.emailSignInEnabled,
     };
-  }, [instance]);
+  }, [tenant]);
 
   if (!firstFactorIdentifierType) {
     return null;
@@ -396,27 +396,27 @@ export function SignInIdentifierForm({
   );
 }
 
-interface SIgnInRouteOptions {
+interface SignInRouteOptions {
   afterSignInRedirectUri?: string;
 }
-export function SignInRoute({ afterSignInRedirectUri }: SIgnInRouteOptions) {
+export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
   const component: AuthComponentType = 'signIn';
   const { appearance } = useProtocolAuthAppearance({ component });
-  const { instance } = useProtocolAuthInstance();
+  const { tenant } = useProtocolAuthTenant();
   const brandName = useBrandName({ component });
-  const usingPasswords = instance?.strategy === 'passwords';
+  const usingPasswords = tenant?.auth?.passwordsEnabled;
 
   const initialFirstFactorIdentifierType = useMemo(() => {
-    if (instance?.allowedIdentifierTypes.includes('emailAddress')) {
+    if (tenant?.auth?.emailSignInEnabled) {
       return 'emailAddress';
-    } else if (instance?.allowedIdentifierTypes.includes('phoneNumber')) {
+    } else if (tenant?.auth?.phoneSignInEnabled) {
       return 'phoneNumber';
-    } else if (instance?.allowedIdentifierTypes.includes('username')) {
+    } else if (tenant?.auth?.usernameSignInEnabled) {
       return 'username';
     } else {
       return null;
     }
-  }, [instance]);
+  }, [tenant]);
 
   const [firstFactorIdentifierType, setFirstFactorIdentifierType] =
     useState<AllowedIdentifierType | null>(initialFirstFactorIdentifierType);
@@ -441,12 +441,12 @@ export function SignInRoute({ afterSignInRedirectUri }: SIgnInRouteOptions) {
           </CardDescription>
         </CardHeader>
         <CardContent className={appearance?.elements?.cardContent}>
-          <SocialLinks appearance={appearance} instance={instance} />
+          <SocialLinks appearance={appearance} tenant={tenant} />
 
           <Divider />
 
           <SignInIdentifierForm
-            instance={instance}
+            tenant={tenant}
             afterSignInRedirectUri={afterSignInRedirectUri}
             firstFactorIdentifierType={firstFactorIdentifierType}
             setFirstFactorIdentifierType={setFirstFactorIdentifierType}
@@ -455,7 +455,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SIgnInRouteOptions) {
         <CardFooter className={appearance?.elements?.cardFooter}>
           <FooterLinks
             appearance={appearance}
-            instance={instance}
+            tenant={tenant}
             usingPasswords={usingPasswords}
             component={component}
           />

@@ -5,9 +5,9 @@ import {
   CreateSignInAttemptOptions,
   CreateSignUpAttemptOptions,
   EndSessionOptions,
-  GetAuthInstanceByDomainOptions,
-  GetAuthInstanceByIdOptions,
-  GetAuthInstanceByPublicKeyOptions,
+  GetTenantByDomainOptions,
+  GetTenantByIdOptions,
+  GetTenantByPublicKeyOptions,
   GetSignInAttemptOptions,
   GetSignUpAttemptOptions,
   GetUserProfileOptions,
@@ -28,7 +28,7 @@ import {
   CreateSignInAttempt201Response,
   CreateSignUpAttempt201Response,
   EndSession200Response,
-  GetAuthInstance200Response,
+  GetTenant200Response,
   GetSignInAttempt200Response,
   GetSignUpAttempt200Response,
   GetUserProfile200Response,
@@ -47,20 +47,14 @@ export interface Routes {
   '/users/profile': {
     get: (input: GetUserProfileOptions) => Promise<GetUserProfile200Response>;
   };
-  '/auth-instances/pkey/{publicKey}': {
-    get: (
-      input: GetAuthInstanceByPublicKeyOptions,
-    ) => Promise<GetAuthInstance200Response>;
+  '/tenants/pkey/{publicKey}': {
+    get: (input: GetTenantByPublicKeyOptions) => Promise<GetTenant200Response>;
   };
-  '/auth-instances/domain/{domain}': {
-    get: (
-      input: GetAuthInstanceByDomainOptions,
-    ) => Promise<GetAuthInstance200Response>;
+  '/tenants/domain/{domain}': {
+    get: (input: GetTenantByDomainOptions) => Promise<GetTenant200Response>;
   };
-  '/auth-instances/id/{id}': {
-    get: (
-      input: GetAuthInstanceByIdOptions,
-    ) => Promise<GetAuthInstance200Response>;
+  '/tenants/id/{id}': {
+    get: (input: GetTenantByIdOptions) => Promise<GetTenant200Response>;
   };
   '/sign-ins': {
     post: (

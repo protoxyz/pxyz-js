@@ -1,5 +1,5 @@
 import {
-  AuthInstance,
+  Tenant,
   EmailAddress,
   Organization,
   OrganizationInvitation,
@@ -66,9 +66,9 @@ export interface DeleteUser200Response extends Response {
   };
 }
 
-export interface GetAuthInstance200Response extends Response {
+export interface GetTenant200Response extends Response {
   data: {
-    instance: AuthInstance | null;
+    tenant: Tenant | null;
   };
 }
 

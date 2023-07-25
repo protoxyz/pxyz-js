@@ -2,7 +2,7 @@ import { RedirectToSignInProps, RedirectToSignUpProps } from '../types/auth';
 import { Protocol } from '@protoxyz/core';
 import { AuthAppearance, AuthComponentType } from '@protoxyz/themes';
 import {
-  AuthInstance,
+  Tenant,
   OrganizationWithRole,
   SessionUser,
   UserProfile,
@@ -12,7 +12,7 @@ import * as React from 'react';
 export interface ProtocolAuthProviderState {
   protocol: Protocol;
   loaded: boolean;
-  instance: AuthInstance | null;
+  tenant: Tenant | null;
   domain: string;
   publicKey: string;
 
@@ -86,7 +86,7 @@ export const useProtocolAuth = () => {
     // loaded: authCtx?.state?.loaded,
     // user: authCtx?.state?.user,
     // userId: authCtx?.state?.userId,
-    // instance: authCtx?.state?.instance,
+    // tenant: authCtx?.state?.tenant,
     // org: authCtx?.state?.org,
     // orgId: authCtx?.state?.orgId,
     // orgRole: authCtx?.state?.orgRole,
@@ -99,16 +99,16 @@ export const useProtocolAuth = () => {
   };
 };
 
-export const useProtocolAuthInstance = () => {
+export const useProtocolAuthTenant = () => {
   const ctx = React.useContext(ProtocolAuthContext) as ProtocolAuthContextState;
 
   if (!ctx) {
     throw new Error(
-      'useProtocolAuthInstance must be used within a ProtocolAuthProvider',
+      'useProtocolAuthTenant must be used within a ProtocolAuthProvider',
     );
   }
 
-  return { instance: ctx?.state?.instance };
+  return { tenant: ctx?.state?.tenant };
 };
 
 export const useProtocolAuthAppearance = ({

@@ -1,16 +1,16 @@
 import { AuthAppearance } from '@protoxyz/themes';
-import { AuthInstance } from '@protoxyz/types';
+import { Tenant } from '@protoxyz/types';
 import { IconButton } from './icon-button';
 import CompanyIcons from '../icons/companies';
 
 export function SocialLinks({
-  instance,
+  tenant,
 }: {
   appearance: AuthAppearance;
-  instance: AuthInstance;
+  tenant: Tenant;
 }) {
   const filteredProviders =
-    instance?.socialProviders?.filter((p) => p.enabled) ?? [];
+    tenant?.socialProviders?.filter((p) => p.enabled) ?? [];
   let gridCols = '';
 
   switch (filteredProviders.length) {

@@ -457,21 +457,21 @@ export interface EndSessionOptions extends RequestOptions {
   path?: never;
 }
 
-export interface GetAuthInstanceByPublicKeyOptions extends RequestOptions {
+export interface GetTenantByPublicKeyOptions extends RequestOptions {
   body?: never;
   path: {
     publicKey: string;
   };
 }
 
-export interface GetAuthInstanceByDomainOptions extends RequestOptions {
+export interface GetTenantByDomainOptions extends RequestOptions {
   body?: never;
   path: {
     domain: string;
   };
 }
 
-export interface GetAuthInstanceByIdOptions extends RequestOptions {
+export interface GetTenantByIdOptions extends RequestOptions {
   body?: never;
   path: {
     id: string;
@@ -481,7 +481,7 @@ export interface GetAuthInstanceByIdOptions extends RequestOptions {
 export interface CreateSignInAttemptOptions extends RequestOptions {
   path?: never;
   body: {
-    instanceId?: string;
+    tenantId?: string;
     identifier?: string;
     strategy: AuthVerificationStrategy;
     password?: string;

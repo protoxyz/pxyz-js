@@ -5,7 +5,7 @@ export * from './pxyz';
 export * from './paths';
 export * from './requests';
 export * from './services/auth/emailAddresses';
-export * from './services/auth/instances';
+export * from './services/auth/tenants';
 export * from './services/auth/socialConnections';
 export * from './services/auth/signInAttempts';
 export * from './services/auth/signUpAttempts';

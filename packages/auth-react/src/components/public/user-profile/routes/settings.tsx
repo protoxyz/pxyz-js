@@ -64,7 +64,7 @@ export function UpdateUserForm({
   onSubmit,
   afterUpdateUserRedirectUri,
 }: UpdateUserFormOptions) {
-  const { user, instance, navigate } = useProtocolAuth();
+  const { user, tenant, navigate } = useProtocolAuth();
   const { updateProfile, isUpdating, updateError } = useProtocolAuthProfile({});
 
   const form = useForm<z.infer<typeof UpdateUserFormSchema>>({
@@ -108,7 +108,7 @@ export function UpdateUserForm({
           </Avatar>
         </FormItem>
 
-        {instance.identifierName && (
+        {tenant.auth?.nameRequired && (
           <>
             <FormField
               control={form.control}
@@ -144,7 +144,7 @@ export function UpdateUserForm({
           </>
         )}
 
-        {instance.identifierUsername && (
+        {tenant.auth?.usernameSignInEnabled && (
           <FormField
             control={form.control}
             name="username"

@@ -1,21 +1,37 @@
-import { Stack, StackRepository, StackResource, StackService } from '.';
-
 export const CoreEvent = {
   user_organization_created: 'user_organization.created',
   user_organization_updated: 'user_organization.updated',
   user_organization_deleted: 'user_organization.deleted',
 
-  project_created: 'project.created',
-  project_updated: 'project.updated',
-  project_deleted: 'project.deleted',
+  tenant_created: 'tenant.created',
+  tenant_updated: 'tenant.updated',
+  tenant_deleted: 'tenant.deleted',
 
-  starter_kit_created: 'starter_kit.created',
-  starter_kit_updated: 'starter_kit.updated',
-  starter_kit_deleted: 'starter_kit.deleted',
+  api_key_created: 'api_key.created',
+  api_key_deleted: 'api_key.deleted',
 
-  theme_created: 'theme.created',
-  theme_updated: 'theme.updated',
-  theme_deleted: 'theme.deleted',
+  domain_created: 'domain.created',
+  domain_updated: 'domain.updated',
+  domain_deleted: 'domain.deleted',
+
+  domain_verification_prepared: 'domain.verification_prepared',
+  domain_verification_attempted: 'domain.verification_attempted',
+  domain_verification_completed: 'domain.verification_completed',
+
+  domain_certificate_created: 'domain_certificate.created',
+  domain_certificate_updated: 'domain_certificate.updated',
+  domain_certificate_deleted: 'domain_certificate.deleted',
+
+  domain_certificate_verification_prepared:
+    'domain_certificate.verification_prepared',
+  domain_certificate_verification_attempted:
+    'domain_certificate.verification_attempted',
+  domain_certificate_verification_completed:
+    'domain_certificate.verification_completed',
+
+  webhook_created: 'webhook.created',
+  webhook_updated: 'webhook.updated',
+  webhook_deleted: 'webhook.deleted',
 };
 export type CoreEvent = (typeof CoreEvent)[keyof typeof CoreEvent];
 
@@ -127,116 +143,9 @@ export const AuthEvent = {
   session_created: 'session.created',
   session_updated: 'session.updated',
   session_deleted: 'session.deleted',
-
-  api_key_created: 'api_key.created',
-  api_key_deleted: 'api_key.deleted',
-
-  domain_created: 'domain.created',
-  domain_updated: 'domain.updated',
-  domain_deleted: 'domain.deleted',
-
-  domain_verification_prepared: 'domain.verification_prepared',
-  domain_verification_attempted: 'domain.verification_attempted',
-  domain_verification_completed: 'domain.verification_completed',
-
-  domain_certificate_created: 'domain_certificate.created',
-  domain_certificate_updated: 'domain_certificate.updated',
-  domain_certificate_deleted: 'domain_certificate.deleted',
-
-  domain_certificate_verification_prepared:
-    'domain_certificate.verification_prepared',
-  domain_certificate_verification_attempted:
-    'domain_certificate.verification_attempted',
-  domain_certificate_verification_completed:
-    'domain_certificate.verification_completed',
-
-  webhook_created: 'webhook.created',
-  webhook_updated: 'webhook.updated',
-  webhook_deleted: 'webhook.deleted',
 };
 export type AuthEvent = (typeof AuthEvent)[keyof typeof AuthEvent];
 
-export const StackEvent = {
-  stack_created: 'stack.created',
-  stack_updated: 'stack.updated',
-  stack_deleted: 'stack.deleted',
-
-  service_created: 'stack_service.created',
-  service_updated: 'stack_service.updated',
-  service_deleted: 'stack_service.deleted',
-
-  resource_created: 'stack_resource.created',
-  resource_updated: 'stack_resource.updated',
-  resource_deleted: 'stack_resource.deleted',
-
-  repository_created: 'stack_repository.created',
-  repository_updated: 'stack_repository.updated',
-  repository_deleted: 'stack_repository.deleted',
-};
-export type StackEvent = (typeof StackEvent)[keyof typeof StackEvent];
-
-export type ProtocolEvent = CoreEvent & AuthEvent & BillingEvent & StackEvent;
-
-export type StackEventRepositoryCreatedPayload = {
-  repository: StackRepository;
-};
-
-export type StackEventRepositoryUpdatedPayload = {
-  repository: StackRepository;
-};
-
-export type StackEventRepositoryDeletedPayload = {
-  repository: StackRepository;
-};
-
-export type StackEventResourceCreatedPayload = {
-  resource: StackResource;
-};
-
-export type StackEventResourceUpdatedPayload = {
-  resource: StackResource;
-};
-
-export type StackEventResourceDeletedPayload = {
-  resource: StackResource;
-};
-
-export type StackEventServiceCreatedPayload = {
-  service: StackService;
-};
-
-export type StackEventServiceUpdatedPayload = {
-  service: StackService;
-};
-
-export type StackEventServiceDeletedPayload = {
-  service: StackService;
-};
-
-export type StackEventStackCreatedPayload = {
-  stack: Stack;
-};
-
-export type StackEventStackUpdatedPayload = {
-  stack: Stack;
-};
-
-export type StackEventStackDeletedPayload = {
-  stack: Stack;
-};
-
-export type StacksEventPayload =
-  | StackEventRepositoryCreatedPayload
-  | StackEventRepositoryUpdatedPayload
-  | StackEventRepositoryDeletedPayload
-  | StackEventResourceCreatedPayload
-  | StackEventResourceUpdatedPayload
-  | StackEventResourceDeletedPayload
-  | StackEventServiceCreatedPayload
-  | StackEventServiceUpdatedPayload
-  | StackEventServiceDeletedPayload
-  | StackEventStackCreatedPayload
-  | StackEventStackUpdatedPayload
-  | StackEventStackDeletedPayload;
+export type ProtocolEvent = CoreEvent & AuthEvent & BillingEvent;
 
 export type AuthEventPayload = any;

@@ -1,4 +1,4 @@
-export interface InstanceSocialProvider {
+export interface AuthSocialProvider {
   id: string;
   providerKey: string;
   enabled: boolean;
