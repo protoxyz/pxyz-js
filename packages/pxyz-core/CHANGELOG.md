@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.11
+
+### Patch Changes
+
+- f20e70d: refactor
+- Updated dependencies [f20e70d]
+  - @protoxyz/types@2.0.10
+
 ## 2.0.10
 
 ### Patch Changes
