@@ -17,7 +17,6 @@ export interface SessionUser {
   // id: string;
   // sessionId: string;
   // name: string;
-  // lastName: string;
   // username: string;
   // email: string;
   // emailVerified: boolean;
