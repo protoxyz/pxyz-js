@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.12
+
+### Patch Changes
+
+- 33a9b2e: fix sessio user
+
 ## 2.0.11
 
 ### Patch Changes

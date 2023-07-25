@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.13
+
+### Patch Changes
+
+- 33a9b2e: fix sessio user
+- Updated dependencies [33a9b2e]
+  - @protoxyz/types@2.0.12
+
 ## 2.0.12
 
 ### Patch Changes
