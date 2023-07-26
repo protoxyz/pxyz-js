@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.14
+
+### Patch Changes
+
+- 17cb9b2: get token in middleware
+
 ## 2.1.13
 
 ### Patch Changes
