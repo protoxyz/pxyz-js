@@ -1,6 +1,10 @@
+import { AuthVerificationStrategy } from '..';
+
 export type AllowedFirstFactorStrategy =
-  | 'password'
-  | 'email_code'
-  | 'email_link'
-  | 'phone_code'
-  | 'oauth';
+  | AuthVerificationStrategy.username_password
+  | AuthVerificationStrategy.email_password
+  | AuthVerificationStrategy.phone_password
+  | AuthVerificationStrategy.email_link
+  | AuthVerificationStrategy.email_code
+  | AuthVerificationStrategy.phone_code
+  | AuthVerificationStrategy.oauth;

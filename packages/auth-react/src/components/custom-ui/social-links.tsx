@@ -2,6 +2,7 @@ import { AuthAppearance } from '@protoxyz/themes';
 import { Tenant } from '@protoxyz/types';
 import { IconButton } from './icon-button';
 import CompanyIcons from '../icons/companies';
+import { Divider } from './divider';
 
 export function SocialLinks({
   tenant,
@@ -30,14 +31,17 @@ export function SocialLinks({
   }
 
   return (
-    <div className={`grid ${gridCols} gap-x-6 gap-y-3`}>
-      {filteredProviders?.map((provider) => (
-        <IconButton
-          key={provider.providerKey}
-          icon={CompanyIcons[provider.providerKey]}
-          text={`Continue with ${provider.providerKey}`}
-        />
-      ))}
-    </div>
+    <>
+      <div className={`grid ${gridCols} gap-x-6 gap-y-3`}>
+        {filteredProviders?.map((provider) => (
+          <IconButton
+            key={provider.providerKey}
+            icon={CompanyIcons[provider.providerKey]}
+            text={`Continue with ${provider.providerKey}`}
+          />
+        ))}
+      </div>
+      <Divider />
+    </>
   );
 }

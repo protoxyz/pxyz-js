@@ -203,7 +203,7 @@ export const ProtocolAuthProvider = ({
       return;
     }
 
-    async function loadInstance() {
+    async function loadTenant() {
       const response = await state.protocol.auth.tenants.getByPublicKey({
         path: { publicKey: state.publicKey ?? '' },
       });
@@ -221,7 +221,7 @@ export const ProtocolAuthProvider = ({
       }));
     }
 
-    loadInstance();
+    loadTenant();
   }, []);
 
   if (!state.loaded) return null;

@@ -57,6 +57,7 @@ export async function ProtocolAuthProvider({
     const result = await protocolClient.auth.tenants.getByPublicKey({
       path: { publicKey: resolvedPublicKey },
     });
+
     if (result.status !== ResponseStatus.Success) {
       console.log(result);
       throw new Error(

@@ -18,9 +18,9 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --minify --dts",
+    "build": "tsup src/index.ts --format esm,cjs --minify --dts --sourcemap",
     "clean": "rm -rf .turbo node_modules dist",
-    "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --sourcemap",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
     "type-check": "tsc --noEmit"
   },

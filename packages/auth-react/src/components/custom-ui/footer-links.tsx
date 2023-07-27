@@ -14,15 +14,15 @@ export function FooterLinks({
   const links = [];
 
   if (component === 'signIn') {
-    if (usingPasswords) {
-      links.push(
-        <FooterLink
-          key={'forgot-password'}
-          text="Forgot Password"
-          href="/forgot-password"
-        />,
-      );
-    }
+    // if (usingPasswords) {
+    //   links.push(
+    //     <FooterLink
+    //       key={'forgot-password'}
+    //       text="Forgot Password"
+    //       href="/forgot-password"
+    //     />,
+    //   );
+    // }
     links.push(
       <FooterLink
         key={'create-account'}

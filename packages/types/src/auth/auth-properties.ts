@@ -1,7 +1,18 @@
 export interface AuthProperties {
   id: string;
-
   tenantId: string;
+
+  // strategy
+  strategyUsernamePasswordEnabled: boolean;
+  strategyEmailPasswordEnabled: boolean;
+  strategyEmailLinkEnabled: boolean;
+  strategyEmailCodeEnabled: boolean;
+  strategyPhoneCodeEnabled: boolean;
+  strategyPhonePasswordEnabled: boolean;
+  strategyOAuthEnabled: boolean;
+  strategyAuthenticatorCodeEnabled: boolean;
+  strategySecurityKeyEnabled: boolean;
+
   passwordsEnabled: boolean;
   emailSignInEnabled: boolean;
   phoneSignInEnabled: boolean;
