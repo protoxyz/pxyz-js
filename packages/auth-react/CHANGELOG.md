@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.30
+
+### Patch Changes
+
+- cc2c943: don't show the alternative sign in strategy dropdown if there aren't any alternatives
+
 ## 2.0.29
 
 ### Patch Changes
