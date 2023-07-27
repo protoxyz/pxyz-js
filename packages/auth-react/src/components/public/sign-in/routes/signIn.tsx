@@ -187,6 +187,10 @@ function AlternativeSignInSelect({
   }[];
   setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
 }) {
+  if (alternativeStrategies.length === 0) {
+    return null;
+  }
+
   return (
     <Select
       onValueChange={(val: AllowedFirstFactorStrategy) =>
