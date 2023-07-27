@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.13
+
+### Patch Changes
+
+- 202c880: clean up
+
 ## 2.0.12
 
 ### Patch Changes
