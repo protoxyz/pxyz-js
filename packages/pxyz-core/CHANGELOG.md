@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.14
+
+### Patch Changes
+
+- 202c880: clean up
+- Updated dependencies [202c880]
+  - @protoxyz/types@2.0.13
+
 ## 2.0.13
 
 ### Patch Changes

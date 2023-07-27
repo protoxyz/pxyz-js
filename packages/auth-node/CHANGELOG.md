@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.19
+
+### Patch Changes
+
+- 202c880: clean up
+- Updated dependencies [202c880]
+  - @protoxyz/core@2.0.14
+  - @protoxyz/types@2.0.13
+
 ## 2.0.18
 
 ### Patch Changes
