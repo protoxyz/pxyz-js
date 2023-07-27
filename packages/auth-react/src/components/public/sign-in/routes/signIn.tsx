@@ -155,6 +155,7 @@ function handleResponse(
   setRoute: (route: SignInFlowRoute) => void,
   setCreateSignInError: (error: string) => void,
 ) {
+  console.log('handleREsponse', response);
   if (response.status === ResponseStatus.Success) {
     setSignIn(response.data.signInAttempt);
     switch (response.data.signInAttempt.status) {
@@ -911,7 +912,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
           {firstFactorStrategy === AuthVerificationStrategy.email_code && (
             <SignInEmailCodeForm
               tenant={tenant}
-              afterSignInRedirectUri={afterSignInRedirectUri}
+              afterSignInRedirectUri={
+                afterSignInRedirectUri ?? tenant.auth.homeUri
+              }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
             />
@@ -920,7 +923,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
           {firstFactorStrategy === AuthVerificationStrategy.email_link && (
             <SignInEmailLinkForm
               tenant={tenant}
-              afterSignInRedirectUri={afterSignInRedirectUri}
+              afterSignInRedirectUri={
+                afterSignInRedirectUri ?? tenant.auth.homeUri
+              }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
             />
@@ -929,7 +934,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
           {firstFactorStrategy === AuthVerificationStrategy.phone_code && (
             <SignInPhoneCodeForm
               tenant={tenant}
-              afterSignInRedirectUri={afterSignInRedirectUri}
+              afterSignInRedirectUri={
+                afterSignInRedirectUri ?? tenant.auth.homeUri
+              }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
             />
@@ -938,7 +945,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
           {firstFactorStrategy === AuthVerificationStrategy.email_password && (
             <SignInEmailPasswordForm
               tenant={tenant}
-              afterSignInRedirectUri={afterSignInRedirectUri}
+              afterSignInRedirectUri={
+                afterSignInRedirectUri ?? tenant.auth.homeUri
+              }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
             />
@@ -948,7 +957,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             AuthVerificationStrategy.username_password && (
             <SignInUsernamePasswordForm
               tenant={tenant}
-              afterSignInRedirectUri={afterSignInRedirectUri}
+              afterSignInRedirectUri={
+                afterSignInRedirectUri ?? tenant.auth.homeUri
+              }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
             />
@@ -957,7 +968,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
           {firstFactorStrategy === AuthVerificationStrategy.phone_password && (
             <SignInPhonePasswordForm
               tenant={tenant}
-              afterSignInRedirectUri={afterSignInRedirectUri}
+              afterSignInRedirectUri={
+                afterSignInRedirectUri ?? tenant.auth.homeUri
+              }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
             />

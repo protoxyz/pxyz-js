@@ -93,7 +93,39 @@ export function SignInVerifyFirstFactorRoute() {
             <CardDescription
               className={appearance?.elements?.cardHeaderDescription}
             >
-              to continue to {brandName}
+              we've emailed a verification code to {signIn.identifier}
+            </CardDescription>
+          </CardHeader>
+        )}
+
+        {signIn.strategy === AuthVerificationStrategy.email_link && (
+          <CardHeader className={appearance?.elements?.cardHeader}>
+            <BrandLogoWrapper>
+              <BrandLogo component={component} />
+            </BrandLogoWrapper>
+            <CardTitle className={appearance?.elements?.cardHeaderTitle}>
+              Check your email
+            </CardTitle>
+            <CardDescription
+              className={appearance?.elements?.cardHeaderDescription}
+            >
+              we've emailed a login link to {signIn.identifier}
+            </CardDescription>
+          </CardHeader>
+        )}
+
+        {signIn.strategy === AuthVerificationStrategy.phone_code && (
+          <CardHeader className={appearance?.elements?.cardHeader}>
+            <BrandLogoWrapper>
+              <BrandLogo component={component} />
+            </BrandLogoWrapper>
+            <CardTitle className={appearance?.elements?.cardHeaderTitle}>
+              Check your phone
+            </CardTitle>
+            <CardDescription
+              className={appearance?.elements?.cardHeaderDescription}
+            >
+              we've texted a verification code to {signIn.identifier}
             </CardDescription>
           </CardHeader>
         )}
