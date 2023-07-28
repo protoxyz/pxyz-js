@@ -92,7 +92,10 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
     }
     setCreatingSignUp(true);
 
-    const response = await protocol.auth.signUpAttempts.create({
+    const response = await protocol.auth.signUpAttempts.update({
+      path: {
+        id: signUp.id,
+      },
       body: {
         ...values,
       },
