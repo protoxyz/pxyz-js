@@ -106,6 +106,7 @@ export function SignUpForm({
     const response = await protocol.auth.signUpAttempts.create({
       body: {
         ...values,
+        redirectUri: afterSignUpRedirectUri,
       },
     });
 

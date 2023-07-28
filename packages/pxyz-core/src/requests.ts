@@ -564,6 +564,7 @@ export interface CreateSignUpAttemptOptions extends RequestOptions {
     username?: string;
     name?: string;
     password?: string;
+    redirectUri?: string;
   };
 }
 
@@ -585,6 +586,7 @@ export interface UpdateSignUpAttemptOptions extends RequestOptions {
     username?: string;
     name?: string;
     password?: string;
+    redirectUri?: string;
   };
 }
 
