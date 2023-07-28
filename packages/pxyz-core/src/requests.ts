@@ -559,9 +559,8 @@ export interface CreateSignUpAttemptOptions extends RequestOptions {
   path?: never;
   body: {
     providerKey?: string;
-    strategy?: AuthVerificationStrategy;
-    phoneNumber?: string;
-    emailAddress?: string;
+    phone?: string;
+    email?: string;
     username?: string;
     name?: string;
     password?: string;
@@ -581,9 +580,8 @@ export interface UpdateSignUpAttemptOptions extends RequestOptions {
   };
   body: {
     providerKey?: string;
-    strategy?: AuthVerificationStrategy;
-    phoneNumber?: string;
-    emailAddress?: string;
+    phone?: string;
+    email?: string;
     username?: string;
     name?: string;
     password?: string;
