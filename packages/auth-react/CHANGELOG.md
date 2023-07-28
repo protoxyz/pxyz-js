@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.31
+
+### Patch Changes
+
+- 39b6192: signup and additional fields
+- Updated dependencies [39b6192]
+  - @protoxyz/core@2.0.15
+
 ## 2.0.30
 
 ### Patch Changes

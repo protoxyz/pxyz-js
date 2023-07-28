@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.15
+
+### Patch Changes
+
+- 39b6192: signup and additional fields
+
 ## 2.0.14
 
 ### Patch Changes
