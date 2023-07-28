@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.34
+
+### Patch Changes
+
+- af2994f: add redirectUri
+- Updated dependencies [af2994f]
+  - @protoxyz/core@2.0.16
+
 ## 2.0.33
 
 ### Patch Changes
