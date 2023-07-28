@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.32
+
+### Patch Changes
+
+- 9dd7410: update instead of create
+
 ## 2.0.31
 
 ### Patch Changes
