@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.16
+
+### Patch Changes
+
+- af2994f: add redirectUri
+
 ## 2.0.15
 
 ### Patch Changes

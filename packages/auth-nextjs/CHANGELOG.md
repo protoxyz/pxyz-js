@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.17
+
+### Patch Changes
+
+- Updated dependencies [af2994f]
+  - @protoxyz/auth-react@2.0.34
+  - @protoxyz/core@2.0.16
+
 ## 2.1.16
 
 ### Patch Changes
