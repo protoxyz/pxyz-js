@@ -98,7 +98,7 @@ function getAlternativeFirstFactorStrategiesFor(
 
   if (
     currentStrategy !== AuthVerificationStrategy.email_link &&
-    tenant?.auth?.strategyEmailCodeEnabled
+    tenant?.auth?.strategyEmailLinkEnabled
   ) {
     strategies.push({
       name: 'Email Link',
