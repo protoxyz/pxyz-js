@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.35
+
+### Patch Changes
+
+- dea5777: fix bug
+
 ## 2.0.34
 
 ### Patch Changes
