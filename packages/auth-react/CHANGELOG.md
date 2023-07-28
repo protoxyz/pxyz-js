@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.33
+
+### Patch Changes
+
+- 918c942: redirect after sign up
+
 ## 2.0.32
 
 ### Patch Changes
