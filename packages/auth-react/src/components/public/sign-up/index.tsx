@@ -48,6 +48,7 @@ export function handleSignUpResponse(
   setSignUp: (signUp: SignUpAttempt) => void,
   setRoute: (route: SignUpFlowRoute) => void,
   setCreateSignUpError: (error: string) => void,
+  navigate: (uri: string) => void,
 ) {
   if (response.status === ResponseStatus.Success) {
     setSignUp(response.data.signUpAttempt);
@@ -69,7 +70,8 @@ export function handleSignUpResponse(
         break;
       }
       case AuthSignUpAttemptStatus.complete: {
-        setRoute(SignUpFlowRoute['signUp:complete']);
+        setRoute(SignUpFlowRoute['signUp:success']);
+        navigate(response.data.signUpAttempt.redirectUri);
         break;
       }
     }

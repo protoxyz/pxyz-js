@@ -49,7 +49,7 @@ export function SignUpForm({
   afterSignUpRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignUpFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignUp } = useProtocolAuthClient();
   const [creatingSignUp, setCreatingSignUp] = useState(false);
   const [createSignUpError, setCreateSignUpError] = useState<string>('');
@@ -109,7 +109,13 @@ export function SignUpForm({
       },
     });
 
-    handleSignUpResponse(response, setSignUp, setRoute, setCreateSignUpError);
+    handleSignUpResponse(
+      response,
+      setSignUp,
+      setRoute,
+      setCreateSignUpError,
+      navigate,
+    );
 
     setCreatingSignUp(false);
   }

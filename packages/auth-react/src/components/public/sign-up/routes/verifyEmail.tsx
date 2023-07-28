@@ -27,7 +27,7 @@ import { handleSignUpResponse } from '..';
 
 export function SignUpVerifyEmailRoute() {
   const component: AuthComponentType = 'signUp';
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { signUp, setSignUp } = useProtocolAuthClient();
   const { setRoute } = useProtocolAuthSignUpFlow();
   const { appearance } = useProtocolAuthAppearance({ component });
@@ -54,7 +54,13 @@ export function SignUpVerifyEmailRoute() {
         },
       });
 
-    handleSignUpResponse(verifyResponse, setSignUp, setRoute, setError);
+    handleSignUpResponse(
+      verifyResponse,
+      setSignUp,
+      setRoute,
+      setError,
+      navigate,
+    );
   };
 
   const prepareVerification = async () => {

@@ -41,7 +41,7 @@ import { handleSignUpResponse } from '..';
 
 export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
   const { setRoute } = useProtocolAuthSignUpFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { signUp, setSignUp } = useProtocolAuthClient();
   const [creatingSignUp, setCreatingSignUp] = useState(false);
   const [createSignUpError, setCreateSignUpError] = useState<string>('');
@@ -101,7 +101,13 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
       },
     });
 
-    handleSignUpResponse(response, setSignUp, setRoute, setCreateSignUpError);
+    handleSignUpResponse(
+      response,
+      setSignUp,
+      setRoute,
+      setCreateSignUpError,
+      navigate,
+    );
 
     setCreatingSignUp(false);
   }
