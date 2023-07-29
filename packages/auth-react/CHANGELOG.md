@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.36
+
+### Patch Changes
+
+- e3836b5: set cookie client side
+
 ## 2.0.35
 
 ### Patch Changes
