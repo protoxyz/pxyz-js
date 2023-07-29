@@ -32,6 +32,7 @@ import { Button } from '../../../ui/button';
 import { Input } from '../../../ui/input';
 import { cn } from '../../../../lib/utils';
 import { Spinner } from '../../../ui/spinner';
+import { handleSignInResponse } from '..';
 
 export function SignInVerifyFirstFactorRoute() {
   const component: AuthComponentType = 'signIn';
@@ -179,7 +180,7 @@ export function SignInVerifyFirstFactorForm({
   setError: (error: string) => void;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, tenant } = useProtocolAuth();
   const { signIn, setSignIn } = useProtocolAuthClient();
   const [verifying, setVerifying] = useState(false);
 
@@ -230,24 +231,26 @@ export function SignInVerifyFirstFactorForm({
         },
       });
 
-    if (signInResponse.status === ResponseStatus.Success) {
-      setSignIn(signInResponse.data.signInAttempt);
+    handleSignInResponse(signInResponse, tenant, setSignIn, setRoute, setError);
 
-      switch (signInResponse.data.signInAttempt.status) {
-        case AuthSignInAttemptStatus.needs_factor_two: {
-          setRoute(SignInFlowRoute['signIn:verifySecondFactor']);
-          break;
-        }
-        case AuthSignInAttemptStatus.complete: {
-          setRoute(SignInFlowRoute['signIn:success']);
-          navigate(signInResponse.data.signInAttempt.redirectUri);
-          break;
-        }
-      }
-    } else {
-      console.log('error', signInResponse);
-      setError(signInResponse.error);
-    }
+    // if (signInResponse.status === ResponseStatus.Success) {
+    //   setSignIn(signInResponse.data.signInAttempt);
+
+    //   switch (signInResponse.data.signInAttempt.status) {
+    //     case AuthSignInAttemptStatus.needs_factor_two: {
+    //       setRoute(SignInFlowRoute['signIn:verifySecondFactor']);
+    //       break;
+    //     }
+    //     case AuthSignInAttemptStatus.complete: {
+    //       setRoute(SignInFlowRoute['signIn:success']);
+    //       navigate(signInResponse.data.signInAttempt.redirectUri);
+    //       break;
+    //     }
+    //   }
+    // } else {
+    //   console.log('error', signInResponse);
+    //   setError(signInResponse.error);
+    // }
   }
 
   function onInvalid(errors: any) {

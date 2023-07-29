@@ -54,6 +54,9 @@ import {
 import { useProtocolAuthClient } from '../../../../contexts/client-context';
 import { CreateSignInAttempt201Response } from '@protoxyz/core';
 import { Spinner } from '../../../ui/spinner';
+import Cookies from 'js-cookie';
+import { setSessionCookie } from '../../../../lib/cookies';
+import { handleSignInResponse } from '..';
 
 const EmailLinkFormSchema = z.object({
   emailAddress: z.string().email(),
@@ -149,34 +152,6 @@ function getAlternativeFirstFactorStrategiesFor(
   return strategies;
 }
 
-function handleResponse(
-  response: CreateSignInAttempt201Response,
-  setSignIn: (signIn: SignInAttempt) => void,
-  setRoute: (route: SignInFlowRoute) => void,
-  setCreateSignInError: (error: string) => void,
-) {
-  console.log('handleREsponse', response);
-  if (response.status === ResponseStatus.Success) {
-    setSignIn(response.data.signInAttempt);
-    switch (response.data.signInAttempt.status) {
-      case AuthSignInAttemptStatus.needs_factor_one: {
-        setRoute(SignInFlowRoute['signIn:verifyFirstFactor']);
-        break;
-      }
-      case AuthSignInAttemptStatus.needs_factor_two: {
-        setRoute(SignInFlowRoute['signIn:verifySecondFactor']);
-        break;
-      }
-      case AuthSignInAttemptStatus.complete: {
-        setRoute(SignInFlowRoute['signIn:complete']);
-        break;
-      }
-    }
-  } else {
-    setCreateSignInError(response.error);
-  }
-}
-
 function AlternativeSignInSelect({
   alternativeStrategies,
   setFirstFactorStrategy,
@@ -251,7 +226,13 @@ export function SignInPhoneCodeForm({
       },
     });
 
-    handleResponse(response, setSignIn, setRoute, setCreateSignInError);
+    handleSignInResponse(
+      response,
+      tenant,
+      setSignIn,
+      setRoute,
+      setCreateSignInError,
+    );
 
     setCreatingSignIn(false);
 
@@ -355,7 +336,13 @@ export function SignInPhonePasswordForm({
       },
     });
 
-    handleResponse(response, setSignIn, setRoute, setCreateSignInError);
+    handleSignInResponse(
+      response,
+      tenant,
+      setSignIn,
+      setRoute,
+      setCreateSignInError,
+    );
 
     setCreatingSignIn(false);
 
@@ -457,7 +444,13 @@ export function SignInEmailCodeForm({
       },
     });
 
-    handleResponse(response, setSignIn, setRoute, setCreateSignInError);
+    handleSignInResponse(
+      response,
+      tenant,
+      setSignIn,
+      setRoute,
+      setCreateSignInError,
+    );
 
     setCreatingSignIn(false);
   }
@@ -564,7 +557,13 @@ export function SignInEmailLinkForm({
       },
     });
 
-    handleResponse(response, setSignIn, setRoute, setCreateSignInError);
+    handleSignInResponse(
+      response,
+      tenant,
+      setSignIn,
+      setRoute,
+      setCreateSignInError,
+    );
 
     setCreatingSignIn(false);
   }
@@ -666,7 +665,13 @@ export function SignInEmailPasswordForm({
       },
     });
 
-    handleResponse(response, setSignIn, setRoute, setCreateSignInError);
+    handleSignInResponse(
+      response,
+      tenant,
+      setSignIn,
+      setRoute,
+      setCreateSignInError,
+    );
 
     setCreatingSignIn(false);
   }
@@ -784,7 +789,13 @@ export function SignInUsernamePasswordForm({
       },
     });
 
-    handleResponse(response, setSignIn, setRoute, setCreateSignInError);
+    handleSignInResponse(
+      response,
+      tenant,
+      setSignIn,
+      setRoute,
+      setCreateSignInError,
+    );
 
     setCreatingSignIn(false);
   }
