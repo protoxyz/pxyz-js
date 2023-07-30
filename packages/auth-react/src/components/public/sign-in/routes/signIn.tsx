@@ -1,11 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  ResponseStatus,
   Tenant,
-  AuthSignInAttemptStatus,
   AuthVerificationStrategy,
   AllowedFirstFactorStrategy,
-  SignInAttempt,
 } from '@protoxyz/types';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -47,15 +44,9 @@ import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { SocialLinks } from '../../../custom-ui/social-links';
 import { FooterLinks } from '../../../custom-ui/footer-links';
 import { CardFooterLinks } from '../../../custom-ui/card-footer-links';
-import {
-  SignInFlowRoute,
-  useProtocolAuthSignInFlow,
-} from '../../../../contexts/flow-context';
+import { useProtocolAuthSignInFlow } from '../../../../contexts/flow-context';
 import { useProtocolAuthClient } from '../../../../contexts/client-context';
-import { CreateSignInAttempt201Response } from '@protoxyz/core';
 import { Spinner } from '../../../ui/spinner';
-import Cookies from 'js-cookie';
-import { setSessionCookie } from '../../../../lib/cookies';
 import { handleSignInResponse } from '..';
 
 const EmailLinkFormSchema = z.object({
@@ -917,7 +908,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
         <CardHeader className={appearance?.elements?.cardHeader}>
           {appearance?.layout?.headerPlacement !== 'none' && (
             <>
-              <BrandLogoWrapper>
+              <BrandLogoWrapper component={component}>
                 <BrandLogo component={component} />
               </BrandLogoWrapper>
               <CardTitle className={appearance?.elements?.cardHeaderTitle}>

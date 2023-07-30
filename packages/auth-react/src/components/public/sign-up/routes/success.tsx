@@ -22,7 +22,7 @@ export function SignUpSuccessRoute() {
     >
       <Card className={appearance?.elements?.card}>
         <CardHeader className={appearance?.elements?.cardHeader}>
-          <BrandLogoWrapper>
+          <BrandLogoWrapper component={component}>
             <BrandLogo component={component} />
           </BrandLogoWrapper>
           <CardTitle className={appearance?.elements?.cardHeaderTitle}>

@@ -87,7 +87,7 @@ export function SignInVerifyFirstFactorRoute() {
           <CardHeader className={appearance?.elements?.cardHeader}>
             {appearance?.layout?.headerPlacement !== 'none' && (
               <>
-                <BrandLogoWrapper>
+                <BrandLogoWrapper component={component}>
                   <BrandLogo component={component} />
                 </BrandLogoWrapper>
                 <CardTitle className={appearance?.elements?.cardHeaderTitle}>
@@ -107,7 +107,7 @@ export function SignInVerifyFirstFactorRoute() {
           <CardHeader className={appearance?.elements?.cardHeader}>
             {appearance?.layout?.headerPlacement !== 'none' && (
               <>
-                <BrandLogoWrapper>
+                <BrandLogoWrapper component={component}>
                   <BrandLogo component={component} />
                 </BrandLogoWrapper>
                 <CardTitle className={appearance?.elements?.cardHeaderTitle}>
@@ -127,7 +127,7 @@ export function SignInVerifyFirstFactorRoute() {
           <CardHeader className={appearance?.elements?.cardHeader}>
             {appearance?.layout?.headerPlacement !== 'none' && (
               <>
-                <BrandLogoWrapper>
+                <BrandLogoWrapper component={component}>
                   <BrandLogo component={component} />
                 </BrandLogoWrapper>
                 <CardTitle className={appearance?.elements?.cardHeaderTitle}>
