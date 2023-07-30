@@ -69,10 +69,10 @@ export function UpdateUserForm({
   const form = useForm<z.infer<typeof UpdateUserFormSchema>>({
     resolver: zodResolver(UpdateUserFormSchema),
     defaultValues: {
-      name: user.name,
-      username: user.username,
-      locale: user.locale,
-      timezone: user.timezone,
+      name: user?.name,
+      username: user?.username,
+      locale: user?.locale,
+      timezone: user?.timezone,
     },
   });
 

@@ -12,6 +12,7 @@ interface ProtocolAuthProviderProps {
   domain?: string;
   publicKey?: string;
   appearance?: AuthAppearance;
+  proxy?: boolean;
 }
 
 export async function ProtocolAuthProvider({
@@ -19,6 +20,7 @@ export async function ProtocolAuthProvider({
   domain,
   publicKey,
   appearance,
+  proxy,
 }: ProtocolAuthProviderProps) {
   const headers = nextheaders();
 
@@ -48,7 +50,7 @@ export async function ProtocolAuthProvider({
 
   const protocolClient = new Protocol({
     debug: process.env.NODE_ENV !== 'production',
-    baseUrl: resolvedDomain,
+    baseUrl: proxy ? undefined : resolvedDomain,
   });
 
   let tenant: Tenant | null = null;
