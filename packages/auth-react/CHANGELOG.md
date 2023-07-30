@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.38
+
+### Patch Changes
+
+- efc8add: fix navigate
+
 ## 2.0.37
 
 ### Patch Changes
