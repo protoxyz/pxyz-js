@@ -231,26 +231,14 @@ export function SignInVerifyFirstFactorForm({
         },
       });
 
-    handleSignInResponse(signInResponse, tenant, setSignIn, setRoute, setError);
-
-    // if (signInResponse.status === ResponseStatus.Success) {
-    //   setSignIn(signInResponse.data.signInAttempt);
-
-    //   switch (signInResponse.data.signInAttempt.status) {
-    //     case AuthSignInAttemptStatus.needs_factor_two: {
-    //       setRoute(SignInFlowRoute['signIn:verifySecondFactor']);
-    //       break;
-    //     }
-    //     case AuthSignInAttemptStatus.complete: {
-    //       setRoute(SignInFlowRoute['signIn:success']);
-    //       navigate(signInResponse.data.signInAttempt.redirectUri);
-    //       break;
-    //     }
-    //   }
-    // } else {
-    //   console.log('error', signInResponse);
-    //   setError(signInResponse.error);
-    // }
+    handleSignInResponse(
+      signInResponse,
+      tenant,
+      setSignIn,
+      setRoute,
+      setError,
+      navigate,
+    );
   }
 
   function onInvalid(errors: any) {

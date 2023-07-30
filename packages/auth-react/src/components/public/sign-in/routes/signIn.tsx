@@ -198,7 +198,7 @@ export function SignInPhoneCodeForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
@@ -232,6 +232,7 @@ export function SignInPhoneCodeForm({
       setSignIn,
       setRoute,
       setCreateSignInError,
+      navigate,
     );
 
     setCreatingSignIn(false);
@@ -306,7 +307,7 @@ export function SignInPhonePasswordForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
@@ -342,6 +343,7 @@ export function SignInPhonePasswordForm({
       setSignIn,
       setRoute,
       setCreateSignInError,
+      navigate,
     );
 
     setCreatingSignIn(false);
@@ -416,7 +418,7 @@ export function SignInEmailCodeForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
@@ -450,6 +452,7 @@ export function SignInEmailCodeForm({
       setSignIn,
       setRoute,
       setCreateSignInError,
+      navigate,
     );
 
     setCreatingSignIn(false);
@@ -529,7 +532,7 @@ export function SignInEmailLinkForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
@@ -563,6 +566,7 @@ export function SignInEmailLinkForm({
       setSignIn,
       setRoute,
       setCreateSignInError,
+      navigate,
     );
 
     setCreatingSignIn(false);
@@ -635,7 +639,7 @@ export function SignInEmailPasswordForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
@@ -671,6 +675,7 @@ export function SignInEmailPasswordForm({
       setSignIn,
       setRoute,
       setCreateSignInError,
+      navigate,
     );
 
     setCreatingSignIn(false);
@@ -759,7 +764,7 @@ export function SignInUsernamePasswordForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol } = useProtocolAuth();
+  const { protocol, navigate } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = useState(false);
   const [createSignInError, setCreateSignInError] = useState<string>('');
@@ -795,6 +800,7 @@ export function SignInUsernamePasswordForm({
       setSignIn,
       setRoute,
       setCreateSignInError,
+      navigate,
     );
 
     setCreatingSignIn(false);
