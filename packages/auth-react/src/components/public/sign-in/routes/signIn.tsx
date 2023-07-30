@@ -914,21 +914,23 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
       className={appearance?.elements?.cardWrapper}
     >
       <Card className={appearance?.elements?.card}>
-        {appearance?.layout?.headerPlacement !== 'none' && (
-          <CardHeader className={appearance?.elements?.cardHeader}>
-            <BrandLogoWrapper>
-              <BrandLogo component={component} />
-            </BrandLogoWrapper>
-            <CardTitle className={appearance?.elements?.cardHeaderTitle}>
-              {tenant?.name}
-            </CardTitle>
-            <CardDescription
-              className={appearance?.elements?.cardHeaderDescription}
-            >
-              Log in to {brandName} to continue
-            </CardDescription>
-          </CardHeader>
-        )}
+        <CardHeader className={appearance?.elements?.cardHeader}>
+          {appearance?.layout?.headerPlacement !== 'none' && (
+            <>
+              <BrandLogoWrapper>
+                <BrandLogo component={component} />
+              </BrandLogoWrapper>
+              <CardTitle className={appearance?.elements?.cardHeaderTitle}>
+                {tenant?.name}
+              </CardTitle>
+              <CardDescription
+                className={appearance?.elements?.cardHeaderDescription}
+              >
+                Log in to {brandName} to continue
+              </CardDescription>
+            </>
+          )}
+        </CardHeader>
         <CardContent className={appearance?.elements?.cardContent}>
           <SocialLinks appearance={appearance} tenant={tenant} />
 

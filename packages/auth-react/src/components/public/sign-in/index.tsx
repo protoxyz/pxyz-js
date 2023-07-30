@@ -71,7 +71,7 @@ export function handleSignInResponse(
       }
       case AuthSignInAttemptStatus.complete: {
         setSessionCookie(response.data.jwt, tenant);
-        setRoute(SignInFlowRoute['signIn:complete']);
+        setRoute(SignInFlowRoute['signIn:success']);
         navigate(response.data.signInAttempt.redirectUri);
         break;
       }
