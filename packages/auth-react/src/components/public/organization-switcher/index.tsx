@@ -27,6 +27,7 @@ import { OrganizationWithRole, ResponseStatus } from '@protoxyz/types';
 import { CreateOrganization } from '../create-organization';
 import { useProtocolAuth } from '../../../contexts/protocol-context';
 import { OrganizationProfile } from '../organization-profile';
+import { setSessionCookie } from '../../../lib/cookies';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -47,7 +48,7 @@ export function OrganizationSwitcher({
   className,
   onOrganizationSelect,
 }: OrganizationSwitcherProps) {
-  const { user, orgId, protocol, setState } = useProtocolAuth();
+  const { tenant, user, orgId, protocol, setState } = useProtocolAuth();
   // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
   const { organizations } = useProtocolAuthOrganizationsList({});
 
@@ -82,6 +83,7 @@ export function OrganizationSwitcher({
     });
 
     if (response.status === ResponseStatus.Success) {
+      setSessionCookie(response.data.jwt, tenant);
       setState((state) => ({
         ...state,
         orgId,

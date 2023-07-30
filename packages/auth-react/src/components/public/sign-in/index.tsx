@@ -56,6 +56,7 @@ export function handleSignInResponse(
   setSignIn: (signIn: SignInAttempt) => void,
   setRoute: (route: SignInFlowRoute) => void,
   setCreateSignInError: (error: string) => void,
+  navigate: (uri: string) => void,
 ) {
   if (response.status === ResponseStatus.Success) {
     setSignIn(response.data.signInAttempt);
@@ -71,6 +72,7 @@ export function handleSignInResponse(
       case AuthSignInAttemptStatus.complete: {
         setSessionCookie(response.data.jwt, tenant);
         setRoute(SignInFlowRoute['signIn:complete']);
+        navigate(response.data.signInAttempt.redirectUri);
         break;
       }
     }
