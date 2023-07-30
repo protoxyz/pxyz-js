@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.45
+
+### Patch Changes
+
+- 332d43b: add to success route
+
 ## 2.0.44
 
 ### Patch Changes
