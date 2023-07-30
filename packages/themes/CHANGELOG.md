@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.7
+
+### Patch Changes
+
+- 4a12783: updates
+
 ## 2.0.6
 
 ### Patch Changes
