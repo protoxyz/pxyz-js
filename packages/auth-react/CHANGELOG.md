@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.37
+
+### Patch Changes
+
+- 0f7ab06: redirect after sign in
+
 ## 2.0.36
 
 ### Patch Changes
