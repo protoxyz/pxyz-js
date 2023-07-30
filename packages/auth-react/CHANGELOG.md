@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.46
+
+### Patch Changes
+
+- d95d849: fix verification autocomplete
+
 ## 2.0.45
 
 ### Patch Changes
