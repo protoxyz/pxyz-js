@@ -6,6 +6,7 @@ import {
   useProtocolAuthFlow,
 } from '../contexts/flow-context';
 import { useProtocolAuth } from '../contexts/protocol-context';
+import { deleteSessionCookie } from '../lib/cookies';
 
 interface UseProtocolAuthLogoutProps {
   afterSignOutUrl?: string;
@@ -18,13 +19,15 @@ export function useProtocolAuthLogout(
   const { setSignIn: setClientSignIn, setSignUp: setClientSignUp } =
     useProtocolAuthClient();
   const { signIn, signUp } = useProtocolAuthFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { reset, protocol, tenant, navigate } = useProtocolAuth();
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
 
   const logout = async () => {
     setIsLoggingOut(true);
     try {
       await protocol.auth.sessions.end();
+      deleteSessionCookie(tenant);
+      reset();
 
       setClientSignIn(null);
       setClientSignUp(null);

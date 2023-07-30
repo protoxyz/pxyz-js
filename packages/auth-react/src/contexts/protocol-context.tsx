@@ -77,25 +77,20 @@ export const useProtocolAuth = () => {
 
   return {
     setState: authCtx.setState,
+    reset: () => {
+      authCtx.setState({
+        ...authCtx.state,
+        user: null,
+        userId: null,
+        org: null,
+        orgId: null,
+        orgRole: null,
+        session: null,
+        sessionId: null,
+      });
+    },
     ...(authCtx.state ?? {}),
     ...(settersCtx ?? {}),
-    // setState: authCtx?.setState,
-    // publicKey: authCtx?.state?.publicKey,
-    // domain: authCtx?.state?.domain,
-    // protocol: authCtx?.state?.protocol,
-    // loaded: authCtx?.state?.loaded,
-    // user: authCtx?.state?.user,
-    // userId: authCtx?.state?.userId,
-    // tenant: authCtx?.state?.tenant,
-    // org: authCtx?.state?.org,
-    // orgId: authCtx?.state?.orgId,
-    // orgRole: authCtx?.state?.orgRole,
-    // session: authCtx?.state?.session,
-    // sessionId: authCtx?.state?.sessionId,
-    // redirectToUserProfile: settersCtx?.redirectToUserProfile,
-    // redirectToSignIn: settersCtx?.redirectToSignIn,
-    // redirectToSignUp: settersCtx?.redirectToSignUp,
-    // navigate: settersCtx?.navigate,
   };
 };
 
