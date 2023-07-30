@@ -23,7 +23,7 @@ export function UserEmailsRoute({}: UserEmailsRouteOptions) {
         title="Email Addresses"
         description="Manage the email addresses associated with your account."
       />
-      {emails.data.map((email) => {
+      {emails?.data?.map((email) => {
         const isPrimary = user.primaryEmailId === email.id;
         const isVerified = email.verifiedAt !== null;
 

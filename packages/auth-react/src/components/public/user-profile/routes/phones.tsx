@@ -22,7 +22,7 @@ export function UserPhonesRoute({}: UserPhonesRouteOptions) {
         title="Phone Numbers"
         description="Manage the phone numbers associated with your account."
       />
-      {phones.data.map((phone) => {
+      {phones?.data?.map((phone) => {
         const isPrimary = user.primaryPhoneId === phone.id;
         const isVerified = phone.verifiedAt !== null;
 
