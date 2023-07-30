@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.39
+
+### Patch Changes
+
+- a03b775: check that data exists
+
 ## 2.0.38
 
 ### Patch Changes
