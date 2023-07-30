@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.8
+
+### Patch Changes
+
+- ee077f0: cleanup
+
 ## 2.0.7
 
 ### Patch Changes
