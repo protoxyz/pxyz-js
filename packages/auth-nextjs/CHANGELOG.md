@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.20
+
+### Patch Changes
+
+- e26c650: don't proxy all requests
+- Updated dependencies [e26c650]
+  - @protoxyz/auth-react@2.0.47
+
 ## 2.1.19
 
 ### Patch Changes

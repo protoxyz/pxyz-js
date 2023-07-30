@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.47
+
+### Patch Changes
+
+- e26c650: don't proxy all requests
+
 ## 2.0.46
 
 ### Patch Changes
