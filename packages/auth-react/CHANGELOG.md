@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.49
+
+### Patch Changes
+
+- 93fbfc0: cleanup
+
 ## 2.0.48
 
 ### Patch Changes
