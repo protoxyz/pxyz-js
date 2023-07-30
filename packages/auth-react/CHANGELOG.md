@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.44
+
+### Patch Changes
+
+- 4275fb5: option to hide logo
+
 ## 2.0.43
 
 ### Patch Changes
