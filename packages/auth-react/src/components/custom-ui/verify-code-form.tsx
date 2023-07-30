@@ -155,6 +155,7 @@ export function VerifySignupCodeForm({
                   id="code_0"
                   autoFocus={true}
                   autoComplete="one-time-code"
+                  type="number"
                   autoCorrect="off"
                   className={cn(
                     'ring-none focus:ring-none select-none appearance-none rounded-none border-b-2 border-l-0 border-r-0 border-t-0 text-center focus:border-0',
@@ -174,7 +175,7 @@ export function VerifySignupCodeForm({
               <FormControl>
                 <Input
                   id="code_1"
-                  autoComplete="one-time-code"
+                  type="number"
                   autoCorrect="off"
                   className={cn(
                     'ring-none focus:ring-none select-none appearance-none rounded-none border-b-2 border-l-0 border-r-0 border-t-0 text-center focus:border-0',
@@ -194,7 +195,7 @@ export function VerifySignupCodeForm({
               <FormControl>
                 <Input
                   id="code_2"
-                  autoComplete="one-time-code"
+                  type="number"
                   autoCorrect="off"
                   className={cn(
                     'ring-none focus:ring-none select-none appearance-none rounded-none border-b-2 border-l-0 border-r-0 border-t-0 text-center focus:border-0',
@@ -214,7 +215,7 @@ export function VerifySignupCodeForm({
               <FormControl>
                 <Input
                   id="code_3"
-                  autoComplete="one-time-code"
+                  type="number"
                   autoCorrect="off"
                   className={cn(
                     'ring-none focus:ring-none select-none appearance-none rounded-none border-b-2 border-l-0 border-r-0 border-t-0 text-center focus:border-0',
@@ -234,7 +235,7 @@ export function VerifySignupCodeForm({
               <FormControl>
                 <Input
                   id="code_4"
-                  autoComplete="one-time-code"
+                  type="number"
                   autoCorrect="off"
                   className={cn(
                     'ring-none focus:ring-none select-none appearance-none rounded-none border-b-2 border-l-0 border-r-0 border-t-0 text-center focus:border-0',
@@ -254,7 +255,7 @@ export function VerifySignupCodeForm({
               <FormControl>
                 <Input
                   id="code_5"
-                  autoComplete="one-time-code"
+                  type="number"
                   autoCorrect="off"
                   className={cn(
                     'ring-none focus:ring-none select-none appearance-none rounded-none border-b-2 border-l-0 border-r-0 border-t-0 text-center focus:border-0',
