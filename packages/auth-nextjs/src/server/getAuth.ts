@@ -3,11 +3,9 @@ import { headers as nextHeaders } from 'next/headers';
 import { verifyJWT } from './jwt';
 import { getBearerToken, getCookieToken, getSecretKey } from './util';
 
-export async function getAuth({
-  key,
-}: {
-  key?: string;
-}): Promise<SessionUser | null> {
+type ReturnType = SessionUser | null;
+
+export async function getAuth({ key }: { key?: string }): Promise<ReturnType> {
   const headers = nextHeaders();
 
   const token =
@@ -19,5 +17,5 @@ export async function getAuth({
 
   const decoded = await verifyJWT({ token, key: secretKey });
 
-  return decoded as SessionUser;
+  return decoded as ReturnType;
 }
