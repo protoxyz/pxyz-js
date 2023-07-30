@@ -51,7 +51,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@protoxyz/auth-react": "^2.0.39",
+    "@protoxyz/auth-react": "^2.0.40",
     "next": ">=13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
