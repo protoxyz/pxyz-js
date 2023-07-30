@@ -1,5 +1,0 @@
----
-'@protoxyz/themes': patch
----
-
-cleanup
