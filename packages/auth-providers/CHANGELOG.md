@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.5
+
+### Patch Changes
+
+- 0ef27dd: force bump
+
 ## 2.0.4
 
 ### Patch Changes

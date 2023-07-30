@@ -1,5 +1,16 @@
 # @protoxyz/auth-react
 
+## 2.0.50
+
+### Patch Changes
+
+- 0ef27dd: force bump
+- Updated dependencies [0ef27dd]
+  - @protoxyz/auth-providers@2.0.5
+  - @protoxyz/core@2.0.17
+  - @protoxyz/themes@2.0.9
+  - @protoxyz/types@2.0.14
+
 ## 2.0.49
 
 ### Patch Changes
