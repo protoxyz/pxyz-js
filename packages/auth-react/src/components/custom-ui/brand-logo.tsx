@@ -10,7 +10,7 @@ export function BrandLogoWrapper({
   children?: React.ReactNode;
 }) {
   const { appearance } = useProtocolAuthAppearance({ component });
-  if (appearance.layout?.logoPlacement === 'none') return null;
+  if (appearance?.layout?.logoPlacement === 'none') return null;
   return <div className="pxyz-brand-logo-wrapper mb-8">{children}</div>;
 }
 
