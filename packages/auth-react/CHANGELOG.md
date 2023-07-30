@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.41
+
+### Patch Changes
+
+- f480765: session max lifetime
+
 ## 2.0.40
 
 ### Patch Changes
