@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.18
+
+### Patch Changes
+
+- 333c9dc: catch invalid jwt
+
 ## 2.1.17
 
 ### Patch Changes
