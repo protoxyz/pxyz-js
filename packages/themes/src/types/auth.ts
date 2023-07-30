@@ -11,6 +11,7 @@ export type AuthElements = {
 };
 
 export type AuthLayout = {
+  headerPlacement?: 'inside' | 'none';
   brandName?: string;
   logoPlacement?: 'inside' | 'outside' | 'none';
   logoImageUrl?: string | null;

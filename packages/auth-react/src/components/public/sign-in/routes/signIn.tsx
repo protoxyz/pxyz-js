@@ -94,7 +94,7 @@ function getAlternativeFirstFactorStrategiesFor(
     tenant?.auth?.strategyEmailCodeEnabled
   ) {
     strategies.push({
-      name: 'Email Code',
+      name: 'Email (passwordless)',
       value: AuthVerificationStrategy.email_code,
     });
   }
@@ -104,7 +104,7 @@ function getAlternativeFirstFactorStrategiesFor(
     tenant?.auth?.strategyEmailLinkEnabled
   ) {
     strategies.push({
-      name: 'Email Link',
+      name: 'Email (passwordless link)',
       value: AuthVerificationStrategy.email_link,
     });
   }
@@ -114,7 +114,7 @@ function getAlternativeFirstFactorStrategiesFor(
     tenant?.auth?.strategyPhoneCodeEnabled
   ) {
     strategies.push({
-      name: 'Phone Code',
+      name: 'Phone (passwordless)',
       value: AuthVerificationStrategy.phone_code,
     });
   }
@@ -914,19 +914,21 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
       className={appearance?.elements?.cardWrapper}
     >
       <Card className={appearance?.elements?.card}>
-        <CardHeader className={appearance?.elements?.cardHeader}>
-          <BrandLogoWrapper>
-            <BrandLogo component={component} />
-          </BrandLogoWrapper>
-          <CardTitle className={appearance?.elements?.cardHeaderTitle}>
-            {tenant?.name}
-          </CardTitle>
-          <CardDescription
-            className={appearance?.elements?.cardHeaderDescription}
-          >
-            Log in to {brandName} to continue
-          </CardDescription>
-        </CardHeader>
+        {appearance?.layout?.headerPlacement !== 'none' && (
+          <CardHeader className={appearance?.elements?.cardHeader}>
+            <BrandLogoWrapper>
+              <BrandLogo component={component} />
+            </BrandLogoWrapper>
+            <CardTitle className={appearance?.elements?.cardHeaderTitle}>
+              {tenant?.name}
+            </CardTitle>
+            <CardDescription
+              className={appearance?.elements?.cardHeaderDescription}
+            >
+              Log in to {brandName} to continue
+            </CardDescription>
+          </CardHeader>
+        )}
         <CardContent className={appearance?.elements?.cardContent}>
           <SocialLinks appearance={appearance} tenant={tenant} />
 
