@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.40
+
+### Patch Changes
+
+- f2f9da2: reset state on logut
+
 ## 2.0.39
 
 ### Patch Changes
