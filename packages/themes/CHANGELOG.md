@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.9
+
+### Patch Changes
+
+- 0ef27dd: force bump
+
 ## 2.0.8
 
 ### Patch Changes

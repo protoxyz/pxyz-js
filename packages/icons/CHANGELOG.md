@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.8
+
+### Patch Changes
+
+- 0ef27dd: force bump
+
 ## 2.0.7
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.22
+
+### Patch Changes
+
+- 0ef27dd: force bump
+- Updated dependencies [0ef27dd]
+  - @protoxyz/auth-react@2.0.50
+  - @protoxyz/core@2.0.17
+  - @protoxyz/themes@2.0.9
+  - @protoxyz/types@2.0.14
+
 ## 2.1.21
 
 ### Patch Changes
