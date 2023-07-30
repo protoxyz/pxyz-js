@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.43
+
+### Patch Changes
+
+- a4fe7d0: conditionally show header
+
 ## 2.0.42
 
 ### Patch Changes
