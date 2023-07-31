@@ -2,7 +2,7 @@ import { Tenant } from '@protoxyz/types';
 import { get } from 'http';
 import Cookies from 'js-cookie';
 
-const SESSION_COOKIE_NAME = '__pxyz_session';
+export const SESSION_COOKIE_NAME = '__pxyz_session';
 
 export const getSessionCookieDomain = (tenant: Tenant) => {
   const tenantIsProduction = tenant.environment !== 'development';
@@ -36,6 +36,10 @@ export const getSessionCookieOptions = (
 export const setSessionCookie = (jwt: string, tenant: Tenant) => {
   let options: Cookies.CookieAttributes = getSessionCookieOptions(tenant);
 
+  if (tenant.environment === 'development') {
+    localStorage.setItem(SESSION_COOKIE_NAME, jwt);
+  }
+
   if (tenant.auth?.sessionMaximumLifetimeEnabled) {
     const minutes = tenant.auth.sessionMaximumLifetime;
     const expires = new Date();
@@ -57,4 +61,8 @@ export const deleteSessionCookie = (tenant: Tenant) => {
   const options: Cookies.CookieAttributes = getSessionCookieOptions(tenant);
 
   Cookies.remove(SESSION_COOKIE_NAME, options);
+
+  if (tenant.environment === 'development') {
+    localStorage.removeItem(SESSION_COOKIE_NAME);
+  }
 };

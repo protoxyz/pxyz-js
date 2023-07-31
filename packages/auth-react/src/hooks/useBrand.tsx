@@ -8,7 +8,7 @@ export function useBrandName({ component }: { component: AuthComponentType }) {
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuthTenant();
 
-  return appearance?.layout?.brandName ?? tenant?.name ?? 'ProtoXYZ';
+  return appearance?.layout?.brandName ?? tenant?.name ?? '';
 }
 
 export function useBrandLogo({ component }: { component: AuthComponentType }) {

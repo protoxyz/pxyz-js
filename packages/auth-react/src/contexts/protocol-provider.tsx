@@ -27,6 +27,8 @@ import {
   ProtocolAuthClientProvider,
 } from './client-context';
 import { Variables } from '../components/custom-ui/variables';
+import { SESSION_COOKIE_NAME } from '../lib/cookies';
+import Cookies from 'js-cookie';
 
 const initialState = {
   tenant: null,
@@ -146,6 +148,12 @@ export const ProtocolAuthProvider = ({
       },
     });
 
+  let accessToken = null;
+
+  if (tenant.environment === 'development') {
+    accessToken = localStorage.getItem(SESSION_COOKIE_NAME);
+  }
+
   /*
    * This is the protocol state. It is used to store the protocol tenant, the appearance data, and the protocol client
    */
@@ -168,7 +176,8 @@ export const ProtocolAuthProvider = ({
     protocol: new Protocol({
       credentials: true,
       baseUrl: domain ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN,
-      debug: true,
+      debug: process.env.NODE_ENV !== 'production',
+      accessToken,
     }),
   });
 
