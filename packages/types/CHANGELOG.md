@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.15
+
+### Patch Changes
+
+- d2e5856: set proxy key
+
 ## 2.0.14
 
 ### Patch Changes

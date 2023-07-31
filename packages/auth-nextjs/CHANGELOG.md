@@ -1,5 +1,16 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.23
+
+### Patch Changes
+
+- d2e5856: set proxy key
+- Updated dependencies [d2e5856]
+  - @protoxyz/auth-react@2.0.52
+  - @protoxyz/core@2.0.18
+  - @protoxyz/themes@2.0.10
+  - @protoxyz/types@2.0.15
+
 ## 2.1.22
 
 ### Patch Changes

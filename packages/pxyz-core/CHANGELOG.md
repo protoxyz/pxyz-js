@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.18
+
+### Patch Changes
+
+- d2e5856: set proxy key
+- Updated dependencies [d2e5856]
+  - @protoxyz/types@2.0.15
+
 ## 2.0.17
 
 ### Patch Changes
