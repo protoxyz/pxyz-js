@@ -1,5 +1,16 @@
 # @protoxyz/auth-react
 
+## 2.0.52
+
+### Patch Changes
+
+- d2e5856: set proxy key
+- Updated dependencies [d2e5856]
+  - @protoxyz/auth-providers@2.0.6
+  - @protoxyz/core@2.0.18
+  - @protoxyz/themes@2.0.10
+  - @protoxyz/types@2.0.15
+
 ## 2.0.51
 
 ### Patch Changes

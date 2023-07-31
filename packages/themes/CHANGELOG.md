@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.10
+
+### Patch Changes
+
+- d2e5856: set proxy key
+
 ## 2.0.9
 
 ### Patch Changes

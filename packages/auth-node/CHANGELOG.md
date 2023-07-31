@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.23
+
+### Patch Changes
+
+- d2e5856: set proxy key
+- Updated dependencies [d2e5856]
+  - @protoxyz/core@2.0.18
+  - @protoxyz/types@2.0.15
+
 ## 2.0.22
 
 ### Patch Changes
