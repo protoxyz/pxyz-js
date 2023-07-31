@@ -150,7 +150,7 @@ export const ProtocolAuthProvider = ({
 
   let accessToken = null;
 
-  if (tenant.environment === 'development') {
+  if (tenant?.environment === 'development') {
     accessToken = localStorage.getItem(SESSION_COOKIE_NAME);
   }
 

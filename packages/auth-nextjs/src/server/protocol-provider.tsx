@@ -13,6 +13,7 @@ interface ProtocolAuthProviderProps {
   publicKey?: string;
   appearance?: AuthAppearance;
   proxy?: boolean;
+  secretKey?: string;
 }
 
 export async function ProtocolAuthProvider({
@@ -21,6 +22,7 @@ export async function ProtocolAuthProvider({
   publicKey,
   appearance,
   proxy,
+  secretKey,
 }: ProtocolAuthProviderProps) {
   const headers = nextheaders();
 
@@ -75,7 +77,9 @@ export async function ProtocolAuthProvider({
     console.log(e);
   }
 
-  const sessionUser = await getAuth({});
+  const sessionUser = await getAuth({
+    key: secretKey,
+  });
 
   const user = await getUser({
     domain: resolvedDomain,
