@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.51
+
+### Patch Changes
+
+- a81def1: use localstorage in production
+
 ## 2.0.50
 
 ### Patch Changes
