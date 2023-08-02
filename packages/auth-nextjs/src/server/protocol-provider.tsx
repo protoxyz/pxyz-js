@@ -65,7 +65,7 @@ export async function ProtocolAuthProvider({
     if (result.status !== ResponseStatus.Success) {
       console.log(result);
       throw new Error(
-        'Could not retrieve instance: pkey=' +
+        'Could not retrieve tenant: pkey=' +
           resolvedPublicKey +
           ' domain=' +
           resolvedDomain,

@@ -8,6 +8,8 @@ type ReturnType = SessionUser | null;
 export async function getAuth({ key }: { key?: string }): Promise<ReturnType> {
   const headers = nextHeaders();
 
+  console.log('getAuth');
+
   const token =
     (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
 
