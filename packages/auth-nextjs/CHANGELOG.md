@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.24
+
+### Patch Changes
+
+- c3075e5: debug
+
 ## 2.1.23
 
 ### Patch Changes
