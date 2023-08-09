@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.53
+
+### Patch Changes
+
+- 8090a58: make lucide-react a peer dependency
+
 ## 2.0.52
 
 ### Patch Changes
