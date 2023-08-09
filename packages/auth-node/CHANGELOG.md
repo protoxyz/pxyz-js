@@ -1,5 +1,13 @@
 # @protoxyz/auth-node
 
+## 2.0.24
+
+### Patch Changes
+
+- 6b4915f: update node-fetch dep
+- Updated dependencies [6b4915f]
+  - @protoxyz/core@2.0.19
+
 ## 2.0.23
 
 ### Patch Changes
