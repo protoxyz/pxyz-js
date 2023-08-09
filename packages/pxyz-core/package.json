@@ -32,14 +32,14 @@
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
     "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
     "@types/node": "^18.14.2",
-    "@types/node-fetch": "2.x",
+    "@types/node-fetch": "^2.6.4",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "abort-controller": "3.x",
     "eslint": "^8.32.0",
     "form-data": "4.x",
     "install": "^0.13.0",
-    "node-fetch": "2.x",
+    "node-fetch": "^3.3.2",
     "tsup": "^6.2.3",
     "typescript": "^4.9.5"
   }
