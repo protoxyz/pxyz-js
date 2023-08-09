@@ -47,7 +47,6 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "js-cookie": "^3.0.1",
-    "lucide-react": "^0.246.0",
     "react-hook-form": "^7.45.0",
     "react-phone-input-2": "^2.15.1",
     "react-select": "^5.7.3",
@@ -64,6 +63,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.32.0",
+    "lucide-react": "^0.246.0",
     "next": "^13.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -71,6 +71,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "lucide-react": "^0.246.0",
     "next": "^13.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
