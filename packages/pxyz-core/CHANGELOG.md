@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.19
+
+### Patch Changes
+
+- 6b4915f: update node-fetch dep
+
 ## 2.0.18
 
 ### Patch Changes
