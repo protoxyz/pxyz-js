@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.55
+
+### Patch Changes
+
+- 6a6e8fa: check for localStorage
+
 ## 2.0.54
 
 ### Patch Changes
