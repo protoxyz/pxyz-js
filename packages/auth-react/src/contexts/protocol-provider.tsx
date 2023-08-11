@@ -150,7 +150,10 @@ export const ProtocolAuthProvider = ({
 
   let accessToken = null;
 
-  if (tenant?.environment === 'development') {
+  if (
+    typeof localStorage !== 'undefined' &&
+    tenant?.environment === 'development'
+  ) {
     accessToken = localStorage.getItem(SESSION_COOKIE_NAME);
   }
 
@@ -205,8 +208,8 @@ export const ProtocolAuthProvider = ({
     });
 
   /*
-        Load the tenant if it hasn't already been provided by the server component.
-    */
+    Load the tenant if it hasn't already been provided by the server component.
+  */
   useEffect(() => {
     if (state.loaded) {
       return;
