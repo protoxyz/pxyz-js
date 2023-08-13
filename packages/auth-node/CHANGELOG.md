@@ -1,5 +1,11 @@
 # @protoxyz/auth-node
 
+## 2.0.25
+
+### Patch Changes
+
+- 472b4a8: test cookie domain
+
 ## 2.0.24
 
 ### Patch Changes
