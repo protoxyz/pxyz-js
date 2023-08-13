@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.56
+
+### Patch Changes
+
+- 61e7e61: update secure cookie
+
+  Please enter a summary for your changes.
+
 ## 2.0.55
 
 ### Patch Changes

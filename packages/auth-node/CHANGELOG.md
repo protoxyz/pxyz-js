@@ -1,5 +1,13 @@
 # @protoxyz/auth-node
 
+## 2.0.26
+
+### Patch Changes
+
+- 61e7e61: update secure cookie
+
+  Please enter a summary for your changes.
+
 ## 2.0.25
 
 ### Patch Changes
