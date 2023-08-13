@@ -1,5 +1,4 @@
 import { Tenant } from '@protoxyz/types';
-import { get } from 'http';
 import Cookies from 'js-cookie';
 
 export const SESSION_COOKIE_NAME = '__pxyz_session';
@@ -8,17 +7,21 @@ export const getSessionCookieDomain = (tenant: Tenant) => {
   const tenantIsProduction = tenant.environment !== 'development';
 
   if (!tenantIsProduction) {
-    return '.localhost';
+    return undefined;
   }
 
-  const hostname = window.location.hostname;
-  const tld =
-    hostname === 'localhost'
-      ? 'localhost'
-      : hostname.split('.').slice(-2).join('.');
+  const tld = getTLDFromHostname(window.location.hostname);
 
   return `.${tld}`;
 };
+
+export function getTLDFromHostname(hostname: string | undefined) {
+  if (hostname === 'localhost' || hostname?.endsWith('localhost')) {
+    return hostname?.split('.').slice(-1).join('') ?? '';
+  } else {
+    return hostname?.split('.').slice(-2).join('.') ?? '';
+  }
+}
 
 export const getSessionCookieOptions = (
   tenant: Tenant,
@@ -53,6 +56,8 @@ export const setSessionCookie = (jwt: string, tenant: Tenant) => {
     expires.setMinutes(expires.getMinutes() + minutes);
     options.expires = expires;
   }
+
+  console.log('setSessionCookie', options);
 
   Cookies.set(SESSION_COOKIE_NAME, jwt, options);
 };
