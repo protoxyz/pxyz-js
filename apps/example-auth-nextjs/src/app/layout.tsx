@@ -37,7 +37,7 @@ export default async function RootLayout({
     <html suppressHydrationWarning>
       <body className={inter.className}>
         {/* @ts-ignore */}
-        <ProtocolAuthProvider>
+        <ProtocolAuthProvider appearance={appearance}>
           <Header />
           {children}
         </ProtocolAuthProvider>
