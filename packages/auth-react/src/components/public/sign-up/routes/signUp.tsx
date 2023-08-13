@@ -20,7 +20,7 @@ import {
   useProtocolAuthAppearance,
   useProtocolAuthTenant,
 } from '../../../../contexts/protocol-context';
-import { useBrandName } from '../../../../hooks/useBrand';
+import { useBrandLogo, useBrandName } from '../../../../hooks/useBrand';
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import {
   Card,
@@ -259,6 +259,7 @@ export function SignUpRoute({ afterSignUpRedirectUri }: SignUpRouteOptions) {
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuthTenant();
   const brandName = useBrandName({ component });
+  const brandLogo = useBrandLogo({ component });
 
   return (
     <CardWrapper
@@ -270,9 +271,12 @@ export function SignUpRoute({ afterSignUpRedirectUri }: SignUpRouteOptions) {
           <BrandLogoWrapper component={component}>
             <BrandLogo component={component} />
           </BrandLogoWrapper>
-          <CardTitle className={appearance?.elements?.cardHeaderTitle}>
-            {tenant?.name}
-          </CardTitle>
+          {!brandLogo && (
+            <CardTitle className={appearance?.elements?.cardHeaderTitle}>
+              {tenant?.name}
+            </CardTitle>
+          )}
+
           <CardDescription
             className={appearance?.elements?.cardHeaderDescription}
           >

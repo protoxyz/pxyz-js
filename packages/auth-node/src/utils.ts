@@ -18,7 +18,7 @@ export function getCookieOptions(
     maxAge: 315360000,
     sameSite: 'lax',
     expires: new Date(Date.now() + 315360000),
-    secure,
+    secure: domain === '.localhost' ? false : secure,
   } as CookieOptions;
 }
 

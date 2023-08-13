@@ -10,6 +10,7 @@ import {
 import { useProtocolAuthAppearance } from '../../../../contexts/protocol-context';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { Spinner } from '../../../ui/spinner';
+import { useBrandLogo } from '../../../../hooks/useBrand';
 
 export function SignInSuccessRoute() {
   const component: AuthComponentType = 'signIn';
@@ -25,9 +26,11 @@ export function SignInSuccessRoute() {
           <BrandLogoWrapper component={component}>
             <BrandLogo component={component} />
           </BrandLogoWrapper>
+
           <CardTitle className={appearance?.elements?.cardHeaderTitle}>
             Sign In Successful
           </CardTitle>
+
           <CardDescription
             className={appearance?.elements?.cardHeaderDescription}
           >
