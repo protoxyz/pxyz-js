@@ -1,19 +1,3 @@
-import jwt from 'jsonwebtoken';
-
-export function getDomainFromHostnameWithoutPort(hostname: string | undefined) {
-  return hostname?.split(':')[0] ?? '';
-}
-
-export function decodeJWTTokenWithPublicPEMKey(
-  token: string,
-  publicKey: string,
-) {
-  return jwt.verify(token, publicKey, { algorithms: ['RS256'] }) as Record<
-    string,
-    any
-  >;
-}
-
 export interface CookieOptions {
   path: string;
   domain: string;
@@ -45,11 +29,15 @@ export function getHostnameFromOrigin(origin: string) {
 }
 
 export function getTLDFromHostname(hostname: string | undefined) {
-  return hostname?.split('.').slice(-2).join('.') ?? '';
+  if (hostname === 'localhost' || hostname?.endsWith('localhost')) {
+    return hostname?.split('.').slice(-1).join('') ?? '';
+  } else {
+    return hostname?.split('.').slice(-2).join('.') ?? '';
+  }
 }
 
 export function getCookieDomain(origin: string | undefined, secure: boolean) {
-  if (!origin || !secure) return 'localhost';
+  if (!origin || !secure) return '.localhost';
   const hostname = getHostnameFromOrigin(origin);
   const tld = getTLDFromHostname(hostname);
 
