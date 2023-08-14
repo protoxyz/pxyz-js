@@ -1,5 +1,14 @@
 # @protoxyz/auth-react
 
+## 2.0.58
+
+### Patch Changes
+
+- d07af8e: refactor and add uploads-nextjs
+- Updated dependencies [d07af8e]
+  - @protoxyz/core@2.0.20
+  - @protoxyz/types@2.0.16
+
 ## 2.0.57
 
 ### Patch Changes

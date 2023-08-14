@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.16
+
+### Patch Changes
+
+- d07af8e: refactor and add uploads-nextjs
+
 ## 2.0.15
 
 ### Patch Changes
