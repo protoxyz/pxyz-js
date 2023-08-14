@@ -55,35 +55,35 @@ export function SignUpForm({
   const [createSignUpError, setCreateSignUpError] = useState<string>('');
 
   const FormSchema = z.object({
-    ...(tenant.auth.nameRequired && {
+    ...(tenant?.auth?.nameRequired && {
       name: z
         .string({
           required_error: 'Please enter your full name',
         })
         .min(4),
     }),
-    ...(tenant.auth.emailRequired && {
+    ...(tenant?.auth?.emailRequired && {
       email: z
         .string({
           required_error: 'Please enter your email address',
         })
         .email(),
     }),
-    ...(tenant.auth.phoneRequired && {
+    ...(tenant?.auth?.phoneRequired && {
       phone: z
         .string({
           required_error: 'Please enter your phone number',
         })
         .min(8),
     }),
-    ...(tenant.auth.usernameRequired && {
+    ...(tenant?.auth?.usernameRequired && {
       username: z
         .string({
           required_error: 'Please enter a username',
         })
         .min(5),
     }),
-    ...(tenant.auth.passwordRequired && {
+    ...(tenant?.auth?.passwordRequired && {
       password: z
         .string({
           required_error: 'Please enter a password',
@@ -131,7 +131,7 @@ export function SignUpForm({
         onSubmit={form.handleSubmit(onSubmit, onInvalid)}
         className="space-y-8"
       >
-        {tenant.auth.nameRequired && (
+        {tenant?.auth?.nameRequired && (
           <FormField
             control={form.control}
             name="name"
@@ -149,7 +149,7 @@ export function SignUpForm({
           />
         )}
 
-        {tenant.auth.emailRequired && (
+        {tenant?.auth?.emailRequired && (
           <FormField
             control={form.control}
             name="email"
@@ -165,7 +165,7 @@ export function SignUpForm({
                     {...field}
                   />
                 </FormControl>
-                {tenant.auth.emailVerificationRequired && (
+                {tenant?.auth?.emailVerificationRequired && (
                   <FormDescription>
                     We will email you a verification code to complete sign up.
                   </FormDescription>
@@ -176,7 +176,7 @@ export function SignUpForm({
           />
         )}
 
-        {tenant.auth.phoneRequired && (
+        {tenant?.auth?.phoneRequired && (
           <FormField
             control={form.control}
             name="phone"
@@ -188,7 +188,7 @@ export function SignUpForm({
                 <FormControl>
                   <Input type="tel" placeholder="+1 555-555-5555" {...field} />
                 </FormControl>
-                {tenant.auth.phoneVerificationRequired && (
+                {tenant?.auth?.phoneVerificationRequired && (
                   <FormDescription>
                     We will text you a verification code to complete sign up.
                   </FormDescription>
@@ -199,7 +199,7 @@ export function SignUpForm({
           />
         )}
 
-        {tenant.auth.usernameRequired && (
+        {tenant?.auth?.usernameRequired && (
           <FormField
             control={form.control}
             name="username"
@@ -217,7 +217,7 @@ export function SignUpForm({
           />
         )}
 
-        {tenant.auth.passwordRequired && (
+        {tenant?.auth?.passwordRequired && (
           <FormField
             control={form.control}
             name="password"
@@ -289,7 +289,7 @@ export function SignUpRoute({ afterSignUpRedirectUri }: SignUpRouteOptions) {
           <SignUpForm
             tenant={tenant}
             afterSignUpRedirectUri={
-              afterSignUpRedirectUri ?? tenant.auth.signUpRedirectUri
+              afterSignUpRedirectUri ?? tenant?.auth?.signUpRedirectUri
             }
           />
         </CardContent>

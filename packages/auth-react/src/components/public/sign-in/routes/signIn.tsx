@@ -932,7 +932,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             <SignInEmailCodeForm
               tenant={tenant}
               afterSignInRedirectUri={
-                afterSignInRedirectUri ?? tenant.auth.homeUri
+                afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
@@ -943,7 +943,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             <SignInEmailLinkForm
               tenant={tenant}
               afterSignInRedirectUri={
-                afterSignInRedirectUri ?? tenant.auth.homeUri
+                afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
@@ -954,7 +954,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             <SignInPhoneCodeForm
               tenant={tenant}
               afterSignInRedirectUri={
-                afterSignInRedirectUri ?? tenant.auth.homeUri
+                afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
@@ -965,7 +965,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             <SignInEmailPasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
-                afterSignInRedirectUri ?? tenant.auth.homeUri
+                afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
@@ -977,7 +977,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             <SignInUsernamePasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
-                afterSignInRedirectUri ?? tenant.auth.homeUri
+                afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}
@@ -988,7 +988,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             <SignInPhonePasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
-                afterSignInRedirectUri ?? tenant.auth.homeUri
+                afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
               firstFactorStrategy={firstFactorStrategy}
               setFirstFactorStrategy={setFirstFactorStrategy}

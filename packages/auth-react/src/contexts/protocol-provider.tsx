@@ -238,6 +238,22 @@ export const ProtocolAuthProvider = ({
 
   if (!state.loaded) return null;
 
+  if (
+    tenant === undefined ||
+    tenant === null ||
+    tenant.auth === undefined ||
+    tenant.auth === null
+  ) {
+    return (
+      <div className="p-5 border bg-white rounded-lg">
+        <div className="font-bold text-2xl">CONFIGURATION ERROR</div>
+        <div className="text-slate-300">
+          Expected tenant information is missing.
+        </div>
+      </div>
+    );
+  }
+
   return (
     <ProtocolAuthContext.Provider value={{ state, setState }}>
       <ProtocolAuthFlowProvider routeState={routeState}>

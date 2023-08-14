@@ -44,14 +44,14 @@ export const setSessionCookie = (jwt: string, tenant: Tenant) => {
   }
 
   if (tenant.auth?.sessionMaximumLifetimeEnabled) {
-    const minutes = tenant.auth.sessionMaximumLifetime;
+    const minutes = tenant?.auth?.sessionMaximumLifetime;
     const expires = new Date();
     expires.setMinutes(expires.getMinutes() + minutes);
     options.expires = expires;
   }
 
   if (tenant.auth?.sessionInactivityTimeoutEnabled) {
-    const minutes = tenant.auth.sessionInactivityTimeout;
+    const minutes = tenant?.auth?.sessionInactivityTimeout;
     const expires = new Date();
     expires.setMinutes(expires.getMinutes() + minutes);
     options.expires = expires;

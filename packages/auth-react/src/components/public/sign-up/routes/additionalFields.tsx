@@ -47,7 +47,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
   const [createSignUpError, setCreateSignUpError] = useState<string>('');
 
   const FormSchema = z.object({
-    ...(tenant.auth.nameRequired &&
+    ...(tenant?.auth?.nameRequired &&
       signUp.name === undefined && {
         name: z
           .string({
@@ -55,7 +55,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
           })
           .min(4),
       }),
-    ...(tenant.auth.emailRequired &&
+    ...(tenant?.auth?.emailRequired &&
       signUp.email === undefined && {
         email: z
           .string({
@@ -63,7 +63,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
           })
           .email(),
       }),
-    ...(tenant.auth.phoneRequired &&
+    ...(tenant?.auth?.phoneRequired &&
       signUp.phone === undefined && {
         phone: z
           .string({
@@ -71,7 +71,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
           })
           .min(8),
       }),
-    ...(tenant.auth.usernameRequired &&
+    ...(tenant?.auth?.usernameRequired &&
       signUp.username === undefined && {
         username: z
           .string({
@@ -122,7 +122,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
         onSubmit={form.handleSubmit(onSubmit, onInvalid)}
         className="space-y-8"
       >
-        {tenant.auth.nameRequired && (
+        {tenant?.auth?.nameRequired && (
           <FormField
             control={form.control}
             name="name"
@@ -140,7 +140,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
           />
         )}
 
-        {tenant.auth.emailRequired && (
+        {tenant?.auth?.emailRequired && (
           <FormField
             control={form.control}
             name="email"
@@ -156,7 +156,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
                     {...field}
                   />
                 </FormControl>
-                {tenant.auth.emailVerificationRequired && (
+                {tenant?.auth?.emailVerificationRequired && (
                   <FormDescription>
                     We will email you a verification code to complete sign up.
                   </FormDescription>
@@ -167,7 +167,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
           />
         )}
 
-        {tenant.auth.phoneRequired && (
+        {tenant?.auth?.phoneRequired && (
           <FormField
             control={form.control}
             name="phone"
@@ -179,7 +179,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
                 <FormControl>
                   <Input type="tel" placeholder="+1 555-555-5555" {...field} />
                 </FormControl>
-                {tenant.auth.phoneVerificationRequired && (
+                {tenant?.auth?.phoneVerificationRequired && (
                   <FormDescription>
                     We will text you a verification code to complete sign up.
                   </FormDescription>
@@ -190,7 +190,7 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
           />
         )}
 
-        {tenant.auth.usernameRequired && (
+        {tenant?.auth?.usernameRequired && (
           <FormField
             control={form.control}
             name="username"
