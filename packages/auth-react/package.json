@@ -64,7 +64,7 @@
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.32.0",
     "lucide-react": "^0.246.0",
-    "next": "^13.4.6",
+    "next": "^13.4.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^6.2.3",
@@ -72,7 +72,7 @@
   },
   "peerDependencies": {
     "lucide-react": "^0.246.0",
-    "next": "^13.4.1",
+    "next": "^13.4.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
