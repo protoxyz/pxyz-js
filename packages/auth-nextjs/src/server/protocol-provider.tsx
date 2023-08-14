@@ -29,14 +29,14 @@ export async function ProtocolAuthProvider({
   const resolvedDomain =
     domain ??
     headers.get('x-protocol-hostname') ??
-    process.env.PXYZ_AUTH_DOMAIN ??
-    process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN ??
+    process.env.PXYZ_DOMAIN ??
+    process.env.NEXT_PUBLIC_PXYZ_DOMAIN ??
     '';
   const resolvedPublicKey =
     publicKey ??
     headers.get('x-protocol-tenant-pkey') ??
-    process.env.PXYZ_AUTH_PUBLIC_KEY ??
-    process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ??
+    process.env.PXYZ_PUBLIC_KEY ??
+    process.env.NEXT_PUBLIC_PXYZ_PUBLIC_KEY ??
     '';
 
   if (!resolvedDomain)

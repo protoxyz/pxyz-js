@@ -14,6 +14,9 @@ import {
   SocialConnection,
   UserProfile,
   ResponseStatus,
+  Upload,
+  Transformation,
+  File,
 } from '@protoxyz/types';
 
 export interface Response {
@@ -52,6 +55,65 @@ export interface GetWellKnownOpenIDConfiguration200Response extends Response {
     token_endpoint_auth_methods_supported: string[];
     claims_supported: string[];
   };
+}
+
+export type ListTransformations200Response = PaginatedResult<Transformation>;
+export interface GetTransformation200Response extends Response {
+  data: {
+    transformation: Transformation;
+  };
+}
+
+export interface CreateTransformation201Response extends Response {
+  data: {
+    transformation: Transformation;
+  };
+}
+
+export interface UpdateTransformation200Response extends Response {
+  data: {
+    transformation: Transformation;
+  };
+}
+export interface DeleteTransformation200Response extends Response {
+  data: {
+    transformation: Transformation;
+  };
+}
+
+export type ListFiles200Response = PaginatedResult<File>;
+export interface GetFile200Response extends Response {
+  data: File;
+}
+
+export interface CreateFile201Response extends Response {
+  data: File;
+}
+
+export interface UpdateFile200Response extends Response {
+  data: File;
+}
+export interface DeleteFile200Response extends Response {
+  data: File;
+}
+
+export type ListUploads200Response = PaginatedResult<Upload>;
+export interface GetUpload200Response extends Response {
+  data: Upload;
+}
+
+export interface CreateUpload201Response extends Response {
+  data: Upload;
+}
+
+export interface UpdateUpload200Response extends Response {
+  data: Upload;
+}
+export interface DeleteUpload200Response extends Response {
+  data: Upload;
+}
+export interface FinishUpload200Response extends Response {
+  data: Upload;
 }
 
 export interface GetUserProfile200Response extends Response {

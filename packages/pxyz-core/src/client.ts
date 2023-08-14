@@ -19,6 +19,8 @@ export interface RequestOptions {
 export interface HttpClientConfigOptions {
   host?: string | undefined;
   accessToken?: string | undefined;
+  publicKey?: string | undefined;
+  secretKey?: string | undefined;
   credentials?: boolean | undefined;
   debug?: boolean | undefined;
   proxyUrl?: string | undefined;
@@ -26,12 +28,17 @@ export interface HttpClientConfigOptions {
 export class HttpClient {
   private host?: string | undefined;
   private accessToken?: string | undefined;
+  private publicKey?: string | undefined;
+  private secretKey?: string | undefined;
   private credentials?: boolean | undefined;
   private debug: boolean;
   private proxyUrl?: string | undefined;
 
   constructor(options?: HttpClientConfigOptions) {
     this.accessToken = options?.accessToken;
+    this.publicKey = options?.publicKey;
+    this.secretKey = options?.secretKey;
+
     this.credentials = options?.credentials;
     this.debug = options?.debug || true;
     this.proxyUrl = options?.proxyUrl;
@@ -45,6 +52,14 @@ export class HttpClient {
 
   setAccessToken(accessToken: string): void {
     this.accessToken = accessToken;
+  }
+
+  setPublicKey(publicKey: string): void {
+    this.publicKey = publicKey;
+  }
+
+  setSecretKey(secretKey: string): void {
+    this.secretKey = secretKey;
   }
 
   private formatHost(host: string): string {
@@ -120,6 +135,22 @@ export class HttpClient {
       this.accessToken !== null
     ) {
       headers.append('Authorization', `Bearer ${this.accessToken}`);
+    }
+
+    if (
+      this.publicKey !== undefined &&
+      this.publicKey !== '' &&
+      this.publicKey !== null
+    ) {
+      headers.append('x-protocol-public-key', this.publicKey);
+    }
+
+    if (
+      this.secretKey !== undefined &&
+      this.secretKey !== '' &&
+      this.secretKey !== null
+    ) {
+      headers.append('x-protocol-secret-key', this.secretKey);
     }
 
     if (options?.headers) {

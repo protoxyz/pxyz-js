@@ -26,7 +26,9 @@ export * from './auth/verification-strategy';
 export * from './notifications';
 
 // Uploads
-export * from './uploads';
+export * from './uploads/upload';
+export * from './uploads/file';
+export * from './uploads/transformation';
 
 // Core types
 export * from './tenant';

@@ -12,10 +12,15 @@ import { ProtocolAuthOrganizationsService } from './services/auth/organizations'
 import { ProtocolAuthOrganizationRolesService } from './services/auth/organizationRoles';
 import { ProtocolAuthOrganizationMembersService } from './services/auth/organizationMembers';
 import { ProtocolAuthOrganizationInvitationsService } from './services/auth/organizationInvitations';
+import { ProtocolUploadsService } from './services/uploads/upload';
+import { ProtocolTransformationsService } from './services/uploads/transformation';
+import { ProtocolFilesService } from './services/uploads/file';
 
 export interface ProtocolClientConfiguration {
   baseUrl?: string | undefined;
   accessToken?: string | undefined;
+  publicKey?: string | undefined;
+  secretKey?: string | undefined;
   credentials?: boolean | undefined;
   debug?: boolean;
   proxyUrl?: string | undefined;
@@ -41,8 +46,22 @@ export class Protocol {
     organizationInvitations: ProtocolAuthOrganizationInvitationsService;
   };
 
+  uploads: {
+    uploads: ProtocolUploadsService;
+    transformations: ProtocolTransformationsService;
+    files: ProtocolFilesService;
+  };
+
   setAccessToken(accessToken: string): void {
     this.client.setAccessToken(accessToken);
+  }
+
+  setPublicKey(publicKey: string): void {
+    this.client.setPublicKey(publicKey);
+  }
+
+  setSecretKey(secretKey: string): void {
+    this.client.setSecretKey(secretKey);
   }
 
   constructor(config: ProtocolClientConfiguration) {
@@ -51,6 +70,8 @@ export class Protocol {
     this.client = new HttpClient({
       host: config.baseUrl,
       accessToken: config.accessToken,
+      publicKey: config.publicKey,
+      secretKey: config.secretKey,
       credentials: config.credentials,
       proxyUrl: config.proxyUrl,
       debug: config.debug || process.env.NODE_ENV !== 'production',
@@ -72,6 +93,12 @@ export class Protocol {
       organizationInvitations: new ProtocolAuthOrganizationInvitationsService(
         this,
       ),
+    };
+
+    this.uploads = {
+      uploads: new ProtocolUploadsService(this),
+      transformations: new ProtocolTransformationsService(this),
+      files: new ProtocolFilesService(this),
     };
   }
 }

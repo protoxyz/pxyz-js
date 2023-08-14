@@ -29,7 +29,7 @@ export default async function RootLayout({
 
     variables: {
       primary: '#858DFF',
-      radius: '5rem',
+      radius: '1rem',
     },
   };
 

@@ -174,11 +174,11 @@ export const ProtocolAuthProvider = ({
     appearance: mergeAppearance({
       appearance,
     }),
-    domain: domain ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN ?? '',
-    publicKey: publicKey ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_PUBLIC_KEY ?? '',
+    domain: domain ?? process.env.NEXT_PUBLIC_PXYZ_DOMAIN ?? '',
+    publicKey: publicKey ?? process.env.NEXT_PUBLIC_PXYZ_PUBLIC_KEY ?? '',
     protocol: new Protocol({
       credentials: true,
-      baseUrl: domain ?? process.env.NEXT_PUBLIC_PXYZ_AUTH_DOMAIN,
+      baseUrl: domain ?? process.env.NEXT_PUBLIC_PXYZ_DOMAIN,
       debug: process.env.NODE_ENV !== 'production',
       accessToken,
     }),

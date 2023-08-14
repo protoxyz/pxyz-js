@@ -1,5 +1,136 @@
-import { AuthVerificationStrategy } from '@protoxyz/types';
+import { AuthVerificationStrategy, Transformation } from '@protoxyz/types';
 import { RequestOptions } from './client';
+
+export interface ListTransformationsOptions extends RequestOptions {
+  body?: never;
+  path?: never;
+  query?: {
+    cursor?: string;
+    perPage?: string;
+  };
+}
+
+export interface GetTransformationOptions extends RequestOptions {
+  body?: never;
+  path?: {
+    transformationId: string;
+  };
+  query?: never;
+}
+
+export interface TransformationStep {}
+
+export interface CreateTransformationOptions extends RequestOptions {
+  body: Exclude<
+    Transformation,
+    'id' | 'tenantId' | 'createdAt' | 'updatedAt' | 'deletedAt'
+  >;
+  path?: never;
+  query?: never;
+}
+
+export interface UpdateTransformationOptions extends RequestOptions {
+  body: Exclude<
+    Transformation,
+    'id' | 'tenantId' | 'createdAt' | 'updatedAt' | 'deletedAt'
+  >;
+  path?: never;
+  query?: never;
+}
+
+export interface DeleteTransformationOptions extends RequestOptions {
+  body?: never;
+  path: {
+    transformationId: string;
+  };
+  query?: never;
+}
+
+export interface ListFilesOptions extends RequestOptions {
+  body?: never;
+  path?: never;
+  query?: {
+    cursor?: string;
+    perPage?: string;
+  };
+}
+
+export interface GetFileOptions extends RequestOptions {
+  body?: never;
+  path?: {
+    fileId: string;
+  };
+  query?: never;
+}
+
+export interface DeleteFileOptions extends RequestOptions {
+  body?: never;
+  path: {
+    fileId: string;
+  };
+  query?: never;
+}
+
+export interface ListUploadsOptions extends RequestOptions {
+  body?: never;
+  path?: never;
+  query?: {
+    cursor?: string;
+    perPage?: string;
+  };
+}
+
+export interface GetUploadOptions extends RequestOptions {
+  body?: never;
+  path?: {
+    uploadId: string;
+  };
+  query?: never;
+}
+
+export interface CreateUploadOptions extends RequestOptions {
+  body: {
+    path: string;
+    access: 'public' | 'private';
+    originalFilename: string;
+    mime: string;
+    size: number;
+    meta?: Record<string, any>;
+  };
+  path?: never;
+  query?: never;
+}
+
+// export interface UpdateUploadOptions extends RequestOptions {
+//   body: {
+//     path: string;
+//     originalFilename?: string | null;
+//     mime: string | null;
+//     size: number | null;
+//     meta?: Record<string, any>;
+//     finished: boolean;
+//   };
+//   path?: never;
+//   query?: never;
+// }
+
+export interface DeleteUploadOptions extends RequestOptions {
+  body?: never;
+  path: {
+    uploadId: string;
+  };
+  query?: never;
+}
+
+export interface FinishUploadOptions extends RequestOptions {
+  body: {
+    code: string;
+  };
+  path: {
+    uploadId: string;
+  };
+  query?: never;
+}
 
 export interface DeleteUserOptions extends RequestOptions {
   body?: never;
