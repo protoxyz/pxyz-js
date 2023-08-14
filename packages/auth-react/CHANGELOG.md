@@ -1,5 +1,12 @@
 # @protoxyz/auth-react
 
+## 2.0.60
+
+### Patch Changes
+
+- f2b3028: update deps
+- 115096a: update deps
+
 ## 2.0.59
 
 ### Patch Changes
