@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.59
+
+### Patch Changes
+
+- af5214b: add config err
+
 ## 2.0.58
 
 ### Patch Changes
