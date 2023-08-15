@@ -5,7 +5,7 @@ export interface ListTransformationsOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -50,7 +50,7 @@ export interface ListFilesOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -75,7 +75,7 @@ export interface ListUploadsOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -156,7 +156,7 @@ export interface ListConnectionsOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -179,7 +179,7 @@ export interface ListEmailAddressesOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -230,7 +230,7 @@ export interface ListOrganizationsOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -276,7 +276,7 @@ export interface ListOrganizationInvitationsOptions extends RequestOptions {
   };
   query?: {
     roleId?: string;
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -367,7 +367,7 @@ export interface ListOrganizationMembersOptions extends RequestOptions {
   };
   query?: {
     roleId?: string;
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -418,7 +418,7 @@ export interface ListOrganizationRolesOptions extends RequestOptions {
     organizationId: string;
   };
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -470,7 +470,7 @@ export interface ListPhoneNumbersOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -521,7 +521,7 @@ export interface ListSocialConnectionsOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }
@@ -568,7 +568,7 @@ export interface ListSessionsOptions extends RequestOptions {
   body?: never;
   path?: never;
   query?: {
-    cursor?: string;
+    cursor?: string | undefined;
     perPage?: string;
   };
 }

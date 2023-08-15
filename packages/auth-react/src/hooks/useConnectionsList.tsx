@@ -42,7 +42,7 @@ export const useProtocolAuthConnectionsList = ({
       () =>
         protocol.auth.socialConnections.list({
           query: {
-            cursor,
+            cursor: cursor?.toString(),
             perPage: perPage.toString(),
           },
         }),
@@ -52,7 +52,8 @@ export const useProtocolAuthConnectionsList = ({
             count: userConnections.length,
             next:
               userConnections.length > 0
-                ? userConnections[userConnections.length - 1].id
+                ? (userConnections[userConnections.length - 1]
+                    .createdAt as Date)
                 : null,
             numPages: 1,
             perPage: 10,

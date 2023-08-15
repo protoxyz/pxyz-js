@@ -31,7 +31,7 @@ export const useProtocolAuthSessionsList = ({
     () =>
       protocol.auth.sessions.list({
         query: {
-          cursor,
+          cursor: cursor?.toString(),
           perPage: perPage.toString(),
         },
       }),

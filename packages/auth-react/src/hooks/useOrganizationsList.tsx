@@ -43,7 +43,7 @@ export const useProtocolAuthOrganizationsList = ({
       () =>
         protocol.auth.organizations.list({
           query: {
-            cursor,
+            cursor: cursor?.toString(),
             perPage: perPage.toString(),
           },
         }),
@@ -53,7 +53,8 @@ export const useProtocolAuthOrganizationsList = ({
             count: userOrganizations.length,
             next:
               userOrganizations.length > 0
-                ? userOrganizations[userOrganizations.length - 1].id
+                ? (userOrganizations[userOrganizations.length - 1]
+                    .createdAt as Date)
                 : null,
             numPages: 1,
             perPage: 10,

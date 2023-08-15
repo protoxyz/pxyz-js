@@ -8,7 +8,7 @@ export interface PaginatedMeta {
 }
 
 export type PaginatedArgs = {
-  cursor?: string | undefined;
+  cursor?: Date | null | undefined;
   perPage?: number;
 };
 

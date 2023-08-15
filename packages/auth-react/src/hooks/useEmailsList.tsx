@@ -42,7 +42,7 @@ export const useProtocolAuthEmailsList = ({
       () =>
         protocol.auth.emailAddresses.list({
           query: {
-            cursor,
+            cursor: cursor?.toString(),
             perPage: perPage.toString(),
           },
         }),
@@ -52,7 +52,7 @@ export const useProtocolAuthEmailsList = ({
             count: userEmails.length,
             next:
               userEmails.length > 0
-                ? userEmails[userEmails.length - 1].id
+                ? (userEmails[userEmails.length - 1].createdAt as Date)
                 : null,
             numPages: 1,
             perPage: 10,

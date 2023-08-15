@@ -1,52 +1,41 @@
 import { ResizeMode } from '@protoxyz/types';
-import NextImage, { ImageProps as NextImageProps } from 'next/image';
-import { URLSearchParams } from 'url';
+import { cn } from '../utils';
 
-export type ImageProps = DefaultImageProps &
-  ImageTransformationProps &
-  ImageOptions;
+export type ImageProps = ImageOptionsProps | PredefinedTransformationImageProps;
 
-export interface DefaultImageProps {
+type DefaultImageProps = {
+  alt: string;
   uploadId: string;
   tenantId: string;
-  className: string;
-}
+  className?: string;
+};
 
-export interface ImageTransformationProps {
-  transformation: string;
-}
-
-export interface ImageOptions {
+type ImageOptionsProps = DefaultImageProps & {
   format?: string;
   width?: number;
   height?: number;
   resizeMode?: ResizeMode;
   quality?: number;
   compression?: number;
-}
+};
 
-export function Image({
-  tenantId,
-  uploadId,
-  transformation,
-  format,
-  width,
-  height,
-  resizeMode,
-  quality,
-  compression,
-  ...props
-}: ImageProps & NextImageProps) {
+type PredefinedTransformationImageProps = DefaultImageProps & {
+  transformation: string;
+};
+
+export function Image({ className, ...props }: ImageProps) {
   const CDN_URL =
     process.env.PXYZ_CDN_URL ??
     process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
     'https://cdn.pxyz.cloud';
 
-  const src = new URL(`/${tenantId}/${uploadId}/raw?`, CDN_URL);
+  const src = new URL(`/${props.tenantId}/${props.uploadId}/raw?`, CDN_URL);
 
-  if (transformation) {
-    src.searchParams.append('transformation', transformation);
+  if ('transformation' in props) {
+    src.searchParams.append('transformation', props.transformation);
   } else {
+    const { width, height, resizeMode, quality, compression } =
+      props as ImageOptionsProps;
     if (width) src.searchParams.append('width', width.toString());
     if (height) src.searchParams.append('height', height.toString());
     if (resizeMode) src.searchParams.append('resizeMode', resizeMode);
@@ -55,5 +44,11 @@ export function Image({
       src.searchParams.append('compression', compression.toString());
   }
 
-  return <NextImage src={src.toString()} {...props} />;
+  return (
+    <img
+      src={src.toString()}
+      {...props}
+      className={cn(className, 'bg-slate-50')}
+    />
+  );
 }

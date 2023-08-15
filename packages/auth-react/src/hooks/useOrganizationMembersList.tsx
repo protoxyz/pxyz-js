@@ -46,7 +46,7 @@ export const useProtocolAuthOrganizationMembers = ({
           organizationId: orgId,
         },
         query: {
-          cursor,
+          cursor: cursor?.toString(),
           perPage: perPage.toString(),
         },
       }),

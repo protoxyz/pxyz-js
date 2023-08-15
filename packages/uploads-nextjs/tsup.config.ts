@@ -13,11 +13,11 @@ export default defineConfig([
     format: ['esm', 'cjs'],
   },
   {
-    entry: ['./src/client.tsx'],
+    entry: ['./src/client/tailwind.ts', './src/client/client.tsx'],
     clean: true,
     sourcemap: 'inline',
     format: ['esm'],
-    external: ['react', 'nextjs', 'react-dom'],
+    external: ['react', 'next', 'next/image', 'react-dom'],
     outDir: 'dist/',
     dts: true,
     esbuildOptions(options, context) {

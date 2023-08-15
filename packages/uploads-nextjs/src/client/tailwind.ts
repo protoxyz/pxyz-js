@@ -1,4 +1,4 @@
-const tailwindPaths =
+const paths =
   './node_modules/@protoxyz/uploads-nextjs/dist/**/*.{js,ts,jsx,tsx}';
 
-export { tailwindPaths };
+export { paths };

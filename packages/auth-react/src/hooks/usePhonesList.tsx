@@ -42,7 +42,7 @@ export const useProtocolAuthPhonesList = ({
       () =>
         protocol.auth.phoneNumbers.list({
           query: {
-            cursor,
+            cursor: cursor?.toString(),
             perPage: perPage.toString(),
           },
         }),
@@ -52,7 +52,7 @@ export const useProtocolAuthPhonesList = ({
             count: userPhones.length,
             next:
               userPhones.length > 0
-                ? userPhones[userPhones.length - 1].id
+                ? (userPhones[userPhones.length - 1].createdAt as Date)
                 : null,
             numPages: 1,
             perPage: 10,

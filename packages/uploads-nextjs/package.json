@@ -15,7 +15,8 @@
   "type": "module",
   "exports": {
     ".": "./dist/server.js",
-    "./client": "./dist/client"
+    "./client": "./dist/client.js",
+    "./tailwind": "./dist/tailwind.js"
   },
   "main": "./dist/server.js",
   "module": "./dist/server.mjs",
