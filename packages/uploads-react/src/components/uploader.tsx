@@ -22,29 +22,42 @@ export function Uploader({
   previewWidth = 512,
   previewHeight = 512,
   uploadUrl,
+  ...handlers
 }: UploaderProps) {
   const [progress, setProgress] = React.useState<number | undefined>(undefined);
   const [error, setError] = React.useState<string | undefined>(undefined);
   const [upload, setUpload] = React.useState<Upload | undefined>(undefined);
   const [finished, setFinished] = React.useState<boolean>(false);
 
+  const onAbort = (upload: Upload) => {
+    handlers.onAbort?.(upload);
+    setProgress(undefined);
+    setError(undefined);
+    setUpload(undefined);
+    setFinished(false);
+  };
+
   const onError = (
     upload: Upload,
     err: ProgressEvent<XMLHttpRequestEventTarget>,
   ) => {
     setError(err);
+    handlers.onError?.(upload, err);
   };
 
   const onProgress = (upload: Upload, progress: number) => {
     setProgress(progress);
+    handlers.onProgress?.(upload, progress);
   };
 
   const onCreate = (upload: Upload) => {
     setUpload(upload);
+    handlers.onCreate?.(upload);
   };
 
   const onFinish = () => {
     setFinished(true);
+    handlers.onFinish?.(upload);
   };
 
   if (finished) {
@@ -92,6 +105,7 @@ export function Uploader({
               onCreate,
               onFinish,
               onError,
+              onAbort,
             })
           }
           id="file"
