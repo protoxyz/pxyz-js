@@ -21,6 +21,7 @@ export function Uploader({
   className,
   previewWidth = 512,
   previewHeight = 512,
+  uploadUrl,
 }: UploaderProps) {
   const [progress, setProgress] = React.useState<number | undefined>(undefined);
   const [error, setError] = React.useState<string | undefined>(undefined);
@@ -85,7 +86,13 @@ export function Uploader({
         <Label htmlFor="file">{label}</Label>
         <Input
           onChange={(e) =>
-            uploadPhoto(e, { onProgress, onCreate, onFinish, onError })
+            uploadPhoto(e, {
+              uploadUrl,
+              onProgress,
+              onCreate,
+              onFinish,
+              onError,
+            })
           }
           id="file"
           type="file"

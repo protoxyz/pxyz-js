@@ -21,9 +21,21 @@ export async function put({
   publicKey,
   secretKey,
 }: UploadOptions) {
+  const pkey = publicKey ?? process.env.PXYZ_PUBLIC_KEY;
+  const skey = secretKey ?? process.env.PXYZ_SECRET_KEY;
+
+  if (!pkey) {
+    throw new Error('Missing publicKey and PXYZ_PUBLIC_KEY');
+  }
+
+  if (!skey) {
+    throw new Error('Missing secretKey and PXYZ_SECRET_KEY');
+  }
+
   const protocol = new Protocol({
-    publicKey: publicKey ?? process.env.PXYZ_PUBLIC_KEY,
-    secretKey: secretKey ?? process.env.PXYZ_SECRET_KEY,
+    publicKey: pkey,
+    secretKey: skey,
+    debug: process.env.NODE_ENV === 'development',
   });
 
   return protocol.uploads.uploads.create({

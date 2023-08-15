@@ -1,3 +1,4 @@
+import React from 'react';
 import { ResizeMode } from '@protoxyz/types';
 import { cn } from '../utils';
 
@@ -24,6 +25,8 @@ type PredefinedTransformationImageProps = DefaultImageProps & {
 };
 
 export function Image({ className, ...props }: ImageProps) {
+  const [error, setError] = React.useState(false);
+
   const CDN_URL =
     process.env.PXYZ_CDN_URL ??
     process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
@@ -44,11 +47,16 @@ export function Image({ className, ...props }: ImageProps) {
       src.searchParams.append('compression', compression.toString());
   }
 
+  if (error) {
+    return <div className={cn(className, 'bg-slate-50')} {...props} />;
+  }
+
   return (
     <img
       src={src.toString()}
       {...props}
       className={cn(className, 'bg-slate-50')}
+      onError={(err) => setError(err)}
     />
   );
 }
