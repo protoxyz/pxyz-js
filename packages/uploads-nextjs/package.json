@@ -12,12 +12,7 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "type": "module",
-  "exports": {
-    "./client": "./dist/client/index.js",
-    "./server": "./dist/server/index.js"
-  },
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist/**"

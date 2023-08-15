@@ -1,7 +1,5 @@
-'use client';
 import React from 'react';
 import { Upload } from '@protoxyz/types';
-import { useState } from 'react';
 import { PutProps, put } from '../actions/put';
 import { Image } from './image';
 import { cn } from '../utils';
@@ -24,10 +22,10 @@ export function Uploader({
   previewWidth = 512,
   previewHeight = 512,
 }: UploaderProps) {
-  const [progress, setProgress] = useState<number | undefined>(undefined);
-  const [error, setError] = useState<string | undefined>(undefined);
-  const [upload, setUpload] = useState<Upload | undefined>(undefined);
-  const [finished, setFinished] = useState<boolean>(false);
+  const [progress, setProgress] = React.useState<number | undefined>(undefined);
+  const [error, setError] = React.useState<string | undefined>(undefined);
+  const [upload, setUpload] = React.useState<Upload | undefined>(undefined);
+  const [finished, setFinished] = React.useState<boolean>(false);
 
   const onError = (
     upload: Upload,
