@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.6
+
+### Patch Changes
+
+- a52088c: pass handlers through
+
 ## 1.0.5
 
 ### Patch Changes
