@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { put } from '@protoxyz/uploads-nextjs';
 import { getAuth } from '@protoxyz/auth-nextjs';
 
 export async function POST(req: NextRequest) {

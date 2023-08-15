@@ -14,13 +14,11 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./dist/server.js",
-    "./client": "./dist/client.js",
-    "./tailwind": "./dist/tailwind.js"
+    "./client": "./dist/client/index.js",
+    "./server": "./dist/server/index.js"
   },
-  "main": "./dist/server.js",
-  "module": "./dist/server.mjs",
-  "types": "./dist/server.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/**"
   ],
@@ -32,11 +30,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@protoxyz/core": "workspace:*",
     "@protoxyz/types": "workspace:*"
   },
   "devDependencies": {
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
+    "@protoxyz/core": "workspace:*",
     "@protoxyz/eslint-config-custom-next": "github:protoxyz/eslint-config-custom-next",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
@@ -53,6 +51,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "@protoxyz/core": "^2.0.0",
     "next": ">=13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -1,7 +1,7 @@
 import { Header } from '@/components/header';
 import { Wrapper } from '@/components/wrapper';
 import { IsLoggedIn } from '@protoxyz/auth-react';
-import { Uploader } from '@protoxyz/uploads-nextjs/client';
+import { Uploader } from '@protoxyz/uploads-nextjs';
 
 export default function DashboardPage() {
   return (
