@@ -3,8 +3,8 @@ export interface PaginatedMeta {
   count: number;
   numPages: number;
   perPage: number;
-  prev?: string | null | undefined;
-  next?: string | null | undefined;
+  prev?: Date | null | undefined;
+  next?: Date | null | undefined;
 }
 
 export type PaginatedArgs = {

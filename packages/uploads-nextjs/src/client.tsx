@@ -1,5 +1,6 @@
 // UI Components
-export { FileUpload } from './client/components/upload.js';
+export { Uploader } from './client/components/uploader.js';
+export { Image } from './client/components/image.js';
 
 // Actions
 export { put } from './client/actions/put.js';

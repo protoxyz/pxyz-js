@@ -1,7 +1,7 @@
 import { Header } from '@/components/header';
-import Upload from '@/components/upload';
 import { Wrapper } from '@/components/wrapper';
 import { IsLoggedIn } from '@protoxyz/auth-react';
+import { Uploader } from '@protoxyz/uploads-nextjs/client';
 
 export default function DashboardPage() {
   return (
@@ -10,7 +10,7 @@ export default function DashboardPage() {
       <IsLoggedIn>You are signed in!</IsLoggedIn>
 
       <div className="w-full max-w-lg mx-auto mt-24">
-        <Upload />
+        <Uploader />
       </div>
     </Wrapper>
   );

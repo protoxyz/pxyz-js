@@ -1,17 +1,9 @@
 import { Upload } from '@protoxyz/types';
 
-export async function put({
-  file,
-
-  uploadUrl = '/api/upload-url',
-  onProgress,
-  onFinish,
-  onError,
-  onAbort,
-}: {
-  file: File;
-
+export interface PutProps {
   uploadUrl?: string;
+
+  onCreate?: (upload: Upload) => void;
   onProgress?: (upload: Upload, progress: number) => void;
   onFinish?: (upload: Upload) => void;
   onError?: (
@@ -19,7 +11,20 @@ export async function put({
     err: ProgressEvent<XMLHttpRequestEventTarget>,
   ) => void;
   onAbort?: (upload: Upload) => void;
-}) {
+}
+
+export async function put({
+  file,
+
+  uploadUrl = '/api/upload-url',
+  onCreate,
+  onProgress,
+  onFinish,
+  onError,
+  onAbort,
+}: {
+  file: File;
+} & PutProps) {
   const originalFilename = file.name;
   const contentType = file.type;
   const contentSize = file.size;
@@ -39,6 +44,8 @@ export async function put({
     console.log(`Error getting upload url`);
     return;
   }
+
+  onCreate?.(upload);
 
   const formData = new FormData();
 
