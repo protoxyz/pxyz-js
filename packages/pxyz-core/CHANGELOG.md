@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.22
+
+### Patch Changes
+
+- c236fc9: updates
+
 ## 2.0.21
 
 ### Patch Changes

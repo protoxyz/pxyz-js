@@ -46,7 +46,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@protoxyz/core": "^2.0.0",
+    "@protoxyz/core": "^2.0.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
