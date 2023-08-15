@@ -1,5 +1,12 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.4
+
+### Patch Changes
+
+- 3dc86ee: add d.ts for client
+- 78d56bb: debug
+
 ## 1.0.3
 
 ### Patch Changes
