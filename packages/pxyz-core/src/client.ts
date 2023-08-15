@@ -91,7 +91,8 @@ export class HttpClient {
 
       if (queryParams !== undefined) {
         Object.keys(queryParams).reduce((searchParams, key) => {
-          searchParams.append(key, queryParams[key]);
+          if (queryParams[key] !== undefined)
+            searchParams.append(key, queryParams[key]);
           return searchParams;
         }, searchParams);
       }

@@ -38,43 +38,46 @@ const component: AuthComponentType = 'userProfile';
 
 interface UpdateProfileCardOptions {}
 export function UserProfile({}: UpdateProfileCardOptions) {
-  const { user } = useProtocolAuth();
+  const { tenant, user } = useProtocolAuth();
   const { appearance } = useProtocolAuthAppearance({ component });
   const { route } = useProtocolAuthUserProfileFlow();
 
   const nav = useMemo(
-    () => [
-      {
-        icon: <UserIcon className="h-4 w-4" />,
-        label: 'Profile',
-        route: UserProfileFlowRoute['userProfile:settings'],
-      },
-      {
-        icon: <MailIcon className="h-4 w-4" />,
-        label: 'Email Addresses',
-        route: UserProfileFlowRoute['userProfile:emails'],
-      },
-      {
-        icon: <PhoneIcon className="h-4 w-4" />,
-        label: 'Phone Numbers',
-        route: UserProfileFlowRoute['userProfile:phones'],
-      },
-      {
-        icon: <LinkIcon className="h-4 w-4" />,
-        label: 'Social Connections',
-        route: UserProfileFlowRoute['userProfile:connections'],
-      },
-      {
-        icon: <ShieldCheckIcon className="h-4 w-4" />,
-        label: 'Security',
-        route: UserProfileFlowRoute['userProfile:security'],
-      },
-      {
-        icon: <LaptopIcon className="h-4 w-4" />,
-        label: 'Sessions',
-        route: UserProfileFlowRoute['userProfile:sessions'],
-      },
-    ],
+    () =>
+      [
+        {
+          icon: <UserIcon className="h-4 w-4" />,
+          label: 'Profile',
+          route: UserProfileFlowRoute['userProfile:settings'],
+        },
+        {
+          icon: <MailIcon className="h-4 w-4" />,
+          label: 'Email Addresses',
+          route: UserProfileFlowRoute['userProfile:emails'],
+        },
+        {
+          icon: <PhoneIcon className="h-4 w-4" />,
+          label: 'Phone Numbers',
+          route: UserProfileFlowRoute['userProfile:phones'],
+        },
+        tenant.socialProviders?.length > 0
+          ? {
+              icon: <LinkIcon className="h-4 w-4" />,
+              label: 'Social Connections',
+              route: UserProfileFlowRoute['userProfile:connections'],
+            }
+          : undefined,
+        {
+          icon: <ShieldCheckIcon className="h-4 w-4" />,
+          label: 'Security',
+          route: UserProfileFlowRoute['userProfile:security'],
+        },
+        {
+          icon: <LaptopIcon className="h-4 w-4" />,
+          label: 'Sessions',
+          route: UserProfileFlowRoute['userProfile:sessions'],
+        },
+      ].filter((route) => !!route),
     [route],
   );
 

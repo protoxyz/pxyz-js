@@ -1,5 +1,15 @@
 import { Protocol } from '@protoxyz/core';
-import { UploadOptions } from '../../types';
+
+export interface UploadOptions {
+  path: string;
+  access?: 'public' | 'private';
+  originalFilename: string;
+  mime: string;
+  size: number;
+  meta?: Record<string, any>;
+  publicKey?: string;
+  secretKey?: string;
+}
 
 export async function put({
   path,
