@@ -1,5 +1,15 @@
 # @protoxyz/auth-react
 
+## 2.0.61
+
+### Patch Changes
+
+- c7691a8: fix pagination cursors. update image and uploader
+- Updated dependencies [c7691a8]
+- Updated dependencies [5abb23b]
+  - @protoxyz/core@2.0.21
+  - @protoxyz/types@2.0.17
+
 ## 2.0.60
 
 ### Patch Changes

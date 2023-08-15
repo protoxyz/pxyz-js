@@ -1,5 +1,14 @@
 # @protoxyz/core
 
+## 2.0.21
+
+### Patch Changes
+
+- c7691a8: fix pagination cursors. update image and uploader
+- Updated dependencies [c7691a8]
+- Updated dependencies [5abb23b]
+  - @protoxyz/types@2.0.17
+
 ## 2.0.20
 
 ### Patch Changes
