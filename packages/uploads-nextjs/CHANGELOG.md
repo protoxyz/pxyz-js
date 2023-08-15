@@ -1,5 +1,11 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.5
+
+### Patch Changes
+
+- ec52b8b: fix structure
+
 ## 1.0.4
 
 ### Patch Changes
