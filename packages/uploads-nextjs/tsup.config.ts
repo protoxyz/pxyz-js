@@ -17,11 +17,17 @@ export default defineConfig([
     clean: true,
     sourcemap: 'inline',
     format: ['esm'],
-    external: ['react', 'next', 'next/image', 'react-dom'],
+    external: ['react', 'next', 'react-dom'],
     outDir: 'dist/',
-    dts: true,
+    dts: {
+      entry: {
+        index: 'src/server.ts',
+        client: 'src/client/client.tsx',
+      },
+    },
     esbuildOptions(options, context) {
       options.banner = { js: `"use client";` };
+      options.outbase = './';
     },
   },
 ]);
