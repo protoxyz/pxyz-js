@@ -1,5 +1,11 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.7
+
+### Patch Changes
+
+- a90833f: add debug line
+
 ## 1.0.6
 
 ### Patch Changes
