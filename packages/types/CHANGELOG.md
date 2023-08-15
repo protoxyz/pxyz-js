@@ -1,5 +1,12 @@
 # @protoxyz/types
 
+## 2.0.17
+
+### Patch Changes
+
+- c7691a8: fix pagination cursors. update image and uploader
+- 5abb23b: update type
+
 ## 2.0.16
 
 ### Patch Changes
