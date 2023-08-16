@@ -96,6 +96,7 @@ export interface CreateUploadOptions extends RequestOptions {
     mime: string;
     size: number;
     meta?: Record<string, any>;
+    duration?: number;
   };
   path?: never;
   query?: never;

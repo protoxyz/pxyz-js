@@ -1,7 +1,6 @@
 import React from 'react';
 import { Upload } from '@protoxyz/types';
 import { PutProps, put } from '../actions/put';
-import { Image } from './image';
 import { cn } from '../utils';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
@@ -85,7 +84,7 @@ export function Uploader({
           'bg-slate-50 flex flex-col gap-5 rounded-lg p-5 ',
           className,
         )}
-        style={{ width: previewWidth, height: previewHeight }}
+        // style={{ width: previewWidth, height: previewHeight }}
       >
         {progress && (
           <div className="text-slate-500 flex flex-col gap-3">

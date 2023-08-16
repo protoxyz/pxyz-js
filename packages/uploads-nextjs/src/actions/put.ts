@@ -4,6 +4,7 @@ export interface UploadOptions {
   path: string;
   access?: 'public' | 'private';
   originalFilename: string;
+  duration?: number;
   mime: string;
   size: number;
   meta?: Record<string, any>;
@@ -18,6 +19,7 @@ export async function put({
   mime,
   size,
   meta,
+  duration,
   publicKey,
   secretKey,
 }: UploadOptions) {
@@ -46,6 +48,7 @@ export async function put({
       mime,
       size,
       meta,
+      duration,
     },
   });
 }
