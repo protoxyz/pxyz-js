@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.10
+
+### Patch Changes
+
+- 696d9e9: add blob upload
+
 ## 1.0.9
 
 ### Patch Changes
