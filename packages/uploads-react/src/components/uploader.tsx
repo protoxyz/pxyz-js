@@ -55,7 +55,7 @@ export function Uploader({
     handlers.onCreate?.(upload);
   };
 
-  const onFinish = () => {
+  const onFinish = (upload: Upload) => {
     setFinished(true);
     handlers.onFinish?.(upload);
   };
