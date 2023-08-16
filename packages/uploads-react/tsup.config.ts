@@ -16,6 +16,7 @@ export default defineConfig([
     minify: true,
     bundle: false,
     splitting: false,
+    sourcemap: 'inline',
     dts: true,
     format: ['esm'],
     external,
