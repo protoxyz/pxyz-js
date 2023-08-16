@@ -32,7 +32,7 @@ export function Image({ className, ...props }: ImageProps) {
     process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
     'https://cdn.pxyz.cloud';
 
-  const src = new URL(`/${props.tenantId}/${props.uploadId}/raw?`, CDN_URL);
+  const src = new URL(`/${props.tenantId}/${props.uploadId}/image?`, CDN_URL);
 
   if ('transformation' in props) {
     src.searchParams.append('transformation', props.transformation);
