@@ -1,5 +1,14 @@
 # @protoxyz/uploads-react
 
+## 1.0.11
+
+### Patch Changes
+
+- 55f5fa1: add missing export
+- f442105: update deps
+- Updated dependencies [f442105]
+  - @protoxyz/core@2.0.23
+
 ## 1.0.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.23
+
+### Patch Changes
+
+- f442105: update deps
+
 ## 2.0.22
 
 ### Patch Changes
