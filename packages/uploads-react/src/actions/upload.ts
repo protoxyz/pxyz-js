@@ -50,7 +50,7 @@ export function upload(props: UploadProps) {
     props.onAbort?.(props.upload);
   });
 
-  xhr.open('POST', props.uploadUrl, true);
+  xhr.open('POST', props.upload.uploadUrl, true);
 
   xhr.send(formData);
 }
