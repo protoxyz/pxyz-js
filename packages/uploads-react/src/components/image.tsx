@@ -37,7 +37,7 @@ export function Image({ className, ...props }: ImageProps) {
   if ('transformation' in props) {
     src.searchParams.append('transformation', props.transformation);
   } else {
-    const { width, height, resizeMode, quality, compression } =
+    const { format, width, height, resizeMode, quality, compression } =
       props as ImageOptionsProps;
     if (width) src.searchParams.append('width', width.toString());
     if (height) src.searchParams.append('height', height.toString());
@@ -45,6 +45,7 @@ export function Image({ className, ...props }: ImageProps) {
     if (quality) src.searchParams.append('quality', quality.toString());
     if (compression)
       src.searchParams.append('compression', compression.toString());
+    if (format) src.searchParams.append('format', format);
   }
 
   if (error) {
