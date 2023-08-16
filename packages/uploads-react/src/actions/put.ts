@@ -39,18 +39,18 @@ export async function put({
     }),
   });
 
-  const upload = await res.json();
+  const uploadResult = await res.json();
 
-  if (!upload.uploadUrl) {
+  if (!uploadResult.uploadUrl) {
     console.log(`Error getting upload url`);
     return;
   }
 
-  onCreate?.(upload);
+  onCreate?.(uploadResult);
 
   upload({
     file,
-    upload,
+    upload: uploadResult,
     onProgress,
     onFinish,
     onAbort,
