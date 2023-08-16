@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.7
+
+### Patch Changes
+
+- 4775432: pass along upload object
+
 ## 1.0.6
 
 ### Patch Changes
