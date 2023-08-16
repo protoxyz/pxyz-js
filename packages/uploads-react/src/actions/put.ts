@@ -1,4 +1,5 @@
 import { Upload } from '@protoxyz/types';
+import { upload } from './upload';
 
 export interface PutProps {
   uploadUrl?: string;
@@ -47,35 +48,44 @@ export async function put({
 
   onCreate?.(upload);
 
-  const formData = new FormData();
-
-  Object.entries({
-    ...upload.fields,
+  upload({
     file,
-  }).forEach(([key, value]) => {
-    formData.append(key, value as string);
+    upload,
+    onProgress,
+    onFinish,
+    onAbort,
+    onError,
   });
 
-  const xhr = new XMLHttpRequest();
+  // const formData = new FormData();
 
-  xhr.upload.addEventListener('progress', (e) => {
-    onProgress?.(upload, (e.loaded / e.total) * 100);
-  });
+  // Object.entries({
+  //   ...upload.fields,
+  //   file,
+  // }).forEach(([key, value]) => {
+  //   formData.append(key, value as string);
+  // });
 
-  xhr.addEventListener('load', () => {
-    onFinish?.(upload);
-  });
+  // const xhr = new XMLHttpRequest();
 
-  xhr.addEventListener('error', (err) => {
-    console.log('Error uploading', err);
-    onError?.(upload, err);
-  });
+  // xhr.upload.addEventListener('progress', (e) => {
+  //   onProgress?.(upload, (e.loaded / e.total) * 100);
+  // });
 
-  xhr.addEventListener('abort', () => {
-    onAbort?.(upload);
-  });
+  // xhr.addEventListener('load', () => {
+  //   onFinish?.(upload);
+  // });
 
-  xhr.open('POST', upload.uploadUrl, true);
+  // xhr.addEventListener('error', (err) => {
+  //   console.log('Error uploading', err);
+  //   onError?.(upload, err);
+  // });
 
-  xhr.send(formData);
+  // xhr.addEventListener('abort', () => {
+  //   onAbort?.(upload);
+  // });
+
+  // xhr.open('POST', upload.uploadUrl, true);
+
+  // xhr.send(formData);
 }
