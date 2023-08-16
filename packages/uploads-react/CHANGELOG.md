@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.12
+
+### Patch Changes
+
+- a7063ae: use image in Image
+
 ## 1.0.11
 
 ### Patch Changes
