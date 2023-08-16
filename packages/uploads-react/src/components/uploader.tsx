@@ -5,6 +5,7 @@ import { Image } from './image';
 import { cn } from '../utils';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
+import { Progress } from './ui/progress';
 
 export interface UploaderProps extends PutProps {
   label?: string;
@@ -29,12 +30,16 @@ export function Uploader({
   const [upload, setUpload] = React.useState<Upload | undefined>(undefined);
   const [finished, setFinished] = React.useState<boolean>(false);
 
-  const onAbort = (upload: Upload) => {
-    handlers.onAbort?.(upload);
+  const reset = () => {
     setProgress(undefined);
     setError(undefined);
     setUpload(undefined);
     setFinished(false);
+  };
+
+  const onAbort = (upload: Upload) => {
+    handlers.onAbort?.(upload);
+    reset();
   };
 
   const onError = (
@@ -58,19 +63,20 @@ export function Uploader({
   const onFinish = (upload: Upload) => {
     setFinished(true);
     handlers.onFinish?.(upload);
+    reset();
   };
 
-  if (finished) {
-    return (
-      <Image
-        alt={upload.id}
-        tenantId={upload.tenantId}
-        uploadId={upload.id}
-        width={previewWidth}
-        height={previewHeight}
-      />
-    );
-  }
+  // if (finished) {
+  //   return (
+  //     <Image
+  //       alt={upload.id}
+  //       tenantId={upload.tenantId}
+  //       uploadId={upload.id}
+  //       width={previewWidth}
+  //       height={previewHeight}
+  //     />
+  //   );
+  // }
 
   if (upload) {
     return (
@@ -81,7 +87,12 @@ export function Uploader({
         )}
         style={{ width: previewWidth, height: previewHeight }}
       >
-        {progress && <div>{progress.toFixed(0)}%</div>}
+        {progress && (
+          <div className="text-slate-500 flex flex-col gap-3">
+            {upload.originalFilename}...
+            <Progress value={progress} />
+          </div>
+        )}
         {error && <div>{error}</div>}
       </div>
     );
