@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.14
+
+### Patch Changes
+
+- 09e8a14: fix upload call
+
 ## 1.0.13
 
 ### Patch Changes
