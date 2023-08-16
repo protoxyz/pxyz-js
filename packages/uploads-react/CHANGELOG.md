@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.15
+
+### Patch Changes
+
+- 1ce43d0: fix
+
 ## 1.0.14
 
 ### Patch Changes
