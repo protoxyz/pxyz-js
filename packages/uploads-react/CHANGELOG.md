@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.9
+
+### Patch Changes
+
+- b23bbee: add format
+
 ## 1.0.8
 
 ### Patch Changes
