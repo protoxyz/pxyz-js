@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.32
+
+### Patch Changes
+
+- ccbcc54: fix auth middleware afterAuth call
+
 ## 2.1.31
 
 ### Patch Changes
