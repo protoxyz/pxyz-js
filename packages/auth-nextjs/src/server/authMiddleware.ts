@@ -6,10 +6,7 @@ import { defaultPublicRoutes } from './util';
 
 interface AuthMiddlewareProps {
   beforeAuth?: (req: NextRequest) => Promise<void>;
-  afterAuth?: (
-    auth: SessionUser,
-    req: NextRequest,
-  ) => Promise<NextResponse | void>;
+  afterAuth?: (auth: SessionUser, req: NextRequest) => Promise<NextResponse>;
   publicRoutes?: string[];
 }
 export function authMiddleware({
@@ -31,17 +28,18 @@ export function authMiddleware({
         if (result) return result;
       }
       return NextResponse.next();
-    } else {
-      if (afterAuth) {
-        const auth = await getMiddlewareAuth({ req });
-        await afterAuth(auth, req);
-      }
     }
 
     const session = await getMiddlewareAuth({ req });
 
     if (!session && !currentPathIsSignInOrSignUp(req)) {
       return redirectToSignIn({ req, returnTo: req.url });
+    }
+
+    if (afterAuth) {
+      const auth = await getMiddlewareAuth({ req });
+      const response = await afterAuth(auth, req);
+      if (response) return response;
     }
 
     return NextResponse.next();
