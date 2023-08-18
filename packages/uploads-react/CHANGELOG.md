@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.16
+
+### Patch Changes
+
+- 221f494: clean up uploader style
+
 ## 1.0.15
 
 ### Patch Changes
