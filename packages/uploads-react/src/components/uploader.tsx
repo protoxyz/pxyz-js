@@ -81,13 +81,13 @@ export function Uploader({
     return (
       <div
         className={cn(
-          'bg-slate-50 flex flex-col gap-5 rounded-lg p-5 ',
+          'bg-background flex flex-col gap-5 rounded-lg p-5 ',
           className,
         )}
         // style={{ width: previewWidth, height: previewHeight }}
       >
         {progress && (
-          <div className="text-slate-500 flex flex-col gap-3">
+          <div className="text-muted-foreground flex flex-col gap-3">
             {upload.originalFilename}...
             <Progress value={progress} />
           </div>
@@ -100,7 +100,7 @@ export function Uploader({
   return (
     <div
       className={cn(
-        'bg-slate-50 flex flex-col gap-5 rounded-lg p-5 ',
+        'bg-background flex flex-col gap-5 rounded-lg p-5 ',
         className,
       )}
     >

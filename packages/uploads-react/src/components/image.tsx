@@ -7,7 +7,7 @@ export type ImageProps = ImageOptionsProps | PredefinedTransformationImageProps;
 type DefaultImageProps = {
   alt: string;
   uploadId: string;
-  tenantId: string;
+  tenantId?: string;
   className?: string;
 };
 
@@ -32,7 +32,12 @@ export function Image({ className, ...props }: ImageProps) {
     process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
     'https://cdn.pxyz.cloud';
 
-  const src = new URL(`/${props.tenantId}/${props.uploadId}/image?`, CDN_URL);
+  const TENANT_ID =
+    props.tenantId ??
+    process.env.PXYZ_TENANT_ID ??
+    process.env.NEXT_PUBLIC_PXYZ_TENANT_ID;
+
+  const src = new URL(`/${TENANT_ID}/${props.uploadId}/image?`, CDN_URL);
 
   if ('transformation' in props) {
     src.searchParams.append('transformation', props.transformation);
