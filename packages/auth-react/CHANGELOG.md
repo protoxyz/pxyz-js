@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.65
+
+### Patch Changes
+
+- 24e9b2d: add logout url
+- Updated dependencies [24e9b2d]
+  - @protoxyz/auth-providers@2.0.7
+
 ## 2.0.64
 
 ### Patch Changes
