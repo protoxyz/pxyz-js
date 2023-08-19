@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.33
+
+### Patch Changes
+
+- 24e9b2d: add logout url
+- Updated dependencies [24e9b2d]
+  - @protoxyz/auth-react@2.0.65
+
 ## 2.1.32
 
 ### Patch Changes

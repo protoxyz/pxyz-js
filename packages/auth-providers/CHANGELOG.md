@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.7
+
+### Patch Changes
+
+- 24e9b2d: add logout url
+
 ## 2.0.6
 
 ### Patch Changes
