@@ -122,7 +122,7 @@ export function UpdateOrganizationForm({
   const { organizations, isUpdating, updateOrganization, updateError } =
     useProtocolAuthOrganizationsList({});
 
-  const org = organizations?.data.find((org) => org.id === orgId);
+  const org = organizations?.data?.find((org) => org.id === orgId);
 
   const form = useForm<z.infer<typeof UpdateOrganizationFormSchema>>({
     resolver: zodResolver(UpdateOrganizationFormSchema),
@@ -137,7 +137,7 @@ export function UpdateOrganizationForm({
     const response = await updateOrganization({ name: values.name });
     if (response.status === ResponseStatus.Success) {
       navigate(
-        `${afterUpdateOrganizationRedirectUri}?organizationId=${response.data.organization.id}`,
+        `${afterUpdateOrganizationRedirectUri}?organizationId=${response.data?.organization.id}`,
       );
     }
   }

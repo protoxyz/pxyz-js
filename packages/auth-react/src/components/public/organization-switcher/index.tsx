@@ -83,7 +83,7 @@ export function OrganizationSwitcher({
     });
 
     if (response.status === ResponseStatus.Success) {
-      setSessionCookie(response.data.jwt, tenant);
+      setSessionCookie(response.data?.jwt, tenant);
       setState((state) => ({
         ...state,
         orgId,
@@ -142,7 +142,7 @@ export function OrganizationSwitcher({
                         onOrganizationSelect?.(team.id);
                         setState((state) => ({
                           ...state,
-                          org: organizations.data.find(
+                          org: organizations.data?.find(
                             (org) => org.id === team.id,
                           ),
                           orgId: team.id,

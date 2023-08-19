@@ -27,10 +27,10 @@ export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
 
       if (response.status === ResponseStatus.Error) {
         setUpdateError(response.error);
-      } else if (response.data.user) {
+      } else if (response.data?.user) {
         setState((state) => ({
           ...state,
-          user: response.data.user,
+          user: response.data?.user,
         }));
       }
       setIsUpdating(false);

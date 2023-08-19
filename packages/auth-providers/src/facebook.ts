@@ -41,7 +41,7 @@ export default {
       name: profile.name,
       email: profile.email,
       emailVerified: profile.email_verified,
-      image: profile.picture.data.url,
+      image: profile.picture.data?.url,
     };
   },
 

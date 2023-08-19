@@ -71,7 +71,7 @@ export async function ProtocolAuthProvider({
           resolvedDomain,
       );
     }
-    tenant = result.data.tenant;
+    tenant = result.data?.tenant;
   } catch (e) {
     console.log('ERROR!!!!!');
     console.log(e);
@@ -94,6 +94,7 @@ export async function ProtocolAuthProvider({
       tenant={tenant}
       user={user}
       userId={sessionUser?.sub}
+      session={sessionUser}
       sessionId={sessionUser?.claims?.sessionId}
       org={user?.organizations?.find(
         (org) => org.id === sessionUser?.claims?.orgId,

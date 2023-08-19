@@ -51,19 +51,19 @@ export function handleSignUpResponse(
   navigate: (uri: string) => void,
 ) {
   if (response.status === ResponseStatus.Success) {
-    setSignUp(response.data.signUpAttempt);
-    switch (response.data.signUpAttempt.status) {
+    setSignUp(response.data?.signUpAttempt);
+    switch (response.data?.signUpAttempt.status) {
       case AuthSignUpAttemptStatus.missing_requirements: {
         setRoute(SignUpFlowRoute['signUp:additionalFields']);
         break;
       }
       case AuthSignUpAttemptStatus.needs_verification: {
         if (
-          response.data.signUpAttempt.missingVerifications.includes('email')
+          response.data?.signUpAttempt.missingVerifications.includes('email')
         ) {
           setRoute(SignUpFlowRoute['signUp:verifyEmail']);
         } else if (
-          response.data.signUpAttempt.missingVerifications.includes('phone')
+          response.data?.signUpAttempt.missingVerifications.includes('phone')
         ) {
           setRoute(SignUpFlowRoute['signUp:verifyPhone']);
         }
@@ -71,7 +71,7 @@ export function handleSignUpResponse(
       }
       case AuthSignUpAttemptStatus.complete: {
         setRoute(SignUpFlowRoute['signUp:success']);
-        navigate(response.data.signUpAttempt.redirectUri);
+        navigate(response.data?.signUpAttempt.redirectUri);
         break;
       }
     }

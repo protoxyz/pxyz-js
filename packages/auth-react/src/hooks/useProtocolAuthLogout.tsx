@@ -22,7 +22,7 @@ export function useProtocolAuthLogout(
   const { reset, protocol, tenant, navigate } = useProtocolAuth();
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
 
-  const logout = async () => {
+  const logout = async (afterSignOutUri?: string) => {
     setIsLoggingOut(true);
     try {
       await protocol.auth.sessions.end();
@@ -38,7 +38,7 @@ export function useProtocolAuthLogout(
       console.error(error);
     }
     setIsLoggingOut(false);
-    navigate(afterSignOutUrl);
+    navigate(afterSignOutUri ?? afterSignOutUrl ?? '/');
   };
 
   return { isLoggingOut, logout };

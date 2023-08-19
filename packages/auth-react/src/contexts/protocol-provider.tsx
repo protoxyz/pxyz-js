@@ -220,11 +220,11 @@ export const ProtocolAuthProvider = ({
         path: { publicKey: state.publicKey ?? '' },
       });
 
-      if (response.status !== 'success' || !response.data.tenant) {
+      if (response.status !== 'success' || !response.data?.tenant) {
         throw new Error('Failed to get tenant');
       }
 
-      const tenant = response.data.tenant;
+      const tenant = response.data?.tenant;
 
       setState((state) => ({
         ...state,

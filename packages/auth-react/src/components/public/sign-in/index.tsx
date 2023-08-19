@@ -59,8 +59,8 @@ export function handleSignInResponse(
   navigate: (uri: string) => void,
 ) {
   if (response.status === ResponseStatus.Success) {
-    setSignIn(response.data.signInAttempt);
-    switch (response.data.signInAttempt.status) {
+    setSignIn(response.data?.signInAttempt);
+    switch (response.data?.signInAttempt.status) {
       case AuthSignInAttemptStatus.needs_factor_one: {
         setRoute(SignInFlowRoute['signIn:verifyFirstFactor']);
         break;
@@ -70,9 +70,9 @@ export function handleSignInResponse(
         break;
       }
       case AuthSignInAttemptStatus.complete: {
-        setSessionCookie(response.data.jwt, tenant);
+        setSessionCookie(response.data?.jwt, tenant);
         setRoute(SignInFlowRoute['signIn:success']);
-        navigate(response.data.signInAttempt.redirectUri);
+        navigate(response.data?.signInAttempt.redirectUri);
         break;
       }
     }

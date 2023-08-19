@@ -66,7 +66,7 @@ export function SignInVerifyFirstFactorRoute() {
       });
 
     if (resendResponse.status === ResponseStatus.Success) {
-      setSignIn(resendResponse.data.signInAttempt);
+      setSignIn(resendResponse.data?.signInAttempt);
       setCodeResent(true);
       setError('');
     } else {

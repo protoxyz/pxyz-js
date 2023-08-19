@@ -77,7 +77,7 @@ export function SignUpVerifyPhoneRoute() {
       });
 
     if (resendResponse.status === ResponseStatus.Success) {
-      setSignUp(resendResponse.data.signUpAttempt);
+      setSignUp(resendResponse.data?.signUpAttempt);
       setCodeSent(true);
       setError('');
     } else {

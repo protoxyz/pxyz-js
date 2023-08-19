@@ -6,11 +6,13 @@ interface SignOutButtonProps {
   children?: React.ReactNode;
   text?: string;
   button?: ButtonProps;
+  afterSignOutUri?: string;
 }
 export function SignOutButton({
   children,
   button,
   text = 'Sign out',
+  afterSignOutUri,
 }: SignOutButtonProps) {
   const { logout, isLoggingOut } = useProtocolAuthLogout();
 
@@ -18,7 +20,7 @@ export function SignOutButton({
     return (
       <div
         className="flex flex-1 items-center justify-between"
-        onClick={isLoggingOut ? null : logout}
+        onClick={isLoggingOut ? null : () => logout(afterSignOutUri)}
       >
         {isLoggingOut && <Spinner />}
         {!isLoggingOut && children}
@@ -29,7 +31,7 @@ export function SignOutButton({
   return (
     <Button
       disabled={isLoggingOut}
-      onClick={isLoggingOut ? null : logout}
+      onClick={isLoggingOut ? null : () => logout(afterSignOutUri)}
       {...button}
       className="z-10"
     >
