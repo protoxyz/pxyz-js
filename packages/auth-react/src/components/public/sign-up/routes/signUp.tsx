@@ -191,6 +191,7 @@ export function SignUpForm({
                 {tenant?.auth?.phoneVerificationRequired && (
                   <FormDescription>
                     We will text you a verification code to complete sign up.
+                    Message and data rates may apply.
                   </FormDescription>
                 )}
                 <FormMessage />
