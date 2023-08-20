@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.17
+
+### Patch Changes
+
+- 0a4d32f: animat epulse when loading
+
 ## 1.0.16
 
 ### Patch Changes
