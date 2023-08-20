@@ -26,6 +26,7 @@ type PredefinedTransformationImageProps = DefaultImageProps & {
 
 export function Image({ className, ...props }: ImageProps) {
   const [error, setError] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
 
   const CDN_URL =
     process.env.PXYZ_CDN_URL ??
@@ -61,8 +62,13 @@ export function Image({ className, ...props }: ImageProps) {
     <img
       src={src.toString()}
       {...props}
-      className={cn(className, 'bg-slate-50')}
+      className={cn(
+        className,
+        'bg-gray-50',
+        loaded ? '' : 'animate-pulse bg-black',
+      )}
       onError={(err) => setError(err)}
+      onLoad={() => setLoaded(true)}
     />
   );
 }
