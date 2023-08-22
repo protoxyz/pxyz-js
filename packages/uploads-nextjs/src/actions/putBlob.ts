@@ -1,42 +1,45 @@
+import { CreateUpload201Response } from '@protoxyz/core';
 import { UploadOptions, put } from './put';
+import { Upload } from '@protoxyz/types';
 
-type UploadProps = UploadOptions & {
-  upload: any;
-  file: File;
+type UploadWithUrlAndFields = CreateUpload201Response['data'] & {
+  fields: Record<string, string>;
+  url: string;
 };
 
-export function putBlob(
-  props: UploadOptions & {
-    upload: any;
-    blob: Blob;
-  },
-) {
-  const { blob, ...otherProps } = props;
-
-  const file = new File([blob], props.upload.originalFilename, {
-    type: props.upload.mime,
+export async function putBlob(blob: Blob, uploadOptions: UploadOptions) {
+  const file = new File([blob], uploadOptions.originalFilename, {
+    type: uploadOptions.mime,
     lastModified: Date.now(),
   });
 
-  return upload({ file, ...otherProps });
+  const putResponse = await put(uploadOptions);
+
+  return upload(file, putResponse.data as UploadWithUrlAndFields);
 }
 
-export function upload(props: UploadProps) {
+export function upload(
+  file: File,
+  upload: CreateUpload201Response['data'] & {
+    fields: Record<string, string>;
+    url: string;
+  },
+) {
   const formData = new FormData();
 
   Object.entries({
-    ...props.upload.fields,
-    file: props.file,
+    ...upload.fields,
+    file,
   }).forEach(([key, value]) => {
-    formData.append(key, value as string);
+    formData.append(key, value);
   });
 
-  return fetch(props.upload.url, {
+  return fetch(upload.url, {
     method: 'POST',
     body: formData,
   }).then((response) => {
     if (response.ok) {
-      return props.upload;
+      return upload;
     }
 
     throw new Error('Upload failed');
