@@ -1,5 +1,11 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.9
+
+### Patch Changes
+
+- ad326ff: add putBlob to server actions
+
 ## 1.0.8
 
 ### Patch Changes
