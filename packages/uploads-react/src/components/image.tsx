@@ -55,18 +55,14 @@ export function Image({ className, ...props }: ImageProps) {
   }
 
   if (error) {
-    return <div className={cn(className, 'bg-slate-50')} {...props} />;
+    return <div className={cn(className, 'bg-background')} {...props} />;
   }
 
   return (
     <img
       src={src.toString()}
       {...props}
-      className={cn(
-        className,
-        'bg-gray-50',
-        loaded ? '' : 'animate-pulse bg-black',
-      )}
+      className={cn(className, loaded ? '' : 'animate-pulse bg-background')}
       onError={(err) => setError(err)}
       onLoad={() => setLoaded(true)}
     />
