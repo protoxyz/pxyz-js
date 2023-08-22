@@ -8,18 +8,13 @@ type UploadWithUrlAndFields = CreateUpload201Response['data'] & {
 };
 
 export async function putBlob(blob: Blob, uploadOptions: UploadOptions) {
-  const file = new File([blob], uploadOptions.originalFilename, {
-    type: uploadOptions.mime,
-    lastModified: Date.now(),
-  });
-
   const putResponse = await put(uploadOptions);
 
-  return upload(file, putResponse.data as UploadWithUrlAndFields);
+  return upload(blob, putResponse.data as UploadWithUrlAndFields);
 }
 
 export function upload(
-  file: File,
+  blob: Blob,
   upload: CreateUpload201Response['data'] & {
     fields: Record<string, string>;
     url: string;
@@ -27,9 +22,10 @@ export function upload(
 ) {
   const formData = new FormData();
 
+  formData.set('file', blob, blob.name);
+
   Object.entries({
     ...upload.fields,
-    file,
   }).forEach(([key, value]) => {
     formData.append(key, value);
   });
