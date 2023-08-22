@@ -59,11 +59,7 @@ export function Image({ className, ...props }: ImageProps) {
   }
 
   return (
-    <div
-      className={
-        loaded ? 'w-full h-full' : 'animate-pulse bg-background w-full h-full'
-      }
-    >
+    <div className={loaded ? ' ' : 'animate-pulse bg-background  '}>
       <img
         src={src.toString()}
         {...props}
