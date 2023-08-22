@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.20
+
+### Patch Changes
+
+- c841605: remove hfullwful
+
 ## 1.0.19
 
 ### Patch Changes
