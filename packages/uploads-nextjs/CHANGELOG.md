@@ -1,5 +1,11 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.10
+
+### Patch Changes
+
+- 827a7ad: put blob
+
 ## 1.0.9
 
 ### Patch Changes
