@@ -1,5 +1,11 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.11
+
+### Patch Changes
+
+- 2bef71a: use Blob and not File
+
 ## 1.0.10
 
 ### Patch Changes
