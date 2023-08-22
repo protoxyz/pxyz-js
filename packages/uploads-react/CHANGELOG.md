@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.18
+
+### Patch Changes
+
+- 1b35dc7: fix background color
+
 ## 1.0.17
 
 ### Patch Changes
