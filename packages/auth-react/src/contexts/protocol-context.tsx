@@ -8,6 +8,9 @@ import {
   UserProfile,
 } from '@protoxyz/types';
 import * as React from 'react';
+import { TokenCache } from '../types/tokenCache';
+import { SESSION_COOKIE_NAME, deleteSessionCookie } from '../lib/cookies';
+import { isBrowser, isReactNative } from '../lib/utils';
 
 export interface ProtocolAuthProviderState {
   protocol: Protocol;
@@ -25,6 +28,10 @@ export interface ProtocolAuthProviderState {
   orgRole: string | null;
   session: SessionUser | null;
   sessionId: string | null;
+
+  setToken: (token: string) => void;
+  navigate: (url: string) => void;
+  tokenCache: TokenCache;
 }
 
 export interface ProtocolAuthContextState {
@@ -44,7 +51,9 @@ export interface ProtocolAuthSettersState {
 export const ProtocolAuthSettersContext =
   React.createContext<ProtocolAuthSettersState>({
     navigate: (url: string) => {
-      window.location.href = url ?? '/';
+      if (isBrowser() && !isReactNative()) {
+        window.location.href = url ?? '/';
+      }
     },
     redirectToUserProfile: () => {
       throw new Error('redirectToUserProfile must be implemented');
@@ -78,6 +87,9 @@ export const useProtocolAuth = () => {
   return {
     setState: authCtx.setState,
     reset: () => {
+      authCtx.state.tokenCache?.deleteToken(SESSION_COOKIE_NAME);
+      deleteSessionCookie(authCtx.state.tenant); 
+      
       authCtx.setState({
         ...authCtx.state,
         user: null,

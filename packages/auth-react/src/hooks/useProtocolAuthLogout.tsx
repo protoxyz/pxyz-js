@@ -6,7 +6,7 @@ import {
   useProtocolAuthFlow,
 } from '../contexts/flow-context';
 import { useProtocolAuth } from '../contexts/protocol-context';
-import { deleteSessionCookie } from '../lib/cookies';
+import { SESSION_COOKIE_NAME, deleteSessionCookie } from '../lib/cookies';
 
 interface UseProtocolAuthLogoutProps {
   afterSignOutUrl?: string;
@@ -19,14 +19,12 @@ export function useProtocolAuthLogout(
   const { setSignIn: setClientSignIn, setSignUp: setClientSignUp } =
     useProtocolAuthClient();
   const { signIn, signUp } = useProtocolAuthFlow();
-  const { reset, protocol, tenant, navigate } = useProtocolAuth();
+  const {   reset, protocol,   navigate } = useProtocolAuth();
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
 
   const logout = async (afterSignOutUri?: string) => {
     setIsLoggingOut(true);
     try {
-      await protocol.auth.sessions.end();
-      deleteSessionCookie(tenant);
       reset();
 
       setClientSignIn(null);
@@ -34,6 +32,7 @@ export function useProtocolAuthLogout(
 
       signIn.setRoute(SignInFlowRoute.signIn);
       signUp.setRoute(SignUpFlowRoute.signUp);
+      protocol.auth.sessions.end();
     } catch (error) {
       console.error(error);
     }

@@ -5,6 +5,10 @@ export function isBrowser(): boolean {
   return typeof window !== 'undefined';
 }
 
+export function isReactNative(): boolean {
+  return typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

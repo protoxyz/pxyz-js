@@ -10,6 +10,8 @@ type UploadWithUrlAndFields = CreateUpload201Response['data'] & {
 export async function putBlob(blob: Blob, uploadOptions: UploadOptions) {
   const putResponse = await put(uploadOptions);
 
+  console.log('putResponse', putResponse);
+
   return upload(blob, putResponse.data as UploadWithUrlAndFields);
 }
 

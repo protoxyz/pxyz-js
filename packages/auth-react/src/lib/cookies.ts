@@ -1,5 +1,6 @@
 import { Tenant } from '@protoxyz/types';
 import Cookies from 'js-cookie';
+import { isBrowser, isReactNative } from './utils';
 
 export const SESSION_COOKIE_NAME = '__pxyz_session';
 
@@ -37,6 +38,10 @@ export const getSessionCookieOptions = (
 };
 
 export const setSessionCookie = (jwt: string, tenant: Tenant) => {
+  if (!isBrowser() || isReactNative()) {
+    return
+  }
+
   let options: Cookies.CookieAttributes = getSessionCookieOptions(tenant);
 
   if (tenant.environment === 'development') {
@@ -57,12 +62,14 @@ export const setSessionCookie = (jwt: string, tenant: Tenant) => {
     options.expires = expires;
   }
 
-  console.log('setSessionCookie', options);
-
   Cookies.set(SESSION_COOKIE_NAME, jwt, options);
 };
 
 export const deleteSessionCookie = (tenant: Tenant) => {
+  if (!isBrowser() || isReactNative()) {
+    return
+  }
+  
   const options: Cookies.CookieAttributes = getSessionCookieOptions(tenant);
 
   Cookies.remove(SESSION_COOKIE_NAME, options);

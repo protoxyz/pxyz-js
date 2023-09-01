@@ -63,15 +63,17 @@ export class HttpClient {
   }
 
   private formatHost(host: string): string {
-    if (IS_PROTOCOL_DEV && !host.startsWith('http://')) {
+    const isDevOrLocalhost = host.startsWith('localhost') || IS_PROTOCOL_DEV
+
+    if (isDevOrLocalhost && !host.startsWith('http://')) {
       return `http://${host}`;
     }
 
-    if (!IS_PROTOCOL_DEV && host.startsWith('http://')) {
+    if (!isDevOrLocalhost && host.startsWith('http://')) {
       return host.replace('http://', 'https://');
     }
 
-    if (!IS_PROTOCOL_DEV && !host.startsWith('https://')) {
+    if (!isDevOrLocalhost && !host.startsWith('https://')) {
       return `https://${host}`;
     }
 
@@ -106,8 +108,7 @@ export class HttpClient {
       }
     }
 
-    const url = new URL(updatedPath, this.host);
-    url.search = searchParams.toString();
+    const url = new URL(updatedPath + "?" + searchParams.toString(), this.host); 
 
     return url;
   }
@@ -183,8 +184,16 @@ export class HttpClient {
       } as T);
     }
 
+    if (this.debug) {
+      console.log(`[HTTP] ${method} ${url.toString()} returned ${response.status}`);
+    }
+
     const body = await response.json();
     const status = response.status.toString();
+
+    if (this.debug) {
+      console.log(`[HTTP] ${method} ${url.toString()} \n\n ${JSON.stringify(body)}`);
+    }
 
     return Promise.resolve(body as T);
   }

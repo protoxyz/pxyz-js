@@ -1,6 +1,7 @@
 import { ProtocolThemeVariables } from '@protoxyz/themes';
 import { createSwatches } from '../../lib/colors';
 import { DEFAULT_PALETTE_CONFIG } from '../../lib/constants';
+import { isReactNative } from '../../lib/utils';
 
 interface SwatchProps {
   name: string;
@@ -8,6 +9,7 @@ interface SwatchProps {
 }
 export function swatch({ name, value }: SwatchProps) {
   if (!value) return '';
+  
 
   const swatches = createSwatches({
     ...DEFAULT_PALETTE_CONFIG,
@@ -60,7 +62,8 @@ export function Variables({
     ring,
     radius,
   } = variables ?? {};
-
+  if (isReactNative()) return null
+  
   return (
     <style type="text/css">
       {`:root {
