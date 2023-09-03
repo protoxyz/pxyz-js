@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.24
+
+### Patch Changes
+
+- cccd7e7: updates for expo
+
 ## 2.0.23
 
 ### Patch Changes

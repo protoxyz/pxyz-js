@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.66
+
+### Patch Changes
+
+- cccd7e7: updates for expo
+- Updated dependencies [cccd7e7]
+  - @protoxyz/core@2.0.24
+
 ## 2.0.65
 
 ### Patch Changes

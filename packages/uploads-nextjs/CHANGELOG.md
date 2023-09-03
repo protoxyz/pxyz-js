@@ -1,5 +1,14 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.12
+
+### Patch Changes
+
+- cccd7e7: debug
+- cccd7e7: updates for expo
+- Updated dependencies [cccd7e7]
+  - @protoxyz/core@2.0.24
+
 ## 1.0.11
 
 ### Patch Changes
