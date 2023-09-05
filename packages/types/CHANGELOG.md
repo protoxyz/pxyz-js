@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.18
+
+### Patch Changes
+
+- ff064b3: add Media and Notifications events
+
 ## 2.0.17
 
 ### Patch Changes
