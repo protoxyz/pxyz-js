@@ -1,5 +1,14 @@
 # @protoxyz/uploads-react
 
+## 1.0.22
+
+### Patch Changes
+
+- aaecede: bump
+- Updated dependencies [aaecede]
+  - @protoxyz/types@2.0.19
+  - @protoxyz/core@2.0.26
+
 ## 1.0.21
 
 ### Patch Changes
