@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.19
+
+### Patch Changes
+
+- aaecede: bump
+
 ## 2.0.18
 
 ### Patch Changes
