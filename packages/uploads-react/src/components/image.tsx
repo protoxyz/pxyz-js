@@ -59,7 +59,7 @@ export function Image({ className, ...props }: ImageProps) {
   }
 
   return (
-    <div className={loaded ? ' ' : 'animate-pulse bg-background  '}>
+    <div className={loaded ? ' ' : 'bg-background animate-pulse  '}>
       <img
         src={src.toString()}
         {...props}
@@ -67,10 +67,13 @@ export function Image({ className, ...props }: ImageProps) {
           className,
           loaded
             ? 'transform opacity-100'
-            : 'opacity-0 animate-pulse bg-background',
+            : 'bg-background animate-pulse opacity-0',
         )}
-        onError={(err) => setError(err)}
-        onLoad={() => setLoaded(true)}
+        onError={(err) => setError(true)}
+        onLoad={() => {
+          setLoaded(true);
+          setError(false);
+        }}
       />
     </div>
   );

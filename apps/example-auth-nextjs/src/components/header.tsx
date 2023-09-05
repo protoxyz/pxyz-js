@@ -6,6 +6,7 @@ import {
   SignUpButton,
   UserButton,
 } from '@protoxyz/auth-react';
+import { ThemeToggle } from './theme-toggle';
 
 export const Header = () => {
   return (
@@ -16,6 +17,7 @@ export const Header = () => {
           {/* <MainNav className="mx-6" /> */}
           <div className="ml-auto flex items-center space-x-4">
             {/* <Search /> */}
+            <ThemeToggle />
             <UserButton />
           </div>
         </IsLoggedIn>

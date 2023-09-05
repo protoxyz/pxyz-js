@@ -43,10 +43,10 @@ export function Uploader({
 
   const onError = (
     upload: Upload,
-    err: ProgressEvent<XMLHttpRequestEventTarget>,
+    ev: ProgressEvent<XMLHttpRequestEventTarget>,
   ) => {
-    setError(err);
-    handlers.onError?.(upload, err);
+    setError('Error uploading file. Please try again.');
+    handlers.onError?.(upload, ev);
   };
 
   const onProgress = (upload: Upload, progress: number) => {
