@@ -146,6 +146,47 @@ export const AuthEvent = {
 };
 export type AuthEvent = (typeof AuthEvent)[keyof typeof AuthEvent];
 
-export type ProtocolEvent = CoreEvent & AuthEvent & BillingEvent;
+export const MediaEvent = {
+  upload_created: 'upload.created',
+  upload_updated: 'upload.updated',
+  upload_deleted: 'upload.deleted',
+  upload_completed: 'upload.completed',
+  upload_failed: 'upload.failed',
+
+  file_created: 'file.created',
+  file_updated: 'file.updated',
+  file_deleted: 'file.deleted',
+
+  transformation_created: 'transformation.created',
+  transformation_updated: 'transformation.updated',
+  transformation_deleted: 'transformation.deleted',
+};
+export type MediaEvent = (typeof MediaEvent)[keyof typeof MediaEvent];
+
+export const NotificationsEvent = {
+  email_created: 'email.created',
+  sms_created: 'sms.created',
+  push_notification_created: 'push_notification.created',
+
+  sms_template_created: 'sms_template.created',
+  sms_template_updated: 'sms_template.updated',
+  sms_template_deleted: 'sms_template.deleted',
+
+  email_template_created: 'email_template.created',
+  email_template_updated: 'email_template.updated',
+  email_template_deleted: 'email_template.deleted',
+
+  push_notification_template_created: 'push_notification_template.created',
+  push_notification_template_updated: 'push_notification_template.updated',
+  push_notification_template_deleted: 'push_notification_template.deleted',
+};
+export type NotificationsEvent =
+  (typeof NotificationsEvent)[keyof typeof NotificationsEvent];
+
+export type ProtocolEvent = CoreEvent &
+  AuthEvent &
+  BillingEvent &
+  MediaEvent &
+  NotificationsEvent;
 
 export type AuthEventPayload = any;
