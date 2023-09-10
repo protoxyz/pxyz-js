@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.23
+
+### Patch Changes
+
+- ccf4d0b: change param names
+
 ## 1.0.22
 
 ### Patch Changes
