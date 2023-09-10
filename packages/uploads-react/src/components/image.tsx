@@ -41,17 +41,16 @@ export function Image({ className, ...props }: ImageProps) {
   const src = new URL(`/${TENANT_ID}/${props.uploadId}/image?`, CDN_URL);
 
   if ('transformation' in props) {
-    src.searchParams.append('transformation', props.transformation);
+    src.searchParams.append('t', props.transformation);
   } else {
     const { format, width, height, resizeMode, quality, compression } =
       props as ImageOptionsProps;
-    if (width) src.searchParams.append('width', width.toString());
-    if (height) src.searchParams.append('height', height.toString());
-    if (resizeMode) src.searchParams.append('resizeMode', resizeMode);
-    if (quality) src.searchParams.append('quality', quality.toString());
-    if (compression)
-      src.searchParams.append('compression', compression.toString());
-    if (format) src.searchParams.append('format', format);
+    if (width) src.searchParams.append('w', width.toString());
+    if (height) src.searchParams.append('h', height.toString());
+    if (resizeMode) src.searchParams.append('rm', resizeMode);
+    if (quality) src.searchParams.append('q', quality.toString());
+    if (compression) src.searchParams.append('c', compression.toString());
+    if (format) src.searchParams.append('f', format);
   }
 
   if (error) {
