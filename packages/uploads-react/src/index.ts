@@ -1,5 +1,6 @@
 // UI Components
 export { Uploader } from './components/uploader';
+export { AvatarUploader } from './components/avatar-uploader';
 export { Image } from './components/image';
 
 // Actions

@@ -1,74 +1,80 @@
-import React from 'react';
-import { ResizeMode } from '@protoxyz/types';
-import { cn } from '../utils';
+import React, { useMemo } from 'react';
+import { cn, getImageURI } from '../utils';
+import {
+  ImageProcessorOptions,
+  ImageProcessorTransformationOptions,
+} from '../types';
 
-export type ImageProps = ImageOptionsProps | PredefinedTransformationImageProps;
-
-type DefaultImageProps = {
-  alt: string;
+type ImageProps = {
+  alt?: string;
   uploadId: string;
   tenantId?: string;
   className?: string;
+  blurhash?: boolean | string;
+  options?: ImageProcessorOptions | ImageProcessorTransformationOptions;
 };
 
-type ImageOptionsProps = DefaultImageProps & {
-  format?: string;
-  width?: number;
-  height?: number;
-  resizeMode?: ResizeMode;
-  quality?: number;
-  compression?: number;
-};
-
-type PredefinedTransformationImageProps = DefaultImageProps & {
-  transformation: string;
-};
-
-export function Image({ className, ...props }: ImageProps) {
+export function Image({ className, blurhash, ...props }: ImageProps) {
   const [error, setError] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
+  const [blurLoaded, setBlurLoaded] = React.useState(false);
 
-  const CDN_URL =
-    process.env.PXYZ_CDN_URL ??
-    process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
-    'https://cdn.pxyz.cloud';
+  const uri = useMemo(
+    () =>
+      getImageURI({
+        imageId: props.uploadId,
+        tenantId: props.tenantId,
+        options: props.options,
+      }),
+    [props.uploadId, props.tenantId, props.options],
+  );
 
-  const TENANT_ID =
-    props.tenantId ??
-    process.env.PXYZ_TENANT_ID ??
-    process.env.NEXT_PUBLIC_PXYZ_TENANT_ID;
-
-  const src = new URL(`/${TENANT_ID}/${props.uploadId}/image?`, CDN_URL);
-
-  if ('transformation' in props) {
-    src.searchParams.append('t', props.transformation);
-  } else {
-    const { format, width, height, resizeMode, quality, compression } =
-      props as ImageOptionsProps;
-    if (width) src.searchParams.append('w', width.toString());
-    if (height) src.searchParams.append('h', height.toString());
-    if (resizeMode) src.searchParams.append('rm', resizeMode);
-    if (quality) src.searchParams.append('q', quality.toString());
-    if (compression) src.searchParams.append('c', compression.toString());
-    if (format) src.searchParams.append('f', format);
-  }
+  const blurUri = useMemo(
+    () =>
+      typeof blurhash === 'string'
+        ? blurhash
+        : blurhash === true &&
+          getImageURI({
+            imageId: props.uploadId,
+            tenantId: props.tenantId,
+            options: {
+              ...props.options,
+              format: 'blurhash',
+            },
+          }),
+    [props.uploadId, props.tenantId, props.options],
+  );
 
   if (error) {
-    return <div className={cn(className, 'bg-background')} {...props} />;
+    return <div className={cn('bg-foreground', className)}>?</div>;
   }
 
   return (
-    <div className={loaded ? ' ' : 'bg-background animate-pulse  '}>
+    <div
+      className={cn(
+        'bg-foreground relative overflow-hidden rounded',
+        className,
+      )}
+    >
+      {blurUri && (
+        <img
+          onLoad={() => setBlurLoaded(true)}
+          src={blurUri}
+          className={cn(
+            'bg-foreground duration-250 z-1 absolute inset-0 inline-block transform object-contain opacity-0 transition-opacity ease-in',
+            blurLoaded ? 'opacity-100' : '',
+          )}
+        />
+      )}
+
       <img
-        src={src.toString()}
+        src={uri}
         {...props}
         className={cn(
-          className,
-          loaded
-            ? 'transform opacity-100'
-            : 'bg-background animate-pulse opacity-0',
+          'bg-foreground duration-250 transform opacity-0 transition-opacity  ease-in',
+          loaded ? ' opacity-100' : '',
         )}
-        onError={(err) => setError(true)}
+        onError={(e) => setError(true)}
         onLoad={() => {
           setLoaded(true);
           setError(false);

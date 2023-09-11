@@ -1,9 +1,10 @@
 import { Header } from '@/components/header';
+import { ImageUploaderPreview } from '@/components/image-uploader-preview';
 import { JWTInfo } from '@/components/jwt-info';
 import { UserInfo } from '@/components/user-info';
 import { Wrapper } from '@/components/wrapper';
 import { IsLoggedIn } from '@protoxyz/auth-react';
-import { Uploader } from '@protoxyz/uploads-react';
+import { AvatarUploader } from '@protoxyz/uploads-react';
 
 export default function DashboardPage() {
   return (
@@ -15,10 +16,8 @@ export default function DashboardPage() {
         <UserInfo />
         <JWTInfo />
 
-        <div className="border rounded-xl p-5">
-          <h1 className="text-2xl font-bold">Upload Example</h1>
-          <Uploader />
-        </div>
+        <ImageUploaderPreview />
+        <AvatarUploader initials="EC" />
       </div>
     </Wrapper>
   );

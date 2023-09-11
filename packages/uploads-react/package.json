@@ -26,7 +26,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@protoxyz/types": "workspace:*"
+    "@protoxyz/types": "workspace:*",
+    "@radix-ui/react-avatar": "^1.0.3",
+    "add": "^2.0.6",
+    "pnpm": "^8.7.5"
   },
   "devDependencies": {
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
