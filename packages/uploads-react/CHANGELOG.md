@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.24
+
+### Patch Changes
+
+- 8d97477: avatar uploader
+
 ## 1.0.23
 
 ### Patch Changes
