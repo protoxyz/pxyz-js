@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.20
+
+### Patch Changes
+
+- 46d337f: add notification types
+
 ## 2.0.19
 
 ### Patch Changes
