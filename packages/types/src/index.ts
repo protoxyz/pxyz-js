@@ -23,7 +23,9 @@ export * from './auth/user-status';
 export * from './auth/verification-strategy';
 
 // Notifications
-export * from './notifications';
+export * from './notifications/channel';
+export * from './notifications/template';
+export * from './notifications/enums';
 
 // Uploads
 export * from './uploads/upload';

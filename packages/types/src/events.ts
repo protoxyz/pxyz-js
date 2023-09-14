@@ -164,21 +164,15 @@ export const MediaEvent = {
 export type MediaEvent = (typeof MediaEvent)[keyof typeof MediaEvent];
 
 export const NotificationsEvent = {
-  email_created: 'email.created',
-  sms_created: 'sms.created',
-  push_notification_created: 'push_notification.created',
+  notification_created: 'notification.created',
 
-  sms_template_created: 'sms_template.created',
-  sms_template_updated: 'sms_template.updated',
-  sms_template_deleted: 'sms_template.deleted',
+  channel_created: 'channel.created',
+  channel_updated: 'channel.updated',
+  channel_deleted: 'channel.deleted',
 
-  email_template_created: 'email_template.created',
-  email_template_updated: 'email_template.updated',
-  email_template_deleted: 'email_template.deleted',
-
-  push_notification_template_created: 'push_notification_template.created',
-  push_notification_template_updated: 'push_notification_template.updated',
-  push_notification_template_deleted: 'push_notification_template.deleted',
+  template_created: 'template.created',
+  template_updated: 'template.updated',
+  template_deleted: 'template.deleted',
 };
 export type NotificationsEvent =
   (typeof NotificationsEvent)[keyof typeof NotificationsEvent];
