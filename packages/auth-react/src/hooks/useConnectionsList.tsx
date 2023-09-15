@@ -2,9 +2,9 @@ import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
 import useSWR from 'swr';
 import {
-  CreateSocialConnectionsOptions,
-  ListSocialConnections200Response,
-  ListSocialConnectionsPath,
+  FrontendCreateSocialConnectionsOptions,
+  FrontendListSocialConnections200Response,
+  FrontendListSocialConnectionsPath,
 } from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
@@ -13,7 +13,7 @@ export function connectionsListCacheKey({
   perPage,
   userId,
 }: PaginatedArgs & { userId?: string }) {
-  return [ListSocialConnectionsPath, userId, cursor, perPage]
+  return [FrontendListSocialConnectionsPath, userId, cursor, perPage]
     .filter(Boolean)
     .join(':');
 }
@@ -37,7 +37,7 @@ export const useProtocolAuthConnectionsList = ({
   const userConnections = user?.connections ?? [];
 
   const { data, error, isLoading, mutate } =
-    useSWR<ListSocialConnections200Response>(
+    useSWR<FrontendListSocialConnections200Response>(
       cacheKey,
       () =>
         protocol.auth.socialConnections.list({
@@ -66,7 +66,7 @@ export const useProtocolAuthConnectionsList = ({
     );
 
   const createConnection = useCallback(
-    async (body: CreateSocialConnectionsOptions['body']) => {
+    async (body: FrontendCreateSocialConnectionsOptions['body']) => {
       setIsCreating(true);
       const response = await protocol.auth.socialConnections.create({
         body,

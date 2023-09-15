@@ -2,9 +2,9 @@ import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
 import useSWR from 'swr';
 import {
-  CreateEmailAddressOptions,
-  ListEmailAddresses200Response,
-  ListEmailAddressesPath,
+  FrontendCreateEmailAddressOptions,
+  FrontendListEmailAddresses200Response,
+  FrontendListEmailAddressesPath,
 } from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
@@ -13,7 +13,7 @@ export function emailsListCacheKey({
   perPage,
   userId,
 }: PaginatedArgs & { userId?: string }) {
-  return [ListEmailAddressesPath, userId, cursor, perPage]
+  return [FrontendListEmailAddressesPath, userId, cursor, perPage]
     .filter(Boolean)
     .join(':');
 }
@@ -37,7 +37,7 @@ export const useProtocolAuthEmailsList = ({
   const userEmails = user?.emailAddresses ?? [];
 
   const { data, error, isLoading, mutate } =
-    useSWR<ListEmailAddresses200Response>(
+    useSWR<FrontendListEmailAddresses200Response>(
       cacheKey,
       () =>
         protocol.auth.emailAddresses.list({
@@ -65,7 +65,7 @@ export const useProtocolAuthEmailsList = ({
     );
 
   const createEmail = useCallback(
-    async ({ email }: CreateEmailAddressOptions['body']) => {
+    async ({ email }: FrontendCreateEmailAddressOptions['body']) => {
       setIsCreating(true);
       const response = await protocol.auth.emailAddresses.create({
         body: {

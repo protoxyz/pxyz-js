@@ -15,5 +15,5 @@ export function useBrandLogo({ component }: { component: AuthComponentType }) {
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuthTenant();
 
-  return appearance?.layout?.logoImageUrl ?? tenant?.imageUri ?? null;
+  return appearance?.layout?.logoImageUrl ?? tenant?.logoUri ?? null;
 }

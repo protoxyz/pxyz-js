@@ -2,9 +2,9 @@ import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
 import useSWR from 'swr';
 import {
-  CreatePhoneNumberOptions,
-  ListPhoneNumbers200Response,
-  ListPhoneNumbersPath,
+  FrontendCreatePhoneNumberOptions,
+  FrontendListPhoneNumbers200Response,
+  FrontendListPhoneNumbersPath,
 } from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
@@ -13,7 +13,7 @@ export function phonesListCacheKey({
   perPage,
   userId,
 }: PaginatedArgs & { userId?: string }) {
-  return [ListPhoneNumbersPath, userId, cursor, perPage]
+  return [FrontendListPhoneNumbersPath, userId, cursor, perPage]
     .filter(Boolean)
     .join(':');
 }
@@ -37,7 +37,7 @@ export const useProtocolAuthPhonesList = ({
   const userPhones = user?.phoneNumbers ?? [];
 
   const { data, error, isLoading, mutate } =
-    useSWR<ListPhoneNumbers200Response>(
+    useSWR<FrontendListPhoneNumbers200Response>(
       cacheKey,
       () =>
         protocol.auth.phoneNumbers.list({
@@ -65,7 +65,7 @@ export const useProtocolAuthPhonesList = ({
     );
 
   const createPhone = useCallback(
-    async ({ phone }: CreatePhoneNumberOptions['body']) => {
+    async ({ phone }: FrontendCreatePhoneNumberOptions['body']) => {
       setIsCreating(true);
       const response = await protocol.auth.phoneNumbers.create({
         body: {

@@ -1,4 +1,4 @@
-import { CreateSignUpAttempt201Response } from '@protoxyz/core';
+import { FrontendCreateSignUpAttempt201Response } from '@protoxyz/core';
 import {
   SignUpFlowRoute,
   useProtocolAuthSignUpFlow,
@@ -44,7 +44,7 @@ export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
 }
 
 export function handleSignUpResponse(
-  response: CreateSignUpAttempt201Response,
+  response: FrontendCreateSignUpAttempt201Response,
   setSignUp: (signUp: SignUpAttempt) => void,
   setRoute: (route: SignUpFlowRoute) => void,
   setCreateSignUpError: (error: string) => void,

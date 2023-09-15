@@ -1,6 +1,6 @@
 import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
-import { UpdateUserProfileOptions } from '@protoxyz/core';
+import { FrontendUpdateUserProfileOptions } from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
 export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
@@ -14,7 +14,7 @@ export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
       username,
       locale,
       timezone,
-    }: UpdateUserProfileOptions['body']) => {
+    }: FrontendUpdateUserProfileOptions['body']) => {
       setIsUpdating(true);
       const response = await protocol.auth.users.updateProfile({
         body: {

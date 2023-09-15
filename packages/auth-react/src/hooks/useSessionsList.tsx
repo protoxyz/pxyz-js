@@ -1,7 +1,10 @@
 import { PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
 import useSWR from 'swr';
-import { ListSessions200Response, ListSessionsPath } from '@protoxyz/core';
+import {
+  FrontendListSessions200Response,
+  FrontendListSessionsPath,
+} from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
 export function sessionsListCacheKey({
@@ -9,7 +12,9 @@ export function sessionsListCacheKey({
   perPage,
   userId,
 }: PaginatedArgs & { userId?: string }) {
-  return [ListSessionsPath, userId, cursor, perPage].filter(Boolean).join(':');
+  return [FrontendListSessionsPath, userId, cursor, perPage]
+    .filter(Boolean)
+    .join(':');
 }
 
 export const useProtocolAuthSessionsList = ({
@@ -26,16 +31,15 @@ export const useProtocolAuthSessionsList = ({
     perPage,
   });
 
-  const { data, error, isLoading, mutate } = useSWR<ListSessions200Response>(
-    cacheKey,
-    () =>
+  const { data, error, isLoading, mutate } =
+    useSWR<FrontendListSessions200Response>(cacheKey, () =>
       protocol.auth.sessions.list({
         query: {
           cursor: cursor?.toString(),
           perPage: perPage.toString(),
         },
       }),
-  );
+    );
 
   const deleteSession = useCallback(
     async ({

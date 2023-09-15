@@ -1,6 +1,6 @@
 // import 'server-only';
 import { ProtocolAuthProvider as ProtocolAuthProviderReact } from '@protoxyz/auth-react';
-import { Protocol } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/core';
 import { AuthAppearance } from '@protoxyz/themes';
 import { Tenant, ResponseStatus } from '@protoxyz/types';
 import { getUser } from './getUser';
@@ -50,7 +50,7 @@ export async function ProtocolAuthProvider({
     console.log('resolvedPublicKey', resolvedPublicKey);
   }
 
-  const protocolClient = new Protocol({
+  const protocolClient = new ProtocolFrontendClient({
     debug: process.env.NODE_ENV !== 'production',
     baseUrl: proxy ? undefined : resolvedDomain,
   });

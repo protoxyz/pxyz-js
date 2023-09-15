@@ -2,7 +2,7 @@ import {
   ProtocolAuthContext,
   ProtocolAuthProviderState,
 } from './protocol-context';
-import { Protocol } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/core';
 import React, { useEffect } from 'react';
 import { AuthAppearance, mergeAppearance } from '@protoxyz/themes';
 import {
@@ -12,6 +12,7 @@ import {
   SignInAttempt,
   SignUpAttempt,
   UserProfile,
+  ResponseStatus,
 } from '@protoxyz/types';
 import { IsLoaded } from '../components/public/control/is-loaded';
 import {
@@ -57,7 +58,7 @@ export interface ProtocolAuthProviderProps {
   domain?: string;
   appearance?: AuthAppearance;
   navigate?: (url: string) => void;
-  tokenCache?: TokenCache
+  tokenCache?: TokenCache;
 }
 
 export const ProtocolAuthProvider = ({
@@ -76,7 +77,6 @@ export const ProtocolAuthProvider = ({
   navigate,
   tokenCache,
 }: ProtocolAuthProviderProps) => {
- 
   /*
    * This is the flow state. It is used to store the current flow route and the function to update it
    */
@@ -180,11 +180,22 @@ export const ProtocolAuthProvider = ({
     appearance: mergeAppearance({
       appearance,
     }),
-    domain: domain ?? process.env.NEXT_PUBLIC_PXYZ_DOMAIN ?? process.env.EXPO_PUBLIC_PXYZ_DOMAIN ?? '',
-    publicKey: publicKey ?? process.env.NEXT_PUBLIC_PXYZ_PUBLIC_KEY ?? process.env.EXPO_PUBLIC_PXYZ_PUBLIC_KEY ?? '',
-    protocol: new Protocol({
+    domain:
+      domain ??
+      process.env.NEXT_PUBLIC_PXYZ_DOMAIN ??
+      process.env.EXPO_PUBLIC_PXYZ_DOMAIN ??
+      '',
+    publicKey:
+      publicKey ??
+      process.env.NEXT_PUBLIC_PXYZ_PUBLIC_KEY ??
+      process.env.EXPO_PUBLIC_PXYZ_PUBLIC_KEY ??
+      '',
+    protocol: new ProtocolFrontendClient({
       credentials: true,
-      baseUrl: domain ?? process.env.NEXT_PUBLIC_PXYZ_DOMAIN ?? process.env.EXPO_PUBLIC_PXYZ_DOMAIN,
+      baseUrl:
+        domain ??
+        process.env.NEXT_PUBLIC_PXYZ_DOMAIN ??
+        process.env.EXPO_PUBLIC_PXYZ_DOMAIN,
       debug: process.env.NODE_ENV !== 'production',
       accessToken,
     }),
@@ -196,10 +207,10 @@ export const ProtocolAuthProvider = ({
       tokenCache?.saveToken(SESSION_COOKIE_NAME, token);
 
       state.protocol.setAccessToken(token);
-  
+
       if (token) {
         state.protocol.auth.users.profile({}).then((response) => {
-          if (response.status === 'success') {
+          if (response.status === ResponseStatus.Success) {
             setState((state) => ({
               ...state,
               user: response.data?.user ?? null,
@@ -208,19 +219,14 @@ export const ProtocolAuthProvider = ({
           }
         });
       }
-    }
+    },
   });
-
 
   useEffect(() => {
     tokenCache?.getToken(SESSION_COOKIE_NAME).then((token) => {
-      if (token)
-      state.setToken(token)
+      if (token) state.setToken(token);
     });
-  }, [
-    tokenCache, 
-  ]) 
-  
+  }, [tokenCache]);
 
   /*
    * This is the client state. It is used to store the sign in and sign up attempt state of the client
@@ -248,13 +254,12 @@ export const ProtocolAuthProvider = ({
   /*
     Load the tenant if it hasn't already been provided by the server component.
   */
-  useEffect(() => { 
-
+  useEffect(() => {
     if (state.loaded) {
       return;
     }
 
-    async function loadTenant() { 
+    async function loadTenant() {
       const response = await state.protocol.auth.tenants.getByPublicKey({
         path: { publicKey: state.publicKey ?? '' },
       });
@@ -264,7 +269,7 @@ export const ProtocolAuthProvider = ({
       }
 
       const tenant = response.data?.tenant;
- 
+
       setState((state) => ({
         ...state,
         loaded: true,
@@ -276,7 +281,7 @@ export const ProtocolAuthProvider = ({
   }, []);
 
   if (!state.loaded) return null;
- 
+
   return (
     <ProtocolAuthContext.Provider value={{ state, setState }}>
       <ProtocolAuthFlowProvider routeState={routeState}>

@@ -62,10 +62,10 @@ export const organizationInitials = (
 };
 
 export const organizationImage = (
-  org: Pick<OrganizationWithRole, 'imageUri'>,
+  org: Pick<OrganizationWithRole, 'logoUri'>,
 ) => {
-  if (org?.imageUri) {
-    return org?.imageUri;
+  if (org?.logoUri) {
+    return org?.logoUri;
   }
 
   return null;

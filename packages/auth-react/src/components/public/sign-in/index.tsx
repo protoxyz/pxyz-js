@@ -1,4 +1,4 @@
-import { CreateSignInAttempt201Response } from '@protoxyz/core';
+import { FrontendCreateSignInAttempt201Response } from '@protoxyz/core';
 import {
   SignInFlowRoute,
   useProtocolAuthSignInFlow,
@@ -51,7 +51,7 @@ export function SignIn({ afterSignInRedirectUri }: SignInOptions) {
 }
 
 export function handleSignInResponse(
-  response: CreateSignInAttempt201Response,
+  response: FrontendCreateSignInAttempt201Response,
   tenant: Tenant,
   setSignIn: (signIn: SignInAttempt) => void,
   setRoute: (route: SignInFlowRoute) => void,
