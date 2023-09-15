@@ -1,5 +1,13 @@
 # @protoxyz/uploads-react
 
+## 1.0.27
+
+### Patch Changes
+
+- bad2798: refactor backend client
+- Updated dependencies [bad2798]
+  - @protoxyz/types@2.0.22
+
 ## 1.0.26
 
 ### Patch Changes
