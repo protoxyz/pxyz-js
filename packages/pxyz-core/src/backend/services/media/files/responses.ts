@@ -1,4 +1,4 @@
-import { PaginatedResult } from '@/responses';
+import { PaginatedResult, Response } from '@/responses';
 
 export type ListFiles200Response = PaginatedResult<File>;
 export interface GetFile200Response extends Response {

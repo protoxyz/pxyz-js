@@ -59,6 +59,7 @@ export async function put({
       size,
       meta,
       duration,
+      tenantId: tId,
     },
   });
 }

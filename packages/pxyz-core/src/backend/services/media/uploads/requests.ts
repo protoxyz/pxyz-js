@@ -19,6 +19,7 @@ export interface GetUploadOptions extends RequestOptions {
 
 export interface CreateUploadOptions extends RequestOptions {
   body: {
+    tenantId: string;
     path: string;
     access: 'public' | 'private';
     originalFilename: string;

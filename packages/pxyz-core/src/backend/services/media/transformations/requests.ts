@@ -21,10 +21,7 @@ export interface GetTransformationOptions extends RequestOptions {
 export interface TransformationStep {}
 
 export interface CreateTransformationOptions extends RequestOptions {
-  body: Exclude<
-    Transformation,
-    'id' | 'tenantId' | 'createdAt' | 'updatedAt' | 'deletedAt'
-  >;
+  body: Exclude<Transformation, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'>;
   path?: never;
   query?: never;
 }
