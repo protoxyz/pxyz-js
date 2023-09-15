@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.22
+
+### Patch Changes
+
+- bad2798: refactor backend client
+
 ## 2.0.21
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/uploads-nextjs",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -39,6 +39,6 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@protoxyz/core": "^2.0.28"
+    "@protoxyz/core": "^2.0.29"
   }
 }

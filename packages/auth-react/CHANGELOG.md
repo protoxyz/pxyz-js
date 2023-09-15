@@ -1,5 +1,14 @@
 # @protoxyz/auth-react
 
+## 2.0.71
+
+### Patch Changes
+
+- bad2798: refactor backend client
+- Updated dependencies [bad2798]
+  - @protoxyz/core@2.0.29
+  - @protoxyz/types@2.0.22
+
 ## 2.0.70
 
 ### Patch Changes

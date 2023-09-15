@@ -1,5 +1,15 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.39
+
+### Patch Changes
+
+- bad2798: refactor backend client
+- Updated dependencies [bad2798]
+  - @protoxyz/auth-react@2.0.71
+  - @protoxyz/core@2.0.29
+  - @protoxyz/types@2.0.22
+
 ## 2.1.38
 
 ### Patch Changes

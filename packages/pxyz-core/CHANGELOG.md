@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.29
+
+### Patch Changes
+
+- bad2798: refactor backend client
+- Updated dependencies [bad2798]
+  - @protoxyz/types@2.0.22
+
 ## 2.0.28
 
 ### Patch Changes
