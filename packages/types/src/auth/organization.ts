@@ -4,7 +4,12 @@ export interface Organization {
   id: string;
   name: string;
   slug: string;
-  imageUri?: string | null | undefined;
+
+  logoId: string | null;
+  logoUrl: string | null;
+  iconId: string | null;
+  iconUrl: string | null;
+
   createdAt: Date | string;
   updatedAt: Date | string;
 }

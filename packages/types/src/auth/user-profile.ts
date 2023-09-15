@@ -7,6 +7,7 @@ export interface UserProfile {
   id: string;
   name: string | null | undefined;
   imageUri: string | null | undefined;
+  imageId: string | null | undefined;
   lastSignInAt: Date | null;
   lastActiveAt: Date | null;
   identifier: string;

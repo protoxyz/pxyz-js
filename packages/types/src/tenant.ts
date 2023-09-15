@@ -6,7 +6,10 @@ export interface Tenant {
   id: string;
   name: string;
   slug: string;
-  imageUri: string | null;
+  logoId: string | null;
+  logoUrl: string | null;
+  iconId: string | null;
+  iconUrl: string | null;
   environment: Environment;
   publicKey: string;
   creatorId: string;
