@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.30
+
+### Patch Changes
+
+- e48b689: fix
+
 ## 2.0.29
 
 ### Patch Changes
