@@ -1,4 +1,4 @@
-import { ProtocolBackendClient } from '@protoxyz/core';
+import { CreateUpload201Response, ProtocolBackendClient } from '@protoxyz/core';
 
 export interface UploadOptions {
   path: string;
@@ -24,7 +24,7 @@ export async function put({
   publicKey,
   secretKey,
   tenantId,
-}: UploadOptions) {
+}: UploadOptions): Promise<CreateUpload201Response> {
   const pkey = publicKey ?? process.env.PXYZ_PUBLIC_KEY;
   const skey = secretKey ?? process.env.PXYZ_SECRET_KEY;
   const tId =

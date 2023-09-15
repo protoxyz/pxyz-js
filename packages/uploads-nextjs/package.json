@@ -26,19 +26,16 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@protoxyz/core": "workspace:*",
     "@protoxyz/types": "workspace:*"
   },
   "devDependencies": {
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
-    "@protoxyz/core": "workspace:*",
     "@protoxyz/eslint-config-custom-next": "github:protoxyz/eslint-config-custom-next",
     "@types/node": "^18.14.2",
     "eslint": "^8.32.0",
     "eslint-config-next": "^13.1.1",
     "tsup": "^7.1.0",
     "typescript": "^4.9.5"
-  },
-  "peerDependencies": {
-    "@protoxyz/core": "^2.0.29"
   }
 }
