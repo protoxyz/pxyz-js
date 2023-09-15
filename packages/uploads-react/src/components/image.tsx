@@ -46,22 +46,17 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
   );
 
   if (error) {
-    return <div className={cn('bg-foreground', className)}>?</div>;
+    return <div className={cn('', className)}>?</div>;
   }
 
   return (
-    <div
-      className={cn(
-        'bg-foreground relative overflow-hidden rounded',
-        className,
-      )}
-    >
+    <div className={cn('relative overflow-hidden rounded', className)}>
       {blurUri && (
         <img
           onLoad={() => setBlurLoaded(true)}
           src={blurUri}
           className={cn(
-            'bg-foreground duration-250 z-1 absolute inset-0 inline-block transform object-contain opacity-0 transition-opacity ease-in',
+            'duration-250 z-1 absolute inset-0 inline-block transform object-contain opacity-0 transition-opacity ease-in',
             blurLoaded ? 'opacity-100' : '',
           )}
         />
@@ -71,7 +66,7 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
         src={uri}
         {...props}
         className={cn(
-          'bg-foreground duration-250 transform opacity-0 transition-opacity  ease-in',
+          'duration-250 transform opacity-0 transition-opacity  ease-in',
           loaded ? ' opacity-100' : '',
         )}
         onError={(e) => setError(true)}
