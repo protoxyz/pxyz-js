@@ -1,6 +1,5 @@
 import { CreateUpload201Response } from '@protoxyz/core';
 import { UploadOptions, put } from './put';
-import { Upload } from '@protoxyz/types';
 
 type UploadWithUrlAndFields = CreateUpload201Response['data'] & {
   fields: Record<string, string>;
@@ -9,8 +8,6 @@ type UploadWithUrlAndFields = CreateUpload201Response['data'] & {
 
 export async function putBlob(blob: Blob, uploadOptions: UploadOptions) {
   const putResponse = await put(uploadOptions);
-
-  console.log('putResponse', putResponse);
 
   return upload(blob, putResponse.data as UploadWithUrlAndFields);
 }

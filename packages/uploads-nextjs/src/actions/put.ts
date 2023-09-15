@@ -10,6 +10,7 @@ export interface UploadOptions {
   meta?: Record<string, any>;
   publicKey?: string;
   secretKey?: string;
+  tenantId?: string;
 }
 
 export async function put({
@@ -22,9 +23,14 @@ export async function put({
   duration,
   publicKey,
   secretKey,
+  tenantId,
 }: UploadOptions) {
   const pkey = publicKey ?? process.env.PXYZ_PUBLIC_KEY;
   const skey = secretKey ?? process.env.PXYZ_SECRET_KEY;
+  const tId =
+    tenantId ??
+    process.env.PXYZ_TENANT_ID ??
+    process.env.NEXT_PUBLIC_PXYZ_TENANT_ID;
 
   if (!pkey) {
     throw new Error('Missing publicKey and PXYZ_PUBLIC_KEY');
@@ -32,6 +38,10 @@ export async function put({
 
   if (!skey) {
     throw new Error('Missing secretKey and PXYZ_SECRET_KEY');
+  }
+
+  if (!tId) {
+    throw new Error('Missing tenantId and PXYZ_TENANT_ID');
   }
 
   const protocol = new ProtocolBackendClient({
