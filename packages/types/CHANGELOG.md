@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.21
+
+### Patch Changes
+
+- be16436: image ids
+
 ## 2.0.20
 
 ### Patch Changes
