@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.28
+
+### Patch Changes
+
+- aa357f2: don't have bg
+
 ## 1.0.27
 
 ### Patch Changes
