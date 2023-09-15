@@ -32,7 +32,7 @@ import { SESSION_COOKIE_NAME, setSessionCookie } from '../../../lib/cookies';
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
-type Team = Pick<OrganizationWithRole, 'name' | 'imageUri' | 'id'>;
+type Team = Pick<OrganizationWithRole, 'name' | 'logoUri' | 'id'>;
 
 type Group = {
   label: string;
@@ -48,7 +48,8 @@ export function OrganizationSwitcher({
   className,
   onOrganizationSelect,
 }: OrganizationSwitcherProps) {
-  const { tokenCache, tenant, user, orgId, protocol, setState } = useProtocolAuth();
+  const { tokenCache, tenant, user, orgId, protocol, setState } =
+    useProtocolAuth();
   // const { appearance } = useProtocolAuthAppearance({ component: "organizationSwitcher" });
   const { organizations } = useProtocolAuthOrganizationsList({});
 
@@ -58,7 +59,7 @@ export function OrganizationSwitcher({
       teams: [
         {
           name: userDisplayName(user),
-          imageUri: userImage(user),
+          logoUri: userImage(user),
           id: null,
         },
       ],
@@ -152,7 +153,7 @@ export function OrganizationSwitcher({
                       className="text-sm"
                     >
                       <Avatar className="mr-2 h-8 w-8">
-                        <AvatarImage src={team.imageUri} alt={team.name} />
+                        <AvatarImage src={team.logoUri} alt={team.name} />
                         <AvatarFallback>
                           {organizationInitials(team)}
                         </AvatarFallback>

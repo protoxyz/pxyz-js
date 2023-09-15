@@ -6,7 +6,7 @@ import {
 } from '../../../../contexts/protocol-context';
 import { SectionHeader } from '../section-header';
 import { z } from 'zod';
-import { UpdateOrganization200Response } from '@protoxyz/core';
+import { FrontendUpdateOrganization200Response } from '@protoxyz/core';
 import { useProtocolAuthOrganizationsList } from '../../../../hooks/useOrganizationsList';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -110,7 +110,7 @@ const UpdateOrganizationFormSchema = z.object({
 
 interface UpdateOrganizationFormOptions {
   onCancel?: () => void;
-  onSubmit?: (response: UpdateOrganization200Response) => void;
+  onSubmit?: (response: FrontendUpdateOrganization200Response) => void;
   afterUpdateOrganizationRedirectUri?: string;
 }
 export function UpdateOrganizationForm({

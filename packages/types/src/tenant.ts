@@ -7,9 +7,9 @@ export interface Tenant {
   name: string;
   slug: string;
   logoId: string | null;
-  logoUrl: string | null;
+  logoUri: string | null;
   iconId: string | null;
-  iconUrl: string | null;
+  iconUri: string | null;
   environment: Environment;
   publicKey: string;
   creatorId: string;

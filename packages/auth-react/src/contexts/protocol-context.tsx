@@ -1,5 +1,5 @@
 import { RedirectToSignInProps, RedirectToSignUpProps } from '../types/auth';
-import { Protocol } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/core';
 import { AuthAppearance, AuthComponentType } from '@protoxyz/themes';
 import {
   Tenant,
@@ -13,7 +13,7 @@ import { SESSION_COOKIE_NAME, deleteSessionCookie } from '../lib/cookies';
 import { isBrowser, isReactNative } from '../lib/utils';
 
 export interface ProtocolAuthProviderState {
-  protocol: Protocol;
+  protocol: ProtocolFrontendClient;
   loaded: boolean;
   tenant: Tenant | null;
   domain: string;
@@ -88,8 +88,8 @@ export const useProtocolAuth = () => {
     setState: authCtx.setState,
     reset: () => {
       authCtx.state.tokenCache?.deleteToken(SESSION_COOKIE_NAME);
-      deleteSessionCookie(authCtx.state.tenant); 
-      
+      deleteSessionCookie(authCtx.state.tenant);
+
       authCtx.setState({
         ...authCtx.state,
         user: null,

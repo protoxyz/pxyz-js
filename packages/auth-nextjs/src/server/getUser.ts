@@ -1,7 +1,7 @@
 import { headers as nextHeaders } from 'next/headers';
 
 import { ResponseStatus, UserProfile } from '@protoxyz/types';
-import { Protocol } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/core';
 import { getBearerToken, getCookieToken } from './util';
 
 export async function getUser({
@@ -18,7 +18,7 @@ export async function getUser({
 
   if (!token) return null;
 
-  const protocol = new Protocol({ accessToken: token });
+  const protocol = new ProtocolFrontendClient({ accessToken: token });
 
   const userResponse = await protocol.auth.users.profile({
     headers: {

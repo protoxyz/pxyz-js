@@ -6,9 +6,9 @@ export interface Organization {
   slug: string;
 
   logoId: string | null;
-  logoUrl: string | null;
+  logoUri: string | null;
   iconId: string | null;
-  iconUrl: string | null;
+  iconUri: string | null;
 
   createdAt: Date | string;
   updatedAt: Date | string;

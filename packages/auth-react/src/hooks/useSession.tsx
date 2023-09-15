@@ -1,4 +1,4 @@
-import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
+import { ResponseStatus } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
 import { useCallback, useState } from 'react';
 import { setSessionCookie } from '../lib/cookies';

@@ -17,7 +17,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useProtocolAuthOrganizationsList } from '../../../hooks/useOrganizationsList';
-import { CreateOrganization201Response } from '@protoxyz/core';
+import { FrontendCreateOrganization201Response } from '@protoxyz/core';
 import { Button } from '../../ui/button';
 import {
   Form,
@@ -36,7 +36,7 @@ const CreateOrganizationFormSchema = z.object({
 
 interface CreateOrganizationFormOptions {
   onCancel?: () => void;
-  onSubmit?: (response: CreateOrganization201Response) => void;
+  onSubmit?: (response: FrontendCreateOrganization201Response) => void;
   afterCreateOrganizationRedirectUri?: string;
 }
 export function CreateOrganizationForm({

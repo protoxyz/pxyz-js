@@ -21,7 +21,7 @@ import {
 import { Input } from '../../../ui/input';
 import { Button } from '../../../ui/button';
 import { Spinner } from '../../../ui/spinner';
-import { GetUserProfile200Response } from '@protoxyz/core';
+import { FrontendGetUserProfile200Response } from '@protoxyz/core';
 import { Divider } from '../../../custom-ui/divider';
 import { Avatar, AvatarFallback, AvatarImage } from '../../../ui/avatar';
 import {
@@ -55,7 +55,7 @@ const UpdateUserFormSchema = z.object({
 
 interface UpdateUserFormOptions {
   onCancel?: () => void;
-  onSubmit?: (response: GetUserProfile200Response) => void;
+  onSubmit?: (response: FrontendGetUserProfile200Response) => void;
   afterUpdateUserRedirectUri?: string;
 }
 export function UpdateUserForm({

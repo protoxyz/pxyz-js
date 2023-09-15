@@ -63,7 +63,7 @@ export class HttpClient {
   }
 
   private formatHost(host: string): string {
-    const isDevOrLocalhost = host.startsWith('localhost') || IS_PROTOCOL_DEV
+    const isDevOrLocalhost = host.startsWith('localhost') || IS_PROTOCOL_DEV;
 
     if (isDevOrLocalhost && !host.startsWith('http://')) {
       return `http://${host}`;
@@ -108,7 +108,7 @@ export class HttpClient {
       }
     }
 
-    const url = new URL(updatedPath + "?" + searchParams.toString(), this.host); 
+    const url = new URL(updatedPath + '?' + searchParams.toString(), this.host);
 
     return url;
   }
@@ -185,14 +185,18 @@ export class HttpClient {
     }
 
     if (this.debug) {
-      console.log(`[HTTP] ${method} ${url.toString()} returned ${response.status}`);
+      console.log(
+        `[HTTP] ${method} ${url.toString()} returned ${response.status}`,
+      );
     }
 
     const body = await response.json();
     const status = response.status.toString();
 
     if (this.debug) {
-      console.log(`[HTTP] ${method} ${url.toString()} \n\n ${JSON.stringify(body)}`);
+      console.log(
+        `[HTTP] ${method} ${url.toString()} \n\n ${JSON.stringify(body)}`,
+      );
     }
 
     return Promise.resolve(body as T);

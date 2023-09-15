@@ -2,8 +2,8 @@ import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
 import useSWR from 'swr';
 import {
-  ListOrganizations200Response,
-  ListOrganizationsPath,
+  FrontendListOrganizations200Response,
+  FrontendListOrganizationsPath,
 } from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
@@ -12,7 +12,7 @@ export function organizationsListCacheKey({
   perPage,
   userId,
 }: PaginatedArgs & { userId?: string }) {
-  return [ListOrganizationsPath, userId, cursor, perPage]
+  return [FrontendListOrganizationsPath, userId, cursor, perPage]
     .filter(Boolean)
     .join(':');
 }
@@ -38,7 +38,7 @@ export const useProtocolAuthOrganizationsList = ({
   const userOrganizations = user?.organizations ?? [];
 
   const { data, error, isLoading, mutate } =
-    useSWR<ListOrganizations200Response>(
+    useSWR<FrontendListOrganizations200Response>(
       cacheKey,
       () =>
         protocol.auth.organizations.list({
