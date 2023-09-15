@@ -1,5 +1,13 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.20
+
+### Patch Changes
+
+- d2fed09: add tenantId
+- Updated dependencies [d2fed09]
+  - @protoxyz/core@2.0.31
+
 ## 1.0.19
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.31
+
+### Patch Changes
+
+- d2fed09: add tenantId
+
 ## 2.0.30
 
 ### Patch Changes

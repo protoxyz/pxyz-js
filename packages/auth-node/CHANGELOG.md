@@ -1,5 +1,12 @@
 # @protoxyz/auth-node
 
+## 2.0.38
+
+### Patch Changes
+
+- Updated dependencies [d2fed09]
+  - @protoxyz/core@2.0.31
+
 ## 2.0.37
 
 ### Patch Changes
