@@ -1,5 +1,11 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.18
+
+### Patch Changes
+
+- 8a3a7a4: add tenantId
+
 ## 1.0.17
 
 ### Patch Changes
