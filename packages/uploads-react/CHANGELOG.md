@@ -1,5 +1,11 @@
 # @protoxyz/uploads-react
 
+## 1.0.29
+
+### Patch Changes
+
+- 3aefa2a: add classname to images
+
 ## 1.0.28
 
 ### Patch Changes
