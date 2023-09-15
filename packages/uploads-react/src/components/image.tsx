@@ -50,12 +50,13 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
   }
 
   return (
-    <div className={cn('relative overflow-hidden rounded', className)}>
+    <div className={cn('relative overflow-hidden', className)}>
       {blurUri && (
         <img
           onLoad={() => setBlurLoaded(true)}
           src={blurUri}
           className={cn(
+            className,
             'duration-250 z-1 absolute inset-0 inline-block transform object-contain opacity-0 transition-opacity ease-in',
             blurLoaded ? 'opacity-100' : '',
           )}
@@ -66,7 +67,8 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
         src={uri}
         {...props}
         className={cn(
-          'duration-250 transform opacity-0 transition-opacity  ease-in',
+          className,
+          ' duration-250 transform opacity-0 transition-opacity  ease-in',
           loaded ? ' opacity-100' : '',
         )}
         onError={(e) => setError(true)}
