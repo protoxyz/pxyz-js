@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/uploads-react",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -50,7 +50,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@protoxyz/core": "^2.0.27",
+    "@protoxyz/core": "^2.0.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
