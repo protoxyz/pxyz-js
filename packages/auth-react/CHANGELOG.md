@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.74
+
+### Patch Changes
+
+- 9bc2614: minor updates
+
 ## 2.0.73
 
 ### Patch Changes
