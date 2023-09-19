@@ -39,7 +39,8 @@ export const getSessionCookieOptions = (
 
 export const setSessionCookie = (jwt: string, tenant: Tenant) => {
   if (!isBrowser() || isReactNative()) {
-    return
+    console.log('Not in browser, skipping setSessionCookie');
+    return;
   }
 
   let options: Cookies.CookieAttributes = getSessionCookieOptions(tenant);
@@ -67,9 +68,9 @@ export const setSessionCookie = (jwt: string, tenant: Tenant) => {
 
 export const deleteSessionCookie = (tenant: Tenant) => {
   if (!isBrowser() || isReactNative()) {
-    return
+    return;
   }
-  
+
   const options: Cookies.CookieAttributes = getSessionCookieOptions(tenant);
 
   Cookies.remove(SESSION_COOKIE_NAME, options);

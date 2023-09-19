@@ -21,11 +21,11 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <Image
-                  src="/logo-black@3x.png"
+                  src="/protocol-black@4x.png"
                   alt="Protocol Logo"
                   className="h-8 w-auto dark:invert"
-                  width={1248}
-                  height={162}
+                  width={1152}
+                  height={224}
                   priority
                 />
               </a>

@@ -19,13 +19,13 @@ export default async function RootLayout({
 }) {
   const appearance: AuthAppearance = {
     layout: {
-      logoImageUrl: './logo-black@3x.png',
+      logoImageUrl: './protocol-black@4x.png',
       helpUrl: 'https://pxyz.dev/help',
       tosUrl: 'https://pxyz.dev/terms',
       privacyPolicyUrl: 'https://pxyz.dev/privacy',
     },
 
-    elements: { card: 'bg-white border-2  ' },
+    elements: { card: 'bg-white border-2' },
 
     variables: {
       primary: '#858DFF',
