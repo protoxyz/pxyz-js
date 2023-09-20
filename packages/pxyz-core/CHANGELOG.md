@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.32
+
+### Patch Changes
+
+- 7866e6c: add call to create notification
+
 ## 2.0.31
 
 ### Patch Changes
