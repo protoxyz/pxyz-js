@@ -1,5 +1,12 @@
 # @protoxyz/auth-node
 
+## 2.0.40
+
+### Patch Changes
+
+- Updated dependencies [5a72944]
+  - @protoxyz/core@2.0.33
+
 ## 2.0.39
 
 ### Patch Changes

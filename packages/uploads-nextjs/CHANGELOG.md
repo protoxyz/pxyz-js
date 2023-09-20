@@ -1,5 +1,12 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies [5a72944]
+  - @protoxyz/core@2.0.33
+
 ## 1.0.21
 
 ### Patch Changes
