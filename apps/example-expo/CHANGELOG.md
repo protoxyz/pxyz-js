@@ -1,5 +1,11 @@
 # example-expo
 
+## 1.0.11
+
+### Patch Changes
+
+- @protoxyz/auth-react@2.0.76
+
 ## 1.0.10
 
 ### Patch Changes
