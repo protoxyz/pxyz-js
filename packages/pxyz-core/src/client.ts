@@ -122,6 +122,7 @@ export class HttpClient {
 
     if (this.debug) {
       console.log(`[HTTP] ${method} ${url.toString()}`);
+      console.log(`body:`, options?.body);
     }
 
     const headers = new Headers();
