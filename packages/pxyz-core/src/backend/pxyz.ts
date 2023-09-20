@@ -26,7 +26,7 @@ export class ProtocolBackendClient {
   };
 
   notifications: {
-    notifications: ProtocolNotificationsService;
+    send: ProtocolNotificationsService;
     channels: ProtocolNotificationChannelsService;
     templates: ProtocolNotificationTemplatesService;
   };
@@ -92,7 +92,7 @@ export class ProtocolBackendClient {
     this.notifications = {
       channels: new ProtocolNotificationChannelsService(this),
       templates: new ProtocolNotificationTemplatesService(this),
-      notifications: new ProtocolNotificationsService(this),
+      send: new ProtocolNotificationsService(this),
     };
   }
 }

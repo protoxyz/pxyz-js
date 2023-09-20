@@ -1,11 +1,14 @@
 import { ProtocolBackendClient } from '../../../pxyz';
 import {
-  CreateNotificationOptions,
-  CreateNotificationByIdsOptions,
+  SendNotificationOptions,
+  SendEmailNotificationOptions,
+  SendSmsNotificationOptions,
+  SendPushNotificationOptions,
+  SendInAppNotificationOptions,
 } from './requests';
-import { CreateNotification201Response } from './responses';
+import { SendNotification201Response } from './responses';
 
-export const CreateNotificationPath = '/api/v0/notifications';
+export const SendNotificationPath = '/api/v0/notifications';
 
 export class ProtocolNotificationsService {
   private protocol: ProtocolBackendClient;
@@ -14,22 +17,52 @@ export class ProtocolNotificationsService {
     this.protocol = protocol;
   }
 
-  create(
-    options?: CreateNotificationOptions,
-  ): Promise<CreateNotification201Response> {
-    return this.protocol.client.request<CreateNotification201Response>(
+  email(
+    body: SendEmailNotificationOptions['body'],
+  ): Promise<SendNotification201Response> {
+    return this.protocol.client.request<SendNotification201Response>(
       'POST',
-      CreateNotificationPath,
-      options,
+      SendNotificationPath,
+      { body },
     );
   }
 
-  createByIds(
-    options?: CreateNotificationByIdsOptions,
-  ): Promise<CreateNotification201Response> {
-    return this.protocol.client.request<CreateNotification201Response>(
+  sms(
+    body: SendSmsNotificationOptions['body'],
+  ): Promise<SendNotification201Response> {
+    return this.protocol.client.request<SendNotification201Response>(
       'POST',
-      CreateNotificationPath,
+      SendNotificationPath,
+      { body },
+    );
+  }
+
+  push(
+    body: SendPushNotificationOptions['body'],
+  ): Promise<SendNotification201Response> {
+    return this.protocol.client.request<SendNotification201Response>(
+      'POST',
+      SendNotificationPath,
+      { body },
+    );
+  }
+
+  inApp(
+    body: SendInAppNotificationOptions['body'],
+  ): Promise<SendNotification201Response> {
+    return this.protocol.client.request<SendNotification201Response>(
+      'POST',
+      SendNotificationPath,
+      { body },
+    );
+  }
+
+  send(
+    options?: SendNotificationOptions,
+  ): Promise<SendNotification201Response> {
+    return this.protocol.client.request<SendNotification201Response>(
+      'POST',
+      SendNotificationPath,
       options,
     );
   }

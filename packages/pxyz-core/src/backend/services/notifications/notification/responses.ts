@@ -1,5 +1,5 @@
 import { Response } from '@/responses';
 
-export interface CreateNotification201Response extends Response {
+export interface SendNotification201Response extends Response {
   data: any;
 }
