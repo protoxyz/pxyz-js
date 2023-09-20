@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.34
+
+### Patch Changes
+
+- 7b124d0: fix path
+
 ## 2.0.33
 
 ### Patch Changes
