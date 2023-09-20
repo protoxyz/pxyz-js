@@ -2,8 +2,6 @@ import {
   IsLoggedIn,
   IsLoggedOut,
   OrganizationSwitcher,
-  SignInButton,
-  SignUpButton,
   UserButton,
 } from '@protoxyz/auth-react';
 import { ThemeToggle } from './theme-toggle';

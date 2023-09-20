@@ -6,6 +6,7 @@ import { ProtocolMediaFilesService } from './services/media/files';
 import { ProtocolTenantsService } from './services/core/tenants';
 import { ProtocolNotificationChannelsService } from './services/notifications/channels';
 import { ProtocolNotificationTemplatesService } from './services/notifications/templates';
+import { ProtocolNotificationsService } from './services/notifications/notification';
 
 export interface ProtocolBackendClientConfiguration {
   baseUrl?: string | undefined;
@@ -25,6 +26,7 @@ export class ProtocolBackendClient {
   };
 
   notifications: {
+    notifications: ProtocolNotificationsService;
     channels: ProtocolNotificationChannelsService;
     templates: ProtocolNotificationTemplatesService;
   };
@@ -90,6 +92,7 @@ export class ProtocolBackendClient {
     this.notifications = {
       channels: new ProtocolNotificationChannelsService(this),
       templates: new ProtocolNotificationTemplatesService(this),
+      notifications: new ProtocolNotificationsService(this),
     };
   }
 }
