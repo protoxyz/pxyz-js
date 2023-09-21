@@ -10,11 +10,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getImageURI({
-  tenantId,
   imageId,
   options,
 }: {
-  tenantId?: string;
   imageId: string;
   options: ImageProcessorOptions | ImageProcessorTransformationOptions;
 }) {
@@ -23,12 +21,7 @@ export function getImageURI({
     process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
     'https://cdn.pxyz.cloud';
 
-  const TENANT_ID =
-    tenantId ??
-    process.env.PXYZ_TENANT_ID ??
-    process.env.NEXT_PUBLIC_PXYZ_TENANT_ID;
-
-  const src = new URL(`/${TENANT_ID}/${imageId}/image?`, CDN_URL);
+  const src = new URL(`/${imageId}/image?`, CDN_URL);
 
   if (options) {
     if ('transformation' in options) {

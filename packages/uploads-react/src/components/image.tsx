@@ -8,7 +8,6 @@ import {
 type ImageProps = {
   alt?: string;
   uploadId: string;
-  tenantId?: string;
   className?: string;
   blurhash?: boolean | string;
   options?: ImageProcessorOptions | ImageProcessorTransformationOptions;
@@ -23,10 +22,9 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
     () =>
       getImageURI({
         imageId: props.uploadId,
-        tenantId: props.tenantId,
         options: props.options,
       }),
-    [props.uploadId, props.tenantId, props.options],
+    [props.uploadId, props.options],
   );
 
   const blurUri = useMemo(
@@ -36,13 +34,12 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
         : blurhash === true &&
           getImageURI({
             imageId: props.uploadId,
-            tenantId: props.tenantId,
             options: {
               ...props.options,
               format: 'blurhash',
             },
           }),
-    [props.uploadId, props.tenantId, props.options],
+    [props.uploadId, props.options],
   );
 
   if (error) {

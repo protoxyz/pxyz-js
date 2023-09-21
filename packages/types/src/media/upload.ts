@@ -3,6 +3,7 @@ export interface Upload {
 
   tenantId: string;
   path: string;
+  folder: string | null;
   originalFilename: string | null;
   mime: string | null;
   size: number | null;

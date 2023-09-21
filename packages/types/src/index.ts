@@ -28,9 +28,9 @@ export * from './notifications/template';
 export * from './notifications/enums';
 
 // Uploads
-export * from './uploads/upload';
-export * from './uploads/file';
-export * from './uploads/transformation';
+export * from './media/upload';
+export * from './media/file';
+export * from './media/transformation';
 
 // Core types
 export * from './tenant';
