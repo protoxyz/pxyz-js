@@ -1,5 +1,12 @@
 # @protoxyz/core
 
+## 2.0.37
+
+### Patch Changes
+
+- Updated dependencies [6db3bff]
+  - @protoxyz/types@2.0.24
+
 ## 2.0.36
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.24
+
+### Patch Changes
+
+- 6db3bff: update MediaEvent
+
 ## 2.0.23
 
 ### Patch Changes

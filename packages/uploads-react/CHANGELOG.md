@@ -1,5 +1,12 @@
 # @protoxyz/uploads-react
 
+## 1.0.31
+
+### Patch Changes
+
+- Updated dependencies [6db3bff]
+  - @protoxyz/types@2.0.24
+
 ## 1.0.30
 
 ### Patch Changes
