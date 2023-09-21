@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.23
+
+### Patch Changes
+
+- 075860b: remove tenantId from asset pat
+
 ## 2.0.22
 
 ### Patch Changes

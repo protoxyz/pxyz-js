@@ -1,5 +1,13 @@
 # @protoxyz/uploads-react
 
+## 1.0.30
+
+### Patch Changes
+
+- 075860b: remove tenantId from asset pat
+- Updated dependencies [075860b]
+  - @protoxyz/types@2.0.23
+
 ## 1.0.29
 
 ### Patch Changes
