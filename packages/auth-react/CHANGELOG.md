@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.80
+
+### Patch Changes
+
+- Updated dependencies [6db3bff]
+  - @protoxyz/types@2.0.24
+  - @protoxyz/core@2.0.37
+
 ## 2.0.79
 
 ### Patch Changes
