@@ -160,6 +160,10 @@ export const MediaEvent = {
   transformation_created: 'transformation.created',
   transformation_updated: 'transformation.updated',
   transformation_deleted: 'transformation.deleted',
+
+  image_processed: 'image.processed',
+  video_processed: 'video.processed',
+  audio_processed: 'audio.processed',
 };
 export type MediaEvent = (typeof MediaEvent)[keyof typeof MediaEvent];
 
