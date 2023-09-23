@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.39
+
+### Patch Changes
+
+- 5182bba: fix paths
+
 ## 2.0.38
 
 ### Patch Changes
