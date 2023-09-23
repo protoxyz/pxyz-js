@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.38
+
+### Patch Changes
+
+- 7cafa6b: add users auth service
+
 ## 2.0.37
 
 ### Patch Changes
