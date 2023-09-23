@@ -7,6 +7,7 @@ import { ProtocolTenantsService } from './services/core/tenants';
 import { ProtocolNotificationChannelsService } from './services/notifications/channels';
 import { ProtocolNotificationTemplatesService } from './services/notifications/templates';
 import { ProtocolNotificationsService } from './services/notifications/notification';
+import { ProtocolAuthUsersService } from './services/auth/users';
 
 export interface ProtocolBackendClientConfiguration {
   baseUrl?: string | undefined;
@@ -23,6 +24,10 @@ export class ProtocolBackendClient {
 
   core: {
     tenants: ProtocolTenantsService;
+  };
+
+  auth: {
+    users: ProtocolAuthUsersService;
   };
 
   notifications: {
@@ -65,23 +70,23 @@ export class ProtocolBackendClient {
       tenants: new ProtocolTenantsService(this),
     };
 
-    // this.auth = {
-    //   users: new ProtocolAuthUsersService(this),
-    //   tenants: new ProtocolAuthTenantsService(this),
-    //   signInAttempts: new ProtocolAuthSignInAttemptsService(this),
-    //   signUpAttempts: new ProtocolAuthSignUpAttemptsService(this),
-    //   emailAddresses: new ProtocolAuthEmailAddresssService(this),
-    //   phoneNumbers: new ProtocolAuthPhoneNumbersService(this),
-    //   socialConnections: new ProtocolAuthSocialConnectionsService(this),
-    //   sessions: new ProtocolAuthSessionsService(this),
-    //   wellKnown: new ProtocolAuthWellKnownsService(this),
-    //   organizations: new ProtocolAuthOrganizationsService(this),
-    //   organizationRoles: new ProtocolAuthOrganizationRolesService(this),
-    //   organizationMembers: new ProtocolAuthOrganizationMembersService(this),
-    //   organizationInvitations: new ProtocolAuthOrganizationInvitationsService(
-    //     this,
-    //   ),
-    // };
+    this.auth = {
+      users: new ProtocolAuthUsersService(this),
+      //   tenants: new ProtocolAuthTenantsService(this),
+      //   signInAttempts: new ProtocolAuthSignInAttemptsService(this),
+      //   signUpAttempts: new ProtocolAuthSignUpAttemptsService(this),
+      //   emailAddresses: new ProtocolAuthEmailAddresssService(this),
+      //   phoneNumbers: new ProtocolAuthPhoneNumbersService(this),
+      //   socialConnections: new ProtocolAuthSocialConnectionsService(this),
+      //   sessions: new ProtocolAuthSessionsService(this),
+      //   wellKnown: new ProtocolAuthWellKnownsService(this),
+      //   organizations: new ProtocolAuthOrganizationsService(this),
+      //   organizationRoles: new ProtocolAuthOrganizationRolesService(this),
+      //   organizationMembers: new ProtocolAuthOrganizationMembersService(this),
+      //   organizationInvitations: new ProtocolAuthOrganizationInvitationsService(
+      //     this,
+      //   ),
+    };
 
     this.media = {
       uploads: new ProtocolMediaUploadsService(this),
