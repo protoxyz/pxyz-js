@@ -72,7 +72,21 @@ export function handleSignInResponse(
       case AuthSignInAttemptStatus.complete: {
         setSessionCookie(response.data?.jwt, tenant);
         setRoute(SignInFlowRoute['signIn:success']);
-        navigate(response.data?.signInAttempt.redirectUri);
+
+        console.log('redirectUri:', response.data?.signInAttempt.redirectUri);
+        if (
+          response.data?.signInAttempt.redirectUri.startsWith(
+            'http://localhost:8085',
+          )
+        ) {
+          const redirectUri = new URL(response.data?.signInAttempt.redirectUri);
+          redirectUri.searchParams.append('jwt', response.data?.jwt);
+          console.log(redirectUri.toString());
+          // window.location.href = redirectUri.toString();
+        } else {
+          console.log(response.data?.signInAttempt.redirectUri);
+          // navigate(response.data?.signInAttempt.redirectUri);
+        }
         break;
       }
     }

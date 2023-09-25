@@ -209,9 +209,15 @@ export function SignInPhoneCodeForm({
 
     const strategyValues = values as z.infer<typeof PhoneNumberCodeFormSchema>;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignInRedirectUri ??
+      window.location.origin;
+
     const response = await protocol.auth.signInAttempts.create({
       body: {
-        redirectUri: afterSignInRedirectUri ?? window.location.origin,
+        redirectUri,
         strategy: firstFactorStrategy,
         identifier: strategyValues.phoneNumber,
       },
@@ -319,9 +325,15 @@ export function SignInPhonePasswordForm({
 
     const strategyValues = values as z.infer<typeof PhonePasswordFormSchema>;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignInRedirectUri ??
+      window.location.origin;
+
     const response = await protocol.auth.signInAttempts.create({
       body: {
-        redirectUri: afterSignInRedirectUri ?? window.location.origin,
+        redirectUri,
         strategy: firstFactorStrategy,
         identifier: strategyValues.phoneNumber,
         password: strategyValues.password,
@@ -428,10 +440,14 @@ export function SignInEmailCodeForm({
     setCreatingSignIn(true);
 
     const strategyValues = values as z.infer<typeof EmailCodeFormSchema>;
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignInRedirectUri ??
+      window.location.origin;
     const response = await protocol.auth.signInAttempts.create({
       body: {
-        redirectUri: afterSignInRedirectUri ?? window.location.origin,
+        redirectUri,
         strategy: firstFactorStrategy,
         identifier: strategyValues.emailAddress,
       },
@@ -542,10 +558,14 @@ export function SignInEmailLinkForm({
     setCreatingSignIn(true);
 
     const strategyValues = values as z.infer<typeof EmailLinkFormSchema>;
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignInRedirectUri ??
+      window.location.origin;
     const response = await protocol.auth.signInAttempts.create({
       body: {
-        redirectUri: afterSignInRedirectUri ?? window.location.origin,
+        redirectUri,
         strategy: firstFactorStrategy,
         identifier: strategyValues.emailAddress,
       },
@@ -650,10 +670,14 @@ export function SignInEmailPasswordForm({
     setCreatingSignIn(true);
 
     const strategyValues = values as z.infer<typeof EmailPasswordFormSchema>;
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignInRedirectUri ??
+      window.location.origin;
     const response = await protocol.auth.signInAttempts.create({
       body: {
-        redirectUri: afterSignInRedirectUri ?? window.location.origin,
+        redirectUri,
         strategy: firstFactorStrategy,
         identifier: strategyValues.emailAddress,
         password: strategyValues.password,
@@ -775,10 +799,14 @@ export function SignInUsernamePasswordForm({
     setCreatingSignIn(true);
 
     const strategyValues = values as z.infer<typeof UsernamePasswordFormSchema>;
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignInRedirectUri ??
+      window.location.origin;
     const response = await protocol.auth.signInAttempts.create({
       body: {
-        redirectUri: afterSignInRedirectUri ?? window.location.origin,
+        redirectUri,
         strategy: firstFactorStrategy,
         identifier: strategyValues.username,
         password: strategyValues.password,

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "ES6"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "extends": "@protoxyz/config-tsconfig/base.json",
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".turbo"]
+}

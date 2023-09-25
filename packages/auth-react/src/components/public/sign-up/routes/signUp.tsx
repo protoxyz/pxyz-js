@@ -103,10 +103,16 @@ export function SignUpForm({
     }
     setCreatingSignUp(true);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUri =
+      urlParams.get('redirectUri') ??
+      afterSignUpRedirectUri ??
+      window.location.origin;
+
     const response = await protocol.auth.signUpAttempts.create({
       body: {
         ...values,
-        redirectUri: afterSignUpRedirectUri,
+        redirectUri,
       },
     });
 

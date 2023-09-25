@@ -424,6 +424,9 @@ importers:
       '@babel/plugin-transform-typescript':
         specifier: ^7.22.5
         version: 7.22.15(@babel/core@7.22.1)
+      '@protoxyz/core':
+        specifier: workspace:*
+        version: link:../pxyz-core
       chalk:
         specifier: 5.2.0
         version: 5.2.0
