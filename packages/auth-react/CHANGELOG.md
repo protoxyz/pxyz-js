@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.83
+
+### Patch Changes
+
+- dae410e: fix redirectUri
+
 ## 2.0.82
 
 ### Patch Changes
