@@ -72,7 +72,19 @@ function isPublicRoute(req: NextRequest, options: AuthMiddlewareProps) {
 }
 
 function routesToRegexp(routes: string[]) {
-  return new RegExp(`^(${routes.join('|')})$`);
+  // convert routes to regex and replace variables
+  // with named capture groups
+  // e.g. /users/:userId -> /users/(?<userId>[^/]+)
+  routes = routes.map((route) => {
+    const regex = route.replace(/\/:(\w+)/g, '/(?<$1>[^/]+)');
+    return regex;
+  });
+
+  // join routes with pipe and add start and end anchors
+  const regex = `^(${routes.join('|')})$`;
+  return new RegExp(regex);
+
+  // return new RegExp(`^(${routes.join('|')})$`);
 }
 
 interface RedirectToSignInProps {

@@ -81,11 +81,9 @@ export function handleSignInResponse(
         ) {
           const redirectUri = new URL(response.data?.signInAttempt.redirectUri);
           redirectUri.searchParams.append('jwt', response.data?.jwt);
-          console.log(redirectUri.toString());
-          // window.location.href = redirectUri.toString();
+          navigate(redirectUri.toString());
         } else {
-          console.log(response.data?.signInAttempt.redirectUri);
-          // navigate(response.data?.signInAttempt.redirectUri);
+          navigate(response.data?.signInAttempt.redirectUri);
         }
         break;
       }

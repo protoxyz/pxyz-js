@@ -1,10 +1,12 @@
 import { Command } from 'commander';
 import * as z from 'zod';
-import path from 'path';
 import { handleError } from '../utils/handle-error';
 import ora from 'ora';
 import http from 'http';
 import open from 'open';
+import { getConfig, writeConfig } from '../utils/get-config';
+import { ProtocolFrontendClient } from '@protoxyz/core';
+// import { ResponseStatus } from '@protoxyz/types';
 
 const loginOptionsSchema = z.object({});
 
@@ -27,16 +29,47 @@ export const login = new Command()
         : `https://id.pxyz.dev/sign-in?redirectUri=${redirectUri}`;
 
       // open server to handle jwt token callback
-      const server = http.createServer((req, res) => {
+      const server = http.createServer(async (req, res) => {
         const { url } = req;
 
         if (url?.startsWith('/callback')) {
           const jwt = url.split('jwt=')[1];
 
           if (jwt) {
-            res.write('Successfully logged in! You can close this tab now.');
+            // res.write('Successfully logged in! You can close this tab now.');
 
-            server.close();
+            const config = getConfig(process.cwd());
+
+            console.log('jwt', jwt);
+
+            const client = new ProtocolFrontendClient({
+              accessToken: jwt,
+              baseUrl: 'localhost:3002',
+            });
+
+            const profileResponse = await client.auth.users.profile();
+
+            //ResponseStatus.Success
+            if (profileResponse.status === 'Success') {
+              res.write(JSON.stringify(profileResponse.data.user));
+
+              server.close();
+            } else {
+              res.write('Error getting user profile');
+              console.log(profileResponse);
+              //   res.write(JSON.stringify(profileResponse));
+            }
+            //   const newConfig = await writeConfig(
+            //     {
+            //       ...config,
+            //       jwt,
+            //     },
+            //     process.cwd(),
+            //   );
+
+            // res.write(JSON.stringify(newConfig));
+
+            //
           } else {
             res.write("Couldn't find jwt token");
           }
