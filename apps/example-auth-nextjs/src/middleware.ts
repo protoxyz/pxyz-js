@@ -1,7 +1,7 @@
 import { authMiddleware } from '@protoxyz/auth-nextjs';
 
 export default authMiddleware({
-  publicRoutes: ['/'],
+  publicRoutes: ['/', '/sign-up', '/sign-in', '/users/:id'],
 });
 
 export const config = {
