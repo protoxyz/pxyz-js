@@ -1,5 +1,11 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.51
+
+### Patch Changes
+
+- 92a3273: pass isPublic bool to afterAuth
+
 ## 2.1.50
 
 ### Patch Changes
