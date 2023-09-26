@@ -1,5 +1,13 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.50
+
+### Patch Changes
+
+- df74d7c: update middleware routes
+- Updated dependencies [df74d7c]
+  - @protoxyz/auth-react@2.0.84
+
 ## 2.1.49
 
 ### Patch Changes

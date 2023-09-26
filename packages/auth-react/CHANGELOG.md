@@ -1,5 +1,11 @@
 # @protoxyz/auth-react
 
+## 2.0.84
+
+### Patch Changes
+
+- df74d7c: update middleware routes
+
 ## 2.0.83
 
 ### Patch Changes
