@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { cn, getImageURI } from '../utils';
+import { cn, getImageUri } from '../utils';
 import {
   ImageProcessorOptions,
   ImageProcessorTransformationOptions,
@@ -20,7 +20,7 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
 
   const uri = useMemo(
     () =>
-      getImageURI({
+      getImageUri({
         imageId: props.uploadId,
         options: props.options,
       }),
@@ -32,7 +32,7 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
       typeof blurhash === 'string'
         ? blurhash
         : blurhash === true &&
-          getImageURI({
+          getImageUri({
             imageId: props.uploadId,
             options: {
               ...props.options,

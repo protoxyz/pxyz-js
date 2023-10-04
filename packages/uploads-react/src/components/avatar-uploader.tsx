@@ -1,7 +1,7 @@
 import React from 'react';
 import { Upload } from '@protoxyz/types';
 import { PutProps, put } from '../actions/put';
-import { cn, getImageURI } from '../utils';
+import { cn, getImageUri } from '../utils';
 import { Input } from './ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
@@ -37,7 +37,7 @@ export function AvatarUploader({
   const existingAvatarImageUri = React.useMemo(
     () =>
       imageId &&
-      getImageURI({
+      getImageUri({
         imageId,
         options: {
           format: 'webp',

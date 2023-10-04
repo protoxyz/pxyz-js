@@ -10,6 +10,8 @@ export interface SessionUser {
     username: string;
     image: string;
     email: string;
+    role: string | undefined;
+    permissions: string[];
     phone: string | undefined;
     orgId: string | undefined;
   };

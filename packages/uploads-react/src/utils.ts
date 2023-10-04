@@ -9,19 +9,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getImageURI({
+export function getImageUri({
   imageId,
   options,
 }: {
   imageId: string;
   options: ImageProcessorOptions | ImageProcessorTransformationOptions;
 }) {
-  const CDN_URL =
-    process.env.PXYZ_CDN_URL ??
-    process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
-    'https://cdn.pxyz.cloud';
+  const cdnUrl = getCdnUri();
 
-  const src = new URL(`/${imageId}/image?`, CDN_URL);
+  const src = new URL(`/${imageId}/image?`, cdnUrl);
 
   if (options) {
     if ('transformation' in options) {
@@ -43,4 +40,18 @@ export function getImageURI({
   }
 
   return src.toString();
+}
+
+export function getCdnUri() {
+  return (
+    process.env.PXYZ_CDN_URL ??
+    process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
+    'https://cdn.pxyz.cloud'
+  );
+}
+
+export function getVideoUri(videoId: string) {
+  const cdnUrl = getCdnUri();
+
+  return new URL(`/${videoId}/video`, cdnUrl).toString();
 }
