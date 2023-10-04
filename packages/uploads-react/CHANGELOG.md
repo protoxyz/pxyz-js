@@ -1,5 +1,13 @@
 # @protoxyz/uploads-react
 
+## 1.0.32
+
+### Patch Changes
+
+- 99cfc90: updated types
+- Updated dependencies [99cfc90]
+  - @protoxyz/types@2.0.25
+
 ## 1.0.31
 
 ### Patch Changes
