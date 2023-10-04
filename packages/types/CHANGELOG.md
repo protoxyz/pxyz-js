@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.25
+
+### Patch Changes
+
+- 99cfc90: updated types
+
 ## 2.0.24
 
 ### Patch Changes
