@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.90
+
+### Patch Changes
+
+- 8905eea: cleanup
+- Updated dependencies [8905eea]
+  - @protoxyz/core@2.0.45
+
 ## 2.0.89
 
 ### Patch Changes
