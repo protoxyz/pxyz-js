@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.88
+
+### Patch Changes
+
+- 46a2df3: cleanup
+- Updated dependencies [46a2df3]
+  - @protoxyz/core@2.0.43
+
 ## 2.0.87
 
 ### Patch Changes

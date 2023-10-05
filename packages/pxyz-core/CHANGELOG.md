@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.43
+
+### Patch Changes
+
+- 46a2df3: cleanup
+
 ## 2.0.42
 
 ### Patch Changes
