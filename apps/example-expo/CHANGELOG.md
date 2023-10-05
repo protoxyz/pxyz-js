@@ -1,5 +1,12 @@
 # example-expo
 
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [8905eea]
+  - @protoxyz/auth-react@2.0.90
+
 ## 1.0.24
 
 ### Patch Changes
