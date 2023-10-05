@@ -1,5 +1,13 @@
 # @protoxyz/auth-react
 
+## 2.0.89
+
+### Patch Changes
+
+- 370ceb6: update paths
+- Updated dependencies [370ceb6]
+  - @protoxyz/core@2.0.44
+
 ## 2.0.88
 
 ### Patch Changes
