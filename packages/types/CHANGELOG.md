@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.26
+
+### Patch Changes
+
+- 14312ac: get session user when issuing a new token
+
 ## 2.0.25
 
 ### Patch Changes

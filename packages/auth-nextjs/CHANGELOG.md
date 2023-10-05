@@ -1,5 +1,15 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.53
+
+### Patch Changes
+
+- 14312ac: get session user when issuing a new token
+- Updated dependencies [14312ac]
+  - @protoxyz/auth-react@2.0.86
+  - @protoxyz/core@2.0.41
+  - @protoxyz/types@2.0.26
+
 ## 2.1.52
 
 ### Patch Changes
