@@ -20,6 +20,7 @@ export const useProtocolAuthSession = () => {
     setIsUpdating(false);
 
     if (response.status === ResponseStatus.Success) {
+      console.log(response.data);
       setUpdateError('');
       setSessionCookie(response.data?.jwt, tenant);
       setState((state) => ({

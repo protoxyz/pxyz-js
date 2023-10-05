@@ -86,8 +86,10 @@ export function OrganizationSwitcher({
     if (response.status === ResponseStatus.Success) {
       setSessionCookie(response.data?.jwt, tenant);
       tokenCache?.saveToken(SESSION_COOKIE_NAME, response.data?.jwt);
+
       setState((state) => ({
         ...state,
+        session: response.data.sessionUser,
         orgId,
       }));
     }

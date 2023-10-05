@@ -1,14 +1,19 @@
 'use client';
 
-import { useProtocolAuthSession } from '@protoxyz/auth-react';
+import { useProtocolAuth, useProtocolAuthSession } from '@protoxyz/auth-react';
 
 export function RefreshToken() {
   const { issueToken } = useProtocolAuthSession();
+  const { session } = useProtocolAuth();
 
   return (
     <button
-      onClick={() => issueToken({})}
-      className="bg-primary px-5 py-2 text-white rounded-md"
+      onClick={() =>
+        issueToken({
+          orgId: session?.claims?.orgId,
+        })
+      }
+      className="bg-primary rounded-md px-5 py-2 text-white"
     >
       Refresh Token
     </button>

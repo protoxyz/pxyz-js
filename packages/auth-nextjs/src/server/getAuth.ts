@@ -5,17 +5,25 @@ import { getBearerToken, getCookieToken, getSecretKey } from './util';
 
 type ReturnType = SessionUser | null;
 
-export async function getAuth({ key }: { key?: string }): Promise<ReturnType> {
+export async function getAuth({
+  token,
+  key,
+}: {
+  token?: string | null | undefined;
+  key?: string;
+}): Promise<ReturnType> {
   const headers = nextHeaders();
 
-  const token =
-    (await getCookieToken({ headers })) || (await getBearerToken({ headers }));
+  const authToken =
+    token ||
+    (await getCookieToken({ headers })) ||
+    (await getBearerToken({ headers }));
 
-  if (!token) return null;
+  if (!authToken) return null;
 
   const secretKey = getSecretKey({ key });
 
-  const decoded = await verifyJWT({ token, key: secretKey });
+  const decoded = await verifyJWT({ token: authToken, key: secretKey });
 
   return decoded as ReturnType;
 }

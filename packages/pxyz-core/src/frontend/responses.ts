@@ -15,6 +15,7 @@ import {
   Upload,
   Transformation,
   File,
+  SessionUser,
 } from '@protoxyz/types';
 
 import { PaginatedResult, Response } from '..';
@@ -347,6 +348,7 @@ export type FrontendListSessions200Response = PaginatedResult<Session>;
 export interface FrontendIssueSessionToken200Response extends Response {
   data: {
     jwt: string;
+    sessionUser: SessionUser;
   };
 }
 

@@ -1,3 +1,9 @@
+export interface AuthRole {
+  id: string;
+  name: string;
+  permissions: string[];
+}
+
 export interface SessionUser {
   sub: string;
   iss: string;
@@ -10,10 +16,12 @@ export interface SessionUser {
     username: string;
     image: string;
     email: string;
-    role: string | undefined;
+    role: AuthRole | null;
     permissions: string[];
     phone: string | undefined;
     orgId: string | undefined;
+    orgRole: AuthRole | null;
+    orgPermissions: string[];
   };
 
   // id: string;
