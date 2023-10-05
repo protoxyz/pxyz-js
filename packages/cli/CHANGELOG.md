@@ -1,5 +1,12 @@
 # @protoxyz/cli
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [149ed6e]
+  - @protoxyz/core@2.0.42
+
 ## 0.0.4
 
 ### Patch Changes

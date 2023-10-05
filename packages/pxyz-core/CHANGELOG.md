@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.42
+
+### Patch Changes
+
+- 149ed6e: add sessionUser to responses
+
 ## 2.0.41
 
 ### Patch Changes
