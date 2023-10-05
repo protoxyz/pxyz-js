@@ -22,7 +22,7 @@ export const useProtocolAuthEmailsList = ({
   cursor = null,
   perPage = 10,
 }: PaginatedArgs) => {
-  const { user, protocol, navigate } = useProtocolAuth();
+  const { user, protocol, navigate, setState } = useProtocolAuth();
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string>(null);
   const [deletingId, setDeletingId] = useState<string>(null);
@@ -105,6 +105,13 @@ export const useProtocolAuthEmailsList = ({
         setSetPrimaryError(response.error);
       } else {
         mutate();
+        setState((state) => ({
+          ...state,
+          user: {
+            ...state.user,
+            primaryEmailId: id,
+          },
+        }));
       }
       setSettingPrimaryId(null);
       return response;
@@ -112,7 +119,7 @@ export const useProtocolAuthEmailsList = ({
     [mutate],
   );
 
-  const prepareVerification = useCallback(
+  const sendCode = useCallback(
     async ({ id }: { id: string }) => {
       setPreparingVerificationId(id);
       const response = await protocol.auth.emailAddresses.prepareVerification({
@@ -131,7 +138,7 @@ export const useProtocolAuthEmailsList = ({
     [mutate],
   );
 
-  const attemptVerification = useCallback(
+  const verify = useCallback(
     async ({ id, code }: { id: string; code: string }) => {
       setAttemptingVerificationId(id);
       const response = await protocol.auth.emailAddresses.verify({
@@ -199,12 +206,12 @@ export const useProtocolAuthEmailsList = ({
     settingPrimaryId,
     setPrimaryError,
 
-    prepareVerification,
+    sendCode,
     preparingVerificationId,
     preparingVerificationError,
     isPreparingVerification: preparingVerificationId !== null,
 
-    attemptVerification,
+    verify,
     attemptingVerificationId,
     attemptingVerificationError,
     isAttemptingVerification: attemptingVerificationId !== null,

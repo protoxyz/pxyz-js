@@ -124,6 +124,8 @@ export const FrontendGetUserProfilePath = '/api/auth/frontend/v0/user/profile';
 export const FrontendUpdateUserProfilePath =
   '/api/auth/frontend/v0/user/profile';
 export const FrontendDeleteUserPath = '/api/auth/frontend/v0/user';
+export const FrontendUpdateUserPasswordPath =
+  '/api/auth/frontend/v0/user/password';
 
 export const FrontendGetWellKnownJWKSPath =
   '/api/auth/frontend/v0/.well-known/jwks/{domain}';

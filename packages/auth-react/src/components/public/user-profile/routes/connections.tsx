@@ -19,9 +19,18 @@ export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
   return (
     <div className="grid gap-8">
       <SectionHeader
-        title="Social Connections"
+        title="App Connections"
         description="Manage the third-party connections associated with your account."
       />
+
+      {connections?.data.length === 0 && (
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-muted-foreground text-center">
+            You have no connections yet.
+          </div>
+        </div>
+      )}
+
       {connections?.data?.map((connection) => {
         return (
           <div className="flex items-center justify-between">

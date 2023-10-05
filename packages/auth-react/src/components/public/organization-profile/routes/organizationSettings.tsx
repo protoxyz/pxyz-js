@@ -136,9 +136,14 @@ export function UpdateOrganizationForm({
   ) {
     const response = await updateOrganization({ name: values.name });
     if (response.status === ResponseStatus.Success) {
-      navigate(
-        `${afterUpdateOrganizationRedirectUri}?organizationId=${response.data?.organization.id}`,
-      );
+      if (onSubmit) {
+        onSubmit(response);
+      }
+      if (afterUpdateOrganizationRedirectUri) {
+        navigate(
+          `${afterUpdateOrganizationRedirectUri}?organizationId=${response.data?.organization.id}`,
+        );
+      }
     }
   }
 

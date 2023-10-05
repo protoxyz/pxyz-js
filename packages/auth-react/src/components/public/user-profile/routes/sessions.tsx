@@ -12,15 +12,15 @@ export function SessionsRoute({}: SessionsRouteOptions) {
   return (
     <div className="grid gap-8">
       <SectionHeader
-        title="Sessions"
-        description="Manage your account sessions"
+        title="Devices"
+        description="Manage your account devices"
       />
       {sessions?.data?.map((session) => {
         return (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="text-foreground text-sm font-medium">
-                {session.browser}
+                {session.device} {session.os} {session.browser} {session.ip}
               </div>
             </div>
             <div className="flex items-center"></div>

@@ -21,6 +21,14 @@ export interface FrontendUpdateUserProfileOptions extends RequestOptions {
   path?: never;
 }
 
+export interface FrontendUpdateUserPasswordOptions extends RequestOptions {
+  body: {
+    oldPassword: string;
+    password: string;
+  };
+  path?: never;
+}
+
 export interface FrontendListConnectionsOptions extends RequestOptions {
   body?: never;
   path?: never;

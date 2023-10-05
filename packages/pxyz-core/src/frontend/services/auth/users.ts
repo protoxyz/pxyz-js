@@ -1,12 +1,14 @@
 import {
   FrontendDeleteUserPath,
   FrontendGetUserProfilePath,
+  FrontendUpdateUserPasswordPath,
   FrontendUpdateUserProfilePath,
 } from '@/frontend/paths';
 import { ProtocolFrontendClient } from '../../pxyz';
 import {
   FrontendDeleteUserOptions,
   FrontendGetUserProfileOptions,
+  FrontendUpdateUserPasswordOptions,
   FrontendUpdateUserProfileOptions,
 } from '../../requests';
 import {
@@ -37,6 +39,16 @@ export class ProtocolAuthUsersService {
     return this.protocol.client.request<FrontendGetUserProfile200Response>(
       'PUT',
       FrontendUpdateUserProfilePath,
+      options,
+    );
+  }
+
+  changePassword(
+    options?: FrontendUpdateUserPasswordOptions,
+  ): Promise<FrontendGetUserProfile200Response> {
+    return this.protocol.client.request<FrontendGetUserProfile200Response>(
+      'PUT',
+      FrontendUpdateUserPasswordPath,
       options,
     );
   }

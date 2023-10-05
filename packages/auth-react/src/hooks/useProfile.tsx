@@ -1,12 +1,19 @@
 import { ResponseStatus, PaginatedArgs } from '@protoxyz/types';
 import { useProtocolAuth } from '../contexts/protocol-context';
-import { FrontendUpdateUserProfileOptions } from '@protoxyz/core';
+import {
+  FrontendUpdateUserPasswordOptions,
+  FrontendUpdateUserProfileOptions,
+} from '@protoxyz/core';
 import { useCallback, useState } from 'react';
 
 export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
-  const { user, protocol, setState, navigate } = useProtocolAuth();
+  const { protocol, setState } = useProtocolAuth();
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateError, setUpdateError] = useState<string | undefined>('');
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [changePasswordError, setChangePasswordError] = useState<
+    string | undefined
+  >('');
 
   const updateProfile = useCallback(
     async ({
@@ -16,6 +23,7 @@ export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
       timezone,
     }: FrontendUpdateUserProfileOptions['body']) => {
       setIsUpdating(true);
+      setUpdateError(undefined);
       const response = await protocol.auth.users.updateProfile({
         body: {
           name,
@@ -40,7 +48,36 @@ export const useProtocolAuthProfile = ({}: PaginatedArgs) => {
     [],
   );
 
+  const changePassword = useCallback(
+    async ({
+      oldPassword,
+      password,
+    }: FrontendUpdateUserPasswordOptions['body']) => {
+      setIsChangingPassword(true);
+      setChangePasswordError(undefined);
+      const response = await protocol.auth.users.changePassword({
+        body: {
+          oldPassword,
+          password,
+        },
+      });
+
+      if (response.status === ResponseStatus.Error) {
+        setChangePasswordError(response.error);
+      }
+
+      setIsChangingPassword(false);
+
+      return response;
+    },
+    [],
+  );
+
   return {
+    changePassword,
+    isChangingPassword,
+    changePasswordError,
+
     updateProfile,
     isUpdating,
     updateError,

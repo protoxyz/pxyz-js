@@ -60,13 +60,11 @@ export function UserProfile({}: UpdateProfileCardOptions) {
           label: 'Phone Numbers',
           userRoute: UserProfileFlowRoute['userProfile:phones'],
         },
-        tenant.socialProviders?.length > 0
-          ? {
-              icon: <LinkIcon className="h-4 w-4" />,
-              label: 'Social Connections',
-              userRoute: UserProfileFlowRoute['userProfile:connections'],
-            }
-          : undefined,
+        {
+          icon: <LinkIcon className="h-4 w-4" />,
+          label: 'App Connections',
+          userRoute: UserProfileFlowRoute['userProfile:connections'],
+        },
         {
           icon: <ShieldCheckIcon className="h-4 w-4" />,
           label: 'Security',

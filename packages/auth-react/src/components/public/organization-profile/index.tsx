@@ -147,7 +147,7 @@ function SelectOrganizationCard() {
           {organizations.data?.map((team) => (
             <LoadingButton
               variant="secondary"
-              className="justify-start "
+              className="h-24 justify-start"
               size="lg"
               onClick={() => {
                 createOrgToken(team.id);
@@ -156,7 +156,7 @@ function SelectOrganizationCard() {
               <Avatar>
                 <AvatarImage src={team.logoUri} alt={team.name} />
                 <AvatarFallback>
-                  <div className="bg-muted-foreground/80 flex items-center justify-center   p-4">
+                  <div className="bg-background  flex items-center justify-center   p-4">
                     <BuildingIcon className="h-4 w-4" />
                   </div>
                 </AvatarFallback>

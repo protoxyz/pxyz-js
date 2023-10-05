@@ -22,11 +22,21 @@ export const useProtocolAuthPhonesList = ({
   cursor = null,
   perPage = 10,
 }: PaginatedArgs) => {
-  const { user, protocol, navigate } = useProtocolAuth();
+  const { user, protocol, navigate, setState } = useProtocolAuth();
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string>(null);
   const [deletingId, setDeletingId] = useState<string>(null);
   const [deleteError, setDeleteError] = useState<string>(null);
+  const [settingPrimaryId, setSettingPrimaryId] = useState<string>(null);
+  const [setPrimaryError, setSetPrimaryError] = useState<string>(null);
+  const [preparingVerificationId, setPreparingVerificationId] =
+    useState<string>(null);
+  const [preparingVerificationError, setPreparingVerificationError] =
+    useState<string>(null);
+  const [attemptingVerificationId, setAttemptingVerificationId] =
+    useState<string>(null);
+  const [attemptingVerificationError, setAttemptingVerificationError] =
+    useState<string>(null);
 
   const cacheKey = phonesListCacheKey({
     userId: user?.id,
@@ -73,7 +83,7 @@ export const useProtocolAuthPhonesList = ({
         },
       });
       if (response.status === ResponseStatus.Error) {
-        setCreateError(response.error);
+        // setCreateError(response.error);
       } else {
         mutate();
       }
@@ -81,6 +91,73 @@ export const useProtocolAuthPhonesList = ({
       return response;
     },
     [],
+  );
+
+  const setPrimary = useCallback(
+    async ({ id }: { id: string }) => {
+      setSettingPrimaryId(id);
+      const response = await protocol.auth.phoneNumbers.setPrimary({
+        path: {
+          phoneId: id,
+        },
+      });
+      if (response.status === ResponseStatus.Error) {
+        setSetPrimaryError(response.error);
+      } else {
+        mutate();
+        setState((state) => ({
+          ...state,
+          user: {
+            ...state.user,
+            primaryPhoneId: id,
+          },
+        }));
+      }
+      setSettingPrimaryId(null);
+      return response;
+    },
+    [mutate],
+  );
+
+  const sendCode = useCallback(
+    async ({ id }: { id: string }) => {
+      setPreparingVerificationId(id);
+      const response = await protocol.auth.phoneNumbers.prepareVerification({
+        path: {
+          phoneId: id,
+        },
+      });
+      if (response.status === ResponseStatus.Error) {
+        setPreparingVerificationError(response.error);
+      } else {
+        mutate();
+      }
+      setPreparingVerificationId(null);
+      return response;
+    },
+    [mutate],
+  );
+
+  const verify = useCallback(
+    async ({ id, code }: { id: string; code: string }) => {
+      setAttemptingVerificationId(id);
+      const response = await protocol.auth.phoneNumbers.verify({
+        path: {
+          phoneId: id,
+        },
+        body: {
+          code,
+        },
+      });
+      if (response.status === ResponseStatus.Error) {
+        setAttemptingVerificationError(response.error);
+      } else {
+        mutate();
+      }
+      setAttemptingVerificationId(null);
+      return response;
+    },
+    [mutate],
   );
 
   const deletePhone = useCallback(
@@ -101,7 +178,7 @@ export const useProtocolAuthPhonesList = ({
       });
       if (response.status === ResponseStatus.Success) {
         mutate();
-        navigate(afterDeleteUri ?? '/');
+        if (afterDeleteUri) navigate(afterDeleteUri ?? '/');
         onDelete();
       } else {
         setDeleteError(response.error);
@@ -123,5 +200,20 @@ export const useProtocolAuthPhonesList = ({
     deletePhone,
     deletingId,
     deleteError,
+
+    setPrimary,
+    settingPrimaryId,
+    setPrimaryError,
+    isSettingPrimary: settingPrimaryId !== null,
+
+    sendCode,
+    preparingVerificationId,
+    preparingVerificationError,
+    isPreparingVerification: preparingVerificationId !== null,
+
+    verify,
+    attemptingVerificationId,
+    attemptingVerificationError,
+    isAttemptingVerification: attemptingVerificationId !== null,
   };
 };

@@ -69,8 +69,6 @@ export const useProtocolAuthOrganizationMembers = ({
         mutate();
       }
       setUpdatingId(null);
-
-      // return response;
     },
     [],
   );
