@@ -32,6 +32,7 @@ import { UserConnectionsRoute } from './routes/connections';
 import { SecurityRoute } from './routes/security';
 import { SessionsRoute } from './routes/sessions';
 import { SidebarNav } from '../../custom-ui/sidebar-nav';
+import { cn } from '../../../lib/utils';
 
 const component: AuthComponentType = 'userProfile';
 
@@ -73,7 +74,7 @@ export function UserProfile({}: UpdateProfileCardOptions) {
         },
         {
           icon: <LaptopIcon className="h-4 w-4" />,
-          label: 'Sessions',
+          label: 'Devices',
           userRoute: UserProfileFlowRoute['userProfile:sessions'],
         },
       ].filter((route) => !!route),
@@ -85,7 +86,7 @@ export function UserProfile({}: UpdateProfileCardOptions) {
       component={component}
       className={appearance?.elements?.cardWrapper}
     >
-      <Card className={appearance?.elements?.card}>
+      <Card className={cn(appearance?.elements?.card, 'min-h-[calc(80vh)]')}>
         <CardHeader className={appearance?.elements?.cardHeader}>
           <CardTitle className={appearance?.elements?.cardHeaderTitle}>
             {userDisplayName(user)}

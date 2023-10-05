@@ -3,7 +3,7 @@ import {
   ProtocolAuthProviderState,
 } from './protocol-context';
 import { ProtocolFrontendClient } from '@protoxyz/core';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { AuthAppearance, mergeAppearance } from '@protoxyz/themes';
 import {
   Tenant,
@@ -13,6 +13,9 @@ import {
   SignUpAttempt,
   UserProfile,
   ResponseStatus,
+  AuthVerificationStrategy,
+  AllowedSecondFactorStrategy,
+  AllowedFirstFactorStrategy,
 } from '@protoxyz/types';
 import { IsLoaded } from '../components/public/control/is-loaded';
 import {
@@ -77,6 +80,53 @@ export const ProtocolAuthProvider = ({
   navigate,
   tokenCache,
 }: ProtocolAuthProviderProps) => {
+  const firstFactorStrategies = useMemo(() => {
+    const strategies = [];
+
+    if (tenant?.auth?.strategyPhoneCodeEnabled)
+      strategies.push(AuthVerificationStrategy.phone_code);
+
+    if (tenant?.auth?.strategyEmailCodeEnabled)
+      strategies.push(AuthVerificationStrategy.email_code);
+
+    if (tenant?.auth?.strategyEmailLinkEnabled)
+      strategies.push(AuthVerificationStrategy.email_link);
+
+    if (tenant?.auth.strategyUsernamePasswordEnabled)
+      strategies.push(AuthVerificationStrategy.username_password);
+
+    if (tenant?.auth.strategyEmailPasswordEnabled)
+      strategies.push(AuthVerificationStrategy.email_password);
+
+    if (tenant?.auth.strategyPhonePasswordEnabled)
+      strategies.push(AuthVerificationStrategy.phone_password);
+
+    return strategies;
+  }, [tenant]);
+
+  const secondFactorStrategies = useMemo(() => {
+    const strategies = [];
+
+    if (tenant?.auth?.strategyAuthenticatorCodeEnabled)
+      strategies.push(AuthVerificationStrategy.authenticator_code);
+
+    if (tenant?.auth.strategySecurityKeyEnabled)
+      strategies.push(AuthVerificationStrategy.security_key);
+
+    return strategies;
+  }, [tenant]);
+
+  const initialFirstFactorStrategy = useMemo(() => {
+    if (firstFactorStrategies.length > 0) return firstFactorStrategies[0];
+    return null;
+  }, [firstFactorStrategies]);
+
+  const initialSecondFactorStrategy = useMemo(() => {
+    if (secondFactorStrategies.length > 0) return secondFactorStrategies[0];
+
+    return null;
+  }, [secondFactorStrategies]);
+
   /*
    * This is the flow state. It is used to store the current flow route and the function to update it
    */
@@ -84,6 +134,10 @@ export const ProtocolAuthProvider = ({
     React.useState<ProtocolAuthFlowContextState>({
       signIn: {
         route: SignInFlowRoute.signIn,
+        firstFactorStrategies,
+        secondFactorStrategies,
+        firstFactorStrategy: initialFirstFactorStrategy,
+        secondFactorStrategy: initialSecondFactorStrategy,
         params: {},
         setRoute: (
           route: SignInFlowRoute,
@@ -96,6 +150,24 @@ export const ProtocolAuthProvider = ({
               params,
               route,
             },
+          }));
+        },
+
+        setFirstFactorStrategy: (
+          strategy: AllowedFirstFactorStrategy | null,
+        ) => {
+          setRouteState((state) => ({
+            ...state,
+            firstFactorStrategy: strategy,
+          }));
+        },
+
+        setSecondFactorStrategy: (
+          strategy: AllowedSecondFactorStrategy | null,
+        ) => {
+          setRouteState((state) => ({
+            ...state,
+            secondFactorStrategy: strategy,
           }));
         },
       },

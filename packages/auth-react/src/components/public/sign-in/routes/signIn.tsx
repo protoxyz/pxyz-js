@@ -44,7 +44,10 @@ import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { SocialLinks } from '../../../custom-ui/social-links';
 import { FooterLinks } from '../../../custom-ui/footer-links';
 import { CardFooterLinks } from '../../../custom-ui/card-footer-links';
-import { useProtocolAuthSignInFlow } from '../../../../contexts/flow-context';
+import {
+  useProtocolAuthFlow,
+  useProtocolAuthSignInFlow,
+} from '../../../../contexts/flow-context';
 import { useProtocolAuthClient } from '../../../../contexts/client-context';
 import { Spinner } from '../../../ui/spinner';
 import { handleSignInResponse } from '..';
@@ -179,13 +182,9 @@ function AlternativeSignInSelect({
 
 export function SignInPhoneCodeForm({
   tenant,
-  firstFactorStrategy,
-  setFirstFactorStrategy,
   afterSignInRedirectUri,
 }: {
   tenant: Tenant;
-  firstFactorStrategy: AllowedFirstFactorStrategy | null;
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
@@ -218,7 +217,7 @@ export function SignInPhoneCodeForm({
     const response = await protocol.auth.signInAttempts.create({
       body: {
         redirectUri,
-        strategy: firstFactorStrategy,
+        strategy: AuthVerificationStrategy.phone_code,
         identifier: strategyValues.phoneNumber,
       },
     });
@@ -241,15 +240,6 @@ export function SignInPhoneCodeForm({
     console.log(errors);
   }
 
-  const alternativeStrategies = useMemo(
-    () => getAlternativeFirstFactorStrategiesFor(firstFactorStrategy, tenant),
-    [tenant, firstFactorStrategy],
-  );
-
-  if (!firstFactorStrategy) {
-    return null;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -261,13 +251,8 @@ export function SignInPhoneCodeForm({
           name="phoneNumber"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Phone number</FormLabel>
-                <AlternativeSignInSelect
-                  alternativeStrategies={alternativeStrategies}
-                  setFirstFactorStrategy={setFirstFactorStrategy}
-                />
-              </div>
+              <FormLabel>Phone number</FormLabel>
+
               <FormControl>
                 <Input type="tel" placeholder="555-555-5555" {...field} />
               </FormControl>
@@ -294,13 +279,9 @@ export function SignInPhoneCodeForm({
 
 export function SignInPhonePasswordForm({
   tenant,
-  firstFactorStrategy,
-  setFirstFactorStrategy,
   afterSignInRedirectUri,
 }: {
   tenant: Tenant;
-  firstFactorStrategy: AllowedFirstFactorStrategy | null;
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
@@ -334,7 +315,7 @@ export function SignInPhonePasswordForm({
     const response = await protocol.auth.signInAttempts.create({
       body: {
         redirectUri,
-        strategy: firstFactorStrategy,
+        strategy: AuthVerificationStrategy.phone_password,
         identifier: strategyValues.phoneNumber,
         password: strategyValues.password,
       },
@@ -358,15 +339,6 @@ export function SignInPhonePasswordForm({
     console.log(errors);
   }
 
-  const alternativeStrategies = useMemo(
-    () => getAlternativeFirstFactorStrategiesFor(firstFactorStrategy, tenant),
-    [tenant, firstFactorStrategy],
-  );
-
-  if (!firstFactorStrategy) {
-    return null;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -378,13 +350,8 @@ export function SignInPhonePasswordForm({
           name="phoneNumber"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Phone number</FormLabel>
-                <AlternativeSignInSelect
-                  alternativeStrategies={alternativeStrategies}
-                  setFirstFactorStrategy={setFirstFactorStrategy}
-                />
-              </div>
+              <FormLabel>Phone number</FormLabel>
+
               <FormControl>
                 <Input type="tel" placeholder="555-555-5555" {...field} />
               </FormControl>
@@ -411,13 +378,9 @@ export function SignInPhonePasswordForm({
 
 export function SignInEmailCodeForm({
   tenant,
-  firstFactorStrategy,
-  setFirstFactorStrategy,
   afterSignInRedirectUri,
 }: {
   tenant: Tenant;
-  firstFactorStrategy: AllowedFirstFactorStrategy | null;
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
@@ -448,7 +411,7 @@ export function SignInEmailCodeForm({
     const response = await protocol.auth.signInAttempts.create({
       body: {
         redirectUri,
-        strategy: firstFactorStrategy,
+        strategy: AuthVerificationStrategy.email_code,
         identifier: strategyValues.emailAddress,
       },
     });
@@ -469,22 +432,6 @@ export function SignInEmailCodeForm({
     console.log(errors);
   }
 
-  // const signInsEnabled = useMemo(() => {
-  //     return {
-  //         email: tenant?.allowedIdentifierTypes.includes("emailAddress"),
-  //         phone: tenant?.allowedIdentifierTypes.includes("phoneNumber"),
-  //         username: tenant?.allowedIdentifierTypes.includes("username"),
-  //     };
-  // }, [tenant]);
-
-  const alternativeStrategies = useMemo(
-    () => getAlternativeFirstFactorStrategiesFor(firstFactorStrategy, tenant),
-    [tenant, firstFactorStrategy],
-  );
-  if (!firstFactorStrategy) {
-    return null;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -496,13 +443,8 @@ export function SignInEmailCodeForm({
           name="emailAddress"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Email address</FormLabel>
-                <AlternativeSignInSelect
-                  alternativeStrategies={alternativeStrategies}
-                  setFirstFactorStrategy={setFirstFactorStrategy}
-                />
-              </div>
+              <FormLabel>Email address</FormLabel>
+
               <FormControl>
                 <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
@@ -529,13 +471,9 @@ export function SignInEmailCodeForm({
 
 export function SignInEmailLinkForm({
   tenant,
-  firstFactorStrategy,
-  setFirstFactorStrategy,
   afterSignInRedirectUri,
 }: {
   tenant: Tenant;
-  firstFactorStrategy: AllowedFirstFactorStrategy | null;
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
@@ -566,7 +504,7 @@ export function SignInEmailLinkForm({
     const response = await protocol.auth.signInAttempts.create({
       body: {
         redirectUri,
-        strategy: firstFactorStrategy,
+        strategy: AuthVerificationStrategy.email_link,
         identifier: strategyValues.emailAddress,
       },
     });
@@ -587,15 +525,6 @@ export function SignInEmailLinkForm({
     console.log(errors);
   }
 
-  const alternativeStrategies = useMemo(
-    () => getAlternativeFirstFactorStrategiesFor(firstFactorStrategy, tenant),
-    [tenant, firstFactorStrategy],
-  );
-
-  if (!firstFactorStrategy) {
-    return null;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -607,13 +536,8 @@ export function SignInEmailLinkForm({
           name="emailAddress"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Email address</FormLabel>
-                <AlternativeSignInSelect
-                  alternativeStrategies={alternativeStrategies}
-                  setFirstFactorStrategy={setFirstFactorStrategy}
-                />
-              </div>
+              <FormLabel>Email address</FormLabel>
+
               <FormControl>
                 <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
@@ -640,13 +564,9 @@ export function SignInEmailLinkForm({
 
 export function SignInEmailPasswordForm({
   tenant,
-  firstFactorStrategy,
-  setFirstFactorStrategy,
   afterSignInRedirectUri,
 }: {
   tenant: Tenant;
-  firstFactorStrategy: AllowedFirstFactorStrategy | null;
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
@@ -678,7 +598,7 @@ export function SignInEmailPasswordForm({
     const response = await protocol.auth.signInAttempts.create({
       body: {
         redirectUri,
-        strategy: firstFactorStrategy,
+        strategy: AuthVerificationStrategy.email_password,
         identifier: strategyValues.emailAddress,
         password: strategyValues.password,
       },
@@ -700,14 +620,6 @@ export function SignInEmailPasswordForm({
     console.log(errors);
   }
 
-  const alternativeStrategies = useMemo(
-    () => getAlternativeFirstFactorStrategiesFor(firstFactorStrategy, tenant),
-    [tenant, firstFactorStrategy],
-  );
-  if (!firstFactorStrategy) {
-    return null;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -719,13 +631,8 @@ export function SignInEmailPasswordForm({
           name="emailAddress"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Email address</FormLabel>
-                <AlternativeSignInSelect
-                  alternativeStrategies={alternativeStrategies}
-                  setFirstFactorStrategy={setFirstFactorStrategy}
-                />
-              </div>
+              <FormLabel>Email address</FormLabel>
+
               <FormControl>
                 <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
@@ -769,13 +676,9 @@ export function SignInEmailPasswordForm({
 
 export function SignInUsernamePasswordForm({
   tenant,
-  firstFactorStrategy,
-  setFirstFactorStrategy,
   afterSignInRedirectUri,
 }: {
   tenant: Tenant;
-  firstFactorStrategy: AllowedFirstFactorStrategy | null;
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
@@ -807,7 +710,7 @@ export function SignInUsernamePasswordForm({
     const response = await protocol.auth.signInAttempts.create({
       body: {
         redirectUri,
-        strategy: firstFactorStrategy,
+        strategy: AuthVerificationStrategy.username_password,
         identifier: strategyValues.username,
         password: strategyValues.password,
       },
@@ -829,14 +732,6 @@ export function SignInUsernamePasswordForm({
     console.log(errors);
   }
 
-  const alternativeStrategies = useMemo(
-    () => getAlternativeFirstFactorStrategiesFor(firstFactorStrategy, tenant),
-    [tenant, firstFactorStrategy],
-  );
-  if (!firstFactorStrategy) {
-    return null;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -848,13 +743,8 @@ export function SignInUsernamePasswordForm({
           name="username"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Username</FormLabel>
-                <AlternativeSignInSelect
-                  alternativeStrategies={alternativeStrategies}
-                  setFirstFactorStrategy={setFirstFactorStrategy}
-                />
-              </div>
+              <FormLabel>Username</FormLabel>
+
               <FormControl>
                 <Input type="text" placeholder="yourusername" {...field} />
               </FormControl>
@@ -906,27 +796,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
   const brandName = useBrandName({ component });
   const brandLogo = useBrandLogo({ component });
   const usingPasswords = tenant?.auth?.passwordsEnabled;
-
-  const initialFirstFactorStrategy = useMemo(() => {
-    if (tenant?.auth?.strategyEmailCodeEnabled)
-      return AuthVerificationStrategy.email_code;
-    if (tenant?.auth?.strategyEmailLinkEnabled)
-      return AuthVerificationStrategy.email_link;
-    if (tenant?.auth?.strategyPhoneCodeEnabled)
-      return AuthVerificationStrategy.phone_code;
-
-    if (tenant?.auth.strategyUsernamePasswordEnabled)
-      return AuthVerificationStrategy.username_password;
-    if (tenant?.auth.strategyEmailPasswordEnabled)
-      return AuthVerificationStrategy.email_password;
-    if (tenant?.auth.strategyPhonePasswordEnabled)
-      return AuthVerificationStrategy.phone_password;
-
-    return null;
-  }, [tenant]);
-
-  const [firstFactorStrategy, setFirstFactorStrategy] =
-    useState<AllowedFirstFactorStrategy | null>(initialFirstFactorStrategy);
+  const { signIn } = useProtocolAuthFlow();
 
   return (
     <CardWrapper
@@ -956,70 +826,63 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
         <CardContent className={appearance?.elements?.cardContent}>
           <SocialLinks appearance={appearance} tenant={tenant} />
 
-          {firstFactorStrategy === AuthVerificationStrategy.email_code && (
+          {signIn.firstFactorStrategy ===
+            AuthVerificationStrategy.email_code && (
             <SignInEmailCodeForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
-              firstFactorStrategy={firstFactorStrategy}
-              setFirstFactorStrategy={setFirstFactorStrategy}
             />
           )}
 
-          {firstFactorStrategy === AuthVerificationStrategy.email_link && (
+          {signIn.firstFactorStrategy ===
+            AuthVerificationStrategy.email_link && (
             <SignInEmailLinkForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
-              firstFactorStrategy={firstFactorStrategy}
-              setFirstFactorStrategy={setFirstFactorStrategy}
             />
           )}
 
-          {firstFactorStrategy === AuthVerificationStrategy.phone_code && (
+          {signIn.firstFactorStrategy ===
+            AuthVerificationStrategy.phone_code && (
             <SignInPhoneCodeForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
-              firstFactorStrategy={firstFactorStrategy}
-              setFirstFactorStrategy={setFirstFactorStrategy}
             />
           )}
 
-          {firstFactorStrategy === AuthVerificationStrategy.email_password && (
+          {signIn.firstFactorStrategy ===
+            AuthVerificationStrategy.email_password && (
             <SignInEmailPasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
-              firstFactorStrategy={firstFactorStrategy}
-              setFirstFactorStrategy={setFirstFactorStrategy}
             />
           )}
 
-          {firstFactorStrategy ===
+          {signIn.firstFactorStrategy ===
             AuthVerificationStrategy.username_password && (
             <SignInUsernamePasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
-              firstFactorStrategy={firstFactorStrategy}
-              setFirstFactorStrategy={setFirstFactorStrategy}
             />
           )}
 
-          {firstFactorStrategy === AuthVerificationStrategy.phone_password && (
+          {signIn.firstFactorStrategy ===
+            AuthVerificationStrategy.phone_password && (
             <SignInPhonePasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
-              firstFactorStrategy={firstFactorStrategy}
-              setFirstFactorStrategy={setFirstFactorStrategy}
             />
           )}
         </CardContent>

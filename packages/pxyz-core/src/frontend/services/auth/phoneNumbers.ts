@@ -2,7 +2,7 @@ import {
   FrontendCreatePhoneNumberPath,
   FrontendDeletePhoneNumberPath,
   FrontendListPhoneNumbersPath,
-  FrontendResendPhoneNumberVerificationPath,
+  FrontendPreparePhoneNumberVerificationPath,
   FrontendSetPhoneNumberPrimaryPath,
   FrontendVerifyPhoneNumberPath,
 } from '@/frontend/paths';
@@ -11,7 +11,7 @@ import {
   FrontendCreatePhoneNumberOptions,
   FrontendDeletePhoneNumberOptions,
   FrontendListPhoneNumbersOptions,
-  FrontendResendPhoneNumberVerificationOptions,
+  FrontendPreparePhoneNumberVerificationOptions,
   FrontendSetPhoneNumberPrimaryOptions,
   FrontendVerifyPhoneNumberOptions,
 } from '../../requests';
@@ -19,7 +19,7 @@ import {
   FrontendCreatePhoneNumber201Response,
   FrontendDeletePhoneNumber200Response,
   FrontendListPhoneNumbers200Response,
-  FrontendResendPhoneNumberVerification200Response,
+  FrontendPreparePhoneNumberVerification200Response,
   FrontendSetPhoneNumberPrimary200Response,
   FrontendVerifyPhoneNumber200Response,
 } from '../../responses';
@@ -71,12 +71,12 @@ export class ProtocolAuthPhoneNumbersService {
     );
   }
 
-  resendVerification(
-    options?: FrontendResendPhoneNumberVerificationOptions,
-  ): Promise<FrontendResendPhoneNumberVerification200Response> {
-    return this.protocol.client.request<FrontendResendPhoneNumberVerification200Response>(
+  prepareVerification(
+    options?: FrontendPreparePhoneNumberVerificationOptions,
+  ): Promise<FrontendPreparePhoneNumberVerification200Response> {
+    return this.protocol.client.request<FrontendPreparePhoneNumberVerification200Response>(
       'POST',
-      FrontendResendPhoneNumberVerificationPath,
+      FrontendPreparePhoneNumberVerificationPath,
       options,
     );
   }

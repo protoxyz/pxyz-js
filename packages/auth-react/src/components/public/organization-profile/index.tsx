@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   OrganizationProfileFlowRoute,
   useProtocolAuthOrganizationProfileFlow,
@@ -21,7 +21,12 @@ import {
 import { OrganizationSettingsRoute } from './routes/organizationSettings';
 import { userDisplayName } from '../../../lib/display';
 import { UserButton } from '../user-button';
-import { CogIcon, UsersIcon } from 'lucide-react';
+import { BuildingIcon, CogIcon, UsersIcon } from 'lucide-react';
+import { useProtocolAuthOrganizationsList } from '../../../hooks/useOrganizationsList';
+import { LoadingButton } from '../../ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { ResponseStatus } from '@protoxyz/types';
+import { SESSION_COOKIE_NAME, setSessionCookie } from '../../../lib/cookies';
 
 const component: AuthComponentType = 'organizationProfile';
 
@@ -56,7 +61,7 @@ export function OrganizationProfile({
       component={component}
       className={appearance?.elements?.cardWrapper}
     >
-      {!orgId && <UpdateProfileCard />}
+      {!orgId && <SelectOrganizationCard />}
       {orgId && (
         <Card className={appearance?.elements?.card}>
           <CardHeader className={appearance?.elements?.cardHeader}>
@@ -96,23 +101,71 @@ export function OrganizationProfile({
   );
 }
 
-function UpdateProfileCard() {
+function SelectOrganizationCard() {
+  const { navigate, tokenCache, tenant, protocol, setState } =
+    useProtocolAuth();
   const { appearance } = useProtocolAuthAppearance({ component });
+  const { organizations } = useProtocolAuthOrganizationsList({});
+
+  const createOrgToken = React.useCallback(async (orgId: string | null) => {
+    const response = await protocol.auth.sessions.issueToken({
+      body: {
+        orgId,
+      },
+    });
+
+    if (response.status === ResponseStatus.Success) {
+      setSessionCookie(response.data?.jwt, tenant);
+      tokenCache?.saveToken(SESSION_COOKIE_NAME, response.data?.jwt);
+
+      setState((state) => ({
+        ...state,
+        session: response.data.sessionUser,
+        org: organizations.data.find((org) => org.id === orgId),
+        orgId,
+      }));
+
+      navigate('/organization');
+    }
+  }, []);
+
   return (
     <Card className={appearance?.elements?.card}>
       <CardHeader className={appearance?.elements?.cardHeader}>
         <CardTitle className={appearance?.elements?.cardHeaderTitle}>
-          No organization selected
+          Select Organization
         </CardTitle>
         <CardDescription
           className={appearance?.elements?.cardHeaderDescription}
         >
-          You can edit your personal account under your user profile.
+          Select an organization below to manage your organization settings and
+          members.
         </CardDescription>
       </CardHeader>
       <CardContent className={appearance?.elements?.cardContent}>
-        <div className="mt-6">
-          <UserButton mode="redirect" display="both" />
+        <div className="mt-6 flex flex-col gap-2">
+          {organizations.data?.map((team) => (
+            <LoadingButton
+              variant="secondary"
+              className="justify-start "
+              size="lg"
+              onClick={() => {
+                createOrgToken(team.id);
+              }}
+            >
+              <Avatar>
+                <AvatarImage src={team.logoUri} alt={team.name} />
+                <AvatarFallback>
+                  <div className="bg-muted-foreground/80 flex items-center justify-center   p-4">
+                    <BuildingIcon className="h-4 w-4" />
+                  </div>
+                </AvatarFallback>
+              </Avatar>
+              <div className="text-foreground text-xl font-bold">
+                {team.name}
+              </div>
+            </LoadingButton>
+          ))}
         </div>
       </CardContent>
     </Card>

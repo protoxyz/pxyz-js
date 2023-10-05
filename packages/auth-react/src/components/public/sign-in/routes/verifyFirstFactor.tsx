@@ -15,8 +15,8 @@ import { useBrandName } from '../../../../hooks/useBrand';
 import { useProtocolAuthClient } from '../../../../contexts/client-context';
 import {
   ResponseStatus,
-  AuthSignInAttemptStatus,
   AuthVerificationStrategy,
+  AuthSignInAttemptStatus,
 } from '@protoxyz/types';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import {
@@ -28,7 +28,7 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField } from '../../../custom-ui/form';
-import { Button } from '../../../ui/button';
+import { Button, LoadingButton } from '../../../ui/button';
 import { Input } from '../../../ui/input';
 import { cn } from '../../../../lib/utils';
 import { Spinner } from '../../../ui/spinner';
@@ -157,15 +157,15 @@ export function SignInVerifyFirstFactorRoute() {
           )}
 
           <div className="flex flex-col gap-y-0">
-            <Button
+            <LoadingButton
               variant="link"
               onClick={codeResending ? undefined : resendCode}
               className="justify-start"
               disabled={codeResending}
+              loading={codeResending}
             >
-              {codeResending && <Spinner />}
-              {!codeResending && 'Resend code'}
-            </Button>
+              Resend code
+            </LoadingButton>
 
             <Button variant="link" onClick={reset} className="justify-start">
               Use another method
@@ -221,7 +221,6 @@ export function SignInVerifyFirstFactorForm({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (verifying) return;
-    setVerifying(true);
 
     const code = [
       values.code_0,
@@ -231,6 +230,13 @@ export function SignInVerifyFirstFactorForm({
       values.code_4,
       values.code_5,
     ].join('');
+
+    if (code.length !== 6) {
+      setError('Invalid code');
+      return;
+    }
+
+    setVerifying(true);
 
     const signInResponse =
       await protocol.auth.signInAttempts.attemptFirstFactor({
@@ -243,14 +249,29 @@ export function SignInVerifyFirstFactorForm({
         },
       });
 
-    handleSignInResponse(
-      signInResponse,
-      tenant,
-      setSignIn,
-      setRoute,
-      setError,
-      navigate,
-    );
+    if (signInResponse.status === ResponseStatus.Success) {
+      if (
+        signInResponse.data.signInAttempt?.status !==
+        AuthSignInAttemptStatus.complete
+      ) {
+        form.reset();
+        setVerifying(false);
+      } else {
+        handleSignInResponse(
+          signInResponse,
+          tenant,
+          setSignIn,
+          setRoute,
+          setError,
+          navigate,
+        );
+      }
+    } else {
+      console.log(signInResponse.error);
+      setError(signInResponse.error);
+      form.reset();
+      setVerifying(false);
+    }
   }
 
   function onInvalid(errors: any) {
@@ -454,10 +475,14 @@ export function SignInVerifyFirstFactorForm({
           />
         </div>
 
-        <Button type="submit" variant="default" className="w-full uppercase">
-          {verifying && <Spinner color="white" />}
-          {!verifying && 'Continue'}
-        </Button>
+        <LoadingButton
+          loading={verifying}
+          type="submit"
+          variant="default"
+          className="w-full uppercase"
+        >
+          Continue
+        </LoadingButton>
       </form>
     </Form>
   );

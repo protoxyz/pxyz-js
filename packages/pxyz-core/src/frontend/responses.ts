@@ -142,7 +142,7 @@ export interface FrontendVerifyEmailAddress200Response extends Response {
     emailAddress: EmailAddress;
   };
 }
-export interface FrontendResendEmailAddressVerification200Response
+export interface FrontendPrepareEmailAddressVerification200Response
   extends Response {
   data: {
     emailAddress: EmailAddress;
@@ -171,7 +171,7 @@ export interface FrontendVerifyPhoneNumber200Response extends Response {
     phoneNumber: PhoneNumber;
   };
 }
-export interface FrontendResendPhoneNumberVerification200Response
+export interface FrontendPreparePhoneNumberVerification200Response
   extends Response {
   data: {
     phoneNumber: PhoneNumber;

@@ -6,8 +6,8 @@ export const FrontendDeleteEmailAddressPath =
   '/api/auth/frontend/v0/user/emails/{emailId}';
 export const FrontendVerifyEmailAddressPath =
   '/api/auth/frontend/v0/user/emails/{emailId}/verify';
-export const FrontendResendEmailAddressVerificationPath =
-  '/api/auth/frontend/v0/user/emails/{emailId}/resend';
+export const FrontendPrepareEmailAddressVerificationPath =
+  '/api/auth/frontend/v0/user/emails/{emailId}/prepare';
 export const FrontendSetEmailAddressPrimaryPath =
   '/api/auth/frontend/v0/user/emails/{emailId}/primary';
 
@@ -68,8 +68,8 @@ export const FrontendDeletePhoneNumberPath =
   '/api/auth/frontend/v0/user/phones/{phoneId}';
 export const FrontendVerifyPhoneNumberPath =
   '/api/auth/frontend/v0/user/phones/{phoneId}/verify';
-export const FrontendResendPhoneNumberVerificationPath =
-  '/api/auth/frontend/v0/user/phones/{phoneId}/resend';
+export const FrontendPreparePhoneNumberVerificationPath =
+  '/api/auth/frontend/v0/user/phones/{phoneId}/prepare';
 export const FrontendSetPhoneNumberPrimaryPath =
   '/api/auth/frontend/v0/user/phones/{phoneId}/primary';
 

@@ -1,6 +1,10 @@
 import { AuthAppearance, AuthComponentType } from '@protoxyz/themes';
 import { Tenant } from '@protoxyz/types';
 import { FooterLink } from './footer-link';
+import {
+  SignInFlowRoute,
+  useProtocolAuthSignInFlow,
+} from '../../contexts/flow-context';
 
 export function FooterLinks({
   usingPasswords,
@@ -11,6 +15,7 @@ export function FooterLinks({
   usingPasswords: boolean;
   component: AuthComponentType;
 }) {
+  const { setRoute } = useProtocolAuthSignInFlow();
   const links = [];
 
   if (component === 'signIn') {
@@ -29,6 +34,15 @@ export function FooterLinks({
         prefix="No account?"
         text="Sign up"
         href="/sign-up"
+      />,
+    );
+
+    links.push(
+      <FooterLink
+        key={'sign-in-methods'}
+        prefix=""
+        text="Sign in another way"
+        onClick={() => setRoute(SignInFlowRoute['signIn:methods'])}
       />,
     );
   }

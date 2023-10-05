@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from '../../../custom-ui/form';
 import { Input } from '../../../ui/input';
-import { Button } from '../../../ui/button';
+import { Button, LoadingButton } from '../../../ui/button';
 import { Spinner } from '../../../ui/spinner';
 import { Divider } from '../../../custom-ui/divider';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../ui/card';
@@ -171,15 +171,15 @@ export function UpdateOrganizationForm({
         {updateError && <FormMessage>{updateError}</FormMessage>}
 
         <div className="flex flex-col gap-1">
-          <Button
+          <LoadingButton
             type="submit"
             variant="default"
             className="w-full uppercase"
             disabled={isUpdating}
+            loading={isUpdating}
           >
-            {isUpdating && <Spinner color="white" />}
-            {!isUpdating && 'Save'}
-          </Button>
+            Save
+          </LoadingButton>
         </div>
       </form>
     </Form>

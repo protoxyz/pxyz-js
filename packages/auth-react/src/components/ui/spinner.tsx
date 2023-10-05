@@ -31,8 +31,8 @@ export function Spinner({
     light: 'text-light',
     dark: 'text-dark',
 
-    white: 'text-white',
-    black: 'text-black',
+    white: 'text-white dark:text-black',
+    black: 'text-black dark:text-white',
 
     muted: 'text-muted',
 

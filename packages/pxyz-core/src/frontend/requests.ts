@@ -80,7 +80,7 @@ export interface FrontendVerifyEmailAddressOptions extends RequestOptions {
   query?: never;
 }
 
-export interface FrontendResendEmailAddressVerificationOptions
+export interface FrontendPrepareEmailAddressVerificationOptions
   extends RequestOptions {
   body?: never;
   path: {
@@ -384,7 +384,7 @@ export interface FrontendVerifyPhoneNumberOptions extends RequestOptions {
   query?: never;
 }
 
-export interface FrontendResendPhoneNumberVerificationOptions
+export interface FrontendPreparePhoneNumberVerificationOptions
   extends RequestOptions {
   body?: never;
   path: {

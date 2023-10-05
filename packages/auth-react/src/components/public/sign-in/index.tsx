@@ -17,6 +17,7 @@ import {
   Tenant,
 } from '@protoxyz/types';
 import { setSessionCookie } from '../../../lib/cookies';
+import { SignInMethodsRoute } from './routes/methods';
 
 interface SignInOptions {
   afterSignInRedirectUri?: string;
@@ -29,6 +30,7 @@ export function SignIn({ afterSignInRedirectUri }: SignInOptions) {
       {route === SignInFlowRoute.signIn && (
         <SignInRoute afterSignInRedirectUri={afterSignInRedirectUri} />
       )}
+      {route === SignInFlowRoute['signIn:methods'] && <SignInMethodsRoute />}
       {route === SignInFlowRoute['signIn:verifyFirstFactor'] && (
         <SignInVerifyFirstFactorRoute />
       )}

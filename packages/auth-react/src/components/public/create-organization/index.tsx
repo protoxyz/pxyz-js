@@ -137,7 +137,7 @@ export function CreateOrganization({
       <Card className={appearance?.elements?.card}>
         <CardHeader className={appearance?.elements?.cardHeader}>
           <CardTitle className={appearance?.elements?.cardHeaderTitle}>
-            Create Organization
+            Create Team
           </CardTitle>
           <CardDescription
             className={appearance?.elements?.cardHeaderDescription}

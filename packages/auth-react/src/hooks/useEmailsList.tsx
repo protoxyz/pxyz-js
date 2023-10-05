@@ -27,6 +27,16 @@ export const useProtocolAuthEmailsList = ({
   const [createError, setCreateError] = useState<string>(null);
   const [deletingId, setDeletingId] = useState<string>(null);
   const [deleteError, setDeleteError] = useState<string>(null);
+  const [settingPrimaryId, setSettingPrimaryId] = useState<string>(null);
+  const [setPrimaryError, setSetPrimaryError] = useState<string>(null);
+  const [preparingVerificationId, setPreparingVerificationId] =
+    useState<string>(null);
+  const [preparingVerificationError, setPreparingVerificationError] =
+    useState<string>(null);
+  const [attemptingVerificationId, setAttemptingVerificationId] =
+    useState<string>(null);
+  const [attemptingVerificationError, setAttemptingVerificationError] =
+    useState<string>(null);
 
   const cacheKey = emailsListCacheKey({
     userId: user?.id,
@@ -83,6 +93,66 @@ export const useProtocolAuthEmailsList = ({
     [],
   );
 
+  const setPrimary = useCallback(
+    async ({ id }: { id: string }) => {
+      setSettingPrimaryId(id);
+      const response = await protocol.auth.emailAddresses.setPrimary({
+        path: {
+          emailId: id,
+        },
+      });
+      if (response.status === ResponseStatus.Error) {
+        setSetPrimaryError(response.error);
+      } else {
+        mutate();
+      }
+      setSettingPrimaryId(null);
+      return response;
+    },
+    [mutate],
+  );
+
+  const prepareVerification = useCallback(
+    async ({ id }: { id: string }) => {
+      setPreparingVerificationId(id);
+      const response = await protocol.auth.emailAddresses.prepareVerification({
+        path: {
+          emailId: id,
+        },
+      });
+      if (response.status === ResponseStatus.Error) {
+        setPreparingVerificationError(response.error);
+      } else {
+        mutate();
+      }
+      setPreparingVerificationId(null);
+      return response;
+    },
+    [mutate],
+  );
+
+  const attemptVerification = useCallback(
+    async ({ id, code }: { id: string; code: string }) => {
+      setAttemptingVerificationId(id);
+      const response = await protocol.auth.emailAddresses.verify({
+        path: {
+          emailId: id,
+        },
+        body: {
+          code,
+        },
+      });
+      if (response.status === ResponseStatus.Error) {
+        setAttemptingVerificationError(response.error);
+      } else {
+        mutate();
+      }
+      setAttemptingVerificationId(null);
+      return response;
+    },
+    [mutate],
+  );
+
   const deleteEmail = useCallback(
     async ({
       id,
@@ -101,8 +171,8 @@ export const useProtocolAuthEmailsList = ({
       });
       if (response.status === ResponseStatus.Success) {
         mutate();
-        navigate(afterDeleteUri ?? '/');
-        onDelete();
+        if (afterDeleteUri) navigate(afterDeleteUri);
+        onDelete?.();
       } else {
         setDeleteError(response.error);
       }
@@ -123,5 +193,20 @@ export const useProtocolAuthEmailsList = ({
     deleteEmail,
     deletingId,
     deleteError,
+
+    setPrimary,
+    isSettingPrimary: settingPrimaryId !== null,
+    settingPrimaryId,
+    setPrimaryError,
+
+    prepareVerification,
+    preparingVerificationId,
+    preparingVerificationError,
+    isPreparingVerification: preparingVerificationId !== null,
+
+    attemptVerification,
+    attemptingVerificationId,
+    attemptingVerificationError,
+    isAttemptingVerification: attemptingVerificationId !== null,
   };
 };

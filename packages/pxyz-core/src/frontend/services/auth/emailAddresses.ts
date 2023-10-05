@@ -2,7 +2,7 @@ import {
   FrontendCreateEmailAddressPath,
   FrontendDeleteEmailAddressPath,
   FrontendListEmailAddressesPath,
-  FrontendResendEmailAddressVerificationPath,
+  FrontendPrepareEmailAddressVerificationPath,
   FrontendSetEmailAddressPrimaryPath,
   FrontendVerifyEmailAddressPath,
 } from '@/frontend/paths';
@@ -11,7 +11,7 @@ import {
   FrontendCreateEmailAddressOptions,
   FrontendDeleteEmailAddressOptions,
   FrontendListEmailAddressesOptions,
-  FrontendResendEmailAddressVerificationOptions,
+  FrontendPrepareEmailAddressVerificationOptions,
   FrontendSetEmailAddressPrimaryOptions,
   FrontendVerifyEmailAddressOptions,
 } from '../../requests';
@@ -19,7 +19,7 @@ import {
   FrontendCreateEmailAddress201Response,
   FrontendDeleteEmailAddress200Response,
   FrontendListEmailAddresses200Response,
-  FrontendResendEmailAddressVerification200Response,
+  FrontendPrepareEmailAddressVerification200Response,
   FrontendSetEmailAddressPrimary200Response,
   FrontendVerifyEmailAddress200Response,
 } from '../../responses';
@@ -71,12 +71,12 @@ export class ProtocolAuthEmailAddresssService {
     );
   }
 
-  resendVerification(
-    options?: FrontendResendEmailAddressVerificationOptions,
-  ): Promise<FrontendResendEmailAddressVerification200Response> {
-    return this.protocol.client.request<FrontendResendEmailAddressVerification200Response>(
+  prepareVerification(
+    options?: FrontendPrepareEmailAddressVerificationOptions,
+  ): Promise<FrontendPrepareEmailAddressVerification200Response> {
+    return this.protocol.client.request<FrontendPrepareEmailAddressVerification200Response>(
       'POST',
-      FrontendResendEmailAddressVerificationPath,
+      FrontendPrepareEmailAddressVerificationPath,
       options,
     );
   }

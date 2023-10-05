@@ -1,4 +1,9 @@
-import { OrganizationWithRole, UserProfile } from '@protoxyz/types';
+import {
+  AllowedFirstFactorStrategy,
+  AuthVerificationStrategy,
+  OrganizationWithRole,
+  UserProfile,
+} from '@protoxyz/types';
 
 export const initials = (name: string[]) => {
   if (name) {
@@ -152,4 +157,29 @@ export const userImage = (user: Pick<UserProfile, 'imageUri'> | null) => {
   }
 
   return null;
+};
+
+export const strategyDisplayName = (strategy: AuthVerificationStrategy) => {
+  switch (strategy) {
+    case AuthVerificationStrategy.email_code:
+      return 'Email (Verification Code)';
+    case AuthVerificationStrategy.email_link:
+      return 'Email (Magic Link)';
+    case AuthVerificationStrategy.phone_code:
+      return 'Phone (Verification Code)';
+    case AuthVerificationStrategy.email_password:
+      return 'Email & Password';
+    case AuthVerificationStrategy.phone_password:
+      return 'Phone & Password';
+    case AuthVerificationStrategy.username_password:
+      return 'Username & Password';
+    case AuthVerificationStrategy.oauth:
+      return 'Social';
+    case AuthVerificationStrategy.authenticator_code:
+      return 'Authenticator Code';
+    case AuthVerificationStrategy.security_key:
+      return 'Device Security Key';
+    default:
+      return strategy;
+  }
 };
