@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.41
+
+### Patch Changes
+
+- 14312ac: get session user when issuing a new token
+- Updated dependencies [14312ac]
+  - @protoxyz/types@2.0.26
+
 ## 2.0.40
 
 ### Patch Changes
