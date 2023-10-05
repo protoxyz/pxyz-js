@@ -170,6 +170,7 @@ const AddEmailForm = ({ onCreate }: { onCreate: () => void }) => {
           variant="default"
           className="w-full uppercase"
           disabled={isCreating}
+          loading={isCreating}
         >
           <PlusIcon className="h-4 w-4" />
           Add
