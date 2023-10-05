@@ -23,7 +23,7 @@ export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
         description="Manage the third-party connections associated with your account."
       />
 
-      {connections?.data.length === 0 && (
+      {connections?.data?.length === 0 && (
         <div className="flex flex-col items-center justify-center">
           <div className="text-muted-foreground text-center">
             You have no connections yet.
