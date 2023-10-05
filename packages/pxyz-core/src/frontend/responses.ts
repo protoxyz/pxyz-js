@@ -348,7 +348,7 @@ export type FrontendListSessions200Response = PaginatedResult<Session>;
 export interface FrontendIssueSessionToken200Response extends Response {
   data: {
     jwt: string;
-    sessionUser: SessionUser;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -370,6 +370,7 @@ export interface FrontendCreateSignInAttempt201Response extends Response {
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -379,6 +380,7 @@ export interface FrontendUpdateSignInAttempt200Response extends Response {
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -389,6 +391,7 @@ export interface FrontendPrepareSignInAttemptFirstFactor200Response
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -399,6 +402,7 @@ export interface FrontendAttemptSignInAttemptFirstFactor200Response
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -409,6 +413,7 @@ export interface FrontendPrepareSignInAttemptSecondFactor200Response
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -419,6 +424,7 @@ export interface FrontendAttemptSignInAttemptSecondFactor200Response
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -428,6 +434,7 @@ export interface FrontendGetSignUpAttempt200Response extends Response {
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -437,6 +444,7 @@ export interface FrontendCreateSignUpAttempt201Response extends Response {
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -446,6 +454,7 @@ export interface FrontendUpdateSignUpAttempt200Response extends Response {
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -456,6 +465,7 @@ export interface FrontendPrepareSignUpAttemptVerification200Response
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }
 
@@ -466,5 +476,6 @@ export interface FrontendAttemptSignUpAttemptVerification200Response
     authorizeUri: string | undefined;
     jwt: string | undefined;
     session: Session | undefined;
+    sessionUser: SessionUser | undefined;
   };
 }

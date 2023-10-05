@@ -4,8 +4,11 @@ const nextConfig = {
   transpilePackages: [
     '@protoxyz/themes',
     '@protoxyz/uploads-nextjs',
+    '@protoxyz/uploads-react',
     '@protoxyz/auth-react',
     '@protoxyz/auth-nextjs',
+    '@protoxyz/types',
+    '@protoxyz/core',
   ],
 };
 
