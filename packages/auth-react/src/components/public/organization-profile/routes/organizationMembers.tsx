@@ -4,7 +4,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
 } from '../../../../contexts/protocol-context';
-import { SectionHeader } from '../section-header';
+import { SectionHeader } from '../../../custom-ui/section-header';
 import {
   Table,
   TableBody,

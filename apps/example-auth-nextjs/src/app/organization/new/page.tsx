@@ -4,7 +4,7 @@ import { CreateOrganization } from '@protoxyz/auth-react';
 export default function SignInPage() {
   return (
     <Wrapper>
-      <CreateOrganization />
+      <CreateOrganization afterCreateOrganizationRedirectUri="/organization" />
     </Wrapper>
   );
 }

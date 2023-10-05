@@ -4,7 +4,7 @@ import {
   useProtocolAuthOrganizationProfileFlow,
 } from '../../../contexts/flow-context';
 import { OrganizationMembersRoute } from './routes/organizationMembers';
-import { SidebarNav } from './sidebar-nav';
+import { SidebarNav } from '../../custom-ui/sidebar-nav';
 import { AuthComponentType } from '@protoxyz/themes';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {
@@ -21,6 +21,7 @@ import {
 import { OrganizationSettingsRoute } from './routes/organizationSettings';
 import { userDisplayName } from '../../../lib/display';
 import { UserButton } from '../user-button';
+import { CogIcon, UsersIcon } from 'lucide-react';
 
 const component: AuthComponentType = 'organizationProfile';
 
@@ -38,11 +39,13 @@ export function OrganizationProfile({
     () => [
       {
         label: 'Members',
-        route: OrganizationProfileFlowRoute['organizationProfile:members'],
+        icon: <UsersIcon className="h-4 w-4" />,
+        orgRoute: OrganizationProfileFlowRoute['organizationProfile:members'],
       },
       {
         label: 'Settings',
-        route: OrganizationProfileFlowRoute['organizationProfile:settings'],
+        icon: <CogIcon className="h-4 w-4" />,
+        orgRoute: OrganizationProfileFlowRoute['organizationProfile:settings'],
       },
     ],
     [route],

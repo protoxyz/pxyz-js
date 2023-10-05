@@ -1,6 +1,12 @@
 import * as React from 'react';
-import { Check, ChevronsUpDown, CogIcon, PlusCircle } from 'lucide-react';
-
+import {
+  Building2Icon,
+  BuildingIcon,
+  Check,
+  ChevronsUpDown,
+  CogIcon,
+  PlusCircle,
+} from 'lucide-react';
 import { cn } from '../../../lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { Button } from '../../ui/button';
@@ -185,7 +191,7 @@ export function OrganizationSwitcher({
                         setShowDialog('manageTeam');
                       }}
                     >
-                      <CogIcon className="mr-2 h-5 w-5" />
+                      <BuildingIcon className="mr-2 h-5 w-5" />
                       Manage Team
                     </CommandItem>
                   </DialogTrigger>

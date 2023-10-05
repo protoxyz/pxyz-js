@@ -3,11 +3,11 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
 } from '../../../../contexts/protocol-context';
-import { SectionHeader } from '../section-header';
 import { useProtocolAuthPhonesList } from '../../../../hooks/usePhonesList';
 import { Badge } from '../../../ui/badge';
 import { Button } from '../../../ui/button';
 import { PlusIcon } from 'lucide-react';
+import { SectionHeader } from '../../../custom-ui/section-header';
 
 interface UserPhonesRouteOptions {}
 export function UserPhonesRoute({}: UserPhonesRouteOptions) {
@@ -29,7 +29,7 @@ export function UserPhonesRoute({}: UserPhonesRouteOptions) {
         return (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="text-sm font-medium text-gray-900">
+              <div className="text-foreground text-sm font-medium">
                 {phone.phone}
               </div>
               {isVerified && <Badge>verified</Badge>}

@@ -5,7 +5,6 @@ import {
   useProtocolAuthAppearance,
 } from '../../../../contexts/protocol-context';
 import { useProtocolAuthProfile } from '../../../../hooks/useProfile';
-import { SectionHeader } from '../section-header';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,16 +21,13 @@ import { Input } from '../../../ui/input';
 import { Button } from '../../../ui/button';
 import { Spinner } from '../../../ui/spinner';
 import { FrontendGetUserProfile200Response } from '@protoxyz/core';
-import { Divider } from '../../../custom-ui/divider';
 import { Avatar, AvatarFallback, AvatarImage } from '../../../ui/avatar';
 import {
   userDisplayName,
   userImage,
   userInitials,
 } from '../../../../lib/display';
-import { useProtocolAuthEmailsList } from '../../../../hooks/useEmailsList';
-import { Badge } from '../../../ui/badge';
-import { PlusIcon } from 'lucide-react';
+import { SectionHeader } from '../../../custom-ui/section-header';
 
 interface UserSettingsOptions {}
 export function UserSettingsRoute({}: UserSettingsOptions) {

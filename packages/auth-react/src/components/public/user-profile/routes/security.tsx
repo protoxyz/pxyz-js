@@ -1,6 +1,6 @@
 import { AuthComponentType } from '@protoxyz/themes';
 import { useProtocolAuthAppearance } from '../../../../contexts/protocol-context';
-import { SectionHeader } from '../section-header';
+import { SectionHeader } from '../../../custom-ui/section-header';
 
 interface SecurityRouteOptions {}
 export function SecurityRoute({}: SecurityRouteOptions) {

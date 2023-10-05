@@ -4,11 +4,11 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
 } from '../../../../contexts/protocol-context';
-import { SectionHeader } from '../section-header';
 import { Button } from '../../../ui/button';
 import { useProtocolAuthEmailsList } from '../../../../hooks/useEmailsList';
 import { Badge } from '../../../ui/badge';
 import { PlusIcon } from 'lucide-react';
+import { SectionHeader } from '../../../custom-ui/section-header';
 
 interface UserEmailsRouteOptions {}
 export function UserEmailsRoute({}: UserEmailsRouteOptions) {
@@ -30,7 +30,7 @@ export function UserEmailsRoute({}: UserEmailsRouteOptions) {
         return (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="text-sm font-medium text-gray-900">
+              <div className="text-foreground text-sm font-medium">
                 {email.email}
               </div>
               {isVerified && <Badge>verified</Badge>}

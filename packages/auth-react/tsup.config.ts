@@ -7,7 +7,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig([
   {
-    clean: true,
+    clean: false,
     sourcemap: 'inline',
     entry: [
       './src/components/**/*.{ts,tsx,js,jsx}',
@@ -25,7 +25,7 @@ export default defineConfig([
     },
   },
   {
-    clean: true,
+    clean: false,
     sourcemap: true,
     entry: [
       './src/index.tsx',

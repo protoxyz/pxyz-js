@@ -3,11 +3,11 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
 } from '../../../../contexts/protocol-context';
-import { SectionHeader } from '../section-header';
 import { useProtocolAuthConnectionsList } from '../../../../hooks/useConnectionsList';
 import { Button } from '../../../ui/button';
 import { CheckCircleIcon, PlusIcon } from 'lucide-react';
 import CompanyIcons from '../../../icons/companies';
+import { SectionHeader } from '../../../custom-ui/section-header';
 
 interface UserConnectionsRouteOptions {}
 export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {

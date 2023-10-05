@@ -3,6 +3,7 @@ import './globals.css';
 import type { AuthAppearance } from '@protoxyz/themes';
 import { Inter } from 'next/font/google';
 import { Header } from '@/components/header';
+import { Providers } from '@/components/providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,22 +25,17 @@ export default async function RootLayout({
       tosUrl: 'https://pxyz.dev/terms',
       privacyPolicyUrl: 'https://pxyz.dev/privacy',
     },
-
-    elements: { card: 'bg-white border-2' },
-
-    variables: {
-      primary: '#858DFF',
-      radius: '1rem',
-    },
   };
 
   return (
     <html suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-muted`}>
         {/* @ts-ignore */}
         <ProtocolAuthProvider appearance={appearance}>
-          <Header />
-          {children}
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
         </ProtocolAuthProvider>
       </body>
     </html>

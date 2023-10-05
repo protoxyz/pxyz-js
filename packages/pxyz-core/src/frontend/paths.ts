@@ -73,7 +73,7 @@ export const FrontendResendPhoneNumberVerificationPath =
 export const FrontendSetPhoneNumberPrimaryPath =
   '/api/auth/frontend/v0/user/phones/{phoneId}/primary';
 
-export const FrontendListSessionsPath = '/frontend/v0/user/sessions';
+export const FrontendListSessionsPath = '/api/auth/frontend/v0/user/sessions';
 export const FrontendEndSessionPath = '/api/auth/frontend/v0/user/sessions/end';
 export const FrontendIssueTokenPath =
   '/api/auth/frontend/v0/user/sessions/token';

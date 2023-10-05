@@ -3,7 +3,6 @@ import {
   UserProfileFlowRoute,
   useProtocolAuthUserProfileFlow,
 } from '../../../contexts/flow-context';
-import { SidebarNav } from './sidebar-nav';
 import { AuthComponentType } from '@protoxyz/themes';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {
@@ -25,8 +24,6 @@ import {
   MailIcon,
   PhoneIcon,
   ShieldCheckIcon,
-  ShieldIcon,
-  User,
   UserIcon,
 } from 'lucide-react';
 import { UserEmailsRoute } from './routes/emails';
@@ -34,6 +31,8 @@ import { UserPhonesRoute } from './routes/phones';
 import { UserConnectionsRoute } from './routes/connections';
 import { SecurityRoute } from './routes/security';
 import { SessionsRoute } from './routes/sessions';
+import { SidebarNav } from '../../custom-ui/sidebar-nav';
+
 const component: AuthComponentType = 'userProfile';
 
 interface UpdateProfileCardOptions {}
@@ -48,34 +47,34 @@ export function UserProfile({}: UpdateProfileCardOptions) {
         {
           icon: <UserIcon className="h-4 w-4" />,
           label: 'Profile',
-          route: UserProfileFlowRoute['userProfile:settings'],
+          userRoute: UserProfileFlowRoute['userProfile:settings'],
         },
         {
           icon: <MailIcon className="h-4 w-4" />,
           label: 'Email Addresses',
-          route: UserProfileFlowRoute['userProfile:emails'],
+          userRoute: UserProfileFlowRoute['userProfile:emails'],
         },
         {
           icon: <PhoneIcon className="h-4 w-4" />,
           label: 'Phone Numbers',
-          route: UserProfileFlowRoute['userProfile:phones'],
+          userRoute: UserProfileFlowRoute['userProfile:phones'],
         },
         tenant.socialProviders?.length > 0
           ? {
               icon: <LinkIcon className="h-4 w-4" />,
               label: 'Social Connections',
-              route: UserProfileFlowRoute['userProfile:connections'],
+              userRoute: UserProfileFlowRoute['userProfile:connections'],
             }
           : undefined,
         {
           icon: <ShieldCheckIcon className="h-4 w-4" />,
           label: 'Security',
-          route: UserProfileFlowRoute['userProfile:security'],
+          userRoute: UserProfileFlowRoute['userProfile:security'],
         },
         {
           icon: <LaptopIcon className="h-4 w-4" />,
           label: 'Sessions',
-          route: UserProfileFlowRoute['userProfile:sessions'],
+          userRoute: UserProfileFlowRoute['userProfile:sessions'],
         },
       ].filter((route) => !!route),
     [route],

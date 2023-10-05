@@ -11,8 +11,8 @@ import Link from 'next/link';
 
 export const Header = () => {
   return (
-    <div className="bg-background fixed top-0 z-40 w-full border-b">
-      <div className="flex h-16 items-center px-4">
+    <div className="bg-background border-muted fixed top-0 z-40 w-full border-b">
+      <div className="flex h-16 items-center gap-8 px-4">
         <Link href="/">
           <Image
             src="/protocol-black@4x.png"
@@ -27,6 +27,36 @@ export const Header = () => {
         <IsLoggedIn>
           <OrganizationSwitcher />
           {/* <MainNav className="mx-6" /> */}
+          <nav>
+            <ul className="flex items-center space-x-4">
+              <li>
+                <Link
+                  href="/dashboard"
+                  className="text-muted-foreground hover:text-primary text-sm font-semibold"
+                >
+                  Dashboard
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/organization"
+                  className="text-muted-foreground hover:text-primary text-sm font-semibold"
+                >
+                  Organization Profile
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/user"
+                  className="text-muted-foreground hover:text-primary text-sm font-semibold"
+                >
+                  User Profile
+                </Link>
+              </li>
+            </ul>
+          </nav>
           <div className="ml-auto flex items-center space-x-4">
             {/* <Search /> */}
             <ThemeToggle />
