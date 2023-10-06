@@ -126,10 +126,10 @@ export class HttpClient {
     }
 
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.set('Content-Type', 'application/json');
 
     if (this.proxyUrl !== undefined) {
-      headers.append('Authority', this.proxyUrl);
+      headers.set('Authority', this.proxyUrl);
     }
 
     if (
@@ -137,7 +137,7 @@ export class HttpClient {
       this.accessToken !== '' &&
       this.accessToken !== null
     ) {
-      headers.append('Authorization', `Bearer ${this.accessToken}`);
+      headers.set('Authorization', `Bearer ${this.accessToken.trim()}`);
     }
 
     if (
@@ -145,7 +145,7 @@ export class HttpClient {
       this.publicKey !== '' &&
       this.publicKey !== null
     ) {
-      headers.append('x-protocol-public-key', this.publicKey);
+      headers.set('x-protocol-public-key', this.publicKey);
     }
 
     if (
@@ -153,7 +153,7 @@ export class HttpClient {
       this.secretKey !== '' &&
       this.secretKey !== null
     ) {
-      headers.append('x-protocol-secret-key', this.secretKey);
+      headers.set('x-protocol-secret-key', this.secretKey);
     }
 
     if (options?.headers) {
