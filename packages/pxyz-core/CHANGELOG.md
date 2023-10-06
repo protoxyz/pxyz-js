@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.46
+
+### Patch Changes
+
+- 4e957ce: prevent double setting auth header
+
 ## 2.0.45
 
 ### Patch Changes
