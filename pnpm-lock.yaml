@@ -501,6 +501,30 @@ importers:
         specifier: ^4.9.3
         version: 4.9.5
 
+  packages/client-gen:
+    devDependencies:
+      '@protoxyz/config-tsconfig':
+        specifier: github:protoxyz/config-tsconfig
+        version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
+      '@protoxyz/eslint-config-custom-next':
+        specifier: github:protoxyz/eslint-config-custom-next
+        version: github.com/protoxyz/eslint-config-custom-next/b73f8b3e85607bdbb97649bf78c2fe29da87ccb8(eslint@8.32.0)(typescript@4.9.5)
+      '@types/node':
+        specifier: ^18.14.2
+        version: 18.14.2
+      eslint:
+        specifier: ^8.32.0
+        version: 8.32.0
+      eslint-config-next:
+        specifier: ^13.1.1
+        version: 13.1.1(eslint@8.32.0)(typescript@4.9.5)
+      tsup:
+        specifier: ^7.1.0
+        version: 7.1.0(typescript@4.9.5)
+      typescript:
+        specifier: ^4.9.5
+        version: 4.9.5
+
   packages/icons:
     devDependencies:
       '@protoxyz/config-tsconfig':
@@ -9139,7 +9163,7 @@ packages:
       enhanced-resolve: 5.15.0
       eslint: 8.32.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.32.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.32.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-typescript@3.6.0)(eslint@8.32.0)
       fast-glob: 3.3.1
       get-tsconfig: 4.7.2
       is-core-module: 2.13.0
@@ -9302,7 +9326,7 @@ packages:
       eslint: 8.32.0
       eslint-import-resolver-node: 0.3.9
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.32.0)
-      has: 1.0.4
+      has: 1.0.3
       is-core-module: 2.13.0
       is-glob: 4.0.3
       minimatch: 3.1.2
@@ -9315,6 +9339,7 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
+    dev: true
 
   /eslint-plugin-jest@27.2.3(@typescript-eslint/eslint-plugin@5.49.0)(eslint@8.32.0)(typescript@4.9.5):
     resolution: {integrity: sha512-sRLlSCpICzWuje66Gl9zvdF6mwD5X86I4u55hJyFBsxYOsBCmT5+kSUjf+fkFWVMMgpzNEupjW8WzUqi83hJAQ==}
