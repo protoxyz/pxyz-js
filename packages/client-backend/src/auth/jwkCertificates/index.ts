@@ -1,1 +1,1 @@
-export * from './listJwkCertificates'
+export * from './listJwkCertificates';

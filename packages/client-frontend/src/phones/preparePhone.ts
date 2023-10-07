@@ -1,17 +1,17 @@
 import { request, RequestOptions, AuthOptions } from '../request';
 import { SERVERS } from '../servers';
 
-export type PhonesPrepareResponse = {
+export type PhonesPreparePhoneResponse = {
   status: string;
   error: string;
 };
 
-export function prepare(
+export function preparePhone(
   auth: AuthOptions,
   options?: RequestOptions,
   development?: boolean,
-): Promise<PhonesPrepareResponse> {
-  return request<PhonesPrepareResponse>(
+): Promise<PhonesPreparePhoneResponse> {
+  return request<PhonesPreparePhoneResponse>(
     auth,
     'POST',
     development ? SERVERS.development : SERVERS.production,

@@ -1,21 +1,20 @@
-import { request, RequestOptions, AuthOptions } from "../../request";
-import { SERVERS } from "../../servers";
+import { request, RequestOptions, AuthOptions } from '../../request';
+import { SERVERS } from '../../servers';
 
 export type NotificationsTemplatesDeleteTemplateResponse = {
-    deleted: boolean
-}
+  deleted: boolean;
+};
 
 export function deleteTemplate(
-    auth: AuthOptions,
-    options?: RequestOptions,
-    development?: boolean,
+  auth: AuthOptions,
+  options?: RequestOptions,
+  development?: boolean,
 ): Promise<NotificationsTemplatesDeleteTemplateResponse> {
-    return request<NotificationsTemplatesDeleteTemplateResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/notifications/templates/${pathParams.id}',
-        options,
-    );
+  return request<NotificationsTemplatesDeleteTemplateResponse>(
+    auth,
+    'DELETE',
+    development ? SERVERS.development : SERVERS.production,
+    '/notifications/templates/${pathParams.id}',
+    options,
+  );
 }
-

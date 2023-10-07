@@ -358,6 +358,13 @@ function transformActionName(
     return `${product ?? ''.toLowerCase()}Stats`;
   }
 
+  if (action === 'prepare') {
+    const titleizedSingularResource = (
+      resource.charAt(0).toUpperCase() + resource.slice(1)
+    ).replace(/[ies|es|s]$/, '');
+    return `prepare${titleizedSingularResource}`;
+  }
+
   return action;
 }
 

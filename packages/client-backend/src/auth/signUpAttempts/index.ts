@@ -1,3 +1,3 @@
-export * from './listSignUpAttempts'
-export * from './getSignUpAttempt'
-export * from './deleteSignUpAttempt'
+export * from './listSignUpAttempts';
+export * from './getSignUpAttempt';
+export * from './deleteSignUpAttempt';

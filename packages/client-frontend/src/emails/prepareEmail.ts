@@ -1,17 +1,17 @@
 import { request, RequestOptions, AuthOptions } from '../request';
 import { SERVERS } from '../servers';
 
-export type EmailsPrepareResponse = {
+export type EmailsPrepareEmailResponse = {
   status: string;
   error: string;
 };
 
-export function prepare(
+export function prepareEmail(
   auth: AuthOptions,
   options?: RequestOptions,
   development?: boolean,
-): Promise<EmailsPrepareResponse> {
-  return request<EmailsPrepareResponse>(
+): Promise<EmailsPrepareEmailResponse> {
+  return request<EmailsPrepareEmailResponse>(
     auth,
     'POST',
     development ? SERVERS.development : SERVERS.production,
