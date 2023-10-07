@@ -4,7 +4,7 @@ import { JWTInfo } from '@/components/jwt-info';
 import { UserInfo } from '@/components/user-info';
 import { Wrapper } from '@/components/wrapper';
 import { IsLoggedIn } from '@protoxyz/auth-react';
-import { AvatarUploader } from '@protoxyz/uploads-react';
+import { AvatarUploader } from '@protoxyz/media/client';
 
 export default function DashboardPage() {
   return (

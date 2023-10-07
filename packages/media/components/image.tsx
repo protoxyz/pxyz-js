@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
-import { cn, getImageUri } from '../utils';
+import { getImageUri } from '../shared/utils';
 import {
   ImageProcessorOptions,
   ImageProcessorTransformationOptions,
-} from '../types';
+} from '../shared/types';
+import { cn } from './utils';
 
 type ImageProps = {
   alt?: string;
@@ -13,7 +14,7 @@ type ImageProps = {
   options?: ImageProcessorOptions | ImageProcessorTransformationOptions;
 };
 
-export function Image({ className, blurhash, ...props }: ImageProps) {
+export function Image({ alt, className, blurhash, ...props }: ImageProps) {
   const [error, setError] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
   const [blurLoaded, setBlurLoaded] = React.useState(false);
@@ -39,7 +40,7 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
               format: 'blurhash',
             },
           }),
-    [props.uploadId, props.options],
+    [props.uploadId, props.options, blurhash],
   );
 
   if (error) {
@@ -50,6 +51,7 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
     <div className={cn('relative overflow-hidden', className)}>
       {blurUri && (
         <img
+          alt={alt ?? 'Image'}
           onLoad={() => setBlurLoaded(true)}
           src={blurUri}
           className={cn(
@@ -68,7 +70,7 @@ export function Image({ className, blurhash, ...props }: ImageProps) {
           ' duration-250 transform opacity-0 transition-opacity  ease-in',
           loaded ? ' opacity-100' : '',
         )}
-        onError={(e) => setError(true)}
+        onError={() => setError(true)}
         onLoad={() => {
           setLoaded(true);
           setError(false);

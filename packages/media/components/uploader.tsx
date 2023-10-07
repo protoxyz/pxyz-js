@@ -1,39 +1,33 @@
 import React from 'react';
 import { Upload } from '@protoxyz/types';
-import { PutProps, put } from '../actions/put';
-import { cn } from '../utils';
+import { PutProps, put } from '../client/actions/put';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Progress } from './ui/progress';
+import { cn } from './utils';
 
 export interface UploaderProps extends PutProps {
   label?: string;
   accept?: string;
   title?: string;
   className?: string;
-  previewWidth?: number;
-  previewHeight?: number;
 }
 export function Uploader({
   title = 'Upload a .png or .jpg image (max 5MB).',
   accept = 'image/png, image/jpeg',
   label,
   className,
-  previewWidth = 512,
-  previewHeight = 512,
   uploadUrl,
   ...handlers
 }: UploaderProps) {
   const [progress, setProgress] = React.useState<number | undefined>(undefined);
   const [error, setError] = React.useState<string | undefined>(undefined);
   const [upload, setUpload] = React.useState<Upload | undefined>(undefined);
-  const [finished, setFinished] = React.useState<boolean>(false);
 
   const reset = () => {
     setProgress(undefined);
     setError(undefined);
     setUpload(undefined);
-    setFinished(false);
   };
 
   const onAbort = (upload: Upload) => {
@@ -60,7 +54,6 @@ export function Uploader({
   };
 
   const onFinish = (upload: Upload) => {
-    setFinished(true);
     handlers.onFinish?.(upload);
     reset();
   };
@@ -120,7 +113,11 @@ const uploadPhoto = async (
   e: React.ChangeEvent<HTMLInputElement>,
   props?: PutProps,
 ) => {
-  const file = e.target.files?.[0]!;
+  const file = e.target.files?.[0];
+
+  if (!file) {
+    return;
+  }
 
   put({
     file,

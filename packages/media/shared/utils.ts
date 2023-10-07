@@ -1,27 +1,21 @@
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import {
   ImageProcessorOptions,
   ImageProcessorTransformationOptions,
 } from './types';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function getImageUri({
   imageId,
   options,
 }: {
   imageId: string;
-  options: ImageProcessorOptions | ImageProcessorTransformationOptions;
+  options?: ImageProcessorOptions | ImageProcessorTransformationOptions;
 }) {
   const cdnUrl = getCdnUri();
 
   const src = new URL(`/${imageId}/image?`, cdnUrl);
 
   if (options) {
-    if ('transformation' in options) {
+    if ('transformation' in options && options.transformation) {
       src.searchParams.append('t', options.transformation);
     } else {
       const { format, width, height, resizeMode, quality, compression } =

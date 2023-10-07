@@ -12,10 +12,9 @@
   "dependencies": {
     "@protoxyz/auth-nextjs": "workspace:*",
     "@protoxyz/auth-react": "workspace:*",
+    "@protoxyz/media": "workspace:*",
     "@protoxyz/themes": "workspace:*",
     "@protoxyz/types": "workspace:*",
-    "@protoxyz/uploads-nextjs": "workspace:*",
-    "@protoxyz/uploads-react": "workspace:*",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "^18.14.2",
     "@types/react": "^18.0.28",

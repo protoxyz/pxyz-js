@@ -1,22 +1,27 @@
 import { PutProps } from './put';
+import { CreateUpload201Response } from '@protoxyz/core';
 
 type UploadProps = PutProps & {
-  upload: any;
+  upload: CreateUpload201Response['data'];
   file: File;
 };
 
 export function uploadBlob(
   props: PutProps & {
-    upload: any;
+    upload: CreateUpload201Response['data'];
     blob: Blob;
   },
 ) {
   const { blob, ...otherProps } = props;
 
-  const file = new File([blob], props.upload.originalFilename, {
-    type: props.upload.mime,
-    lastModified: Date.now(),
-  });
+  const file = new File(
+    [blob],
+    props.upload.originalFilename ?? props.upload.id,
+    {
+      type: props.upload.mime ?? undefined,
+      lastModified: Date.now(),
+    },
+  );
 
   return upload({ file, ...otherProps });
 }
@@ -28,7 +33,7 @@ export function upload(props: UploadProps) {
     ...props.upload.fields,
     file: props.file,
   }).forEach(([key, value]) => {
-    formData.append(key, value as string);
+    formData.append(key, value as File | string);
   });
 
   const xhr = new XMLHttpRequest();

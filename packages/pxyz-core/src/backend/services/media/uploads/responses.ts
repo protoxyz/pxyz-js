@@ -9,7 +9,7 @@ export interface GetUpload200Response extends Response {
 export interface CreateUpload201Response extends Response {
   data: Upload & {
     fields: Record<string, string>;
-    url: string;
+    uploadUrl: string;
   };
 }
 

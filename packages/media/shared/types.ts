@@ -6,7 +6,7 @@ export interface UploadOptions {
   originalFilename: string;
   mime: string;
   size: number;
-  meta?: Record<string, any>;
+  meta?: Record<string, string | number | null>;
   publicKey?: string;
   secretKey?: string;
 }
