@@ -1,8 +1,8 @@
-import { useProtocolAuthLogout } from "@protoxyz/auth-react";
-import { Button } from "react-native";
+import { useProtocolAuthLogout } from '@protoxyz/auth-react';
+import { Button } from 'react-native';
 
 export default function SignOutButton() {
-    const { logout } = useProtocolAuthLogout();
+  const { logout } = useProtocolAuthLogout();
 
-    return <Button onPress={() => logout()} title="Sign Out" />;
+  return <Button onPress={() => logout()} title="Sign Out" />;
 }

@@ -6,7 +6,9 @@ export function isBrowser(): boolean {
 }
 
 export function isReactNative(): boolean {
-  return typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
+  return (
+    typeof navigator !== 'undefined' && navigator.product === 'ReactNative'
+  );
 }
 
 export function cn(...inputs: ClassValue[]) {

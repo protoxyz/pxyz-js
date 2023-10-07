@@ -501,26 +501,41 @@ importers:
         specifier: ^4.9.3
         version: 4.9.5
 
-  packages/client-gen:
+  packages/core:
     devDependencies:
       '@protoxyz/config-tsconfig':
         specifier: github:protoxyz/config-tsconfig
         version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
-      '@protoxyz/eslint-config-custom-next':
-        specifier: github:protoxyz/eslint-config-custom-next
-        version: github.com/protoxyz/eslint-config-custom-next/b73f8b3e85607bdbb97649bf78c2fe29da87ccb8(eslint@8.32.0)(typescript@4.9.5)
+      '@protoxyz/eslint-config-custom-library':
+        specifier: github:protoxyz/eslint-config-custom-library
+        version: github.com/protoxyz/eslint-config-custom-library/e09035be6f70f6ea239a38168f691e9b780146df(eslint@8.32.0)
       '@types/node':
         specifier: ^18.14.2
         version: 18.14.2
+      '@types/node-fetch':
+        specifier: ^2.6.4
+        version: 2.6.4
+      '@types/react':
+        specifier: ^18.0.28
+        version: 18.2.14
+      '@types/react-dom':
+        specifier: ^18.0.11
+        version: 18.0.11
+      abort-controller:
+        specifier: 3.x
+        version: 3.0.0
       eslint:
         specifier: ^8.32.0
         version: 8.32.0
-      eslint-config-next:
-        specifier: ^13.1.1
-        version: 13.1.1(eslint@8.32.0)(typescript@4.9.5)
+      form-data:
+        specifier: 4.x
+        version: 4.0.0
+      node-fetch:
+        specifier: ^3.3.2
+        version: 3.3.2
       tsup:
-        specifier: ^7.1.0
-        version: 7.1.0(typescript@4.9.5)
+        specifier: ^6.2.3
+        version: 6.6.3(typescript@4.9.5)
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
@@ -699,67 +714,6 @@ importers:
       eslint-config-next:
         specifier: ^13.1.1
         version: 13.1.1(eslint@8.32.0)(typescript@4.9.5)
-      tsup:
-        specifier: ^7.1.0
-        version: 7.1.0(typescript@4.9.5)
-      typescript:
-        specifier: ^4.9.5
-        version: 4.9.5
-
-  packages/uploads-react:
-    dependencies:
-      '@protoxyz/types':
-        specifier: workspace:*
-        version: link:../types
-      '@radix-ui/react-avatar':
-        specifier: ^1.0.3
-        version: 1.0.3(@types/react-dom@18.0.11)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
-      add:
-        specifier: ^2.0.6
-        version: 2.0.6
-      pnpm:
-        specifier: ^8.7.5
-        version: 8.7.5
-    devDependencies:
-      '@protoxyz/config-tsconfig':
-        specifier: github:protoxyz/config-tsconfig
-        version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
-      '@protoxyz/eslint-config-custom-next':
-        specifier: github:protoxyz/eslint-config-custom-next
-        version: github.com/protoxyz/eslint-config-custom-next/b73f8b3e85607bdbb97649bf78c2fe29da87ccb8(eslint@8.32.0)(typescript@4.9.5)
-      '@radix-ui/react-label':
-        specifier: ^2.0.2
-        version: 2.0.2(@types/react-dom@18.0.11)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-progress':
-        specifier: ^1.0.3
-        version: 1.0.3(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-slot':
-        specifier: ^1.0.2
-        version: 1.0.2(@types/react@18.2.14)(react@18.2.0)
-      '@types/node':
-        specifier: ^18.14.2
-        version: 18.14.2
-      class-variance-authority:
-        specifier: ^0.6.0
-        version: 0.6.0(typescript@4.9.5)
-      clsx:
-        specifier: ^1.2.1
-        version: 1.2.1
-      eslint:
-        specifier: ^8.32.0
-        version: 8.32.0
-      eslint-config-next:
-        specifier: ^13.1.1
-        version: 13.1.1(eslint@8.32.0)(typescript@4.9.5)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      tailwind-merge:
-        specifier: ^1.13.2
-        version: 1.13.2
       tsup:
         specifier: ^7.1.0
         version: 7.1.0(typescript@4.9.5)
@@ -5276,6 +5230,7 @@ packages:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.14
       react: 18.2.0
+    dev: false
 
   /@radix-ui/react-context@1.0.0(react@18.2.0):
     resolution: {integrity: sha512-1pVM9RfOQ+n/N5PJK33kRSKsr1glNxomxONs5c49MliinBY6Yw2Q995qfBUUo0/Mbg05B/sGA0gkgPI7kmSHBg==}
@@ -5298,6 +5253,7 @@ packages:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.14
       react: 18.2.0
+    dev: false
 
   /@radix-ui/react-dialog@1.0.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Yn9YU+QlHYLWwV1XfKiqnGVpWYWk6MeBVM6x/bcoyPvxgjQGoeT35482viLPctTMWoMw0PoHgqfSox7Ig+957Q==}
@@ -5546,6 +5502,7 @@ packages:
       '@types/react-dom': 18.0.11
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@radix-ui/react-menu@2.0.5(@types/react-dom@18.0.11)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Gw4f9pwdH+w5w+49k0gLjN0PfRDHvxmAgG16AbyJZ7zhwZ6PBHKtWohvnSwfusfnK3L68dpBREHpVkj8wEM7ZA==}
@@ -5749,26 +5706,7 @@ packages:
       '@types/react-dom': 18.0.11
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  /@radix-ui/react-progress@1.0.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5G6Om/tYSxjSeEdrb1VfKkfZfn/1IlPWd731h2RfPuSbIfNUgfqAwbKfJCg/PP6nuUCTrYzalwHSpSinoWoCag==}
-    peerDependencies:
-      '@types/react': '*'
-      '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0
-      react-dom: ^16.8 || ^17.0 || ^18.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      '@types/react-dom':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.22.15
-      '@radix-ui/react-context': 1.0.1(@types/react@18.2.14)(react@18.2.0)
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.0.11)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
+    dev: false
 
   /@radix-ui/react-roving-focus@1.0.4(@types/react-dom@18.0.11)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-2mUg5Mgcu001VkGy+FfzZyzbmuUWzgWkj3rvv4yu+mLw03+mTzbxZHvfcGyFp2b8EkQeMkpRQ5FiA2Vr2O6TeQ==}
@@ -5863,6 +5801,7 @@ packages:
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.14)(react@18.2.0)
       '@types/react': 18.2.14
       react: 18.2.0
+    dev: false
 
   /@radix-ui/react-use-callback-ref@1.0.0(react@18.2.0):
     resolution: {integrity: sha512-GZtyzoHz95Rhs6S63D2t/eqvdFCm7I+yHMLVQheKM7nBD8mbZIt+ct1jz4536MDnaOGKIxynJ8eHTkVGVVkoTg==}
@@ -6843,10 +6782,6 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-
-  /add@2.0.6:
-    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
-    dev: false
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -7876,6 +7811,7 @@ packages:
     dependencies:
       clsx: 1.2.1
       typescript: 4.9.5
+    dev: false
 
   /classnames@2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
@@ -7966,6 +7902,7 @@ packages:
   /clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
+    dev: false
 
   /cmdk@0.2.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-JQpKvEOb86SnvMZbYaFKYhvzFntWBeSZdyii0rZPhKJj9uwJBxu4DaVYDrRN7r3mPop56oPhRw+JYWTKs66TYw==}
@@ -9163,7 +9100,7 @@ packages:
       enhanced-resolve: 5.15.0
       eslint: 8.32.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.32.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-typescript@3.6.0)(eslint@8.32.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.32.0)
       fast-glob: 3.3.1
       get-tsconfig: 4.7.2
       is-core-module: 2.13.0
@@ -9339,7 +9276,6 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
-    dev: true
 
   /eslint-plugin-jest@27.2.3(@typescript-eslint/eslint-plugin@5.49.0)(eslint@8.32.0)(typescript@4.9.5):
     resolution: {integrity: sha512-sRLlSCpICzWuje66Gl9zvdF6mwD5X86I4u55hJyFBsxYOsBCmT5+kSUjf+fkFWVMMgpzNEupjW8WzUqi83hJAQ==}
@@ -13377,12 +13313,6 @@ packages:
     engines: {node: '>=4.0.0'}
     dev: false
 
-  /pnpm@8.7.5:
-    resolution: {integrity: sha512-WI8WZb89Uiq5x2jdz4PcQMG9ovTnXcDCEpoEckPYIT2zD8/+dEhVozPlT7bu3WkBgE0uTARtgyIKAFt+IpW2cQ==}
-    engines: {node: '>=16.14'}
-    hasBin: true
-    dev: false
-
   /postcss-import@15.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
@@ -14955,6 +14885,7 @@ packages:
 
   /tailwind-merge@1.13.2:
     resolution: {integrity: sha512-R2/nULkdg1VR/EL4RXg4dEohdoxNUJGLMnWIQnPKL+O9Twu7Cn3Rxi4dlXkDzZrEGtR+G+psSXFouWlpTyLhCQ==}
+    dev: false
 
   /tailwindcss-animate@1.0.6(tailwindcss@3.3.2):
     resolution: {integrity: sha512-4WigSGMvbl3gCCact62ZvOngA+PRqhAn7si3TQ3/ZuPuQZcIEtVap+ENSXbzWhpojKB8CpvnIsrwBu8/RnHtuw==}

@@ -3,7 +3,7 @@ export {
   ProtocolAuthContext,
   useProtocolAuth,
   useProtocolAuthTenant,
-  useProtocolAuthAppearance, 
+  useProtocolAuthAppearance,
 } from './contexts/protocol-context.js';
 export { ProtocolAuthProvider } from './contexts/protocol-provider.js';
 export { useProtocolAuthSignInFlow } from './contexts/flow-context.js';
@@ -39,4 +39,3 @@ export { useProtocolAuthOrganizationsList } from './hooks/useOrganizationsList.j
 export { useProtocolAuthSession } from './hooks/useSession.js';
 
 export { tailwindPaths } from './tailwind.js';
- 

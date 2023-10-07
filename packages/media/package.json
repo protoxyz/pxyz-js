@@ -8,9 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/protoxyz/pxyz-js.git"
+    "url": "https://github.com/protoxyz/pxyz-js.git",
+    "directory": "packages/media"
   },
   "license": "MIT",
+  "author": {
+    "name": "Eric Campbell",
+    "url": "https://pxyz.dev"
+  },
   "sideEffects": false,
   "type": "module",
   "exports": {

@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/cli",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "description": "Manage your Protocol account",
   "keywords": [
     "protocol",
@@ -13,8 +13,8 @@
   },
   "license": "MIT",
   "author": {
-    "name": "protoxyz",
-    "url": "https://twitter.com/protoxyz"
+    "name": "Eric Campbell",
+    "url": "https://pxyz.dev"
   },
   "type": "module",
   "exports": "./dist/index.js",

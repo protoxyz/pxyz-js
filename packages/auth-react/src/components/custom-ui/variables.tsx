@@ -9,7 +9,6 @@ interface SwatchProps {
 }
 export function swatch({ name, value }: SwatchProps) {
   if (!value) return '';
-  
 
   const swatches = createSwatches({
     ...DEFAULT_PALETTE_CONFIG,
@@ -62,8 +61,8 @@ export function Variables({
     ring,
     radius,
   } = variables ?? {};
-  if (isReactNative()) return null
-  
+  if (isReactNative()) return null;
+
   return (
     <style type="text/css">
       {`:root {
