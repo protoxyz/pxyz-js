@@ -1,91 +1,91 @@
-import { request, RequestOptions, AuthOptions } from '../request';
-import { SERVERS } from '../servers';
+import { request, RequestOptions, AuthOptions } from "../request";
+import { SERVERS } from "../servers";
 
 export type UserUpdateProfileResponse = {
-  status: string;
-  error: string;
-  data: {
+    status: string  
+    error: string | null 
+    data: {
     user: {
-      id: string;
-      name: string;
-      username: string;
-      imageUri: string;
-      lastSignInAt: string;
-      lastActiveAt: string;
-      status: string;
-      roleId: string;
-      role: {
-        id: string;
-        name: string;
-        description: string;
-        permissions: string[];
-      };
-      primaryEmailId: string;
-      primaryPhoneId: string;
-      emailAddresses: {
-        id: string;
-        email: string;
-        verifiedAt: string;
-        createdAt: string;
-      }[];
-      phoneNumbers: {
-        id: string;
-        phone: string;
-        verifiedAt: string;
-        createdAt: string;
-      }[];
-      connections: {
-        id: string;
-        status: string;
-        socialProviderId: string;
-        socialProvider: {
-          providerKey: string;
-        };
-        providerId: string;
-        scope: string;
-        createdAt: string;
-        updatedAt: string;
-      }[];
-      organizations: {
-        id: string;
-        name: string;
-        slug: string;
-        creatorId: string;
-        description: string;
-        logoUri: string;
-        iconUri: string;
-        membership: {
-          id: string;
-          publicMeta: undefined;
-          roleId: string;
-          role: {
-            name: string;
-            description: string;
-            permissions: string[];
-          };
-        };
-        createdAt: string;
-        updatedAt: string;
-      }[];
-      publicMeta: undefined;
-      timezone: string;
-      locale: string;
-      createdAt: string;
-      updatedAt: string;
-    };
-  };
-};
+    id: string  
+    name: string | null 
+    username: string | null 
+    imageUri: string | null 
+    lastSignInAt: string | null 
+    lastActiveAt: string | null 
+    status: string | null 
+    roleId: string | null 
+    role: {
+    id: string  
+    name: string  
+    description: string | null 
+    permissions: string []  
+} | null 
+    primaryEmailId: string | null 
+    primaryPhoneId: string | null 
+    emailAddresses: {
+    id: string  
+    email: string  
+    verifiedAt: string | null 
+    createdAt: string  
+}[]  
+    phoneNumbers: {
+    id: string  
+    phone: string  
+    verifiedAt: string | null 
+    createdAt: string  
+}[]  
+    connections: {
+    id: string  
+    status: string  
+    socialProviderId: string  
+    socialProvider: {
+    providerKey: string  
+} | null 
+    providerId: string | null 
+    scope: string | null 
+    createdAt: string  
+    updatedAt: string  
+}[]  
+    organizations: {
+    id: string  
+    name: string  
+    slug: string  
+    creatorId: string | null 
+    description: string | null 
+    logoUri: string | null 
+    iconUri: string | null 
+    membership: {
+    id: string  
+    publicMeta: Record<any, any>  
+    roleId: string | null 
+    role: {
+    name: string  
+    description: string | null 
+    permissions: string [] | null 
+} | null 
+}  
+    createdAt: string  
+    updatedAt: string  
+}[]  
+    publicMeta: Record<any, any>  
+    timezone: string | null 
+    locale: string | null 
+    createdAt: string  
+    updatedAt: string  
+} | null 
+} | null 
+}
 
 export function updateProfile(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<UserUpdateProfileResponse> {
-  return request<UserUpdateProfileResponse>(
-    auth,
-    'PUT',
-    development ? SERVERS.development : SERVERS.production,
-    '/user/profile',
-    options,
-  );
+    return request<UserUpdateProfileResponse>(
+        auth,
+        'PUT',
+        development ? SERVERS.development : SERVERS.production,
+        '/user/profile',
+        options,
+    );
 }

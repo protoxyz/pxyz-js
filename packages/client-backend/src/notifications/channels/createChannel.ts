@@ -1,30 +1,31 @@
-import { request, RequestOptions, AuthOptions } from '../../request';
-import { SERVERS } from '../../servers';
+import { request, RequestOptions, AuthOptions } from "../../request";
+import { SERVERS } from "../../servers";
 
 export type NotificationsChannelsCreateChannelResponse = {
-  id: string;
-  tenantId: string;
-  name: string;
-  key: string;
-  description: string;
-  type: string;
-  provider: string;
-  enabled: boolean;
-  providerSettings: Record<any, any>;
-  createdAt: string;
-  updatedAt: string;
-};
+    id: string  
+    tenantId: string  
+    name: string  
+    key: string  
+    description: string | null 
+    type: string  
+    provider: string  
+    enabled: boolean  
+    providerSettings: Record<any, any>  
+    createdAt: string  
+    updatedAt: string  
+}
 
 export function createChannel(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<NotificationsChannelsCreateChannelResponse> {
-  return request<NotificationsChannelsCreateChannelResponse>(
-    auth,
-    'POST',
-    development ? SERVERS.development : SERVERS.production,
-    '/notifications/channels',
-    options,
-  );
+    return request<NotificationsChannelsCreateChannelResponse>(
+        auth,
+        'POST',
+        development ? SERVERS.development : SERVERS.production,
+        '/notifications/channels',
+        options,
+    );
 }
+

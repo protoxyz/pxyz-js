@@ -1,20 +1,21 @@
-import { request, RequestOptions, AuthOptions } from '../../request';
-import { SERVERS } from '../../servers';
+import { request, RequestOptions, AuthOptions } from "../../request";
+import { SERVERS } from "../../servers";
 
 export type NotificationsNotificationSendResponse = {
-  status: string;
-};
+    status: string  
+}
 
 export function send(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<NotificationsNotificationSendResponse> {
-  return request<NotificationsNotificationSendResponse>(
-    auth,
-    'POST',
-    development ? SERVERS.development : SERVERS.production,
-    '/notifications/send',
-    options,
-  );
+    return request<NotificationsNotificationSendResponse>(
+        auth,
+        'POST',
+        development ? SERVERS.development : SERVERS.production,
+        '/notifications/send',
+        options,
+    );
 }
+

@@ -1,25 +1,25 @@
-import { request, RequestOptions, AuthOptions } from '../request';
-import { SERVERS } from '../servers';
+import { request, RequestOptions, AuthOptions } from "../request";
+import { SERVERS } from "../servers";
 
 export type SessionsIssueTokenResponse = {
-  status: string;
-  error: string;
-  data: {
-    jwt: string;
-    sessionUser: undefined;
-  };
-};
+    status: string  
+    error: string | null 
+    data: {
+    jwt: string | null 
+    sessionUser: any | null 
+} | null 
+}
 
 export function issueToken(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<SessionsIssueTokenResponse> {
-  return request<SessionsIssueTokenResponse>(
-    auth,
-    'POST',
-    development ? SERVERS.development : SERVERS.production,
-    '/user/sessions/token',
-    options,
-  );
+    return request<SessionsIssueTokenResponse>(
+        auth,
+        'POST',
+        development ? SERVERS.development : SERVERS.production,
+        '/user/sessions/token',
+        options,
+    );
 }

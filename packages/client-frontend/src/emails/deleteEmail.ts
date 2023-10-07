@@ -1,21 +1,21 @@
-import { request, RequestOptions, AuthOptions } from '../request';
-import { SERVERS } from '../servers';
+import { request, RequestOptions, AuthOptions } from "../request";
+import { SERVERS } from "../servers";
 
 export type EmailsDeleteEmailResponse = {
-  status: string;
-  error: string;
-};
+    status: string  
+    error: string | null 
+}
 
 export function deleteEmail(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<EmailsDeleteEmailResponse> {
-  return request<EmailsDeleteEmailResponse>(
-    auth,
-    'DELETE',
-    development ? SERVERS.development : SERVERS.production,
-    '/user/emails/${pathParams.emailId}',
-    options,
-  );
+    return request<EmailsDeleteEmailResponse>(
+        auth,
+        'DELETE',
+        development ? SERVERS.development : SERVERS.production,
+        '/user/emails/${pathParams.emailId}',
+        options,
+    );
 }

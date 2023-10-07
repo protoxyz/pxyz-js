@@ -1,2 +1,2 @@
-export * from './perDay';
-export * from './notificationsStats';
+export * from './perDay'
+export * from './notificationsStats'

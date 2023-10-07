@@ -1,60 +1,78 @@
-import { request, RequestOptions, AuthOptions } from '../request';
-import { SERVERS } from '../servers';
+import { request, RequestOptions, AuthOptions } from "../request";
+import { SERVERS } from "../servers";
 
 export type SignInsAttemptFirstFactorResponse = {
-  status: string;
-  error: string;
-  data: {
+    status: string  
+    error: string | null 
+    data: {
     signInAttempt: {
-      id: string;
-      userId: string;
-      tenantId: string;
-      identifier: string;
-      status: string;
-      strategy: string;
-      oauthProviderId: string;
-      oauthProvider: {
-        id: string;
-        providerKey: string;
-      };
-      ipAddress: string;
-      userAgent: string;
-      redirectUri: string;
-      createdAt: string;
-      updatedAt: string;
-    };
+    id: string  
+    userId: string | null 
+    tenantId: string  
+    identifier: string | null 
+    status: string  
+    strategy: string | null 
+    oauthProviderId: string | null 
+    oauthProvider: {
+    id: string  
+    providerKey: string  
+} | null 
+    ipAddress: string | null 
+    userAgent: string | null 
+    redirectUri: string | null 
+    createdAt: string  
+    updatedAt: string  
+}  
     session: {
-      id: string;
-      browser: string;
-      device: string;
-      engine: string;
-      os: string;
-      cpu: string;
-      ua: string;
-      ip: string;
-      userId: string;
-      signInAttemptId: string;
-      signUpAttemptId: string;
-      expiresAt: string;
-      createdAt: string;
-      updatedAt: string;
-    };
-    sessionUser: undefined;
-    jwt: string;
-    authorizeUri: string;
-  };
-};
+    id: string  
+    browser: string | null 
+    device: string | null 
+    engine: string | null 
+    os: string | null 
+    cpu: string | null 
+    ua: string | null 
+    ip: string | null 
+    userId: string | null 
+    signInAttemptId: string | null 
+    signUpAttemptId: string | null 
+    expiresAt: string  
+    createdAt: string  
+    updatedAt: string  
+} | null 
+    sessionUser: {
+    sub: string  
+    exp: number  
+    aud: string  
+    iss: string  
+    claims: {
+    sessionId: string  
+    name: string | null 
+    username: string | null 
+    image: string | null 
+    orgId: string | null 
+    role: string | null 
+    permissions: string [] | null 
+    email: string | null 
+    phone: string | null 
+    orgRole: string | null 
+    orgPermissions: string [] | null 
+} | null 
+} | null 
+    jwt: string | null 
+    authorizeUri: string | null 
+} | null 
+}
 
 export function attemptFirstFactor(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<SignInsAttemptFirstFactorResponse> {
-  return request<SignInsAttemptFirstFactorResponse>(
-    auth,
-    'POST',
-    development ? SERVERS.development : SERVERS.production,
-    '/sign-ins/${pathParams.id}/attempt-first-factor',
-    options,
-  );
+    return request<SignInsAttemptFirstFactorResponse>(
+        auth,
+        'POST',
+        development ? SERVERS.development : SERVERS.production,
+        '/sign-ins/${pathParams.id}/attempt-first-factor',
+        options,
+    );
 }

@@ -1,3 +1,4 @@
+
 export type HTTPMethod =
   | 'GET'
   | 'POST'
@@ -72,7 +73,7 @@ export async function request<T>(
   if (options?.headers) {
     const optionsHeaders = options?.headers || {};
     Object.keys(optionsHeaders).reduce((headers, key) => {
-      headers.append(key, optionsHeaders[key] ?? '');
+      headers.append(key, optionsHeaders[key] ?? "");
       return headers;
     }, headers);
   }
@@ -128,7 +129,7 @@ export function buildUrl(
     if (queryParams !== undefined) {
       Object.keys(queryParams).reduce((searchParams, key) => {
         if (queryParams[key] !== undefined)
-          searchParams.append(key, queryParams[key] ?? '');
+          searchParams.append(key, queryParams[key] ?? "");
         return searchParams;
       }, searchParams);
     }
@@ -136,7 +137,7 @@ export function buildUrl(
     if (pathParams !== undefined) {
       updatedPath = Object.keys(pathParams).reduce((path, key) => {
         const reg = new RegExp(`{${key}}`, 'g');
-        path = path.replace(reg, encodeURIComponent(pathParams[key] ?? ''));
+        path = path.replace(reg, encodeURIComponent(pathParams[key] ?? ""));
         return path;
       }, updatedPath);
     }

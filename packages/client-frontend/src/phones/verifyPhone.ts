@@ -1,31 +1,31 @@
-import { request, RequestOptions, AuthOptions } from '../request';
-import { SERVERS } from '../servers';
+import { request, RequestOptions, AuthOptions } from "../request";
+import { SERVERS } from "../servers";
 
 export type PhonesVerifyPhoneResponse = {
-  status: string;
-  error: string;
-  data: {
+    status: string  
+    error: string | null 
+    data: {
     phoneNumber: {
-      id: string;
-      userId: string;
-      phone: string;
-      verifiedAt: string;
-      createdAt: string;
-      updatedAt: string;
-    };
-  };
-};
+    id: string  
+    userId: string | null 
+    phone: string  
+    verifiedAt: string | null 
+    createdAt: string  
+    updatedAt: string  
+}  
+} | null 
+}
 
 export function verifyPhone(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<PhonesVerifyPhoneResponse> {
-  return request<PhonesVerifyPhoneResponse>(
-    auth,
-    'POST',
-    development ? SERVERS.development : SERVERS.production,
-    '/user/phones/${pathParams.phoneId}/verify',
-    options,
-  );
+    return request<PhonesVerifyPhoneResponse>(
+        auth,
+        'POST',
+        development ? SERVERS.development : SERVERS.production,
+        '/user/phones/${pathParams.phoneId}/verify',
+        options,
+    );
 }

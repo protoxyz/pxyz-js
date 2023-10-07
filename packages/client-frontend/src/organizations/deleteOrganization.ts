@@ -1,22 +1,22 @@
-import { request, RequestOptions, AuthOptions } from '../request';
-import { SERVERS } from '../servers';
+import { request, RequestOptions, AuthOptions } from "../request";
+import { SERVERS } from "../servers";
 
 export type OrganizationsDeleteOrganizationResponse = {
-  status: string;
-  error: string;
-  data: undefined;
-};
+    status: string  
+    error: string | null 
+    data: any | null 
+}
 
 export function deleteOrganization(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<OrganizationsDeleteOrganizationResponse> {
-  return request<OrganizationsDeleteOrganizationResponse>(
-    auth,
-    'DELETE',
-    development ? SERVERS.development : SERVERS.production,
-    '/user/organizations/${pathParams.orgId}',
-    options,
-  );
+    return request<OrganizationsDeleteOrganizationResponse>(
+        auth,
+        'DELETE',
+        development ? SERVERS.development : SERVERS.production,
+        '/user/organizations/${pathParams.orgId}',
+        options,
+    );
 }

@@ -1,20 +1,21 @@
-import { request, RequestOptions, AuthOptions } from '../../request';
-import { SERVERS } from '../../servers';
+import { request, RequestOptions, AuthOptions } from "../../request";
+import { SERVERS } from "../../servers";
 
 export type AuthUsersDeleteUserResponse = null | {
-  id: string;
-};
+    id: string | null 
+}
 
 export function deleteUser(
-  auth: AuthOptions,
-  options?: RequestOptions,
-  development?: boolean,
+    auth: AuthOptions,
+    options?: RequestOptions,
+    development?: boolean,
 ): Promise<AuthUsersDeleteUserResponse> {
-  return request<AuthUsersDeleteUserResponse>(
-    auth,
-    'DELETE',
-    development ? SERVERS.development : SERVERS.production,
-    '/auth/users/${pathParams.id}',
-    options,
-  );
+    return request<AuthUsersDeleteUserResponse>(
+        auth,
+        'DELETE',
+        development ? SERVERS.development : SERVERS.production,
+        '/auth/users/${pathParams.id}',
+        options,
+    );
 }
+

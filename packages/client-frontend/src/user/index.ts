@@ -1,3 +1,3 @@
-export * from './profile';
-export * from './updateProfile';
-export * from './deleteUser';
+export * from './profile'
+export * from './updateProfile'
+export * from './deleteUser'

@@ -505,27 +505,53 @@ function responseObjectToInterface(responseObject: ResponseObject): string {
       return `{
 ${Object.entries(responseObject.properties)
   .map(([key, value]) => {
-    if (value.type === 'array') {
-      return `    ${key}: ${responseObjectToInterface(value.items)}[]`;
-    }
+    switch (value.type) {
+      case 'array':
+        return `    ${key}: ${responseObjectToInterface(value.items)}[] ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
+      case 'object':
+        return `    ${key}: ${responseObjectToInterface(value)} ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
+      case 'integer':
+      case 'float':
+      case 'number':
+        return `    ${key}: number ${value.nullable ? '| null' : ''} ${
+          value.optional ? '| undefined' : ''
+        }`;
+      case 'undefined':
+        return `    ${key}: any ${value.nullable ? '| null' : ''} ${
+          value.optional ? '| undefined' : ''
+        }`;
+      case 'string':
+        return `    ${key}: string ${value.nullable ? '| null' : ''} ${
+          value.optional ? '| undefined' : ''
+        }`;
+      case 'boolean':
+        return `    ${key}: boolean ${value.nullable ? '| null' : ''} ${
+          value.optional ? '| undefined' : ''
+        }`;
 
-    if (value.type === 'object') {
-      return `    ${key}: ${responseObjectToInterface(value)}`;
-    }
+      default:
+        if (value.anyOf) {
+          return `    ${key}: ${value.anyOf
+            .map((anyOf: ResponseObject) => responseObjectToInterface(anyOf))
+            .join(' | ')} ${value.nullable ? '| null' : ''} ${
+            value.optional ? '| undefined' : ''
+          }`;
+        }
+        if (typeof value === 'object' && Object.keys(value).length === 0) {
+          return `    ${key}: Record<any, any> ${
+            value.nullable ? '| null' : ''
+          } ${value.optional ? '| undefined' : ''}`;
+        }
 
-    if (value.type === 'integer') {
-      return `    ${key}: number`;
+        return `    ${key}: any ${value.nullable ? '| null' : ''} ${
+          value.optional ? '| undefined' : ''
+        }`;
+      // return `    ${key}: ${value.type}`;
     }
-
-    if (value.type === 'float') {
-      return `    ${key}: number`;
-    }
-
-    if (value.type === 'undefined') {
-      return `    ${key}: any`;
-    }
-
-    return `    ${key}: ${value.type}`;
   })
   .join('\n')}
 }`;
@@ -569,7 +595,12 @@ ${Object.entries(responseObject.properties)
     case 'array':
       return `{
 ${Object.entries(responseObject.items.properties)
-  .map(([key, value]) => `    ${key}: ${value.type}`)
+  .map(
+    ([key, value]) =>
+      `    ${key}: ${responseObjectToInterface(value)} ${
+        value.nullable ? '| null' : ''
+      }`,
+  )
   .join('\n')}
 }[]`;
 
@@ -597,7 +628,7 @@ ${Object.entries(responseObject.items.properties)
         .join(' | ')}`;
 
     case 'string':
-      return `string`;
+      return `string `;
 
     case 'number':
       return `number`;

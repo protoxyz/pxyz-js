@@ -1,2 +1,2 @@
-export * from './jwks';
-export * from './openidConfiguration';
+export * from './jwks'
+export * from './openidConfiguration'
