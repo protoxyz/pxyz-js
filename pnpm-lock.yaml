@@ -501,7 +501,46 @@ importers:
         specifier: ^4.9.3
         version: 4.9.5
 
-  packages/core:
+  packages/client-backend:
+    devDependencies:
+      '@protoxyz/config-tsconfig':
+        specifier: github:protoxyz/config-tsconfig
+        version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
+      '@protoxyz/eslint-config-custom-library':
+        specifier: github:protoxyz/eslint-config-custom-library
+        version: github.com/protoxyz/eslint-config-custom-library/e09035be6f70f6ea239a38168f691e9b780146df(eslint@8.32.0)
+      '@types/node':
+        specifier: ^18.14.2
+        version: 18.14.2
+      '@types/node-fetch':
+        specifier: ^2.6.4
+        version: 2.6.4
+      '@types/react':
+        specifier: ^18.0.28
+        version: 18.2.14
+      '@types/react-dom':
+        specifier: ^18.0.11
+        version: 18.0.11
+      abort-controller:
+        specifier: 3.x
+        version: 3.0.0
+      eslint:
+        specifier: ^8.32.0
+        version: 8.32.0
+      form-data:
+        specifier: 4.x
+        version: 4.0.0
+      node-fetch:
+        specifier: ^3.3.2
+        version: 3.3.2
+      tsup:
+        specifier: ^6.2.3
+        version: 6.6.3(typescript@4.9.5)
+      typescript:
+        specifier: ^4.9.5
+        version: 4.9.5
+
+  packages/client-frontend:
     devDependencies:
       '@protoxyz/config-tsconfig':
         specifier: github:protoxyz/config-tsconfig
