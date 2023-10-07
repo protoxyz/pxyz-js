@@ -16,13 +16,13 @@ export const genClient = new Command()
   .description('Generate a typescript client for your OpenAPI swagger doc')
 
   .argument('<url>', 'The url of your OpenAPI swagger doc.')
-  .option('<output>', 'The output directory for the client project.')
+  .argument('<output>', 'The output directory for the client project.')
 
-  .action(async (components, opts) => {
+  .action(async (url, output) => {
     try {
       const options = genClientOptionsSchema.parse({
-        components,
-        ...opts,
+        url,
+        output,
       });
 
       console.log('options', options);
