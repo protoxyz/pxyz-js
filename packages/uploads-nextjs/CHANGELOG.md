@@ -1,5 +1,14 @@
 # @protoxyz/uploads-nextjs
 
+## 1.0.36
+
+### Patch Changes
+
+- c397bab: updates
+- Updated dependencies [c397bab]
+  - @protoxyz/core@2.0.47
+  - @protoxyz/types@2.0.27
+
 ## 1.0.35
 
 ### Patch Changes

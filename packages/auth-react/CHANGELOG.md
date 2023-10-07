@@ -1,5 +1,16 @@
 # @protoxyz/auth-react
 
+## 2.0.92
+
+### Patch Changes
+
+- c397bab: updates
+- Updated dependencies [c397bab]
+  - @protoxyz/auth-providers@2.0.8
+  - @protoxyz/core@2.0.47
+  - @protoxyz/themes@2.0.11
+  - @protoxyz/types@2.0.27
+
 ## 2.0.91
 
 ### Patch Changes

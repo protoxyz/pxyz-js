@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.27
+
+### Patch Changes
+
+- c397bab: updates
+
 ## 2.0.26
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.11
+
+### Patch Changes
+
+- c397bab: updates
+
 ## 2.0.10
 
 ### Patch Changes
