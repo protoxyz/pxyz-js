@@ -1,5 +1,14 @@
 # @protoxyz/cli
 
+## 0.0.10
+
+### Patch Changes
+
+- c397bab: updates
+- Updated dependencies [c397bab]
+  - @protoxyz/core@2.0.47
+  - @protoxyz/types@2.0.27
+
 ## 0.0.9
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.54
+
+### Patch Changes
+
+- c397bab: updates
+- Updated dependencies [c397bab]
+  - @protoxyz/core@2.0.47
+  - @protoxyz/types@2.0.27
+
 ## 2.0.53
 
 ### Patch Changes

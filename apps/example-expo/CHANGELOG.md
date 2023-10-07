@@ -1,5 +1,14 @@
 # example-expo
 
+## 1.0.27
+
+### Patch Changes
+
+- c397bab: updates
+- Updated dependencies [c397bab]
+  - @protoxyz/auth-react@2.0.92
+  - @protoxyz/types@2.0.27
+
 ## 1.0.26
 
 ### Patch Changes

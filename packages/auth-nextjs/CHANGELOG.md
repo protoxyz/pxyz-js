@@ -1,5 +1,16 @@
 # @protoxyz/auth-nextjs
 
+## 2.1.59
+
+### Patch Changes
+
+- c397bab: updates
+- Updated dependencies [c397bab]
+  - @protoxyz/auth-react@2.0.92
+  - @protoxyz/core@2.0.47
+  - @protoxyz/themes@2.0.11
+  - @protoxyz/types@2.0.27
+
 ## 2.1.58
 
 ### Patch Changes

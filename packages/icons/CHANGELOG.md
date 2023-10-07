@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.10
+
+### Patch Changes
+
+- c397bab: updates
+
 ## 2.0.9
 
 ### Patch Changes
