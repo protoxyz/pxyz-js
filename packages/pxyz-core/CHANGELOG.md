@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.48
+
+### Patch Changes
+
+- 18c1f45: bump
+- Updated dependencies [18c1f45]
+  - @protoxyz/types@2.0.28
+
 ## 2.0.47
 
 ### Patch Changes

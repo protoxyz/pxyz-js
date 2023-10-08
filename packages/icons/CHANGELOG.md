@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.11
+
+### Patch Changes
+
+- 18c1f45: bump
+
 ## 2.0.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.28
+
+### Patch Changes
+
+- 18c1f45: bump
+
 ## 2.0.27
 
 ### Patch Changes

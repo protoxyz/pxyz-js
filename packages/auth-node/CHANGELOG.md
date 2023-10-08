@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.55
+
+### Patch Changes
+
+- 18c1f45: bump
+- Updated dependencies [18c1f45]
+  - @protoxyz/core@2.0.48
+  - @protoxyz/types@2.0.28
+
 ## 2.0.54
 
 ### Patch Changes
