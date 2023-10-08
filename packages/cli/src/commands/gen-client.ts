@@ -5,10 +5,9 @@ import ora from 'ora';
 import { existsSync, promises as fs } from 'fs';
 import fspath from 'path';
 import http from 'http';
-
+import execa from 'execa';
 import { logger } from '@/utils/logger';
 import { getPackageManager } from '@/utils/get-package-manager';
-import { execa } from 'execa';
 import {
   CLIENT_PACKAGE,
   CLIENT_REQUEST_TS,

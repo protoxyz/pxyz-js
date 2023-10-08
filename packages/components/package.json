@@ -1,0 +1,67 @@
+{
+  "name": "@protoxyz/components",
+  "version": "1.0.0",
+  "private": false,
+  "homepage": "https://pxyz.dev",
+  "bugs": {
+    "url": "https://github.com/protoxyz/pxyz-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/protoxyz/pxyz-js.git",
+    "directory": "packages/components"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Eric Campbell",
+    "url": "https://pxyz.dev"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf .turbo node_modules dist",
+    "dev": "tsup --watch",
+    "lint": "eslint \"src/**/*.ts*\" && tsc --noEmit",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@protoxyz/core": "workspace:*",
+    "@protoxyz/media": "workspace:*",
+    "@protoxyz/types": "workspace:*",
+    "@radix-ui/react-avatar": "^1.0.3",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.6.0"
+  },
+  "devDependencies": {
+    "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
+    "@protoxyz/eslint-config-custom-next": "github:protoxyz/eslint-config-custom-next",
+    "@types/node": "^18.14.2",
+    "eslint": "^8.32.0",
+    "eslint-config-next": "^13.1.1",
+    "tsup": "^7.1.0",
+    "typescript": "^4.9.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

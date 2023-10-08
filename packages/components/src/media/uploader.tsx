@@ -1,10 +1,10 @@
 import React from 'react';
 import { Upload } from '@protoxyz/types';
-import { PutProps, put } from '../client/actions/put';
-import { Label } from './ui/label';
-import { Input } from './ui/input';
-import { Progress } from './ui/progress';
-import { cn } from './utils';
+import { PutProps, put } from '@protoxyz/media/client';
+import { cn } from '../utils';
+import { Progress } from '../ui/progress';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
 
 export interface UploaderProps extends PutProps {
   label?: string;

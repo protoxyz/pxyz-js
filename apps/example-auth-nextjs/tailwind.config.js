@@ -3,7 +3,7 @@ module.exports = {
   darkMode: ['class'],
   content: [
     require('@protoxyz/auth-react/tailwind').tailwindPaths,
-    require('@protoxyz/media/client').tailwind,
+    require('@protoxyz/components').tailwind,
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',

@@ -1,10 +1,10 @@
 import { Header } from '@/components/header';
-import { ImageUploaderPreview } from '@/components/image-uploader-preview';
+// import { ImageUploaderPreview } from '@/components/image-uploader-preview';
+// import { AvatarUploader } from '@protoxyz/components';
 import { JWTInfo } from '@/components/jwt-info';
 import { UserInfo } from '@/components/user-info';
 import { Wrapper } from '@/components/wrapper';
 import { IsLoggedIn } from '@protoxyz/auth-react';
-import { AvatarUploader } from '@protoxyz/media/client';
 
 export default function DashboardPage() {
   return (
@@ -16,8 +16,8 @@ export default function DashboardPage() {
         <UserInfo />
         <JWTInfo />
 
-        <ImageUploaderPreview />
-        <AvatarUploader initials="EC" />
+        {/* <ImageUploaderPreview /> */}
+        {/* <AvatarUploader initials="EC" /> */}
       </div>
     </Wrapper>
   );

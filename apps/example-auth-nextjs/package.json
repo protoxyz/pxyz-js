@@ -12,6 +12,7 @@
   "dependencies": {
     "@protoxyz/auth-nextjs": "workspace:*",
     "@protoxyz/auth-react": "workspace:*",
+    "@protoxyz/components": "workspace:*",
     "@protoxyz/media": "workspace:*",
     "@protoxyz/themes": "workspace:*",
     "@protoxyz/types": "workspace:*",

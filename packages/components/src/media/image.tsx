@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
-import { getImageUri } from '../shared/utils';
 import {
+  getImageUri,
   ImageProcessorOptions,
   ImageProcessorTransformationOptions,
-} from '../shared/types';
-import { cn } from './utils';
+} from '@protoxyz/media';
+
+import { cn } from '../utils';
 
 type ImageProps = {
   alt?: string;

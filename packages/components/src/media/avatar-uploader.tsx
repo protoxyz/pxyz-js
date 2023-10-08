@@ -1,10 +1,11 @@
 import React from 'react';
 import { Upload } from '@protoxyz/types';
-import { PutProps, put } from '../client/actions/put';
-import { getImageUri } from '../shared/utils';
-import { Input } from './ui/input';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { cn } from './utils';
+import { PutProps, put } from '@protoxyz/media/client';
+
+import { cn } from '../utils';
+import { getImageUri } from '@protoxyz/media';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Input } from '../ui/input';
 
 export interface AvatarUploaderProps extends PutProps {
   avatarId?: string;

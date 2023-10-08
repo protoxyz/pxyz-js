@@ -1,7 +1,7 @@
 'use client';
 
 import { Upload } from '@protoxyz/types';
-import { Image, Uploader } from '@protoxyz/media/client';
+import { Image, Uploader } from '@protoxyz/components';
 import { useState } from 'react';
 
 export function ImageUploaderPreview() {

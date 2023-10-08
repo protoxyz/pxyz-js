@@ -6,10 +6,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "target": "ES6",
-    "module": "commonjs",
-    "strict": true,
-    "allowSyntheticDefaultImports": true
+    "target": "esnext",
+    "module": "esnext"
   },
   "extends": "@protoxyz/config-tsconfig/base.json",
   "include": ["src"],
