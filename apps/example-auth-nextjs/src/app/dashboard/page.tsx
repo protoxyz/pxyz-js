@@ -1,6 +1,6 @@
 import { Header } from '@/components/header';
-// import { ImageUploaderPreview } from '@/components/image-uploader-preview';
-// import { AvatarUploader } from '@protoxyz/components';
+import { ImageUploaderPreview } from '@/components/image-uploader-preview';
+import { AvatarUploader } from '@protoxyz/components';
 import { JWTInfo } from '@/components/jwt-info';
 import { UserInfo } from '@/components/user-info';
 import { Wrapper } from '@/components/wrapper';
@@ -16,8 +16,8 @@ export default function DashboardPage() {
         <UserInfo />
         <JWTInfo />
 
-        {/* <ImageUploaderPreview /> */}
-        {/* <AvatarUploader initials="EC" /> */}
+        <ImageUploaderPreview />
+        <AvatarUploader initials="EC" />
       </div>
     </Wrapper>
   );
