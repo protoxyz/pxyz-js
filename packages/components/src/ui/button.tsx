@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+
 import { cn } from '../utils';
+import { Spinner } from './spinner';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
+  'inline-flex whitespace-nowrap items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
   {
     variants: {
       variant: {
@@ -51,4 +53,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = 'Button';
 
-export { Button, buttonVariants };
+const LoadingButton = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & {
+    loading?: boolean;
+  }
+>(({ loading, children, ...props }, ref) => {
+  return (
+    <Button ref={ref} {...props}>
+      {loading ? <Spinner className="text-white" /> : children}
+    </Button>
+  );
+});
+LoadingButton.displayName = 'Loading Button';
+
+export { Button, LoadingButton, buttonVariants };
