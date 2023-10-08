@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -74,7 +74,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@protoxyz/auth-react": "^2.0.92",
+    "@protoxyz/auth-react": "^2.0.93",
     "next": ">=13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

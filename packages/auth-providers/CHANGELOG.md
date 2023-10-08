@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.9
+
+### Patch Changes
+
+- 18c1f45: bump
+
 ## 2.0.8
 
 ### Patch Changes
