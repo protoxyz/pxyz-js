@@ -18,10 +18,11 @@ import { Input } from '../../../../ui/input';
 import { z } from 'zod';
 import { AuthComponentType } from '@protoxyz/themes';
 import {
+  useBrandLogo, 
+  useBrandName,
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthTenant,
-  useBrandLogo, useBrandName,
   useProtocolAuthFlow,
   useProtocolAuthSignInFlow,
   useProtocolAuthClient,
@@ -67,117 +68,17 @@ const EmailPasswordFormSchema = z.object({
   emailAddress: z.string().email(),
   password: z.string(),
 });
+
 const PhonePasswordFormSchema = z.object({
   phoneNumber: z.string().min(8),
   password: z.string(),
 });
+
 const UsernamePasswordFormSchema = z.object({
   username: z.string().min(4),
   password: z.string(),
 });
-
-function getAlternativeFirstFactorStrategiesFor(
-  currentStrategy: AllowedFirstFactorStrategy,
-  tenant: Tenant,
-) {
-  const strategies = [];
-
-  if (
-    currentStrategy !== AuthVerificationStrategy.email_code &&
-    tenant?.auth?.strategyEmailCodeEnabled
-  ) {
-    strategies.push({
-      name: 'Email (passwordless)',
-      value: AuthVerificationStrategy.email_code,
-    });
-  }
-
-  if (
-    currentStrategy !== AuthVerificationStrategy.email_link &&
-    tenant?.auth?.strategyEmailLinkEnabled
-  ) {
-    strategies.push({
-      name: 'Email (passwordless link)',
-      value: AuthVerificationStrategy.email_link,
-    });
-  }
-
-  if (
-    currentStrategy !== AuthVerificationStrategy.phone_code &&
-    tenant?.auth?.strategyPhoneCodeEnabled
-  ) {
-    strategies.push({
-      name: 'Phone (passwordless)',
-      value: AuthVerificationStrategy.phone_code,
-    });
-  }
-
-  if (
-    currentStrategy !== AuthVerificationStrategy.email_password &&
-    tenant?.auth?.strategyEmailPasswordEnabled
-  ) {
-    strategies.push({
-      name: 'Email & Password',
-      value: AuthVerificationStrategy.email_password,
-    });
-  }
-
-  if (
-    currentStrategy !== AuthVerificationStrategy.phone_password &&
-    tenant?.auth?.strategyPhonePasswordEnabled
-  ) {
-    strategies.push({
-      name: 'Phone & Password',
-      value: AuthVerificationStrategy.phone_password,
-    });
-  }
-
-  if (
-    currentStrategy !== AuthVerificationStrategy.username_password &&
-    tenant?.auth?.strategyUsernamePasswordEnabled
-  ) {
-    strategies.push({
-      name: 'Username & Password',
-      value: AuthVerificationStrategy.username_password,
-    });
-  }
-
-  return strategies;
-}
-
-function AlternativeSignInSelect({
-  alternativeStrategies,
-  setFirstFactorStrategy,
-}: {
-  alternativeStrategies: {
-    value: AllowedFirstFactorStrategy;
-    name: string;
-  }[];
-  setFirstFactorStrategy: (type: AllowedFirstFactorStrategy) => void;
-}) {
-  if (alternativeStrategies.length === 0) {
-    return null;
-  }
-
-  return (
-    <Select
-      onValueChange={(val: AllowedFirstFactorStrategy) =>
-        setFirstFactorStrategy(val)
-      }
-    >
-      <SelectTrigger className="w-[96px]">
-        <SelectValue placeholder="change" />
-      </SelectTrigger>
-      <SelectContent>
-        {alternativeStrategies.map((strategy) => (
-          <SelectItem key={strategy.value} value={strategy.value}>
-            {strategy.name}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-}
+ 
 
 export function SignInPhoneCodeForm({
   tenant,
@@ -187,7 +88,7 @@ export function SignInPhoneCodeForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = React.useState(false);
   const [createSignInError, setCreateSignInError] = React.useState<string>('');
@@ -229,6 +130,7 @@ export function SignInPhoneCodeForm({
         setRoute,
         setCreateSignInError,
         navigate,
+        setToken,
       );
     }
 
@@ -286,7 +188,7 @@ export function SignInPhonePasswordForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = React.useState(false);
   const [createSignInError, setCreateSignInError] = React.useState<string>('');
@@ -329,6 +231,7 @@ export function SignInPhonePasswordForm({
       setRoute,
       setCreateSignInError,
       navigate,
+      setToken
     );
 
     setCreatingSignIn(false);
@@ -385,7 +288,7 @@ export function SignInEmailCodeForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = React.useState(false);
   const [createSignInError, setCreateSignInError] = React.useState<string>('');
@@ -424,6 +327,7 @@ export function SignInEmailCodeForm({
       setRoute,
       setCreateSignInError,
       navigate,
+      setToken
     );
 
     setCreatingSignIn(false);
@@ -478,7 +382,7 @@ export function SignInEmailLinkForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = React.useState(false);
   const [createSignInError, setCreateSignInError] = React.useState<string>('');
@@ -517,6 +421,7 @@ export function SignInEmailLinkForm({
       setRoute,
       setCreateSignInError,
       navigate,
+      setToken
     );
 
     setCreatingSignIn(false);
@@ -571,7 +476,7 @@ export function SignInEmailPasswordForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = React.useState(false);
   const [createSignInError, setCreateSignInError] = React.useState<string>('');
@@ -612,6 +517,7 @@ export function SignInEmailPasswordForm({
       setRoute,
       setCreateSignInError,
       navigate,
+      setToken
     );
 
     setCreatingSignIn(false);
@@ -683,7 +589,7 @@ export function SignInUsernamePasswordForm({
   afterSignInRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignIn } = useProtocolAuthClient();
   const [creatingSignIn, setCreatingSignIn] = React.useState(false);
   const [createSignInError, setCreateSignInError] = React.useState<string>('');
@@ -724,6 +630,7 @@ export function SignInUsernamePasswordForm({
       setRoute,
       setCreateSignInError,
       navigate,
+      setToken,
     );
 
     setCreatingSignIn(false);
@@ -794,11 +701,12 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
   const component: AuthComponentType = 'signIn';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuthTenant();
+  const { firstFactorStrategy } = useProtocolAuth()
   const brandName = useBrandName({ component });
   const brandLogo = useBrandLogo({ component });
   const usingPasswords = tenant?.auth?.passwordsEnabled;
   const { signIn } = useProtocolAuthFlow();
-
+ 
   return (
     <CardWrapper
       component={component}
@@ -827,7 +735,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
         <CardContent className={appearance?.elements?.cardContent}>
           <SocialLinks appearance={appearance} tenant={tenant} />
 
-          {signIn.firstFactorStrategy ===
+          {firstFactorStrategy ===
             AuthVerificationStrategy.email_code && (
             <SignInEmailCodeForm
               tenant={tenant}
@@ -837,7 +745,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {signIn.firstFactorStrategy ===
+          {firstFactorStrategy ===
             AuthVerificationStrategy.email_link && (
             <SignInEmailLinkForm
               tenant={tenant}
@@ -845,9 +753,9 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
             />
-          )}
+          )} 
 
-          {signIn.firstFactorStrategy ===
+          {firstFactorStrategy ===
             AuthVerificationStrategy.phone_code && (
             <SignInPhoneCodeForm
               tenant={tenant}
@@ -857,7 +765,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {signIn.firstFactorStrategy ===
+          {firstFactorStrategy ===
             AuthVerificationStrategy.email_password && (
             <SignInEmailPasswordForm
               tenant={tenant}
@@ -867,7 +775,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {signIn.firstFactorStrategy ===
+          {firstFactorStrategy ===
             AuthVerificationStrategy.username_password && (
             <SignInUsernamePasswordForm
               tenant={tenant}
@@ -877,7 +785,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {signIn.firstFactorStrategy ===
+          {firstFactorStrategy ===
             AuthVerificationStrategy.phone_password && (
             <SignInPhonePasswordForm
               tenant={tenant}

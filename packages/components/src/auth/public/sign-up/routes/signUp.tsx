@@ -19,9 +19,10 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthTenant,
-  useBrandLogo, useBrandName,
   useProtocolAuthSignUpFlow,
   useProtocolAuthClient,
+  useBrandLogo, 
+  useBrandName,
 } from '@protoxyz/auth/client'; 
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import {
@@ -50,47 +51,40 @@ export function SignUpForm({
   afterSignUpRedirectUri?: string;
 }) {
   const { setRoute } = useProtocolAuthSignUpFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { setSignUp } = useProtocolAuthClient();
   const [creatingSignUp, setCreatingSignUp] = React.useState(false);
   const [createSignUpError, setCreateSignUpError] = React.useState<string>('');
 
-  const FormSchema = z.object({
-    name: z
-      .string({
-        required_error: 'Please enter your full name',
-      })
-      .min(4).optional(),
-   email: z
-      .string({
-        required_error: 'Please enter your email address',
-      })
-      .email().optional(),
-    phone: z
-      .string({
-        required_error: 'Please enter your phone number',
-      })
-      .min(8).optional(),
-    username: z
-      .string({
-        required_error: 'Please enter a username',
-      })
-      .min(5).optional(),
-    password: z
-      .string({
-        required_error: 'Please enter a password',
-      })
-      .min(8).optional(),
-  });
+  let schema = {
+     
+  } as any;
+
+  if (tenant.auth.nameRequired) {
+    schema.name = z.string().min(5)
+  }
+
+  if (tenant.auth.emailRequired) {
+     schema.email = z.string().email()
+  }
+
+  if (tenant.auth.phoneRequired) {
+     schema.phone = z.string().min(10)
+  }
+
+  if (tenant.auth.usernameRequired) {
+      schema.username = z.string().min(5)
+  }
+
+  if (tenant.auth.passwordRequired) {
+      schema.password = z.string().min(8)
+  }
+
+  const FormSchema = z.object(schema)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      username: '',
-      password: '',
 
     },
   });
@@ -100,53 +94,7 @@ export function SignUpForm({
       return;
     }
     setCreatingSignUp(true);
-
-    if (tenant.auth.nameRequired && !values.name) {
-      form.setError('name', {
-        type: 'required',
-        message: 'Please enter your full name',
-      }) 
-
-      return;
-    }
-
-    if (tenant.auth.emailRequired && !values.email) {
-      form.setError('email', {
-        type: 'required',
-        message: 'Please enter your email address',
-      })
-
-      return;
-    }
-
-    if (tenant.auth.phoneRequired && !values.phone) {
-      form.setError('phone', {
-        type: 'required',
-        message: 'Please enter your phone number',
-      })
-
-      return;
-    }
-
-    if (tenant.auth.usernameRequired && !values.username) {
-      form.setError('username', {
-        type: 'required',
-        message: 'Please enter a username',
-      })
-
-      return;
-    }
-
-    if (tenant.auth.passwordRequired && !values.password) {
-      form.setError('password', {
-        type: 'required',
-        message: 'Please enter a password',
-      })
-
-      return;
-    }
-
-    
+  
 
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUri =
@@ -163,10 +111,12 @@ export function SignUpForm({
 
     handleSignUpResponse(
       response,
+      tenant,
       setSignUp,
       setRoute,
       setCreateSignUpError,
       navigate,
+      setToken,
     );
 
     setCreatingSignUp(false);

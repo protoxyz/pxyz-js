@@ -23,6 +23,7 @@ import { BuildingIcon, CogIcon, UsersIcon } from 'lucide-react';
 import { LoadingButton } from '../../../ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '../../../ui/avatar';
 import { createOrgToken } from '../../../lib/actions';
+import { IsLoaded } from '../control/is-loaded';
 
 
 const component: AuthComponentType = 'organizationProfile';
@@ -53,7 +54,7 @@ export function OrganizationProfile({
     [route],
   );
 
-  return (
+  return (<IsLoaded>
     <CardWrapper
       component={component}
       className={appearance?.elements?.cardWrapper}
@@ -95,7 +96,7 @@ export function OrganizationProfile({
         </Card>
       )}
     </CardWrapper>
-  );
+  </IsLoaded>);
 }
 
 function SelectOrganizationCard() {

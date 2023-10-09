@@ -2,6 +2,7 @@ import { FrontendCreateSignUpAttempt201Response } from '@protoxyz/core';
 import {
   SignUpFlowRoute,
   useProtocolAuthSignUpFlow,
+  setSessionCookie,
 } from '@protoxyz/auth/client';
 import { SignUpRoute } from './routes/signUp';
 import { SignUpSuccessRoute } from './routes/success';
@@ -12,9 +13,11 @@ import {
   AuthSignUpAttemptStatus,
   ResponseStatus,
   SignUpAttempt,
+  Tenant,
 } from '@protoxyz/types';
 
 import React from 'react';
+import { IsLoaded } from '../control/is-loaded';
 
 interface SignUpOptions {
   afterSignUpRedirectUri?: string;
@@ -23,7 +26,7 @@ export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
   const { route } = useProtocolAuthSignUpFlow();
 
   return (
-    <>
+    <IsLoaded>
       {route === SignUpFlowRoute.signUp && (
         <SignUpRoute afterSignUpRedirectUri={afterSignUpRedirectUri} />
       )}
@@ -41,16 +44,18 @@ export function SignUp({ afterSignUpRedirectUri }: SignUpOptions) {
       )}
 
       {route === SignUpFlowRoute['signUp:success'] && <SignUpSuccessRoute />}
-    </>
+    </IsLoaded>
   );
 }
 
 export function handleSignUpResponse(
   response: FrontendCreateSignUpAttempt201Response | null | undefined,
+  tenant: Tenant,
   setSignUp: (signUp: SignUpAttempt) => void,
   setRoute: (route: SignUpFlowRoute) => void,
   setCreateSignUpError: (error: string) => void,
   navigate: ((uri: string) => void) | null | undefined,
+  setToken: (token: string) => void,
 ) {
   if (response?.status === ResponseStatus.Success) {
     if (response.data?.signUpAttempt) {
@@ -73,6 +78,10 @@ export function handleSignUpResponse(
           break;
         }
         case AuthSignUpAttemptStatus.complete: {
+          if (response.data?.jwt) {
+            setSessionCookie(response.data?.jwt, tenant);
+            setToken(response.data?.jwt);
+          }
           setRoute(SignUpFlowRoute['signUp:success']);
           navigate?.(response.data?.signUpAttempt?.redirectUri ?? '');
           break;

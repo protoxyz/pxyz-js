@@ -1,3 +1,4 @@
+'use client';
 import {
   ProtocolAuthContext,
   ProtocolAuthProviderState,
@@ -82,64 +83,25 @@ export const ProtocolAuthProvider = ({
   navigate,
   tokenCache,
 }: ProtocolAuthProviderProps) => {
-  const firstFactorStrategies = React.useMemo(() => {
-    const strategies = [];
-
-    if (tenant?.auth?.strategyPhoneCodeEnabled)
-      strategies.push(AuthVerificationStrategy.phone_code);
-
-    if (tenant?.auth?.strategyEmailCodeEnabled)
-      strategies.push(AuthVerificationStrategy.email_code);
-
-    if (tenant?.auth?.strategyEmailLinkEnabled)
-      strategies.push(AuthVerificationStrategy.email_link);
-
-    if (tenant?.auth.strategyUsernamePasswordEnabled)
-      strategies.push(AuthVerificationStrategy.username_password);
-
-    if (tenant?.auth.strategyEmailPasswordEnabled)
-      strategies.push(AuthVerificationStrategy.email_password);
-
-    if (tenant?.auth.strategyPhonePasswordEnabled)
-      strategies.push(AuthVerificationStrategy.phone_password);
-
-    return strategies;
-  }, [tenant]);
-
-  const secondFactorStrategies = React.useMemo(() => {
-    const strategies = [];
-
-    if (tenant?.auth?.strategyAuthenticatorCodeEnabled)
-      strategies.push(AuthVerificationStrategy.authenticator_code);
-
-    if (tenant?.auth.strategySecurityKeyEnabled)
-      strategies.push(AuthVerificationStrategy.security_key);
-
-    return strategies;
-  }, [tenant]);
-
-  const initialFirstFactorStrategy = React.useMemo(() => {
-    if (firstFactorStrategies.length > 0) return firstFactorStrategies[0];
-    return null;
-  }, [firstFactorStrategies]);
-
-  const initialSecondFactorStrategy = React.useMemo(() => {
-    if (secondFactorStrategies.length > 0) return secondFactorStrategies[0];
-
-    return null;
-  }, [secondFactorStrategies]);
-
   /*
    * This is the flow state. It is used to store the current flow route and the function to update it
    */
+
+  const firstFactorStrategies = tenant ? getFirstFactorStrategies(tenant) : [];
+  const secondFactorStrategies = tenant
+    ? getSecondFactorStrategies(tenant)
+    : [];
+  const initialFirstFactorStrategy = tenant
+    ? getInitialFirstFactorStrategy(firstFactorStrategies)
+    : null;
+  const initialSecondFactorStrategy = tenant
+    ? getInitialSecondFactorStrategy(secondFactorStrategies)
+    : null;
   const [routeState, setRouteState] =
     React.useState<ProtocolAuthFlowContextState>({
       signIn: {
         route: SignInFlowRoute.signIn,
-        firstFactorStrategies,
-        secondFactorStrategies,
-        firstFactorStrategy: initialFirstFactorStrategy,
-        secondFactorStrategy: initialSecondFactorStrategy,
+
         params: {},
         setRoute: (
           route: SignInFlowRoute,
@@ -152,24 +114,6 @@ export const ProtocolAuthProvider = ({
               params,
               route,
             },
-          }));
-        },
-
-        setFirstFactorStrategy: (
-          strategy: AllowedFirstFactorStrategy | null,
-        ) => {
-          setRouteState((state) => ({
-            ...state,
-            firstFactorStrategy: strategy,
-          }));
-        },
-
-        setSecondFactorStrategy: (
-          strategy: AllowedSecondFactorStrategy | null,
-        ) => {
-          setRouteState((state) => ({
-            ...state,
-            secondFactorStrategy: strategy,
           }));
         },
       },
@@ -226,15 +170,6 @@ export const ProtocolAuthProvider = ({
       },
     });
 
-  let accessToken = null;
-
-  if (
-    typeof localStorage !== 'undefined' &&
-    tenant?.environment === 'development'
-  ) {
-    accessToken = localStorage.getItem(SESSION_COOKIE_NAME);
-  }
-
   /*
    * This is the protocol state. It is used to store the protocol tenant, the appearance data, and the protocol client
    */
@@ -251,6 +186,10 @@ export const ProtocolAuthProvider = ({
     sessionId,
     navigate,
     tokenCache,
+    firstFactorStrategies,
+    secondFactorStrategies,
+    firstFactorStrategy: initialFirstFactorStrategy,
+    secondFactorStrategy: initialSecondFactorStrategy,
     appearance: mergeAppearance({
       appearance,
     }),
@@ -274,7 +213,7 @@ export const ProtocolAuthProvider = ({
         process.env.NEXT_PUBLIC_PXYZ_DOMAIN ??
         process.env.EXPO_PUBLIC_PXYZ_DOMAIN,
       debug: process.env.NODE_ENV !== 'production',
-      accessToken,
+      accessToken: getAccessTokenFromLocalStorage(tenant),
     }),
     setToken: (token: string) => {
       if (isBrowser() && !isReactNative()) {
@@ -296,6 +235,20 @@ export const ProtocolAuthProvider = ({
           }
         });
       }
+    },
+
+    setFirstFactorStrategy: (strategy: AllowedFirstFactorStrategy | null) => {
+      setRouteState((state) => ({
+        ...state,
+        firstFactorStrategy: strategy,
+      }));
+    },
+
+    setSecondFactorStrategy: (strategy: AllowedSecondFactorStrategy | null) => {
+      setRouteState((state) => ({
+        ...state,
+        secondFactorStrategy: strategy,
+      }));
     },
   });
 
@@ -341,40 +294,55 @@ export const ProtocolAuthProvider = ({
         path: { publicKey: state.publicKey ?? '' },
       });
 
-      if (response.status !== 'success' || !response.data?.tenant) {
+      if (
+        response.status !== ResponseStatus.Success ||
+        !response.data?.tenant
+      ) {
         throw new Error('Failed to get tenant');
       }
 
+      const accessToken = getAccessTokenFromLocalStorage(response.data.tenant);
+      if (accessToken) {
+        state.protocol.setAccessToken(accessToken);
+      }
+
+      const userResponse = await state.protocol.auth.users.profile({});
+      const user = userResponse.data?.user;
+      const sessionUser = userResponse.data?.sessionUser;
       const tenant = response.data?.tenant;
 
-      setState((state) => ({
-        ...state,
-        loaded: true,
-        tenant,
-      }));
-    }
+      if (tenant) {
+        const firstFactorStrategies = getFirstFactorStrategies(tenant);
+        const secondFactorStrategies = getSecondFactorStrategies(tenant);
+        const firstFactorStrategy = getInitialFirstFactorStrategy(
+          firstFactorStrategies,
+        );
+        const secondFactorStrategy = getInitialSecondFactorStrategy(
+          secondFactorStrategies,
+        );
 
-    async function loadUser() {
-      const response = await state.protocol.auth.users.profile({});
-
-      if (response.status === ResponseStatus.Success) {
         setState((state) => ({
           ...state,
-          user: response.data?.user ?? null,
-          userId: response.data?.user?.id ?? null,
-          role: response.data?.sessionUser?.claims?.role,
-          permissions: response.data?.sessionUser?.claims?.permissions,
-          orgId: response.data?.sessionUser?.claims?.orgId,
-          orgRole: response.data?.sessionUser?.claims?.orgRole,
-          orgPermissions: response.data?.sessionUser?.claims?.orgPermissions,
-          sessionId: response.data?.sessionUser?.claims?.sessionId,
-          session: response.data?.sessionUser ?? null,
+          tenant,
+          firstFactorStrategies,
+          secondFactorStrategies,
+          firstFactorStrategy,
+          secondFactorStrategy,
+          user: user ?? null,
+          userId: user?.id ?? null,
+          role: sessionUser?.claims?.role,
+          permissions: sessionUser?.claims?.permissions,
+          orgId: sessionUser?.claims?.orgId,
+          orgRole: sessionUser?.claims?.orgRole,
+          orgPermissions: sessionUser?.claims?.orgPermissions,
+          sessionId: sessionUser?.claims?.sessionId,
+          session: sessionUser ?? null,
+          loaded: true,
         }));
       }
     }
 
     loadTenant();
-    loadUser();
   }, []);
 
   if (!state.loaded) return null;
@@ -391,4 +359,69 @@ export const ProtocolAuthProvider = ({
       </ProtocolAuthFlowProvider>
     </ProtocolAuthContext.Provider>
   );
+};
+
+const getFirstFactorStrategies = (
+  tenant: Tenant,
+): AllowedFirstFactorStrategy[] | null => {
+  const strategies = [];
+
+  if (tenant?.auth?.strategyPhoneCodeEnabled)
+    strategies.push(AuthVerificationStrategy.phone_code);
+
+  if (tenant?.auth?.strategyEmailCodeEnabled)
+    strategies.push(AuthVerificationStrategy.email_code);
+
+  if (tenant?.auth?.strategyEmailLinkEnabled)
+    strategies.push(AuthVerificationStrategy.email_link);
+
+  if (tenant?.auth.strategyUsernamePasswordEnabled)
+    strategies.push(AuthVerificationStrategy.username_password);
+
+  if (tenant?.auth.strategyEmailPasswordEnabled)
+    strategies.push(AuthVerificationStrategy.email_password);
+
+  if (tenant?.auth.strategyPhonePasswordEnabled)
+    strategies.push(AuthVerificationStrategy.phone_password);
+
+  return strategies;
+};
+
+const getSecondFactorStrategies = (
+  tenant: Tenant,
+): AllowedSecondFactorStrategy[] | null => {
+  const strategies = [];
+
+  if (tenant?.auth?.strategyAuthenticatorCodeEnabled)
+    strategies.push(AuthVerificationStrategy.authenticator_code);
+
+  if (tenant?.auth.strategySecurityKeyEnabled)
+    strategies.push(AuthVerificationStrategy.security_key);
+
+  return strategies;
+};
+
+const getInitialFirstFactorStrategy = (
+  strategies: AllowedFirstFactorStrategy[],
+): AllowedFirstFactorStrategy | null => {
+  if (strategies.length > 0) return strategies[0];
+  return null;
+};
+
+const getInitialSecondFactorStrategy = (
+  strategies: AllowedSecondFactorStrategy[],
+): AllowedSecondFactorStrategy | null => {
+  if (strategies.length > 0) return strategies[0];
+
+  return null;
+};
+
+const getAccessTokenFromLocalStorage = (tenant: Tenant | undefined) => {
+  if (
+    isBrowser() &&
+    typeof localStorage !== 'undefined' &&
+    tenant?.environment === 'development'
+  ) {
+    return localStorage.getItem(SESSION_COOKIE_NAME);
+  }
 };

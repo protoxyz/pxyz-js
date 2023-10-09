@@ -1,8 +1,3 @@
-import {
-  AllowedFirstFactorStrategy,
-  AllowedSecondFactorStrategy,
-  AuthVerificationStrategy,
-} from '@protoxyz/types';
 import React from 'react';
 
 export enum SignInFlowRoute {
@@ -43,13 +38,7 @@ export interface ProtocolAuthFlowContextState {
   signIn: {
     route: SignInFlowRoute;
     params: Record<string, string>;
-    firstFactorStrategies: AllowedFirstFactorStrategy[];
-    secondFactorStrategies: AllowedSecondFactorStrategy[];
-    firstFactorStrategy: AllowedFirstFactorStrategy;
-    secondFactorStrategy: AllowedSecondFactorStrategy;
     setRoute: (route: SignInFlowRoute, params?: Record<string, string>) => void;
-    setFirstFactorStrategy: (strategy: AllowedFirstFactorStrategy) => void;
-    setSecondFactorStrategy: (strategy: AllowedSecondFactorStrategy) => void;
   };
 
   signUp: {
@@ -80,19 +69,10 @@ export interface ProtocolAuthFlowContextState {
 const initialState: ProtocolAuthFlowContextState = {
   signIn: {
     route: SignInFlowRoute.signIn,
-    firstFactorStrategy: AuthVerificationStrategy.email_code,
-    secondFactorStrategy: AuthVerificationStrategy.authenticator_code,
-    firstFactorStrategies: [],
-    secondFactorStrategies: [],
+
     params: {},
     setRoute: (route: SignInFlowRoute, params?: Record<string, string>) => {
       throw new Error('Not implemented' + route.toString());
-    },
-    setFirstFactorStrategy: (strategy: AllowedFirstFactorStrategy) => {
-      throw new Error('Not implemented' + strategy.toString());
-    },
-    setSecondFactorStrategy: (strategy: AllowedSecondFactorStrategy) => {
-      throw new Error('Not implemented' + strategy.toString());
     },
   },
 

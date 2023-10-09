@@ -10,23 +10,22 @@ import {
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useBrandName,
   useProtocolAuthClient,
-  SignUpFlowRoute,
   useProtocolAuthSignUpFlow,
+  useBrandName,
+  SignUpFlowRoute,
 } from '@protoxyz/auth/client';
 
 import { ResponseStatus, AuthVerificationStrategy } from '@protoxyz/types';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import React from 'react';
-import { Button } from '../../../../ui/button';
-import { Spinner } from '../../../../ui/spinner';
+import { Button, LoadingButton } from '../../../../ui/button';
 import { VerifySignupCodeForm } from '../../../custom-ui/verify-code-form';
 import { handleSignUpResponse } from '..';
 
 export function SignUpVerifyEmailRoute() {
   const component: AuthComponentType = 'signUp';
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, tenant, setToken } = useProtocolAuth();
   const { signUp, setSignUp } = useProtocolAuthClient();
   const { setRoute } = useProtocolAuthSignUpFlow();
   const { appearance } = useProtocolAuthAppearance({ component });
@@ -56,10 +55,12 @@ export function SignUpVerifyEmailRoute() {
 
     handleSignUpResponse(
       verifyResponse,
+      tenant,
       setSignUp,
       setRoute,
       setError,
       navigate,
+      setToken,
     );
   };
 
@@ -114,10 +115,13 @@ export function SignUpVerifyEmailRoute() {
 
         <CardContent className={appearance?.elements?.cardContent}>
           {!codeSent && (
-            <Button onClick={prepareVerification} disabled={codeSending}>
-              {codeSending && <Spinner />}
-              {!codeSending && `Email code to ${signUp?.email}`}
-            </Button>
+            <LoadingButton
+              loading={codeSending}
+              onClick={prepareVerification}
+              disabled={codeSending}
+            >
+              Email code to {signUp?.email}
+            </LoadingButton>
           )}
 
           {codeSent && signUp?.email && (
@@ -138,15 +142,15 @@ export function SignUpVerifyEmailRoute() {
 
           <div className="flex flex-col gap-y-0">
             {codeSent && (
-              <Button
+              <LoadingButton
                 variant="link"
                 onClick={codeSending ? undefined : prepareVerification}
                 className="justify-start"
                 disabled={codeSending}
+                loading={codeSending}
               >
-                {codeSending && <Spinner />}
-                {!codeSending && 'Resend code'}
-              </Button>
+                Resend code
+              </LoadingButton>
             )}
 
             <Button variant="link" onClick={reset} className="justify-start">

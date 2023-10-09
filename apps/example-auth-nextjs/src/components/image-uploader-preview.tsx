@@ -7,7 +7,7 @@ import { useState } from 'react';
 export function ImageUploaderPreview() {
   const [upload, setUpload] = useState<Upload | null>(null);
   return (
-    <div className="rounded-xl border p-5">
+    <div className="rounded-xl border bg-background border-muted-foreground p-5">
       <h1 className="text-2xl font-bold">Upload Example</h1>
       <Uploader onFinish={(upload) => setUpload(upload)} />
       {upload && (

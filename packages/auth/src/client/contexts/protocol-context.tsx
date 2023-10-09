@@ -6,6 +6,8 @@ import {
   OrganizationWithRole,
   SessionUser,
   UserProfile,
+  AllowedFirstFactorStrategy,
+  AllowedSecondFactorStrategy,
 } from '@protoxyz/types';
 import React from 'react';
 import { TokenCache } from '../types/tokenCache';
@@ -20,6 +22,13 @@ export interface ProtocolAuthProviderState {
   publicKey: string;
 
   appearance: AuthAppearance;
+
+  firstFactorStrategies: AllowedFirstFactorStrategy[];
+  secondFactorStrategies: AllowedSecondFactorStrategy[];
+  firstFactorStrategy: AllowedFirstFactorStrategy;
+  secondFactorStrategy: AllowedSecondFactorStrategy;
+  setFirstFactorStrategy: (strategy: AllowedFirstFactorStrategy) => void;
+  setSecondFactorStrategy: (strategy: AllowedSecondFactorStrategy) => void;
 
   user: UserProfile | null;
   userId: string | null;

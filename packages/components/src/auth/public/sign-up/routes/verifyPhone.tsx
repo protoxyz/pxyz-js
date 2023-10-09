@@ -1,5 +1,11 @@
+import React from 'react';
 import { AuthComponentType } from '@protoxyz/themes';
+import { ResponseStatus, AuthVerificationStrategy } from '@protoxyz/types';
+
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
+import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
+import { VerifySignupCodeForm } from '../../../custom-ui/verify-code-form';
+
 import {
   Card,
   CardContent,
@@ -7,29 +13,25 @@ import {
   CardHeader,
   CardTitle,
 } from '../../../../ui/card';
+import { Button } from '../../../../ui/button';
+import { Spinner } from '../../../../ui/spinner';
+
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useBrandName,
   useProtocolAuthClient,
-  SignUpFlowRoute,
   useProtocolAuthSignUpFlow,
+  SignUpFlowRoute,
 } from '@protoxyz/auth/client';
-import { ResponseStatus, AuthVerificationStrategy } from '@protoxyz/types';
-import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
-import React from 'react';
-import { Button } from '../../../../ui/button';
-import { Spinner } from '../../../../ui/spinner';
-import { VerifySignupCodeForm } from '../../../custom-ui/verify-code-form';
+
 import { handleSignUpResponse } from '..';
 
 export function SignUpVerifyPhoneRoute() {
   const component: AuthComponentType = 'signUp';
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate, tenant, setToken } = useProtocolAuth();
   const { signUp, setSignUp } = useProtocolAuthClient();
   const { setRoute } = useProtocolAuthSignUpFlow();
   const { appearance } = useProtocolAuthAppearance({ component });
-  const brandName = useBrandName({ component });
   const [codeSending, setCodeSending] = React.useState(false);
   const [codeSent, setCodeSent] = React.useState(false);
   const [error, setError] = React.useState<string>('');
@@ -55,10 +57,12 @@ export function SignUpVerifyPhoneRoute() {
 
     handleSignUpResponse(
       verifyResponse,
+      tenant,
       setSignUp,
       setRoute,
       setError,
       navigate,
+      setToken,
     );
   };
 

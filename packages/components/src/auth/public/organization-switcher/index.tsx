@@ -32,6 +32,7 @@ import { CreateOrganization } from '../create-organization';
 import { OrganizationProfile } from '../organization-profile'; 
 import { createOrgToken } from '../../../lib/actions';
 import React from 'react'
+import { IsLoaded } from '../control/is-loaded';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -102,7 +103,7 @@ export function OrganizationSwitcher({
   const selectedTeam =
     organizations?.data?.find((org: any) => org.id === selectedTeamId) ?? null;
 
-  return (
+  return (<IsLoaded>
     <Dialog open={showDialog !== null} onOpenChange={() => setShowDialog(null)}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -224,5 +225,5 @@ export function OrganizationSwitcher({
         )}
       </DialogContent>
     </Dialog>
-  );
+  </IsLoaded>);
 }

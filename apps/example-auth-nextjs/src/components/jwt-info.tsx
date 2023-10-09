@@ -7,7 +7,7 @@ export function JWTInfo() {
   const { session } = useProtocolAuth();
 
   return (
-    <div className="overflow-hidden rounded-xl border p-5">
+    <div className="border-muted-foreground bg-background overflow-hidden rounded-xl border p-5">
       <h1 className="text-2xl font-bold">Session Info</h1>
       <RefreshToken />
       <pre>{JSON.stringify(session, null, 2)}</pre>

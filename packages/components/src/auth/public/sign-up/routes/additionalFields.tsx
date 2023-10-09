@@ -19,9 +19,9 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthTenant,
-  useBrandName,
   useProtocolAuthSignUpFlow,
   useProtocolAuthClient,
+  useBrandName,
 } from '@protoxyz/auth/client';
 
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
@@ -43,7 +43,7 @@ import { handleSignUpResponse } from '..';
 
 export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
   const { setRoute } = useProtocolAuthSignUpFlow();
-  const { protocol, navigate } = useProtocolAuth();
+  const { protocol, navigate,  setToken } = useProtocolAuth();
   const { signUp, setSignUp } = useProtocolAuthClient();
   const [creatingSignUp, setCreatingSignUp] = React.useState(false);
   const [createSignUpError, setCreateSignUpError] = React.useState<string>('');
@@ -93,10 +93,12 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
 
     handleSignUpResponse(
       response,
+      tenant,
       setSignUp,
       setRoute,
       setCreateSignUpError,
       navigate,
+      setToken,
     );
 
     setCreatingSignUp(false);

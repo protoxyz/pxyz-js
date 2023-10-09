@@ -190,7 +190,7 @@ export function SignInVerifyFirstFactorForm({
   setError: (error: string) => void;
 }) {
   const { setRoute } = useProtocolAuthSignInFlow();
-  const { protocol, navigate, tenant } = useProtocolAuth();
+  const { protocol, navigate, tenant, setToken } = useProtocolAuth();
   const { signIn, setSignIn } = useProtocolAuthClient();
   const [verifying, setVerifying] = React.useState(false);
 
@@ -262,6 +262,7 @@ export function SignInVerifyFirstFactorForm({
           setRoute,
           setError,
           navigate,
+          setToken,
         );
       }
     } else {

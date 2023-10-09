@@ -19,6 +19,7 @@ import {
 } from '@protoxyz/types';
 import { SignInMethodsRoute } from './routes/methods';
 import React from 'react';
+import { IsLoaded } from '../control/is-loaded';
 
 interface SignInOptions {
   afterSignInRedirectUri?: string;
@@ -28,7 +29,7 @@ export function SignIn({ afterSignInRedirectUri }: SignInOptions) {
   const { route } = useProtocolAuthSignInFlow();
 
   return (
-    <>
+    <IsLoaded>
       {route === SignInFlowRoute.signIn && (
         <SignInRoute afterSignInRedirectUri={afterSignInRedirectUri} />
       )}
@@ -50,7 +51,7 @@ export function SignIn({ afterSignInRedirectUri }: SignInOptions) {
       {route === SignInFlowRoute['signIn:resetPasswordSuccess'] && (
         <SignInResetPasswordSuccessRoute />
       )}
-    </>
+    </IsLoaded>
   );
 }
 
@@ -61,6 +62,7 @@ export function handleSignInResponse(
   setRoute: (route: SignInFlowRoute) => void,
   setCreateSignInError: (error: string) => void,
   navigate: ((uri: string) => void) | null | undefined,
+  setToken: (token: string) => void,
 ) {
   if (response?.status === ResponseStatus.Success) {
     if (response.data?.signInAttempt) {
@@ -75,23 +77,13 @@ export function handleSignInResponse(
           break;
         }
         case AuthSignInAttemptStatus.complete: {
-          if (response.data?.jwt) setSessionCookie(response.data?.jwt, tenant);
+          if (response.data?.jwt) {
+            setSessionCookie(response.data?.jwt, tenant);
+            setToken(response.data?.jwt);
+          }
           setRoute(SignInFlowRoute['signIn:success']);
 
-          console.log('redirectUri:', response.data?.signInAttempt.redirectUri);
-          if (
-            response.data?.signInAttempt.redirectUri?.startsWith(
-              'http://localhost:8085',
-            )
-          ) {
-            const redirectUri = new URL(
-              response.data?.signInAttempt.redirectUri ?? '/',
-            );
-            redirectUri.searchParams.append('jwt', response.data?.jwt ?? '');
-            navigate?.(redirectUri.toString());
-          } else {
-            navigate?.(response.data?.signInAttempt.redirectUri ?? '/');
-          }
+          navigate?.(response.data?.signInAttempt.redirectUri ?? '/');
           break;
         }
       }
