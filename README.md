@@ -1,2 +1,2 @@
-# Protocol Javascript Packages
+# Protocol Typescript Packages
 https://pxyz.dev
