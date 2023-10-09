@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.31
+
+### Patch Changes
+
+- 1126553: bump
+
 ## 2.0.30
 
 ### Patch Changes

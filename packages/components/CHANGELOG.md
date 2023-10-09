@@ -1,5 +1,16 @@
 # @protoxyz/components
 
+## 1.0.5
+
+### Patch Changes
+
+- 1126553: bump
+- Updated dependencies [1126553]
+  - @protoxyz/types@2.0.31
+  - @protoxyz/auth@1.0.5
+  - @protoxyz/media@1.0.5
+  - @protoxyz/core@2.0.51
+
 ## 1.0.4
 
 ### Patch Changes
