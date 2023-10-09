@@ -1,5 +1,15 @@
 # @protoxyz/components
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [ce00e8b]
+  - @protoxyz/core@2.0.50
+  - @protoxyz/types@2.0.30
+  - @protoxyz/auth@1.0.4
+  - @protoxyz/media@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
