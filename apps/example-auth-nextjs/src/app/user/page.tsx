@@ -4,7 +4,7 @@ import { UserProfile } from '@protoxyz/components';
 export default function UserProfilePage() {
   return (
     <Wrapper>
-      <UserProfile />{' '}
+      <UserProfile />
     </Wrapper>
   );
 }

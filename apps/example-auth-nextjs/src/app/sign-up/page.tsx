@@ -1,6 +1,10 @@
 import { Wrapper } from '@/components/wrapper';
-// import { SignUp } from '@protoxyz/components';
+import { SignUp } from '@protoxyz/components';
 
 export default function SignUpPage() {
-  return <Wrapper>{/* <SignUp /> */}</Wrapper>;
+  return (
+    <Wrapper>
+      <SignUp />
+    </Wrapper>
+  );
 }

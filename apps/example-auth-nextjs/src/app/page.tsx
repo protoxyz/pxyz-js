@@ -1,9 +1,9 @@
-// import {
-//   IsLoggedIn,
-//   IsLoggedOut,
-//   SignInButton,
-//   SignUpButton,
-// } from '@protoxyz/components';
+import {
+  IsLoggedIn,
+  IsLoggedOut,
+  SignInButton,
+  SignUpButton,
+} from '@protoxyz/components';
 import Image from 'next/image';
 import Link from 'next/link';
  
@@ -30,12 +30,12 @@ export default function Home() {
                   priority
                 />
               </a>
-{/* 
+
               <IsLoggedIn>
                 <div className="text-muted-foreground">Hello world.</div>
-              </IsLoggedIn> */}
+              </IsLoggedIn>
 
-              {/* <IsLoggedOut>
+              <IsLoggedOut>
                 <div className="text-muted-foreground relative">
                   You aren&apos;t logged in.{' '}
                   <Link
@@ -75,7 +75,7 @@ export default function Home() {
                     afterSignUpRedirectUri="/dashboard"
                   />
                 </div>
-              </IsLoggedOut> */}
+              </IsLoggedOut>
             </div>
           </div>
         </div>
