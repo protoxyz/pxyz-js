@@ -16,11 +16,11 @@ export interface SessionUser {
     username: string;
     image: string;
     email: string;
-    role: AuthRole | null;
+    role: string | null;
     permissions: string[];
     phone: string | undefined;
     orgId: string | undefined;
-    orgRole: AuthRole | null;
+    orgRole: string | null;
     orgPermissions: string[];
   };
 

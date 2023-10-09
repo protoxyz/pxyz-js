@@ -2,18 +2,18 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig([
   {
-    entry: ['./index.ts'],
+    entry: ['./src/index.ts'],
     clean: true,
     format: ['esm', 'cjs'],
     dts: true,
     outDir: './dist',
   },
   {
-    entry: ['./client/index.ts'],
+    entry: ['./src/client/index.ts'],
     clean: true,
     format: ['esm', 'cjs'],
     dts: true,
-    outDir: './dist/client',
+    outDir: './client',
     external: ['react', 'next', 'react-dom'],
 
     esbuildOptions(options, context) {

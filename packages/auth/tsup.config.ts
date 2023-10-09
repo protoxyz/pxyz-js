@@ -2,22 +2,23 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig([
   {
-    entry: ['./index.ts'],
+    entry: ['./src/index.ts'],
     clean: true,
     format: ['esm', 'cjs'],
     dts: true,
     outDir: './dist',
   },
-  // {
-  //   entry: ['./client/index.ts'],
-  //   clean: true,
-  //   format: ['esm', 'cjs'],
-  //   dts: true,
-  //   outDir: './dist/client',
-  //   external: ['react', 'next', 'react-dom'],
+  {
+    entry: ['./src/client/index.tsx'],
+    clean: true,
+    format: ['esm', 'cjs'],
+    dts: true,
+    outDir: './client',
 
-  //   esbuildOptions(options, context) {
-  //     options.banner = { js: `"use client";` };
-  //   },
-  // },
+    external: ['use-sync-external-store'],
+
+    esbuildOptions(options, context) {
+      options.banner = { js: `"use client";` };
+    },
+  },
 ]);

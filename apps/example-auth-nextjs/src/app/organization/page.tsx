@@ -1,12 +1,6 @@
 import { Wrapper } from '@/components/wrapper';
-import { OrganizationProfile } from '@protoxyz/auth-react';
-// import OrgId from '../../components/orgId';
+// import { OrganizationProfile } from '@protoxyz/components';
 
 export default function SignInPage() {
-  return (
-    <Wrapper>
-      {/* <OrgId /> */}
-      <OrganizationProfile />
-    </Wrapper>
-  );
+  return <Wrapper>{/* <OrganizationProfile /> */}</Wrapper>;
 }

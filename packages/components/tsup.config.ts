@@ -7,7 +7,7 @@ export default defineConfig([
     format: ['esm', 'cjs'],
     dts: true,
     outDir: './dist',
-    external: ['react', 'next', 'react-dom'],
+    external: ['react', 'next', 'react-dom', 'zod', 'tailwind-merge'],
 
     esbuildOptions(options, context) {
       options.banner = { js: `"use client";` };

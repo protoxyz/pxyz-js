@@ -14,7 +14,7 @@ export interface Tenant {
   publicKey: string;
   creatorId: string;
 
-  auth?: AuthProperties;
+  auth: AuthProperties;
 
   socialProviders?: SocialProvider[];
   domains?: Domain[];

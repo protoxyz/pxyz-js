@@ -31,19 +31,20 @@
     },
     "./client": {
       "import": {
-        "types": "./dist/client/index.d.ts",
-        "default": "./dist/client/index.js"
+        "types": "./client/index.d.ts",
+        "default": "./client/index.js"
       },
       "require": {
-        "types": "./dist/client/index.d.cts",
-        "default": "./dist/client/index.cjs"
+        "types": "./client/index.d.cts",
+        "default": "./client/index.cjs"
       }
     }
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "client"
   ],
   "scripts": {
     "build": "tsup",

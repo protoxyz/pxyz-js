@@ -50,12 +50,9 @@ importers:
 
   apps/example-auth-nextjs:
     dependencies:
-      '@protoxyz/auth-nextjs':
+      '@protoxyz/auth':
         specifier: workspace:*
-        version: link:../../packages/auth-nextjs
-      '@protoxyz/auth-react':
-        specifier: workspace:*
-        version: link:../../packages/auth-react
+        version: link:../../packages/auth
       '@protoxyz/components':
         specifier: workspace:*
         version: link:../../packages/components
@@ -181,9 +178,6 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
     devDependencies:
-      '@protoxyz/auth-react':
-        specifier: workspace:*
-        version: link:../auth-react
       '@protoxyz/config-tsconfig':
         specifier: github:protoxyz/config-tsconfig
         version: github.com/protoxyz/config-tsconfig/e0e3d2500853bd744dc9aab8306a2c05af622767
@@ -423,7 +417,7 @@ importers:
         version: 1.13.2
       zod:
         specifier: ^3.21.4
-        version: 3.21.4
+        version: 3.22.4
     devDependencies:
       '@protoxyz/config-tsconfig':
         specifier: github:protoxyz/config-tsconfig
@@ -529,7 +523,7 @@ importers:
         version: 4.2.0
       zod:
         specifier: ^3.20.2
-        version: 3.21.4
+        version: 3.22.4
     devDependencies:
       '@types/babel__core':
         specifier: ^7.20.1
@@ -639,6 +633,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@protoxyz/auth':
+        specifier: workspace:*
+        version: link:../auth
       '@protoxyz/core':
         specifier: workspace:*
         version: link:../pxyz-core
@@ -700,12 +697,24 @@ importers:
       eslint-config-next:
         specifier: ^13.1.1
         version: 13.1.1(eslint@8.32.0)(typescript@4.9.5)
+      next:
+        specifier: ^13.4.13
+        version: 13.5.4(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       tsup:
         specifier: ^7.1.0
         version: 7.1.0(typescript@4.9.5)
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
 
   packages/icons:
     devDependencies:
@@ -14663,9 +14672,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  /zod@3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: false
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
   github.com/protoxyz/config-tailwind/b6ef1471b9b8607f8c8cbbb913f14056ece5725b:
     resolution: {tarball: https://codeload.github.com/protoxyz/config-tailwind/tar.gz/b6ef1471b9b8607f8c8cbbb913f14056ece5725b}

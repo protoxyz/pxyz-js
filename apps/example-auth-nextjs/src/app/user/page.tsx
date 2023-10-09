@@ -1,10 +1,10 @@
 import { Wrapper } from '@/components/wrapper';
-import { UserProfile } from '@protoxyz/auth-react';
+import { UserProfile } from '@protoxyz/components';
 
 export default function UserProfilePage() {
   return (
     <Wrapper>
-      <UserProfile />
+      <UserProfile />{' '}
     </Wrapper>
   );
 }

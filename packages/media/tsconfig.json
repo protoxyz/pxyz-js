@@ -9,5 +9,5 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

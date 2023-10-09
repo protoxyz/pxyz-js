@@ -5,7 +5,7 @@ import {
   ImageProcessorTransformationOptions,
 } from '@protoxyz/media';
 
-import { cn } from '../utils';
+import { cn } from '../lib/utils';
 
 type ImageProps = {
   alt?: string;

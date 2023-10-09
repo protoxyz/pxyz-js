@@ -10,8 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@protoxyz/auth-nextjs": "workspace:*",
-    "@protoxyz/auth-react": "workspace:*",
+    "@protoxyz/auth": "workspace:*",
     "@protoxyz/components": "workspace:*",
     "@protoxyz/media": "workspace:*",
     "@protoxyz/themes": "workspace:*",

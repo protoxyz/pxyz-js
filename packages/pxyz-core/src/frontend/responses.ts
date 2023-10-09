@@ -110,6 +110,7 @@ export interface FrontendFinishUpload200Response extends Response {
 export interface FrontendGetUserProfile200Response extends Response {
   data: {
     user: UserProfile | null;
+    sessionUser: SessionUser | null;
   };
 }
 

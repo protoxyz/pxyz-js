@@ -1,6 +1,6 @@
 'use client';
 
-import { useProtocolAuth, useProtocolAuthSession } from '@protoxyz/auth-react';
+import { useProtocolAuth, useProtocolAuthSession } from '@protoxyz/auth/client';
 
 export function RefreshToken() {
   const { issueToken } = useProtocolAuthSession();

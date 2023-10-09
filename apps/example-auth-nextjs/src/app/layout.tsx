@@ -1,4 +1,4 @@
-import { ProtocolAuthProvider } from '@protoxyz/auth-nextjs';
+import { ProtocolAuthProvider } from '@protoxyz/auth/client';
 import './globals.css';
 import type { AuthAppearance } from '@protoxyz/themes';
 import { Inter } from 'next/font/google';
@@ -30,7 +30,6 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body className={`${inter.className} bg-muted`}>
-        {/* @ts-ignore */}
         <ProtocolAuthProvider appearance={appearance}>
           <Providers>
             <Header />

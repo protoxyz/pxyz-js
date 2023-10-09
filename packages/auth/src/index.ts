@@ -6,6 +6,6 @@ export * from './server/getToken';
 export * from './server/getUser';
 export * from './server/jwt';
 export * from './server/paths';
-export * from './server/protocol-provider';
+// export * from './server/protocol-provider';
 export * from './server/types';
 export * from './server/util';

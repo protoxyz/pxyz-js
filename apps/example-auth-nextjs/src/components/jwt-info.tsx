@@ -1,11 +1,10 @@
 'use client';
 
-import { useProtocolAuth, useProtocolAuthSession } from '@protoxyz/auth-react';
+import { useProtocolAuth } from '@protoxyz/auth/client';
 import { RefreshToken } from './refresh-token';
 
 export function JWTInfo() {
   const { session } = useProtocolAuth();
-  const { issueToken } = useProtocolAuthSession();
 
   return (
     <div className="overflow-hidden rounded-xl border p-5">

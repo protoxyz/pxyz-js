@@ -2,7 +2,7 @@ import React from 'react';
 import { Upload } from '@protoxyz/types';
 import { PutProps, put } from '@protoxyz/media/client';
 
-import { cn } from '../utils';
+import { cn } from '../lib/utils';
 import { getImageUri } from '@protoxyz/media';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Input } from '../ui/input';

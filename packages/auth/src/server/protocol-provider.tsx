@@ -1,5 +1,5 @@
 // import 'server-only';
-import { ProtocolAuthProvider as ProtocolAuthProviderReact } from '@protoxyz/auth-react';
+// import { ProtocolAuthProvider as ProtocolAuthProviderReact } from '../client/contexts/protocol-provider';
 import { ProtocolFrontendClient } from '@protoxyz/core';
 import { AuthAppearance } from '@protoxyz/themes';
 import { Tenant, ResponseStatus } from '@protoxyz/types';
@@ -86,23 +86,26 @@ export async function ProtocolAuthProvider({
     publicKey: resolvedPublicKey,
   });
 
-  return (
-    <ProtocolAuthProviderReact
-      appearance={appearance}
-      domain={resolvedDomain}
-      publicKey={resolvedPublicKey}
-      tenant={tenant}
-      user={user}
-      userId={sessionUser?.sub}
-      session={sessionUser}
-      sessionId={sessionUser?.claims?.sessionId}
-      org={user?.organizations?.find(
-        (org) => org.id === sessionUser?.claims?.orgId,
-      )}
-      orgId={sessionUser?.claims?.orgId}
-      // orgRole={sessionUser?.claims?.orgRole}
-    >
-      {children}
-    </ProtocolAuthProviderReact>
-  );
+  // return (
+  //   <ProtocolAuthProviderReact
+  //     appearance={appearance}
+  //     domain={resolvedDomain}
+  //     publicKey={resolvedPublicKey}
+  //     tenant={tenant}
+  //     user={user}
+  //     userId={sessionUser?.sub}
+  //     role={sessionUser?.claims?.role}
+  //     permissions={sessionUser?.claims?.permissions}
+  //     session={sessionUser}
+  //     sessionId={sessionUser?.claims?.sessionId}
+  //     org={user?.organizations?.find(
+  //       (org) => org.id === sessionUser?.claims?.orgId,
+  //     )}
+  //     orgId={sessionUser?.claims?.orgId}
+  //     orgRole={sessionUser?.claims?.orgRole}
+  //     orgPermissions={sessionUser?.claims?.orgPermissions}
+  //   >
+  //     {children}
+  //   </ProtocolAuthProviderReact>
+  // );
 }

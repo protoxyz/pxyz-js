@@ -1,7 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ['@protoxyz/auth-react'],
-};
+const nextConfig = {};
 
 module.exports = nextConfig;

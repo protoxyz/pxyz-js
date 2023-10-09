@@ -12,6 +12,7 @@
         "!.next/cache/**",
         ".expo/**",
         "dist/**",
+        "client/**",
         "api/**",
         "build/**",
         "node_modules/.cache/metro/**"

@@ -1,15 +1,17 @@
+"use client"
 import {
   IsLoggedIn,
   IsLoggedOut,
   OrganizationSwitcher,
   UserButton,
-} from '@protoxyz/auth-react';
+} from '@protoxyz/components';
 import { ThemeToggle } from './theme-toggle';
 import Image from 'next/image';
 import { Button } from './ui/button';
 import Link from 'next/link';
 
-export const Header = () => {
+export const Header = () => { 
+
   return (
     <div className="bg-background border-muted fixed top-0 z-40 w-full border-b">
       <div className="flex h-16 items-center gap-8 px-4">
@@ -25,8 +27,7 @@ export const Header = () => {
         </Link>
 
         <IsLoggedIn>
-          <OrganizationSwitcher />
-          {/* <MainNav className="mx-6" /> */}
+          <OrganizationSwitcher /> 
           <nav>
             <ul className="flex items-center space-x-4">
               <li>
@@ -58,13 +59,13 @@ export const Header = () => {
             </ul>
           </nav>
           <div className="ml-auto flex items-center space-x-4">
-            {/* <Search /> */}
+          
             <ThemeToggle />
             <UserButton />
           </div>
         </IsLoggedIn>
 
-        <IsLoggedOut>
+        {/* <IsLoggedOut>
           <div className="ml-auto flex items-center space-x-4">
             <Link href="/sign-in">
               <Button variant="outline">Sign In</Button>
@@ -73,7 +74,7 @@ export const Header = () => {
               <Button>Sign Up</Button>
             </Link>
           </div>
-        </IsLoggedOut>
+        </IsLoggedOut> */}
       </div>
     </div>
   );

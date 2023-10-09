@@ -1,7 +1,7 @@
 import React from 'react';
 import { Upload } from '@protoxyz/types';
 import { PutProps, put } from '@protoxyz/media/client';
-import { cn } from '../utils';
+import { cn } from '../lib/utils';
 import { Progress } from '../ui/progress';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
