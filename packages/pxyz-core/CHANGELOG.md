@@ -1,5 +1,13 @@
 # @protoxyz/core
 
+## 2.0.50
+
+### Patch Changes
+
+- ce00e8b: add AuthRole
+- Updated dependencies [ce00e8b]
+  - @protoxyz/types@2.0.30
+
 ## 2.0.49
 
 ### Patch Changes
