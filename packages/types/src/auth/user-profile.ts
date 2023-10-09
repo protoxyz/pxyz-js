@@ -1,4 +1,4 @@
-import { OrganizationWithRole } from '..';
+import { AuthRole, OrganizationWithRole } from '..';
 import { EmailAddress } from './email-address';
 import { PhoneNumber } from './phone-number';
 import { SocialConnection } from './social-connection';
@@ -12,7 +12,7 @@ export interface UserProfile {
   lastActiveAt: Date | null;
   identifier: string;
   status: any;
-  role: string | null | undefined;
+  role: AuthRole | null | undefined;
   primaryEmailId: string | null | undefined;
   primaryPhoneId: string | null | undefined;
   connections: SocialConnection[];

@@ -1,4 +1,4 @@
-import { OrganizationMember, OrganizationRole } from '..';
+import { AuthRole, OrganizationMember } from '..';
 
 export interface Organization {
   id: string;
@@ -15,7 +15,7 @@ export interface Organization {
 }
 
 export interface OrganizationMembershipWithRole extends OrganizationMember {
-  role: OrganizationRole;
+  role: AuthRole;
 }
 
 export interface OrganizationWithRole extends Organization {

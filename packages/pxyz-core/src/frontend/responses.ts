@@ -16,6 +16,7 @@ import {
   Transformation,
   File,
   SessionUser,
+  AuthRole,
 } from '@protoxyz/types';
 
 import { PaginatedResult, Response } from '..';
@@ -294,25 +295,25 @@ export type FrontendListOrganizationRoles200Response =
 
 export interface FrontendCreateOrganizationRole201Response extends Response {
   data: {
-    role: OrganizationRole | undefined;
+    role: AuthRole | undefined;
   };
 }
 
 export interface FrontendUpdateOrganizationRole200Response extends Response {
   data: {
-    role: OrganizationRole | undefined;
+    role: AuthRole | undefined;
   };
 }
 
 export interface FrontendGetOrganizationRole200Response extends Response {
   data: {
-    role: OrganizationRole | undefined;
+    role: AuthRole | undefined;
   };
 }
 
 export interface FrontendDeleteOrganizationRole200Response extends Response {
   data: {
-    role: OrganizationRole | undefined;
+    role: AuthRole | undefined;
   };
 }
 

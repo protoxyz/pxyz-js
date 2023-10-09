@@ -1,6 +1,5 @@
-import { UserProfile } from '..';
+import { AuthRole, UserProfile } from '..';
 import { Organization } from './organization';
-import { OrganizationRole } from './organization-role';
 
 export interface OrganizationMember {
   id: string;
@@ -8,7 +7,7 @@ export interface OrganizationMember {
   user?: UserProfile;
   organizationId: string;
   organization?: Organization;
-  role: OrganizationRole;
+  role: AuthRole;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
