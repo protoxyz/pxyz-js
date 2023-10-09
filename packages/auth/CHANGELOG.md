@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.3
+
+### Patch Changes
+
+- 3886355: change return type
+
 ## 1.0.2
 
 ### Patch Changes
