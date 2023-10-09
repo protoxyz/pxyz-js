@@ -1,5 +1,14 @@
 # @protoxyz/auth-node
 
+## 2.0.56
+
+### Patch Changes
+
+- 836e9d1: refactor
+- Updated dependencies [836e9d1]
+  - @protoxyz/core@2.0.49
+  - @protoxyz/types@2.0.29
+
 ## 2.0.55
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.13
+
+### Patch Changes
+
+- 836e9d1: refactor
+
 ## 2.0.12
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.29
+
+### Patch Changes
+
+- 836e9d1: refactor
+
 ## 2.0.28
 
 ### Patch Changes
