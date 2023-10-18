@@ -1,5 +1,16 @@
 # @protoxyz/components
 
+## 1.0.7
+
+### Patch Changes
+
+- 747cbd3: expose Variables component
+- Updated dependencies [747cbd3]
+  - @protoxyz/types@2.0.32
+  - @protoxyz/auth@1.0.7
+  - @protoxyz/media@1.0.6
+  - @protoxyz/core@2.0.52
+
 ## 1.0.6
 
 ### Patch Changes
