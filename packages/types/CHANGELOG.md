@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.32
+
+### Patch Changes
+
+- 747cbd3: expose Variables component
+
 ## 2.0.31
 
 ### Patch Changes
