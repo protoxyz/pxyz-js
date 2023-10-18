@@ -48,25 +48,37 @@ export function Variables({ variables }: { variables: Brand }) {
   );
 
   return (
-    <style type="text/css">
-      {`:root {
-          ${lightKeys.map((key) => {
-            const value = variables[key as keyof Brand] as string;
-            return swatch({ name: key, value });
-          })}
+    <>
+      <style type="text/css">
+        {`:root {
+          ${lightKeys
+            .map((key) => {
+              const value = variables[key as keyof Brand] as string;
+              return swatch({ name: key, value });
+            })
+            .join('\n')}
 
           ${variables.radius ? `--radius: ${variables.radius};` : ''}
         }
+      `}
+      </style>
 
+      {darkKeys.length > 0 && (
+        <style type="text/css">
+          {` 
         .dark {
-          ${darkKeys.map((key) => {
-            const value = variables[key as keyof Brand] as string;
-            return swatch({ name: key, value });
-          })}
+          ${darkKeys
+            .map((key) => {
+              const value = variables[key as keyof Brand] as string;
+              return swatch({ name: key, value });
+            })
+            .join(' \n')}
 
           ${variables.darkRadius ? `--radius: ${variables.darkRadius};` : ''}
         }
       `}
-    </style>
+        </style>
+      )}
+    </>
   );
 }
