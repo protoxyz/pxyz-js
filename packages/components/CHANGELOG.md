@@ -1,5 +1,11 @@
 # @protoxyz/components
 
+## 1.0.8
+
+### Patch Changes
+
+- 120a267: fix join
+
 ## 1.0.7
 
 ### Patch Changes
