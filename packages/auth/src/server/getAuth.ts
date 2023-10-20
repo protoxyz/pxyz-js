@@ -5,10 +5,10 @@ import { getBearerToken, getCookieToken, getSecretKey } from './util';
 
 export async function getAuth({
   token,
-  key,
+  secretKey,
 }: {
   token?: string | null | undefined;
-  key?: string;
+  secretKey?: string;
 }): Promise<SessionUser | null> {
   const headers = nextHeaders();
 
@@ -19,9 +19,9 @@ export async function getAuth({
 
   if (!authToken) return null;
 
-  const secretKey = getSecretKey({ key });
+  const key = getSecretKey({ secretKey });
 
-  const decoded = await verifyJWT({ token: authToken, key: secretKey });
+  const decoded = await verifyJWT({ token: authToken, key });
 
   return decoded as SessionUser | null;
 }
