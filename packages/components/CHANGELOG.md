@@ -1,5 +1,12 @@
 # @protoxyz/components
 
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [ec9c19d]
+  - @protoxyz/auth@1.0.9
+
 ## 1.0.9
 
 ### Patch Changes
