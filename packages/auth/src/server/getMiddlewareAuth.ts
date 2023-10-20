@@ -11,10 +11,10 @@ export async function getMiddlewareToken({ headers }: { headers: Headers }) {
 
 export async function getMiddlewareAuth({
   req,
-  key,
+  secretKey,
 }: {
   req: NextRequest;
-  key?: string;
+  secretKey?: string;
 }) {
   const headers = req.headers;
 
@@ -22,9 +22,9 @@ export async function getMiddlewareAuth({
 
   if (!token) return null;
 
-  const secretKey = getSecretKey({ key });
+  const key = getSecretKey({ secretKey });
 
-  const decoded = await verifyJWT({ token, key: secretKey });
+  const decoded = await verifyJWT({ token, key });
 
   return decoded as SessionUser;
 }

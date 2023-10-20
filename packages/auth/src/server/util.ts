@@ -32,11 +32,12 @@ export async function getBearerToken({ headers }: { headers: Headers }) {
   return token;
 }
 
-export function getSecretKey({ key }: { key?: string | null | undefined }) {
-  const secretKey = key ?? process.env.PXYZ_SECRET_KEY ?? '';
+export function getSecretKey({
+  secretKey,
+}: {
+  secretKey?: string | null | undefined;
+}) {
+  if (secretKey) return secretKey;
 
-  if (!secretKey)
-    throw new Error('Missing PXYZ_SECRET_KEY environment variable');
-
-  return secretKey;
+  return process.env.PXYZ_SECRET_KEY;
 }
