@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.10
+
+### Patch Changes
+
+- d0e17bd: debug
+
 ## 1.0.9
 
 ### Patch Changes
