@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.8
+
+### Patch Changes
+
+- 4e85085: allow secretKey as middleware argument
+
 ## 1.0.7
 
 ### Patch Changes
