@@ -6,7 +6,7 @@ import { defaultPublicRoutes } from './util';
 
 interface AuthMiddlewareProps {
   publicKey?: string;
-  secretKey?: string;
+  secretKey?: string | (() => Promise<string>);
   beforeAuth?: (req: NextRequest) => Promise<void>;
   afterAuth?: (
     auth: SessionUser,
@@ -28,23 +28,28 @@ export function authMiddleware({
 
     const isPublic = isPublicRoute(req, { publicRoutes });
 
+    const key = await (typeof secretKey === 'function'
+      ? secretKey()
+      : secretKey);
+    console.log('key', key);
+
     if (isPublic) {
       if (afterAuth) {
-        const auth = await getMiddlewareAuth({ req, secretKey });
+        const auth = await getMiddlewareAuth({ req, secretKey: key });
         const result = await afterAuth(auth, req, true);
         if (result) return result;
       }
       return NextResponse.next();
     }
 
-    const session = await getMiddlewareAuth({ req, secretKey });
+    const session = await getMiddlewareAuth({ req, secretKey: key });
 
     if (!session && !currentPathIsSignInOrSignUp(req)) {
       return redirectToSignIn({ req, returnTo: req.url });
     }
 
     if (afterAuth) {
-      const auth = await getMiddlewareAuth({ req, secretKey });
+      const auth = await getMiddlewareAuth({ req, secretKey: key });
       const response = await afterAuth(auth, req, false);
       if (response) return response;
     }
