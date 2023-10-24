@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.33
+
+### Patch Changes
+
+- c739269: update types for content
+
 ## 2.0.32
 
 ### Patch Changes
