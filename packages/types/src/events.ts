@@ -181,10 +181,23 @@ export const NotificationsEvent = {
 export type NotificationsEvent =
   (typeof NotificationsEvent)[keyof typeof NotificationsEvent];
 
+export type AuthEventPayload = any;
+
+export const ContentEvent = {
+  document_created: 'document.created',
+  document_updated: 'document.updated',
+  document_deleted: 'document.deleted',
+
+  schema_created: 'schema.created',
+  schema_updated: 'schema.updated',
+  schema_deleted: 'schema.deleted',
+};
+
+export type ContentEvent = (typeof ContentEvent)[keyof typeof ContentEvent];
+
 export type ProtocolEvent = CoreEvent &
   AuthEvent &
   BillingEvent &
   MediaEvent &
-  NotificationsEvent;
-
-export type AuthEventPayload = any;
+  NotificationsEvent &
+  ContentEvent;

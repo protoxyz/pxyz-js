@@ -32,6 +32,10 @@ export * from './media/upload';
 export * from './media/file';
 export * from './media/transformation';
 
+// Contnet
+export * from './content/document';
+export * from './content/schema';
+
 // Core types
 export * from './tenant';
 export * from './api';
