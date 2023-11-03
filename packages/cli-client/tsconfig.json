@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "ES6"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "esnext",
+    "module": "esnext"
+  },
+  "extends": "@protoxyz/config-tsconfig/base.json",
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".turbo"]
+}
