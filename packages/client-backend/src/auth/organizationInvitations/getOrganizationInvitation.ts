@@ -34,18 +34,21 @@ export type AuthOrganizationInvitationsGetOrganizationInvitationResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationInvitationsGetOrganizationInvitationInput = undefined;
 export function getOrganizationInvitation(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationInvitationsGetOrganizationInvitationInput,
+    options?: RequestOptions<AuthOrganizationInvitationsGetOrganizationInvitationInput>,
     development?: boolean,
 ): Promise<AuthOrganizationInvitationsGetOrganizationInvitationResponse> {
-    return request<AuthOrganizationInvitationsGetOrganizationInvitationResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-invitations/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationInvitationsGetOrganizationInvitationInput, AuthOrganizationInvitationsGetOrganizationInvitationResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-invitations/${pathParams.id}',
+      options,
+  );
 }
 

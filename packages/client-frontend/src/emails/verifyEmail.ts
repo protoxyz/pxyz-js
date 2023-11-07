@@ -16,16 +16,23 @@ export type EmailsVerifyEmailResponse = {
 } | null 
 }
 
+export type EmailsVerifyEmailInput = {
+    code: string  
+};
+
 export function verifyEmail(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: EmailsVerifyEmailInput,
+    options?: RequestOptions<EmailsVerifyEmailInput>,
     development?: boolean,
 ): Promise<EmailsVerifyEmailResponse> {
-    return request<EmailsVerifyEmailResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<EmailsVerifyEmailInput, EmailsVerifyEmailResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/emails/${pathParams.emailId}/verify',
-        options,
+        {...options, body},
     );
 }

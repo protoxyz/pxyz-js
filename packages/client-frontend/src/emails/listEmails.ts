@@ -22,16 +22,21 @@ export type EmailsListEmailsResponse = {
 }  
 }
 
+export type EmailsListEmailsInput = undefined;
+
 export function listEmails(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: EmailsListEmailsInput,
+    options?: RequestOptions<EmailsListEmailsInput>,
     development?: boolean,
 ): Promise<EmailsListEmailsResponse> {
-    return request<EmailsListEmailsResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<EmailsListEmailsInput, EmailsListEmailsResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/emails',
-        options,
+        {...options, body},
     );
 }

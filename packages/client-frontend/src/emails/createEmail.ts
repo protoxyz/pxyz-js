@@ -16,16 +16,23 @@ export type EmailsCreateEmailResponse = {
 } | null 
 }
 
+export type EmailsCreateEmailInput = {
+    email: string  
+};
+
 export function createEmail(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: EmailsCreateEmailInput,
+    options?: RequestOptions<EmailsCreateEmailInput>,
     development?: boolean,
 ): Promise<EmailsCreateEmailResponse> {
-    return request<EmailsCreateEmailResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<EmailsCreateEmailInput, EmailsCreateEmailResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/emails',
-        options,
+        {...options, body},
     );
 }

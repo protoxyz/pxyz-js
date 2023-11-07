@@ -25,18 +25,21 @@ export type MediaUploadsListUploadsResponse = {
     next: string | null 
 }  
 }
-
+export type MediaUploadsListUploadsInput = undefined;
 export function listUploads(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaUploadsListUploadsInput,
+    options?: RequestOptions<MediaUploadsListUploadsInput>,
     development?: boolean,
 ): Promise<MediaUploadsListUploadsResponse> {
-    return request<MediaUploadsListUploadsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/media/uploads',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaUploadsListUploadsInput, MediaUploadsListUploadsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/media/uploads',
+      options,
+  );
 }
 

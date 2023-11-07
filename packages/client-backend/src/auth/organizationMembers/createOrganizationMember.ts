@@ -32,18 +32,27 @@ export type AuthOrganizationMembersCreateOrganizationMemberResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationMembersCreateOrganizationMemberInput = {
+    organizationId: string  
+    userId: string  
+    roleId: string | null 
+    privateMeta: any | null 
+    publicMeta: any | null 
+};
 export function createOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationMembersCreateOrganizationMemberInput,
+    options?: RequestOptions<AuthOrganizationMembersCreateOrganizationMemberInput>,
     development?: boolean,
 ): Promise<AuthOrganizationMembersCreateOrganizationMemberResponse> {
-    return request<AuthOrganizationMembersCreateOrganizationMemberResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-members',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationMembersCreateOrganizationMemberInput, AuthOrganizationMembersCreateOrganizationMemberResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-members',
+      options,
+  );
 }
 

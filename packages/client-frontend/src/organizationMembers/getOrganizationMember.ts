@@ -30,16 +30,21 @@ export type OrganizationMembersGetOrganizationMemberResponse = {
 } | null 
 }
 
+export type OrganizationMembersGetOrganizationMemberInput = undefined;
+
 export function getOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationMembersGetOrganizationMemberInput,
+    options?: RequestOptions<OrganizationMembersGetOrganizationMemberInput>,
     development?: boolean,
 ): Promise<OrganizationMembersGetOrganizationMemberResponse> {
-    return request<OrganizationMembersGetOrganizationMemberResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationMembersGetOrganizationMemberInput, OrganizationMembersGetOrganizationMemberResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.organizationId}/members/${pathParams.memberId}',
-        options,
+        {...options, body},
     );
 }

@@ -43,18 +43,21 @@ export type AuthOrganizationMembersListOrganizationMembersResponse = {
     next: string | null 
 }  
 }
-
+export type AuthOrganizationMembersListOrganizationMembersInput = undefined;
 export function listOrganizationMembers(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationMembersListOrganizationMembersInput,
+    options?: RequestOptions<AuthOrganizationMembersListOrganizationMembersInput>,
     development?: boolean,
 ): Promise<AuthOrganizationMembersListOrganizationMembersResponse> {
-    return request<AuthOrganizationMembersListOrganizationMembersResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/organizations/${pathParams.organizationId}/auth/organization-members',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationMembersListOrganizationMembersInput, AuthOrganizationMembersListOrganizationMembersResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/organizations/${pathParams.organizationId}/auth/organization-members',
+      options,
+  );
 }
 

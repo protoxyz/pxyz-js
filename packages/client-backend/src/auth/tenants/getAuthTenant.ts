@@ -15,6 +15,8 @@ export type AuthTenantsGetAuthTenantResponse = null | {
     auth: {
     id: string  
     tenantId: string  
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
     strategyUsernamePasswordEnabled: boolean  
     strategyEmailPasswordEnabled: boolean  
     strategyEmailLinkEnabled: boolean  
@@ -64,6 +66,7 @@ export type AuthTenantsGetAuthTenantResponse = null | {
     createdAt: string  
     updatedAt: string  
 } | null 
+    brand: Record<any, any>  
     domains: {
     primary: boolean  
     name: string  
@@ -71,18 +74,21 @@ export type AuthTenantsGetAuthTenantResponse = null | {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthTenantsGetAuthTenantInput = undefined;
 export function getAuthTenant(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthTenantsGetAuthTenantInput,
+    options?: RequestOptions<AuthTenantsGetAuthTenantInput>,
     development?: boolean,
 ): Promise<AuthTenantsGetAuthTenantResponse> {
-    return request<AuthTenantsGetAuthTenantResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/tenants/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthTenantsGetAuthTenantInput, AuthTenantsGetAuthTenantResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/tenants/${pathParams.id}',
+      options,
+  );
 }
 

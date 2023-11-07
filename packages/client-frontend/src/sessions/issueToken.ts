@@ -10,16 +10,24 @@ export type SessionsIssueTokenResponse = {
 } | null 
 }
 
+export type SessionsIssueTokenInput = {
+    orgId: string | null 
+    ttl: number  
+};
+
 export function issueToken(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SessionsIssueTokenInput,
+    options?: RequestOptions<SessionsIssueTokenInput>,
     development?: boolean,
 ): Promise<SessionsIssueTokenResponse> {
-    return request<SessionsIssueTokenResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SessionsIssueTokenInput, SessionsIssueTokenResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/sessions/token',
-        options,
+        {...options, body},
     );
 }

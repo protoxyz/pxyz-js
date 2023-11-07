@@ -16,16 +16,21 @@ export type DomainsSetPrimaryDomainResponse = {
     updatedAt: string  
 }
 
+export type DomainsSetPrimaryDomainInput = undefined;
+
 export function setPrimaryDomain(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: DomainsSetPrimaryDomainInput,
+    options?: RequestOptions<DomainsSetPrimaryDomainInput>,
     development?: boolean,
 ): Promise<DomainsSetPrimaryDomainResponse> {
-    return request<DomainsSetPrimaryDomainResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<DomainsSetPrimaryDomainInput, DomainsSetPrimaryDomainResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/domains/${pathParams.id}/primary',
-        options,
+        {...options, body},
     );
 }

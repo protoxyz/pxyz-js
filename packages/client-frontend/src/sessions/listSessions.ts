@@ -73,16 +73,21 @@ export type SessionsListSessionsResponse = {
 }  
 }
 
+export type SessionsListSessionsInput = undefined;
+
 export function listSessions(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SessionsListSessionsInput,
+    options?: RequestOptions<SessionsListSessionsInput>,
     development?: boolean,
 ): Promise<SessionsListSessionsResponse> {
-    return request<SessionsListSessionsResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SessionsListSessionsInput, SessionsListSessionsResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/sessions',
-        options,
+        {...options, body},
     );
 }

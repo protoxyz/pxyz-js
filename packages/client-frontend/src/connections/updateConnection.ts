@@ -20,16 +20,26 @@ export type ConnectionsUpdateConnectionResponse = {
 } | null 
 }
 
+export type ConnectionsUpdateConnectionInput = {
+    code: string | null 
+    profile: Record<any, any>  
+    rawProfile: Record<any, any>  
+    tokens: Record<any, any>  
+};
+
 export function updateConnection(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: ConnectionsUpdateConnectionInput,
+    options?: RequestOptions<ConnectionsUpdateConnectionInput>,
     development?: boolean,
 ): Promise<ConnectionsUpdateConnectionResponse> {
-    return request<ConnectionsUpdateConnectionResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<ConnectionsUpdateConnectionInput, ConnectionsUpdateConnectionResponse>(
         auth,
         'PATCH',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/connections/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

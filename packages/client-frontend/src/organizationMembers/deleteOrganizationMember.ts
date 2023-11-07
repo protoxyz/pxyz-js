@@ -30,16 +30,21 @@ export type OrganizationMembersDeleteOrganizationMemberResponse = {
 } | null 
 }
 
+export type OrganizationMembersDeleteOrganizationMemberInput = undefined;
+
 export function deleteOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationMembersDeleteOrganizationMemberInput,
+    options?: RequestOptions<OrganizationMembersDeleteOrganizationMemberInput>,
     development?: boolean,
 ): Promise<OrganizationMembersDeleteOrganizationMemberResponse> {
-    return request<OrganizationMembersDeleteOrganizationMemberResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationMembersDeleteOrganizationMemberInput, OrganizationMembersDeleteOrganizationMemberResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.orgId}/members/${pathParams.memberId}',
-        options,
+        {...options, body},
     );
 }

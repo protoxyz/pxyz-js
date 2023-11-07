@@ -16,16 +16,23 @@ export type PhonesCreatePhoneResponse = {
 } | null 
 }
 
+export type PhonesCreatePhoneInput = {
+    phone: string  
+};
+
 export function createPhone(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: PhonesCreatePhoneInput,
+    options?: RequestOptions<PhonesCreatePhoneInput>,
     development?: boolean,
 ): Promise<PhonesCreatePhoneResponse> {
-    return request<PhonesCreatePhoneResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<PhonesCreatePhoneInput, PhonesCreatePhoneResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/phones',
-        options,
+        {...options, body},
     );
 }

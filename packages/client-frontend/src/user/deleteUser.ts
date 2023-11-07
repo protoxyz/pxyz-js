@@ -76,16 +76,21 @@ export type UserDeleteUserResponse = {
 }  
 }
 
+export type UserDeleteUserInput = undefined;
+
 export function deleteUser(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: UserDeleteUserInput,
+    options?: RequestOptions<UserDeleteUserInput>,
     development?: boolean,
 ): Promise<UserDeleteUserResponse> {
-    return request<UserDeleteUserResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<UserDeleteUserInput, UserDeleteUserResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user',
-        options,
+        {...options, body},
     );
 }

@@ -63,16 +63,26 @@ export type SignInsPrepareFirstFactorResponse = {
 } | null 
 }
 
+export type SignInsPrepareFirstFactorInput = {
+    identifier: string  
+    strategy: string  
+    providerKey: string | null 
+    redirectUri: string | null 
+};
+
 export function prepareFirstFactor(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignInsPrepareFirstFactorInput,
+    options?: RequestOptions<SignInsPrepareFirstFactorInput>,
     development?: boolean,
 ): Promise<SignInsPrepareFirstFactorResponse> {
-    return request<SignInsPrepareFirstFactorResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignInsPrepareFirstFactorInput, SignInsPrepareFirstFactorResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ins/${pathParams.id}/prepare-first-factor',
-        options,
+        {...options, body},
     );
 }

@@ -13,8 +13,8 @@ export type TenantsUpdateMemberResponse = {
     verifiedAt: string | null 
 }[]  
     primaryEmailId: string | null 
-    name: string  
-}  
+    name: string | null 
+} | null 
     roleAdmin: boolean  
     roleEditOrganizations: boolean  
     roleEditUsers: boolean  
@@ -28,16 +28,31 @@ export type TenantsUpdateMemberResponse = {
     updatedAt: string  
 }
 
+export type TenantsUpdateMemberInput = {
+    roleAdmin: boolean  
+    roleEditOrganizations: boolean  
+    roleEditUsers: boolean  
+    roleEditConfig: boolean  
+    roleViewUsers: boolean  
+    roleViewOrganizations: boolean  
+    roleViewConfig: boolean  
+    roleViewBilling: boolean  
+    roleEditBilling: boolean  
+};
+
 export function updateMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsUpdateMemberInput,
+    options?: RequestOptions<TenantsUpdateMemberInput>,
     development?: boolean,
 ): Promise<TenantsUpdateMemberResponse> {
-    return request<TenantsUpdateMemberResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsUpdateMemberInput, TenantsUpdateMemberResponse>(
         auth,
         'PATCH',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/members/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

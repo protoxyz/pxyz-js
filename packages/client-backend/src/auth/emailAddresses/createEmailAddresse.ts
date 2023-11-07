@@ -10,18 +10,25 @@ export type AuthEmailAddressesCreateEmailAddresseResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthEmailAddressesCreateEmailAddresseInput = {
+    email: string  
+    userId: string  
+    tenantId: string  
+};
 export function createEmailAddresse(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesCreateEmailAddresseInput,
+    options?: RequestOptions<AuthEmailAddressesCreateEmailAddresseInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesCreateEmailAddresseResponse> {
-    return request<AuthEmailAddressesCreateEmailAddresseResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/email-addresses',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesCreateEmailAddresseInput, AuthEmailAddressesCreateEmailAddresseResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/email-addresses',
+      options,
+  );
 }
 

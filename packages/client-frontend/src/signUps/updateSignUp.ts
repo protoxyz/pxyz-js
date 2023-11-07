@@ -50,16 +50,28 @@ export type SignUpsUpdateSignUpResponse = {
 } | null 
 }
 
+export type SignUpsUpdateSignUpInput = {
+    phone: string  
+    email: string  
+    username: string  
+    name: string  
+    password: string  
+    providerKey: string  
+};
+
 export function updateSignUp(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignUpsUpdateSignUpInput,
+    options?: RequestOptions<SignUpsUpdateSignUpInput>,
     development?: boolean,
 ): Promise<SignUpsUpdateSignUpResponse> {
-    return request<SignUpsUpdateSignUpResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignUpsUpdateSignUpInput, SignUpsUpdateSignUpResponse>(
         auth,
         'PATCH',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ups/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

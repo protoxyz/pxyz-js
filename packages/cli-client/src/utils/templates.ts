@@ -1,4 +1,6 @@
 export const CLIENT_REQUEST_TS = `
+import paths from "path"
+
 export type HTTPMethod =
   | 'GET'
   | 'POST'
@@ -8,8 +10,8 @@ export type HTTPMethod =
   | 'OPTIONS'
   | 'HEAD';
 
-export interface RequestOptions {
-  body?: unknown;
+export interface RequestOptions<RequestInput> {
+  body?: RequestInput;
   headers?: Record<string, string>;
   path?: Record<string, string>;
   query?: Record<string, string>;
@@ -25,15 +27,15 @@ export type AuthOptions =
       secretKey: string;
     };
 
-export async function request<T>(
+export async function request<RequestInput, RequestOutput>(
   auth: AuthOptions,
   method: HTTPMethod,
   host: string,
   path: string,
-  options?: RequestOptions,
+  options?: RequestOptions<RequestInput>,
   debug?: boolean,
-): Promise<T> {
-  const url = buildUrl(host, path, options);
+): Promise<RequestOutput> {
+  const url = buildUrl<RequestInput>(host, path, options);
 
   if (debug) {
     console.log(\`[HTTP] \${method} \${url.toString()}\`);
@@ -96,7 +98,7 @@ export async function request<T>(
     }
     return Promise.resolve({
       error: response.message,
-    } as T);
+    } as RequestOutput);
   }
 
   if (debug) {
@@ -112,13 +114,13 @@ export async function request<T>(
     console.log(\`[HTTP] \${method} \${url.toString()} \${status.toString()}\`);
   }
 
-  return Promise.resolve(body as T);
+  return Promise.resolve(body as RequestOutput);
 }
 
-export function buildUrl(
+export function buildUrl<RequestInput>(
   host: string,
   path: string,
-  options?: RequestOptions,
+  options?: RequestOptions<RequestInput>,
 ): URL {
   const searchParams = new URLSearchParams();
   let updatedPath = path;
@@ -129,7 +131,7 @@ export function buildUrl(
     if (queryParams !== undefined) {
       Object.keys(queryParams).reduce((searchParams, key) => {
         if (queryParams[key] !== undefined)
-          searchParams.append(key, queryParams[key] ?? "");
+          searchParams.append(key, queryParams[key] ?? '');
         return searchParams;
       }, searchParams);
     }
@@ -137,16 +139,28 @@ export function buildUrl(
     if (pathParams !== undefined) {
       updatedPath = Object.keys(pathParams).reduce((path, key) => {
         const reg = new RegExp(\`{\${key}}\`, 'g');
-        path = path.replace(reg, encodeURIComponent(pathParams[key] ?? ""));
+        path = path.replace(reg, encodeURIComponent(pathParams[key] ?? ''));
         return path;
       }, updatedPath);
     }
   }
 
-  const url = new URL(updatedPath + '?' + searchParams.toString(), host);
+  // if host is localhost, replace with 127.0.0.1
+  if (host.includes('localhost')) {
+    host = host.replace('localhost', '127.0.0.1');
+  }
+
+  const existingUrl = new URL(host);
+  const existingPath = existingUrl.pathname;
+
+  const url = new URL(
+    paths.join(existingPath, updatedPath) + '?' + searchParams.toString(),
+    existingUrl.origin,
+  );
 
   return url;
 }
+
 `;
 
 export const CLIENT_PACKAGE = `
@@ -190,6 +204,7 @@ export const TSCONFIG = `
     "lib": ["ESNext", "DOM"],
     "target": "ESNext",
     "module": "ESNext",
+    "declaration": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
@@ -212,133 +227,3 @@ export default defineConfig([
   },
 ]);
 `;
-
-export const UTILS = `import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-`;
-
-export const UTILS_JS = `import { clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
-export function cn(...inputs) {
-  return twMerge(clsx(inputs))
-}
-`;
-
-export const TAILWIND_CONFIG = `/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{<%- extension %>,<%- extension %>x}',
-    './components/**/*.{<%- extension %>,<%- extension %>x}',
-    './app/**/*.{<%- extension %>,<%- extension %>x}',
-    './src/**/*.{<%- extension %>,<%- extension %>x}',
-	],
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
-}`;
-
-export const TAILWIND_CONFIG_WITH_VARIABLES = `/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{<%- extension %>,<%- extension %>x}',
-    './components/**/*.{<%- extension %>,<%- extension %>x}',
-    './app/**/*.{<%- extension %>,<%- extension %>x}',
-    './src/**/*.{<%- extension %>,<%- extension %>x}',
-	],
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
-}`;

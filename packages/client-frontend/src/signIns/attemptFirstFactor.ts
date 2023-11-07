@@ -63,16 +63,24 @@ export type SignInsAttemptFirstFactorResponse = {
 } | null 
 }
 
+export type SignInsAttemptFirstFactorInput = {
+    strategy: string | null 
+    code: string | null 
+};
+
 export function attemptFirstFactor(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignInsAttemptFirstFactorInput,
+    options?: RequestOptions<SignInsAttemptFirstFactorInput>,
     development?: boolean,
 ): Promise<SignInsAttemptFirstFactorResponse> {
-    return request<SignInsAttemptFirstFactorResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignInsAttemptFirstFactorInput, SignInsAttemptFirstFactorResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ins/${pathParams.id}/attempt-first-factor',
-        options,
+        {...options, body},
     );
 }

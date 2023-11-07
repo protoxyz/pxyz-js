@@ -10,18 +10,21 @@ export type AuthEmailAddressesGetEmailAddresseResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthEmailAddressesGetEmailAddresseInput = undefined;
 export function getEmailAddresse(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesGetEmailAddresseInput,
+    options?: RequestOptions<AuthEmailAddressesGetEmailAddresseInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesGetEmailAddresseResponse> {
-    return request<AuthEmailAddressesGetEmailAddresseResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/email-addresses/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesGetEmailAddresseInput, AuthEmailAddressesGetEmailAddresseResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/email-addresses/${pathParams.id}',
+      options,
+  );
 }
 

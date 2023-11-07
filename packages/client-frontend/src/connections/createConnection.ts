@@ -20,16 +20,23 @@ export type ConnectionsCreateConnectionResponse = {
 } | null 
 }
 
+export type ConnectionsCreateConnectionInput = {
+    providerKey: string  
+};
+
 export function createConnection(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: ConnectionsCreateConnectionInput,
+    options?: RequestOptions<ConnectionsCreateConnectionInput>,
     development?: boolean,
 ): Promise<ConnectionsCreateConnectionResponse> {
-    return request<ConnectionsCreateConnectionResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<ConnectionsCreateConnectionInput, ConnectionsCreateConnectionResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/connections',
-        options,
+        {...options, body},
     );
 }

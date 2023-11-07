@@ -20,16 +20,21 @@ export type ConnectionsDeleteConnectionResponse = {
 } | null 
 }
 
+export type ConnectionsDeleteConnectionInput = undefined;
+
 export function deleteConnection(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: ConnectionsDeleteConnectionInput,
+    options?: RequestOptions<ConnectionsDeleteConnectionInput>,
     development?: boolean,
 ): Promise<ConnectionsDeleteConnectionResponse> {
-    return request<ConnectionsDeleteConnectionResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<ConnectionsDeleteConnectionInput, ConnectionsDeleteConnectionResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/connections/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

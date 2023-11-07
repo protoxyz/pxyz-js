@@ -1,3 +1,5 @@
+export * from './getBrand'
+export * from './updateBrand'
 export * from './envVars'
 export * from './rotateSecretKey'
 export * from './listTenants'

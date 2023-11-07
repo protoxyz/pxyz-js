@@ -26,16 +26,21 @@ export type ConnectionsListConnectionsResponse = {
 }  
 }
 
+export type ConnectionsListConnectionsInput = undefined;
+
 export function listConnections(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: ConnectionsListConnectionsInput,
+    options?: RequestOptions<ConnectionsListConnectionsInput>,
     development?: boolean,
 ): Promise<ConnectionsListConnectionsResponse> {
-    return request<ConnectionsListConnectionsResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<ConnectionsListConnectionsInput, ConnectionsListConnectionsResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/connections',
-        options,
+        {...options, body},
     );
 }

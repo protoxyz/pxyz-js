@@ -16,18 +16,21 @@ export type AuthOrganizationsGetOrganizationResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationsGetOrganizationInput = undefined;
 export function getOrganization(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationsGetOrganizationInput,
+    options?: RequestOptions<AuthOrganizationsGetOrganizationInput>,
     development?: boolean,
 ): Promise<AuthOrganizationsGetOrganizationResponse> {
-    return request<AuthOrganizationsGetOrganizationResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organizations/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationsGetOrganizationInput, AuthOrganizationsGetOrganizationResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organizations/${pathParams.id}',
+      options,
+  );
 }
 

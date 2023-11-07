@@ -4,18 +4,27 @@ import { SERVERS } from "../../servers";
 export type NotificationsNotificationSendResponse = {
     status: string  
 }
-
+export type NotificationsNotificationSendInput = {
+    tenantId: string  
+    template: string  
+    channel: string  
+    variables: Record<any, any>  
+    input: Record<any, any>  
+};
 export function send(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: NotificationsNotificationSendInput,
+    options?: RequestOptions<NotificationsNotificationSendInput>,
     development?: boolean,
 ): Promise<NotificationsNotificationSendResponse> {
-    return request<NotificationsNotificationSendResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/notifications/send',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<NotificationsNotificationSendInput, NotificationsNotificationSendResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/notifications/send',
+      options,
+  );
 }
 

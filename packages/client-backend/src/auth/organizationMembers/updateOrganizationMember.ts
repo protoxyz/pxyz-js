@@ -32,18 +32,25 @@ export type AuthOrganizationMembersUpdateOrganizationMemberResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationMembersUpdateOrganizationMemberInput = {
+    roleId: string | null 
+    privateMeta: any | null 
+    publicMeta: any | null 
+};
 export function updateOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationMembersUpdateOrganizationMemberInput,
+    options?: RequestOptions<AuthOrganizationMembersUpdateOrganizationMemberInput>,
     development?: boolean,
 ): Promise<AuthOrganizationMembersUpdateOrganizationMemberResponse> {
-    return request<AuthOrganizationMembersUpdateOrganizationMemberResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-members/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationMembersUpdateOrganizationMemberInput, AuthOrganizationMembersUpdateOrganizationMemberResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-members/${pathParams.id}',
+      options,
+  );
 }
 

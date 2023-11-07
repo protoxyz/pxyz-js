@@ -3,16 +3,21 @@ import { SERVERS } from "../servers";
 
 export type TenantsDeleteMemberResponse = boolean
 
+export type TenantsDeleteMemberInput = undefined;
+
 export function deleteMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsDeleteMemberInput,
+    options?: RequestOptions<TenantsDeleteMemberInput>,
     development?: boolean,
 ): Promise<TenantsDeleteMemberResponse> {
-    return request<TenantsDeleteMemberResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsDeleteMemberInput, TenantsDeleteMemberResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/members/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

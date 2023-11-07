@@ -67,16 +67,21 @@ export type SessionsEndResponse = {
 } | null 
 }
 
+export type SessionsEndInput = undefined;
+
 export function end(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SessionsEndInput,
+    options?: RequestOptions<SessionsEndInput>,
     development?: boolean,
 ): Promise<SessionsEndResponse> {
-    return request<SessionsEndResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SessionsEndInput, SessionsEndResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/sessions/end',
-        options,
+        {...options, body},
     );
 }

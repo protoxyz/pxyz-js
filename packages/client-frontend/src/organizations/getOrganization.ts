@@ -18,16 +18,21 @@ export type OrganizationsGetOrganizationResponse = {
 } | null 
 }
 
+export type OrganizationsGetOrganizationInput = undefined;
+
 export function getOrganization(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationsGetOrganizationInput,
+    options?: RequestOptions<OrganizationsGetOrganizationInput>,
     development?: boolean,
 ): Promise<OrganizationsGetOrganizationResponse> {
-    return request<OrganizationsGetOrganizationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationsGetOrganizationInput, OrganizationsGetOrganizationResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.organizationId}',
-        options,
+        {...options, body},
     );
 }

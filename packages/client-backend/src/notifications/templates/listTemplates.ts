@@ -22,18 +22,21 @@ export type NotificationsTemplatesListTemplatesResponse = {
     next: string | null 
 }  
 }
-
+export type NotificationsTemplatesListTemplatesInput = undefined;
 export function listTemplates(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: NotificationsTemplatesListTemplatesInput,
+    options?: RequestOptions<NotificationsTemplatesListTemplatesInput>,
     development?: boolean,
 ): Promise<NotificationsTemplatesListTemplatesResponse> {
-    return request<NotificationsTemplatesListTemplatesResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/notifications/templates',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<NotificationsTemplatesListTemplatesInput, NotificationsTemplatesListTemplatesResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/notifications/templates',
+      options,
+  );
 }
 

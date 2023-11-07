@@ -32,18 +32,21 @@ export type AuthOrganizationMembersDeleteOrganizationMemberResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationMembersDeleteOrganizationMemberInput = undefined;
 export function deleteOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationMembersDeleteOrganizationMemberInput,
+    options?: RequestOptions<AuthOrganizationMembersDeleteOrganizationMemberInput>,
     development?: boolean,
 ): Promise<AuthOrganizationMembersDeleteOrganizationMemberResponse> {
-    return request<AuthOrganizationMembersDeleteOrganizationMemberResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-members/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationMembersDeleteOrganizationMemberInput, AuthOrganizationMembersDeleteOrganizationMemberResponse>(
+      auth,
+      'DELETE',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-members/${pathParams.id}',
+      options,
+  );
 }
 

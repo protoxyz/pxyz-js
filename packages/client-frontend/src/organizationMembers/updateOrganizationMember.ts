@@ -30,16 +30,25 @@ export type OrganizationMembersUpdateOrganizationMemberResponse = {
 } | null 
 }
 
+export type OrganizationMembersUpdateOrganizationMemberInput = {
+    roleId: string  
+    publicMeta: Record<any, any>  
+    privateMeta: Record<any, any>  
+};
+
 export function updateOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationMembersUpdateOrganizationMemberInput,
+    options?: RequestOptions<OrganizationMembersUpdateOrganizationMemberInput>,
     development?: boolean,
 ): Promise<OrganizationMembersUpdateOrganizationMemberResponse> {
-    return request<OrganizationMembersUpdateOrganizationMemberResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationMembersUpdateOrganizationMemberInput, OrganizationMembersUpdateOrganizationMemberResponse>(
         auth,
         'PATCH',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.orgId}/members/${pathParams.memberId}',
-        options,
+        {...options, body},
     );
 }

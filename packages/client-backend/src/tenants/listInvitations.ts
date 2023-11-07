@@ -6,6 +6,15 @@ export type TenantsListInvitationsResponse = {
     data: {
     id: string  
     tenantId: string  
+    tenant: {
+    id: string  
+    name: string  
+    slug: string  
+    logoId: string | null 
+    iconId: string | null 
+    environment: string  
+    createdAt: string  
+} | null 
     email: string  
     userId: string | null 
     user: {
@@ -16,7 +25,7 @@ export type TenantsListInvitationsResponse = {
     verifiedAt: string | null 
 }[]  
     primaryEmailId: string | null 
-    name: string  
+    name: string | null 
 } | null 
     roleAdmin: boolean  
     roleEditOrganizations: boolean  
@@ -40,16 +49,21 @@ export type TenantsListInvitationsResponse = {
 }  
 }
 
+export type TenantsListInvitationsInput = undefined;
+
 export function listInvitations(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsListInvitationsInput,
+    options?: RequestOptions<TenantsListInvitationsInput>,
     development?: boolean,
 ): Promise<TenantsListInvitationsResponse> {
-    return request<TenantsListInvitationsResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsListInvitationsInput, TenantsListInvitationsResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/${pathParams.tenantId}/invitations',
-        options,
+        {...options, body},
     );
 }

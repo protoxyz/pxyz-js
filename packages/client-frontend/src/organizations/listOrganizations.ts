@@ -33,16 +33,21 @@ export type OrganizationsListOrganizationsResponse = {
 }  
 }
 
+export type OrganizationsListOrganizationsInput = undefined;
+
 export function listOrganizations(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationsListOrganizationsInput,
+    options?: RequestOptions<OrganizationsListOrganizationsInput>,
     development?: boolean,
 ): Promise<OrganizationsListOrganizationsResponse> {
-    return request<OrganizationsListOrganizationsResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationsListOrganizationsInput, OrganizationsListOrganizationsResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations',
-        options,
+        {...options, body},
     );
 }

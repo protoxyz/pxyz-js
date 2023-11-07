@@ -19,6 +19,8 @@ export type TenantsGetByPublicKeyResponse = {
     auth: {
     id: string  
     tenantId: string  
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
     strategyUsernamePasswordEnabled: boolean  
     strategyEmailPasswordEnabled: boolean  
     strategyEmailLinkEnabled: boolean  
@@ -68,6 +70,7 @@ export type TenantsGetByPublicKeyResponse = {
     createdAt: string  
     updatedAt: string  
 } | null 
+    brand: Record<any, any>  
     domains: {
     primary: boolean  
     name: string  
@@ -78,16 +81,21 @@ export type TenantsGetByPublicKeyResponse = {
 } | null 
 }
 
+export type TenantsGetByPublicKeyInput = undefined;
+
 export function getByPublicKey(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsGetByPublicKeyInput,
+    options?: RequestOptions<TenantsGetByPublicKeyInput>,
     development?: boolean,
 ): Promise<TenantsGetByPublicKeyResponse> {
-    return request<TenantsGetByPublicKeyResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsGetByPublicKeyInput, TenantsGetByPublicKeyResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/pkey/${pathParams.publicKey}',
-        options,
+        {...options, body},
     );
 }

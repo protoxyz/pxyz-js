@@ -29,16 +29,21 @@ export type TenantsGetSubscriptionResponse = null | {
     updatedAt: string  
 }
 
+export type TenantsGetSubscriptionInput = undefined;
+
 export function getSubscription(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsGetSubscriptionInput,
+    options?: RequestOptions<TenantsGetSubscriptionInput>,
     development?: boolean,
 ): Promise<TenantsGetSubscriptionResponse> {
-    return request<TenantsGetSubscriptionResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsGetSubscriptionInput, TenantsGetSubscriptionResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/${pathParams.id}/subscription',
-        options,
+        {...options, body},
     );
 }

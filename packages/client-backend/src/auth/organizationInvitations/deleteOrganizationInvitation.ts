@@ -34,18 +34,21 @@ export type AuthOrganizationInvitationsDeleteOrganizationInvitationResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationInvitationsDeleteOrganizationInvitationInput = undefined;
 export function deleteOrganizationInvitation(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationInvitationsDeleteOrganizationInvitationInput,
+    options?: RequestOptions<AuthOrganizationInvitationsDeleteOrganizationInvitationInput>,
     development?: boolean,
 ): Promise<AuthOrganizationInvitationsDeleteOrganizationInvitationResponse> {
-    return request<AuthOrganizationInvitationsDeleteOrganizationInvitationResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-invitations/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationInvitationsDeleteOrganizationInvitationInput, AuthOrganizationInvitationsDeleteOrganizationInvitationResponse>(
+      auth,
+      'DELETE',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-invitations/${pathParams.id}',
+      options,
+  );
 }
 

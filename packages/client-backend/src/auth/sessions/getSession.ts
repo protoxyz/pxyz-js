@@ -33,6 +33,9 @@ export type AuthSessionsGetSessionResponse = {
     clientId: string | null 
     redirectUri: string | null 
     additionalScopes: Record<any, any>  
+    authenticatable: boolean | null 
+    autoConnectAccounts: boolean | null 
+    config: Record<any, any>  
     createdAt: string  
     updatedAt: string  
 } | null 
@@ -53,18 +56,21 @@ export type AuthSessionsGetSessionResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthSessionsGetSessionInput = undefined;
 export function getSession(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSessionsGetSessionInput,
+    options?: RequestOptions<AuthSessionsGetSessionInput>,
     development?: boolean,
 ): Promise<AuthSessionsGetSessionResponse> {
-    return request<AuthSessionsGetSessionResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/sessions/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSessionsGetSessionInput, AuthSessionsGetSessionResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/sessions/${pathParams.id}',
+      options,
+  );
 }
 

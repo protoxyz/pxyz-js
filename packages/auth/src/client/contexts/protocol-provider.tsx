@@ -345,8 +345,6 @@ export const ProtocolAuthProvider = ({
     loadTenant();
   }, []);
 
-  if (!state.loaded) return null;
-
   return (
     <ProtocolAuthContext.Provider value={{ state, setState }}>
       <ProtocolAuthFlowProvider routeState={routeState}>

@@ -4,18 +4,21 @@ import { SERVERS } from "../../servers";
 export type AuthSignInAttemptsDeleteSignInAttemptResponse = {
     deleted: boolean  
 }
-
+export type AuthSignInAttemptsDeleteSignInAttemptInput = undefined;
 export function deleteSignInAttempt(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSignInAttemptsDeleteSignInAttemptInput,
+    options?: RequestOptions<AuthSignInAttemptsDeleteSignInAttemptInput>,
     development?: boolean,
 ): Promise<AuthSignInAttemptsDeleteSignInAttemptResponse> {
-    return request<AuthSignInAttemptsDeleteSignInAttemptResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/sign-ins/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSignInAttemptsDeleteSignInAttemptInput, AuthSignInAttemptsDeleteSignInAttemptResponse>(
+      auth,
+      'DELETE',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/sign-ins/${pathParams.id}',
+      options,
+  );
 }
 

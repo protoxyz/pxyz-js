@@ -30,16 +30,26 @@ export type OrganizationMembersCreateOrganizationMemberResponse = {
 } | null 
 }
 
+export type OrganizationMembersCreateOrganizationMemberInput = {
+    userId: string  
+    roleId: string  
+    publicMeta: Record<any, any>  
+    privateMeta: Record<any, any>  
+};
+
 export function createOrganizationMember(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationMembersCreateOrganizationMemberInput,
+    options?: RequestOptions<OrganizationMembersCreateOrganizationMemberInput>,
     development?: boolean,
 ): Promise<OrganizationMembersCreateOrganizationMemberResponse> {
-    return request<OrganizationMembersCreateOrganizationMemberResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationMembersCreateOrganizationMemberInput, OrganizationMembersCreateOrganizationMemberResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.orgId}/members',
-        options,
+        {...options, body},
     );
 }

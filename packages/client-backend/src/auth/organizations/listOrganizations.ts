@@ -27,18 +27,21 @@ export type AuthOrganizationsListOrganizationsResponse = {
     next: string | null 
 }  
 }
-
+export type AuthOrganizationsListOrganizationsInput = undefined;
 export function listOrganizations(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationsListOrganizationsInput,
+    options?: RequestOptions<AuthOrganizationsListOrganizationsInput>,
     development?: boolean,
 ): Promise<AuthOrganizationsListOrganizationsResponse> {
-    return request<AuthOrganizationsListOrganizationsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/auth/organizations',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationsListOrganizationsInput, AuthOrganizationsListOrganizationsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/auth/organizations',
+      options,
+  );
 }
 

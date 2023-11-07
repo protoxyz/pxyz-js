@@ -9,18 +9,21 @@ export type AuthSignUpAttemptsGetSignUpAttemptResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthSignUpAttemptsGetSignUpAttemptInput = undefined;
 export function getSignUpAttempt(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSignUpAttemptsGetSignUpAttemptInput,
+    options?: RequestOptions<AuthSignUpAttemptsGetSignUpAttemptInput>,
     development?: boolean,
 ): Promise<AuthSignUpAttemptsGetSignUpAttemptResponse> {
-    return request<AuthSignUpAttemptsGetSignUpAttemptResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/sign-ups/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSignUpAttemptsGetSignUpAttemptInput, AuthSignUpAttemptsGetSignUpAttemptResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/sign-ups/${pathParams.id}',
+      options,
+  );
 }
 

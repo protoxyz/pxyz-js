@@ -14,18 +14,26 @@ export type AuthRolesUpdateRoleResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthRolesUpdateRoleInput = {
+    name: string  
+    description: string | null 
+    permissions: string [] | null 
+    tenantId: string  
+};
 export function updateRole(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthRolesUpdateRoleInput,
+    options?: RequestOptions<AuthRolesUpdateRoleInput>,
     development?: boolean,
 ): Promise<AuthRolesUpdateRoleResponse> {
-    return request<AuthRolesUpdateRoleResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/roles/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthRolesUpdateRoleInput, AuthRolesUpdateRoleResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/roles/${pathParams.id}',
+      options,
+  );
 }
 

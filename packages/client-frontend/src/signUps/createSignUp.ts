@@ -50,16 +50,29 @@ export type SignUpsCreateSignUpResponse = {
 } | null 
 }
 
+export type SignUpsCreateSignUpInput = {
+    phone: string  
+    email: string  
+    username: string  
+    name: string  
+    password: string  
+    providerKey: string  
+    redirectUri: string  
+};
+
 export function createSignUp(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignUpsCreateSignUpInput,
+    options?: RequestOptions<SignUpsCreateSignUpInput>,
     development?: boolean,
 ): Promise<SignUpsCreateSignUpResponse> {
-    return request<SignUpsCreateSignUpResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignUpsCreateSignUpInput, SignUpsCreateSignUpResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ups',
-        options,
+        {...options, body},
     );
 }

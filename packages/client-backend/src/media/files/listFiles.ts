@@ -29,18 +29,21 @@ export type MediaFilesListFilesResponse = {
     next: string | null 
 }  
 }
-
+export type MediaFilesListFilesInput = undefined;
 export function listFiles(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaFilesListFilesInput,
+    options?: RequestOptions<MediaFilesListFilesInput>,
     development?: boolean,
 ): Promise<MediaFilesListFilesResponse> {
-    return request<MediaFilesListFilesResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/media/files',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaFilesListFilesInput, MediaFilesListFilesResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/media/files',
+      options,
+  );
 }
 

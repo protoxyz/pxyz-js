@@ -45,18 +45,21 @@ export type AuthOrganizationInvitationsListOrganizationInvitationsResponse = {
     next: string | null 
 }  
 }
-
+export type AuthOrganizationInvitationsListOrganizationInvitationsInput = undefined;
 export function listOrganizationInvitations(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationInvitationsListOrganizationInvitationsInput,
+    options?: RequestOptions<AuthOrganizationInvitationsListOrganizationInvitationsInput>,
     development?: boolean,
 ): Promise<AuthOrganizationInvitationsListOrganizationInvitationsResponse> {
-    return request<AuthOrganizationInvitationsListOrganizationInvitationsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organizations/${pathParams.organizationId}/organization-invitations',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationInvitationsListOrganizationInvitationsInput, AuthOrganizationInvitationsListOrganizationInvitationsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organizations/${pathParams.organizationId}/organization-invitations',
+      options,
+  );
 }
 

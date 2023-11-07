@@ -10,21 +10,33 @@ export type TenantsCreateTenantResponse = {
     logoUri: string | null 
     iconId: string | null 
     iconUri: string | null 
+    brand: Record<any, any>  
     environment: string  
     createdAt: string  
     updatedAt: string  
 }
 
+export type TenantsCreateTenantInput = {
+    orgId: string | null 
+    name: string  
+    slug: string  
+    environment: string  
+    domain: string  
+};
+
 export function createTenant(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsCreateTenantInput,
+    options?: RequestOptions<TenantsCreateTenantInput>,
     development?: boolean,
 ): Promise<TenantsCreateTenantResponse> {
-    return request<TenantsCreateTenantResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsCreateTenantInput, TenantsCreateTenantResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants',
-        options,
+        {...options, body},
     );
 }

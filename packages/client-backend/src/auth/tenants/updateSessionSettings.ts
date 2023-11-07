@@ -15,6 +15,8 @@ export type AuthTenantsUpdateSessionSettingsResponse = null | {
     auth: {
     id: string  
     tenantId: string  
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
     strategyUsernamePasswordEnabled: boolean  
     strategyEmailPasswordEnabled: boolean  
     strategyEmailLinkEnabled: boolean  
@@ -64,6 +66,7 @@ export type AuthTenantsUpdateSessionSettingsResponse = null | {
     createdAt: string  
     updatedAt: string  
 } | null 
+    brand: Record<any, any>  
     domains: {
     primary: boolean  
     name: string  
@@ -71,18 +74,26 @@ export type AuthTenantsUpdateSessionSettingsResponse = null | {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthTenantsUpdateSessionSettingsInput = {
+    sessionMaximumLifetimeEnabled: boolean  
+    sessionMaximumLifetime: number  
+    sessionInactivityTimeoutEnabled: boolean  
+    sessionInactivityTimeout: number  
+};
 export function updateSessionSettings(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthTenantsUpdateSessionSettingsInput,
+    options?: RequestOptions<AuthTenantsUpdateSessionSettingsInput>,
     development?: boolean,
 ): Promise<AuthTenantsUpdateSessionSettingsResponse> {
-    return request<AuthTenantsUpdateSessionSettingsResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/tenants/${pathParams.id}/session',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthTenantsUpdateSessionSettingsInput, AuthTenantsUpdateSessionSettingsResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/tenants/${pathParams.id}/session',
+      options,
+  );
 }
 

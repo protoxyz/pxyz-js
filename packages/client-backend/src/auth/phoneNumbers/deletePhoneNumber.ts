@@ -4,18 +4,21 @@ import { SERVERS } from "../../servers";
 export type AuthPhoneNumbersDeletePhoneNumberResponse = {
     deleted: boolean  
 }
-
+export type AuthPhoneNumbersDeletePhoneNumberInput = undefined;
 export function deletePhoneNumber(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthPhoneNumbersDeletePhoneNumberInput,
+    options?: RequestOptions<AuthPhoneNumbersDeletePhoneNumberInput>,
     development?: boolean,
 ): Promise<AuthPhoneNumbersDeletePhoneNumberResponse> {
-    return request<AuthPhoneNumbersDeletePhoneNumberResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/phone-numbers',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthPhoneNumbersDeletePhoneNumberInput, AuthPhoneNumbersDeletePhoneNumberResponse>(
+      auth,
+      'DELETE',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/phone-numbers',
+      options,
+  );
 }
 

@@ -34,18 +34,23 @@ export type AuthOrganizationInvitationsUpdateOrganizationInvitationResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationInvitationsUpdateOrganizationInvitationInput = {
+    roleId: string | null 
+};
 export function updateOrganizationInvitation(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationInvitationsUpdateOrganizationInvitationInput,
+    options?: RequestOptions<AuthOrganizationInvitationsUpdateOrganizationInvitationInput>,
     development?: boolean,
 ): Promise<AuthOrganizationInvitationsUpdateOrganizationInvitationResponse> {
-    return request<AuthOrganizationInvitationsUpdateOrganizationInvitationResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-invitations/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationInvitationsUpdateOrganizationInvitationInput, AuthOrganizationInvitationsUpdateOrganizationInvitationResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-invitations/${pathParams.id}',
+      options,
+  );
 }
 

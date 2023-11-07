@@ -3,16 +3,21 @@ import { SERVERS } from "../servers";
 
 export type DomainsDeleteDomainResponse = boolean
 
+export type DomainsDeleteDomainInput = undefined;
+
 export function deleteDomain(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: DomainsDeleteDomainInput,
+    options?: RequestOptions<DomainsDeleteDomainInput>,
     development?: boolean,
 ): Promise<DomainsDeleteDomainResponse> {
-    return request<DomainsDeleteDomainResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<DomainsDeleteDomainInput, DomainsDeleteDomainResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/domains/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

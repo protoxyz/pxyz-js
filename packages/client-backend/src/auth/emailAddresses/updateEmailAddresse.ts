@@ -10,18 +10,24 @@ export type AuthEmailAddressesUpdateEmailAddresseResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthEmailAddressesUpdateEmailAddresseInput = {
+    id: string  
+    email: string  
+};
 export function updateEmailAddresse(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesUpdateEmailAddresseInput,
+    options?: RequestOptions<AuthEmailAddressesUpdateEmailAddresseInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesUpdateEmailAddresseResponse> {
-    return request<AuthEmailAddressesUpdateEmailAddresseResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/email-addresses',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesUpdateEmailAddresseInput, AuthEmailAddressesUpdateEmailAddresseResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/email-addresses',
+      options,
+  );
 }
 

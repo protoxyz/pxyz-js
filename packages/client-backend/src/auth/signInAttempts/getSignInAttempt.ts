@@ -20,6 +20,9 @@ export type AuthSignInAttemptsGetSignInAttemptResponse = {
     clientId: string | null 
     redirectUri: string | null 
     additionalScopes: Record<any, any>  
+    authenticatable: boolean | null 
+    autoConnectAccounts: boolean | null 
+    config: Record<any, any>  
     createdAt: string  
     updatedAt: string  
 } | null 
@@ -27,18 +30,21 @@ export type AuthSignInAttemptsGetSignInAttemptResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthSignInAttemptsGetSignInAttemptInput = undefined;
 export function getSignInAttempt(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSignInAttemptsGetSignInAttemptInput,
+    options?: RequestOptions<AuthSignInAttemptsGetSignInAttemptInput>,
     development?: boolean,
 ): Promise<AuthSignInAttemptsGetSignInAttemptResponse> {
-    return request<AuthSignInAttemptsGetSignInAttemptResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/sign-ins/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSignInAttemptsGetSignInAttemptInput, AuthSignInAttemptsGetSignInAttemptResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/sign-ins/${pathParams.id}',
+      options,
+  );
 }
 

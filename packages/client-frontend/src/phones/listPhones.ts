@@ -22,16 +22,21 @@ export type PhonesListPhonesResponse = {
 }  
 }
 
+export type PhonesListPhonesInput = undefined;
+
 export function listPhones(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: PhonesListPhonesInput,
+    options?: RequestOptions<PhonesListPhonesInput>,
     development?: boolean,
 ): Promise<PhonesListPhonesResponse> {
-    return request<PhonesListPhonesResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<PhonesListPhonesInput, PhonesListPhonesResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/phones',
-        options,
+        {...options, body},
     );
 }

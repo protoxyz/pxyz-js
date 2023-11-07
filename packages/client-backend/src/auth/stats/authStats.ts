@@ -7,18 +7,21 @@ export type AuthStatsAuthStatsResponse = {
     change: number 
     changeType: string  | string  | string  
 }[]
-
+export type AuthStatsAuthStatsInput = undefined;
 export function authStats(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthStatsAuthStatsInput,
+    options?: RequestOptions<AuthStatsAuthStatsInput>,
     development?: boolean,
 ): Promise<AuthStatsAuthStatsResponse> {
-    return request<AuthStatsAuthStatsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/stats',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthStatsAuthStatsInput, AuthStatsAuthStatsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/stats',
+      options,
+  );
 }
 

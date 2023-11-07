@@ -10,18 +10,23 @@ export type AuthEmailAddressesVerifyEmailAddresseResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthEmailAddressesVerifyEmailAddresseInput = {
+    id: string  
+};
 export function verifyEmailAddresse(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesVerifyEmailAddresseInput,
+    options?: RequestOptions<AuthEmailAddressesVerifyEmailAddresseInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesVerifyEmailAddresseResponse> {
-    return request<AuthEmailAddressesVerifyEmailAddresseResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/email-addresses/verify',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesVerifyEmailAddresseInput, AuthEmailAddressesVerifyEmailAddresseResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/email-addresses/verify',
+      options,
+  );
 }
 

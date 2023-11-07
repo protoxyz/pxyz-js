@@ -16,16 +16,24 @@ export type DomainsCreateDomainResponse = {
     updatedAt: string  
 }
 
+export type DomainsCreateDomainInput = {
+    tenantId: string  
+    name: string  
+};
+
 export function createDomain(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: DomainsCreateDomainInput,
+    options?: RequestOptions<DomainsCreateDomainInput>,
     development?: boolean,
 ): Promise<DomainsCreateDomainResponse> {
-    return request<DomainsCreateDomainResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<DomainsCreateDomainInput, DomainsCreateDomainResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/domains',
-        options,
+        {...options, body},
     );
 }

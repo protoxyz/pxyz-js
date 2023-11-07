@@ -38,16 +38,21 @@ export type OrganizationMembersListOrganizationMembersResponse = {
 } | null 
 }
 
+export type OrganizationMembersListOrganizationMembersInput = undefined;
+
 export function listOrganizationMembers(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationMembersListOrganizationMembersInput,
+    options?: RequestOptions<OrganizationMembersListOrganizationMembersInput>,
     development?: boolean,
 ): Promise<OrganizationMembersListOrganizationMembersResponse> {
-    return request<OrganizationMembersListOrganizationMembersResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationMembersListOrganizationMembersInput, OrganizationMembersListOrganizationMembersResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.orgId}/members',
-        options,
+        {...options, body},
     );
 }

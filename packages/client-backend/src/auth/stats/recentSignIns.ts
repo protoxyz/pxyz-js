@@ -33,6 +33,9 @@ export type AuthStatsRecentSignInsResponse = {
     clientId: string | null 
     redirectUri: string | null 
     additionalScopes: Record<any, any>  
+    authenticatable: boolean | null 
+    autoConnectAccounts: boolean | null 
+    config: Record<any, any>  
     createdAt: string  
     updatedAt: string  
 } | null 
@@ -53,18 +56,21 @@ export type AuthStatsRecentSignInsResponse = {
     createdAt: string  
     updatedAt: string  
 }[]
-
+export type AuthStatsRecentSignInsInput = undefined;
 export function recentSignIns(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthStatsRecentSignInsInput,
+    options?: RequestOptions<AuthStatsRecentSignInsInput>,
     development?: boolean,
 ): Promise<AuthStatsRecentSignInsResponse> {
-    return request<AuthStatsRecentSignInsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/stats/recent-sign-ins',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthStatsRecentSignInsInput, AuthStatsRecentSignInsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/stats/recent-sign-ins',
+      options,
+  );
 }
 

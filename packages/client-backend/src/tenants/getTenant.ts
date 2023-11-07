@@ -10,21 +10,27 @@ export type TenantsGetTenantResponse = {
     logoUri: string | null 
     iconId: string | null 
     iconUri: string | null 
+    brand: Record<any, any>  
     environment: string  
     createdAt: string  
     updatedAt: string  
 }
 
+export type TenantsGetTenantInput = undefined;
+
 export function getTenant(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsGetTenantInput,
+    options?: RequestOptions<TenantsGetTenantInput>,
     development?: boolean,
 ): Promise<TenantsGetTenantResponse> {
-    return request<TenantsGetTenantResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsGetTenantInput, TenantsGetTenantResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

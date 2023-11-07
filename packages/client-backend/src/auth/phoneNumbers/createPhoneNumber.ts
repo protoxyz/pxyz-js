@@ -10,18 +10,25 @@ export type AuthPhoneNumbersCreatePhoneNumberResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthPhoneNumbersCreatePhoneNumberInput = {
+    tenantId: string  
+    userId: string  
+    phone: string  
+};
 export function createPhoneNumber(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthPhoneNumbersCreatePhoneNumberInput,
+    options?: RequestOptions<AuthPhoneNumbersCreatePhoneNumberInput>,
     development?: boolean,
 ): Promise<AuthPhoneNumbersCreatePhoneNumberResponse> {
-    return request<AuthPhoneNumbersCreatePhoneNumberResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/phone-numbers',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthPhoneNumbersCreatePhoneNumberInput, AuthPhoneNumbersCreatePhoneNumberResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/phone-numbers',
+      options,
+  );
 }
 

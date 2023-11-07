@@ -15,8 +15,8 @@ export type TenantsListMembersResponse = {
     verifiedAt: string | null 
 }[]  
     primaryEmailId: string | null 
-    name: string  
-}  
+    name: string | null 
+} | null 
     roleAdmin: boolean  
     roleEditOrganizations: boolean  
     roleEditUsers: boolean  
@@ -39,16 +39,21 @@ export type TenantsListMembersResponse = {
 }  
 }
 
+export type TenantsListMembersInput = undefined;
+
 export function listMembers(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsListMembersInput,
+    options?: RequestOptions<TenantsListMembersInput>,
     development?: boolean,
 ): Promise<TenantsListMembersResponse> {
-    return request<TenantsListMembersResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsListMembersInput, TenantsListMembersResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/${pathParams.tenantId}/members',
-        options,
+        {...options, body},
     );
 }

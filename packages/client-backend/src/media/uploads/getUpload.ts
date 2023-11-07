@@ -14,18 +14,21 @@ export type MediaUploadsGetUploadResponse = {
     updatedAt: string  
     deletedAt: string | null 
 }
-
+export type MediaUploadsGetUploadInput = undefined;
 export function getUpload(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaUploadsGetUploadInput,
+    options?: RequestOptions<MediaUploadsGetUploadInput>,
     development?: boolean,
 ): Promise<MediaUploadsGetUploadResponse> {
-    return request<MediaUploadsGetUploadResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/media/uploads/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaUploadsGetUploadInput, MediaUploadsGetUploadResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/media/uploads/${pathParams.id}',
+      options,
+  );
 }
 

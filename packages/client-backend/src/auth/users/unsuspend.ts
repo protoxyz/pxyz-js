@@ -42,18 +42,21 @@ export type AuthUsersUnsuspendResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthUsersUnsuspendInput = undefined;
 export function unsuspend(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthUsersUnsuspendInput,
+    options?: RequestOptions<AuthUsersUnsuspendInput>,
     development?: boolean,
 ): Promise<AuthUsersUnsuspendResponse> {
-    return request<AuthUsersUnsuspendResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.id}/unsuspend',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthUsersUnsuspendInput, AuthUsersUnsuspendResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.id}/unsuspend',
+      options,
+  );
 }
 

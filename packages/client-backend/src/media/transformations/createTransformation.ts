@@ -12,6 +12,20 @@ export type MediaTransformationsCreateTransformationResponse = {
     outputWidth: number  
     outputHeight: number  
     outputResizeMode: string  
+    steps: Record<any, any>  
+    createdAt: string  
+    updatedAt: string  
+}
+export type MediaTransformationsCreateTransformationInput = {
+    tenantId: string  
+    name: string  
+    description: string  
+    outputFormat: string  
+    outputQuality: number  
+    outputCompression: number  
+    outputWidth: number  
+    outputHeight: number  
+    outputResizeMode: string  
     steps: {
     type: string  
     options: {
@@ -87,21 +101,21 @@ export type MediaTransformationsCreateTransformationResponse = {
     opacity: number | null 
 }  
 }[]  
-    createdAt: string  
-    updatedAt: string  
-}
-
+};
 export function createTransformation(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaTransformationsCreateTransformationInput,
+    options?: RequestOptions<MediaTransformationsCreateTransformationInput>,
     development?: boolean,
 ): Promise<MediaTransformationsCreateTransformationResponse> {
-    return request<MediaTransformationsCreateTransformationResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/media/transformations',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaTransformationsCreateTransformationInput, MediaTransformationsCreateTransformationResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/media/transformations',
+      options,
+  );
 }
 

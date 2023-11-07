@@ -6,16 +6,21 @@ export type EmailsDeleteEmailResponse = {
     error: string | null 
 }
 
+export type EmailsDeleteEmailInput = undefined;
+
 export function deleteEmail(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: EmailsDeleteEmailInput,
+    options?: RequestOptions<EmailsDeleteEmailInput>,
     development?: boolean,
 ): Promise<EmailsDeleteEmailResponse> {
-    return request<EmailsDeleteEmailResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<EmailsDeleteEmailInput, EmailsDeleteEmailResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/emails/${pathParams.emailId}',
-        options,
+        {...options, body},
     );
 }

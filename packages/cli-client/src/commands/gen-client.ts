@@ -148,7 +148,7 @@ export const genClient = new Command()
               operationIdSplit.shift(),
             );
 
-            const responseTypeName =
+            const typeName =
               camelCaseToClassName(product) +
               camelCaseToClassName(resource) +
               camelCaseToClassName(action);
@@ -156,26 +156,30 @@ export const genClient = new Command()
             const response = (operation as any).responses['200'];
 
             const responseObject = response.content['application/json'].schema;
+            const requestBody = (operation as any).requestBody?.content[
+              'application/json'
+            ].schema;
 
             const request = `import { request, RequestOptions, AuthOptions } from "../../request";
 import { SERVERS } from "../../servers";
 
-export type ${responseTypeName}Response = ${responseObjectToInterface(
-              responseObject,
-            )}
-
+export type ${typeName}Response = ${responseObjectToInterface(responseObject)}
+${actionInput(typeName, requestBody)}
 export function ${action}(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: ${typeName}Input,
+    options?: RequestOptions<${typeName}Input>,
     development?: boolean,
-): Promise<${responseTypeName}Response> {
-    return request<${responseTypeName}Response>(
-        auth,
-        '${method.toUpperCase()}',
-        development ? SERVERS.development : SERVERS.production,
-        '${requestPath}',
-        options,
-    );
+): Promise<${typeName}Response> {
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<${typeName}Input, ${typeName}Response>(
+      auth,
+      '${method.toUpperCase()}',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '${requestPath}',
+      options,
+  );
 }
 
 `;
@@ -211,28 +215,36 @@ export function ${action}(
               resource,
               operationIdSplit.shift(),
             );
-            const responseTypeName =
+            const typeName =
               camelCaseToClassName(resource) + camelCaseToClassName(action);
             const response = (operation as any).responses['200'];
             const responseObject = response.content['application/json'].schema;
+
+            const requestBody = (operation as any).requestBody?.content[
+              'application/json'
+            ].schema;
+
             const request = `import { request, RequestOptions, AuthOptions } from "../request";
 import { SERVERS } from "../servers";
 
-export type ${responseTypeName}Response = ${responseObjectToInterface(
-              responseObject,
-            )}
+export type ${typeName}Response = ${responseObjectToInterface(responseObject)}
+
+${actionInput(typeName, requestBody)}
 
 export function ${action}(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: ${typeName}Input,
+    options?: RequestOptions<${typeName}Input>,
     development?: boolean,
-): Promise<${responseTypeName}Response> {
-    return request<${responseTypeName}Response>(
+): Promise<${typeName}Response> {
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<${typeName}Input, ${typeName}Response>(
         auth,
         '${method.toUpperCase()}',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '${requestPath}',
-        options,
+        {...options, body},
     );
 }
 `;
@@ -260,6 +272,16 @@ export function ${action}(
       handleError(error);
     }
   });
+
+function actionInput(typeName: string, requestBody: any) {
+  if (!requestBody) {
+    return `export type ${typeName}Input = undefined;`;
+  } else {
+    return `export type ${typeName}Input = ${responseObjectToInterface(
+      requestBody,
+    )};`;
+  }
+}
 
 function camelCaseToClassName(camelCase: string) {
   return (
@@ -496,6 +518,9 @@ interface ResponseObject {
 }
 
 function responseObjectToInterface(responseObject: ResponseObject): string {
+  if (!responseObject) {
+    return 'any';
+  }
   switch (responseObject.type) {
     case 'object':
       if (responseObject.properties === undefined) {

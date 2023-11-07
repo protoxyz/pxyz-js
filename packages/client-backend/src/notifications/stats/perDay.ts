@@ -5,18 +5,21 @@ export type NotificationsStatsPerDayResponse = {
     day: string  
     count: number 
 }[]
-
+export type NotificationsStatsPerDayInput = undefined;
 export function perDay(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: NotificationsStatsPerDayInput,
+    options?: RequestOptions<NotificationsStatsPerDayInput>,
     development?: boolean,
 ): Promise<NotificationsStatsPerDayResponse> {
-    return request<NotificationsStatsPerDayResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/notifications/stats/day',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<NotificationsStatsPerDayInput, NotificationsStatsPerDayResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/notifications/stats/day',
+      options,
+  );
 }
 

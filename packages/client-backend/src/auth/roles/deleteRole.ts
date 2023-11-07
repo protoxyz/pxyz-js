@@ -14,18 +14,21 @@ export type AuthRolesDeleteRoleResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthRolesDeleteRoleInput = undefined;
 export function deleteRole(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthRolesDeleteRoleInput,
+    options?: RequestOptions<AuthRolesDeleteRoleInput>,
     development?: boolean,
 ): Promise<AuthRolesDeleteRoleResponse> {
-    return request<AuthRolesDeleteRoleResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/roles/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthRolesDeleteRoleInput, AuthRolesDeleteRoleResponse>(
+      auth,
+      'DELETE',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/roles/${pathParams.id}',
+      options,
+  );
 }
 

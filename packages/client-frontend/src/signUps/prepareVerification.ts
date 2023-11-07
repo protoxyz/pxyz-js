@@ -50,16 +50,23 @@ export type SignUpsPrepareVerificationResponse = {
 } | null 
 }
 
+export type SignUpsPrepareVerificationInput = {
+    strategy: string  
+};
+
 export function prepareVerification(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignUpsPrepareVerificationInput,
+    options?: RequestOptions<SignUpsPrepareVerificationInput>,
     development?: boolean,
 ): Promise<SignUpsPrepareVerificationResponse> {
-    return request<SignUpsPrepareVerificationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignUpsPrepareVerificationInput, SignUpsPrepareVerificationResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ups/${pathParams.id}/prepare-verification',
-        options,
+        {...options, body},
     );
 }

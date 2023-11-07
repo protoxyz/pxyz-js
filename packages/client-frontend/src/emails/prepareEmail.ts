@@ -6,16 +6,21 @@ export type EmailsPrepareEmailResponse = {
     error: string | null 
 }
 
+export type EmailsPrepareEmailInput = undefined;
+
 export function prepareEmail(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: EmailsPrepareEmailInput,
+    options?: RequestOptions<EmailsPrepareEmailInput>,
     development?: boolean,
 ): Promise<EmailsPrepareEmailResponse> {
-    return request<EmailsPrepareEmailResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<EmailsPrepareEmailInput, EmailsPrepareEmailResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/emails/${pathParams.emailId}/prepare',
-        options,
+        {...options, body},
     );
 }

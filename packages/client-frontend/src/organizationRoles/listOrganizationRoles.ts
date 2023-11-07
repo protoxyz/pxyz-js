@@ -22,16 +22,21 @@ export type OrganizationRolesListOrganizationRolesResponse = {
 } | null 
 }
 
+export type OrganizationRolesListOrganizationRolesInput = undefined;
+
 export function listOrganizationRoles(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationRolesListOrganizationRolesInput,
+    options?: RequestOptions<OrganizationRolesListOrganizationRolesInput>,
     development?: boolean,
 ): Promise<OrganizationRolesListOrganizationRolesResponse> {
-    return request<OrganizationRolesListOrganizationRolesResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationRolesListOrganizationRolesInput, OrganizationRolesListOrganizationRolesResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/organizations/${pathParams.organizationId}/roles',
-        options,
+        {...options, body},
     );
 }

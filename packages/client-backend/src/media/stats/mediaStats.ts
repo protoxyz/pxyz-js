@@ -8,18 +8,21 @@ export type MediaStatsMediaStatsResponse = {
     change: number 
     changeType: string  
 }[]
-
+export type MediaStatsMediaStatsInput = undefined;
 export function mediaStats(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaStatsMediaStatsInput,
+    options?: RequestOptions<MediaStatsMediaStatsInput>,
     development?: boolean,
 ): Promise<MediaStatsMediaStatsResponse> {
-    return request<MediaStatsMediaStatsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/media/stats',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaStatsMediaStatsInput, MediaStatsMediaStatsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/media/stats',
+      options,
+  );
 }
 

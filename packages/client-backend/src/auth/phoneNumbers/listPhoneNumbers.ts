@@ -21,18 +21,21 @@ export type AuthPhoneNumbersListPhoneNumbersResponse = {
     next: string | null 
 }  
 }
-
+export type AuthPhoneNumbersListPhoneNumbersInput = undefined;
 export function listPhoneNumbers(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthPhoneNumbersListPhoneNumbersInput,
+    options?: RequestOptions<AuthPhoneNumbersListPhoneNumbersInput>,
     development?: boolean,
 ): Promise<AuthPhoneNumbersListPhoneNumbersResponse> {
-    return request<AuthPhoneNumbersListPhoneNumbersResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/auth/phone-numbers',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthPhoneNumbersListPhoneNumbersInput, AuthPhoneNumbersListPhoneNumbersResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/auth/phone-numbers',
+      options,
+  );
 }
 

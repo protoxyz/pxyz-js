@@ -11,18 +11,21 @@ export type NotificationsTemplatesGetTemplateResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type NotificationsTemplatesGetTemplateInput = undefined;
 export function getTemplate(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: NotificationsTemplatesGetTemplateInput,
+    options?: RequestOptions<NotificationsTemplatesGetTemplateInput>,
     development?: boolean,
 ): Promise<NotificationsTemplatesGetTemplateResponse> {
-    return request<NotificationsTemplatesGetTemplateResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/notifications/templates/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<NotificationsTemplatesGetTemplateInput, NotificationsTemplatesGetTemplateResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/notifications/templates/${pathParams.id}',
+      options,
+  );
 }
 

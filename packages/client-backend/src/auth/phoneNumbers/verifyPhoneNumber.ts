@@ -10,18 +10,23 @@ export type AuthPhoneNumbersVerifyPhoneNumberResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthPhoneNumbersVerifyPhoneNumberInput = {
+    id: string  
+};
 export function verifyPhoneNumber(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthPhoneNumbersVerifyPhoneNumberInput,
+    options?: RequestOptions<AuthPhoneNumbersVerifyPhoneNumberInput>,
     development?: boolean,
 ): Promise<AuthPhoneNumbersVerifyPhoneNumberResponse> {
-    return request<AuthPhoneNumbersVerifyPhoneNumberResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/phone-numbers/verify',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthPhoneNumbersVerifyPhoneNumberInput, AuthPhoneNumbersVerifyPhoneNumberResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/phone-numbers/verify',
+      options,
+  );
 }
 

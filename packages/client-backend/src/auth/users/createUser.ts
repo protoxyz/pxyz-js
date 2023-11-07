@@ -42,18 +42,31 @@ export type AuthUsersCreateUserResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthUsersCreateUserInput = {
+    tenantId: string  
+    name: string  
+    email: string  
+    username: string  
+    roleId: string  
+    phone: string  
+    password: string  
+    publicMeta: Record<any, any>  
+    privateMeta: Record<any, any>  
+};
 export function createUser(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthUsersCreateUserInput,
+    options?: RequestOptions<AuthUsersCreateUserInput>,
     development?: boolean,
 ): Promise<AuthUsersCreateUserResponse> {
-    return request<AuthUsersCreateUserResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthUsersCreateUserInput, AuthUsersCreateUserResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users',
+      options,
+  );
 }
 

@@ -7,16 +7,21 @@ export type OrganizationsDeleteOrganizationResponse = {
     data: any | null 
 }
 
+export type OrganizationsDeleteOrganizationInput = undefined;
+
 export function deleteOrganization(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationsDeleteOrganizationInput,
+    options?: RequestOptions<OrganizationsDeleteOrganizationInput>,
     development?: boolean,
 ): Promise<OrganizationsDeleteOrganizationResponse> {
-    return request<OrganizationsDeleteOrganizationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationsDeleteOrganizationInput, OrganizationsDeleteOrganizationResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.orgId}',
-        options,
+        {...options, body},
     );
 }

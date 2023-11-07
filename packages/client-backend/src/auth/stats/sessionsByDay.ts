@@ -5,18 +5,21 @@ export type AuthStatsSessionsByDayResponse = {
     date: string  
     count: number 
 }[]
-
+export type AuthStatsSessionsByDayInput = undefined;
 export function sessionsByDay(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthStatsSessionsByDayInput,
+    options?: RequestOptions<AuthStatsSessionsByDayInput>,
     development?: boolean,
 ): Promise<AuthStatsSessionsByDayResponse> {
-    return request<AuthStatsSessionsByDayResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/stats/sessions-by-day',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthStatsSessionsByDayInput, AuthStatsSessionsByDayResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/stats/sessions-by-day',
+      options,
+  );
 }
 

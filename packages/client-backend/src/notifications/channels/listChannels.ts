@@ -24,18 +24,21 @@ export type NotificationsChannelsListChannelsResponse = {
     next: string | null 
 }  
 }
-
+export type NotificationsChannelsListChannelsInput = undefined;
 export function listChannels(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: NotificationsChannelsListChannelsInput,
+    options?: RequestOptions<NotificationsChannelsListChannelsInput>,
     development?: boolean,
 ): Promise<NotificationsChannelsListChannelsResponse> {
-    return request<NotificationsChannelsListChannelsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/notifications/channels',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<NotificationsChannelsListChannelsInput, NotificationsChannelsListChannelsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/notifications/channels',
+      options,
+  );
 }
 

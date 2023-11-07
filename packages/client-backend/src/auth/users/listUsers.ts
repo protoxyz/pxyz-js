@@ -53,18 +53,21 @@ export type AuthUsersListUsersResponse = {
     next: string | null 
 }  
 }
-
+export type AuthUsersListUsersInput = undefined;
 export function listUsers(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthUsersListUsersInput,
+    options?: RequestOptions<AuthUsersListUsersInput>,
     development?: boolean,
 ): Promise<AuthUsersListUsersResponse> {
-    return request<AuthUsersListUsersResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthUsersListUsersInput, AuthUsersListUsersResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users',
+      options,
+  );
 }
 

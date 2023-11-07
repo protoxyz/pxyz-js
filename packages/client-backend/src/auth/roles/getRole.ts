@@ -14,18 +14,21 @@ export type AuthRolesGetRoleResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthRolesGetRoleInput = undefined;
 export function getRole(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthRolesGetRoleInput,
+    options?: RequestOptions<AuthRolesGetRoleInput>,
     development?: boolean,
 ): Promise<AuthRolesGetRoleResponse> {
-    return request<AuthRolesGetRoleResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/roles/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthRolesGetRoleInput, AuthRolesGetRoleResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/roles/${pathParams.id}',
+      options,
+  );
 }
 

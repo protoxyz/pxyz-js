@@ -7,18 +7,21 @@ export type NotificationsStatsNotificationsStatsResponse = {
     change: number 
     changeType: string  
 }[]
-
+export type NotificationsStatsNotificationsStatsInput = undefined;
 export function notificationsStats(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: NotificationsStatsNotificationsStatsInput,
+    options?: RequestOptions<NotificationsStatsNotificationsStatsInput>,
     development?: boolean,
 ): Promise<NotificationsStatsNotificationsStatsResponse> {
-    return request<NotificationsStatsNotificationsStatsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/notifications/stats',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<NotificationsStatsNotificationsStatsInput, NotificationsStatsNotificationsStatsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/notifications/stats',
+      options,
+  );
 }
 

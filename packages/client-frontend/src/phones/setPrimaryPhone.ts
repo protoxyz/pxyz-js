@@ -16,16 +16,21 @@ export type PhonesSetPrimaryPhoneResponse = {
 } | null 
 }
 
+export type PhonesSetPrimaryPhoneInput = undefined;
+
 export function setPrimaryPhone(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: PhonesSetPrimaryPhoneInput,
+    options?: RequestOptions<PhonesSetPrimaryPhoneInput>,
     development?: boolean,
 ): Promise<PhonesSetPrimaryPhoneResponse> {
-    return request<PhonesSetPrimaryPhoneResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<PhonesSetPrimaryPhoneInput, PhonesSetPrimaryPhoneResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/phones/${pathParams.phoneId}/primary',
-        options,
+        {...options, body},
     );
 }

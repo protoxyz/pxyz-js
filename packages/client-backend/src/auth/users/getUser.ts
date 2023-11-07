@@ -45,18 +45,21 @@ export type AuthUsersGetUserResponse = {
     updatedAt: string  
 }  
 }
-
+export type AuthUsersGetUserInput = undefined;
 export function getUser(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthUsersGetUserInput,
+    options?: RequestOptions<AuthUsersGetUserInput>,
     development?: boolean,
 ): Promise<AuthUsersGetUserResponse> {
-    return request<AuthUsersGetUserResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthUsersGetUserInput, AuthUsersGetUserResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.id}',
+      options,
+  );
 }
 

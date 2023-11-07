@@ -12,6 +12,20 @@ export type MediaTransformationsUpdateTransformationResponse = {
     outputWidth: number  
     outputHeight: number  
     outputResizeMode: string  
+    steps: Record<any, any>  
+    createdAt: string  
+    updatedAt: string  
+}
+export type MediaTransformationsUpdateTransformationInput = {
+    tenantId: string  
+    name: string  
+    description: string  
+    outputFormat: string  
+    outputQuality: number  
+    outputCompression: number  
+    outputWidth: number  
+    outputHeight: number  
+    outputResizeMode: string  
     steps: {
     type: string  
     options: {
@@ -87,21 +101,21 @@ export type MediaTransformationsUpdateTransformationResponse = {
     opacity: number | null 
 }  
 }[]  
-    createdAt: string  
-    updatedAt: string  
-}
-
+};
 export function updateTransformation(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaTransformationsUpdateTransformationInput,
+    options?: RequestOptions<MediaTransformationsUpdateTransformationInput>,
     development?: boolean,
 ): Promise<MediaTransformationsUpdateTransformationResponse> {
-    return request<MediaTransformationsUpdateTransformationResponse>(
-        auth,
-        'PATCH',
-        development ? SERVERS.development : SERVERS.production,
-        '/media/transformations/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaTransformationsUpdateTransformationInput, MediaTransformationsUpdateTransformationResponse>(
+      auth,
+      'PATCH',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/media/transformations/${pathParams.id}',
+      options,
+  );
 }
 

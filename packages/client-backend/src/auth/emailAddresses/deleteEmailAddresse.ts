@@ -4,18 +4,21 @@ import { SERVERS } from "../../servers";
 export type AuthEmailAddressesDeleteEmailAddresseResponse = {
     deleted: boolean  
 }
-
+export type AuthEmailAddressesDeleteEmailAddresseInput = undefined;
 export function deleteEmailAddresse(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesDeleteEmailAddresseInput,
+    options?: RequestOptions<AuthEmailAddressesDeleteEmailAddresseInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesDeleteEmailAddresseResponse> {
-    return request<AuthEmailAddressesDeleteEmailAddresseResponse>(
-        auth,
-        'DELETE',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/email-addresses',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesDeleteEmailAddresseInput, AuthEmailAddressesDeleteEmailAddresseResponse>(
+      auth,
+      'DELETE',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/email-addresses',
+      options,
+  );
 }
 

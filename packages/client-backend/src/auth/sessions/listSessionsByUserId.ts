@@ -35,6 +35,9 @@ export type AuthSessionsListSessionsByUserIdResponse = {
     clientId: string | null 
     redirectUri: string | null 
     additionalScopes: Record<any, any>  
+    authenticatable: boolean | null 
+    autoConnectAccounts: boolean | null 
+    config: Record<any, any>  
     createdAt: string  
     updatedAt: string  
 } | null 
@@ -64,18 +67,21 @@ export type AuthSessionsListSessionsByUserIdResponse = {
     next: string | null 
 }  
 }
-
+export type AuthSessionsListSessionsByUserIdInput = undefined;
 export function listSessionsByUserId(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSessionsListSessionsByUserIdInput,
+    options?: RequestOptions<AuthSessionsListSessionsByUserIdInput>,
     development?: boolean,
 ): Promise<AuthSessionsListSessionsByUserIdResponse> {
-    return request<AuthSessionsListSessionsByUserIdResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.userId}/sessions',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSessionsListSessionsByUserIdInput, AuthSessionsListSessionsByUserIdResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.userId}/sessions',
+      options,
+  );
 }
 

@@ -6,6 +6,7 @@ import * as z from 'zod';
 import { resolveImport } from './resolve-import';
 import { logger } from './logger';
 import ora from 'ora';
+import { AuthUserStatus } from '@protoxyz/types';
 
 export const DEFAULT_STYLE = 'default';
 export const DEFAULT_COMPONENTS = '@/components';
@@ -16,15 +17,66 @@ export const DEFAULT_TAILWIND_BASE_COLOR = 'slate';
 
 // TODO: Figure out if we want to support all cosmiconfig formats.
 // A simple components.json file would be nice.
-const explorer = cosmiconfig('components', {
+const explorer = cosmiconfig('pxyz', {
   searchPlaces: ['pxyz.json'],
 });
 
 export const rawConfigSchema = z
   .object({
     $schema: z.string().optional(),
+    id: z.string().cuid(),
     jwt: z.string(),
-    user: z.record(z.any()),
+    user: z.object({
+      id: z.string().cuid(),
+      name: z.string().nullable().optional(),
+      username: z.string().nullable().optional(),
+      imageUri: z.string().nullable().optional(),
+      status: z.nativeEnum(AuthUserStatus).nullable(),
+      roleId: z.string().cuid().nullable().optional(),
+      role: z
+        .object({
+          id: z.string().cuid(),
+          name: z.string(),
+          permissions: z.array(z.string()),
+        })
+        .nullable()
+        .optional(),
+      primaryEmailId: z.string().cuid().nullable().optional(),
+      primaryPhoneId: z.string().cuid().nullable().optional(),
+      emailAddresses: z.array(
+        z.object({
+          id: z.string().cuid(),
+          email: z.string().nullable().optional(),
+          verifiedAt: z.string().nullable().optional(),
+        }),
+      ),
+      phoneNumbers: z.array(
+        z.object({
+          id: z.string().cuid(),
+          phone: z.string().nullable().optional(),
+          verifiedAt: z.string().nullable().optional(),
+        }),
+      ),
+      connections: z.array(
+        z.object({
+          id: z.string().cuid(),
+          accessToken: z.string().nullable().optional(),
+          refreshToken: z.string().nullable().optional(),
+        }),
+      ),
+      organizations: z.array(
+        z.object({
+          id: z.string().cuid(),
+          name: z.string(),
+          slug: z.string(),
+          imageUri: z.string().nullable().optional(),
+        }),
+      ),
+      publicMeta: z.any(),
+      timezone: z.string().nullable().optional(),
+      locale: z.string().nullable().optional(),
+    }),
+
     // style: z.string(),
     // rsc: z.coerce.boolean().default(false),
     // tsx: z.coerce.boolean().default(true),
@@ -96,7 +148,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 
     return rawConfigSchema.parse(configResult.config);
   } catch (error) {
-    throw new Error(`Invalid configuration found in ${cwd}/components.json.`);
+    throw new Error(`Invalid configuration found in ${cwd}/pxyz.json.`);
   }
 }
 
@@ -106,10 +158,18 @@ export async function writeConfig(
 ): Promise<RawConfig | null> {
   // Write to file.
   logger.info('');
-  const spinner = ora(`Writing components.json...`).start();
-  const targetPath = path.resolve(cwd, 'components.json');
+  const spinner = ora(`Writing pxyz.json...`).start();
+  const targetPath = path.resolve(cwd, 'pxyz.json');
   await fs.writeFile(targetPath, JSON.stringify(config, null, 2), 'utf8');
   spinner.succeed();
 
   return config;
+}
+
+export async function deleteConfig(cwd: string) {
+  logger.info('');
+  const spinner = ora(`Deleting pxyz.json...`).start();
+  const targetPath = path.resolve(cwd, 'pxyz.json');
+  await fs.unlink(targetPath);
+  spinner.succeed();
 }

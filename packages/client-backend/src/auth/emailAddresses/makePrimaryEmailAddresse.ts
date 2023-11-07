@@ -10,18 +10,23 @@ export type AuthEmailAddressesMakePrimaryEmailAddresseResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthEmailAddressesMakePrimaryEmailAddresseInput = {
+    id: string  
+};
 export function makePrimaryEmailAddresse(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesMakePrimaryEmailAddresseInput,
+    options?: RequestOptions<AuthEmailAddressesMakePrimaryEmailAddresseInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesMakePrimaryEmailAddresseResponse> {
-    return request<AuthEmailAddressesMakePrimaryEmailAddresseResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/email-addresses/make-primary',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesMakePrimaryEmailAddresseInput, AuthEmailAddressesMakePrimaryEmailAddresseResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/email-addresses/make-primary',
+      options,
+  );
 }
 

@@ -5,16 +5,21 @@ export type TenantsRotateSecretKeyResponse = {
     status: string  
 }
 
+export type TenantsRotateSecretKeyInput = undefined;
+
 export function rotateSecretKey(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsRotateSecretKeyInput,
+    options?: RequestOptions<TenantsRotateSecretKeyInput>,
     development?: boolean,
 ): Promise<TenantsRotateSecretKeyResponse> {
-    return request<TenantsRotateSecretKeyResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsRotateSecretKeyInput, TenantsRotateSecretKeyResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/${pathParams.id}/rotate-secret-key',
-        options,
+        {...options, body},
     );
 }

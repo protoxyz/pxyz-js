@@ -19,6 +19,8 @@ export type TenantsGetByDomainResponse = {
     auth: {
     id: string  
     tenantId: string  
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
     strategyUsernamePasswordEnabled: boolean  
     strategyEmailPasswordEnabled: boolean  
     strategyEmailLinkEnabled: boolean  
@@ -68,6 +70,7 @@ export type TenantsGetByDomainResponse = {
     createdAt: string  
     updatedAt: string  
 } | null 
+    brand: Record<any, any>  
     domains: {
     primary: boolean  
     name: string  
@@ -78,16 +81,21 @@ export type TenantsGetByDomainResponse = {
 } | null 
 }
 
+export type TenantsGetByDomainInput = undefined;
+
 export function getByDomain(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsGetByDomainInput,
+    options?: RequestOptions<TenantsGetByDomainInput>,
     development?: boolean,
 ): Promise<TenantsGetByDomainResponse> {
-    return request<TenantsGetByDomainResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsGetByDomainInput, TenantsGetByDomainResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/domain/${pathParams.host}',
-        options,
+        {...options, body},
     );
 }

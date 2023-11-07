@@ -19,6 +19,8 @@ export type TenantsGetTenantByIdResponse = {
     auth: {
     id: string  
     tenantId: string  
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
     strategyUsernamePasswordEnabled: boolean  
     strategyEmailPasswordEnabled: boolean  
     strategyEmailLinkEnabled: boolean  
@@ -68,6 +70,7 @@ export type TenantsGetTenantByIdResponse = {
     createdAt: string  
     updatedAt: string  
 } | null 
+    brand: Record<any, any>  
     domains: {
     primary: boolean  
     name: string  
@@ -78,16 +81,21 @@ export type TenantsGetTenantByIdResponse = {
 } | null 
 }
 
+export type TenantsGetTenantByIdInput = undefined;
+
 export function getTenantById(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsGetTenantByIdInput,
+    options?: RequestOptions<TenantsGetTenantByIdInput>,
     development?: boolean,
 ): Promise<TenantsGetTenantByIdResponse> {
-    return request<TenantsGetTenantByIdResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsGetTenantByIdInput, TenantsGetTenantByIdResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/id/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

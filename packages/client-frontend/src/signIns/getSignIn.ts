@@ -26,16 +26,21 @@ export type SignInsGetSignInResponse = {
 }  
 }
 
+export type SignInsGetSignInInput = undefined;
+
 export function getSignIn(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignInsGetSignInInput,
+    options?: RequestOptions<SignInsGetSignInInput>,
     development?: boolean,
 ): Promise<SignInsGetSignInResponse> {
-    return request<SignInsGetSignInResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignInsGetSignInInput, SignInsGetSignInResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ins/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

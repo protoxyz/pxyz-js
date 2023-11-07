@@ -19,18 +19,21 @@ export type AuthSignUpAttemptsListSignUpAttemptsResponse = {
     next: string | null 
 }  
 }
-
+export type AuthSignUpAttemptsListSignUpAttemptsInput = undefined;
 export function listSignUpAttempts(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSignUpAttemptsListSignUpAttemptsInput,
+    options?: RequestOptions<AuthSignUpAttemptsListSignUpAttemptsInput>,
     development?: boolean,
 ): Promise<AuthSignUpAttemptsListSignUpAttemptsResponse> {
-    return request<AuthSignUpAttemptsListSignUpAttemptsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/sign-ups',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSignUpAttemptsListSignUpAttemptsInput, AuthSignUpAttemptsListSignUpAttemptsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/sign-ups',
+      options,
+  );
 }
 

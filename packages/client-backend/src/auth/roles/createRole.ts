@@ -14,18 +14,26 @@ export type AuthRolesCreateRoleResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthRolesCreateRoleInput = {
+    name: string  
+    description: string | null 
+    permissions: string [] | null 
+    tenantId: string  
+};
 export function createRole(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthRolesCreateRoleInput,
+    options?: RequestOptions<AuthRolesCreateRoleInput>,
     development?: boolean,
 ): Promise<AuthRolesCreateRoleResponse> {
-    return request<AuthRolesCreateRoleResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/roles',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthRolesCreateRoleInput, AuthRolesCreateRoleResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/roles',
+      options,
+  );
 }
 

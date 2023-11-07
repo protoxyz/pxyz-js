@@ -18,16 +18,25 @@ export type OrganizationsUpdateOrganizationResponse = {
 } | null 
 }
 
+export type OrganizationsUpdateOrganizationInput = {
+    name: string  
+    slug: string  
+    description: string | null 
+};
+
 export function updateOrganization(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationsUpdateOrganizationInput,
+    options?: RequestOptions<OrganizationsUpdateOrganizationInput>,
     development?: boolean,
 ): Promise<OrganizationsUpdateOrganizationResponse> {
-    return request<OrganizationsUpdateOrganizationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationsUpdateOrganizationInput, OrganizationsUpdateOrganizationResponse>(
         auth,
         'PUT',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations/${pathParams.organizationId}',
-        options,
+        {...options, body},
     );
 }

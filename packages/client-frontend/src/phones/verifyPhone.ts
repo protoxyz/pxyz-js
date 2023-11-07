@@ -16,16 +16,23 @@ export type PhonesVerifyPhoneResponse = {
 } | null 
 }
 
+export type PhonesVerifyPhoneInput = {
+    code: string  
+};
+
 export function verifyPhone(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: PhonesVerifyPhoneInput,
+    options?: RequestOptions<PhonesVerifyPhoneInput>,
     development?: boolean,
 ): Promise<PhonesVerifyPhoneResponse> {
-    return request<PhonesVerifyPhoneResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<PhonesVerifyPhoneInput, PhonesVerifyPhoneResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/phones/${pathParams.phoneId}/verify',
-        options,
+        {...options, body},
     );
 }

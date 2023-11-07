@@ -22,6 +22,9 @@ export type AuthSignInAttemptsListSignInAttemptsResponse = {
     clientId: string | null 
     redirectUri: string | null 
     additionalScopes: Record<any, any>  
+    authenticatable: boolean | null 
+    autoConnectAccounts: boolean | null 
+    config: Record<any, any>  
     createdAt: string  
     updatedAt: string  
 } | null 
@@ -38,18 +41,21 @@ export type AuthSignInAttemptsListSignInAttemptsResponse = {
     next: string | null 
 }  
 }
-
+export type AuthSignInAttemptsListSignInAttemptsInput = undefined;
 export function listSignInAttempts(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthSignInAttemptsListSignInAttemptsInput,
+    options?: RequestOptions<AuthSignInAttemptsListSignInAttemptsInput>,
     development?: boolean,
 ): Promise<AuthSignInAttemptsListSignInAttemptsResponse> {
-    return request<AuthSignInAttemptsListSignInAttemptsResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/sign-ins',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthSignInAttemptsListSignInAttemptsInput, AuthSignInAttemptsListSignInAttemptsResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/sign-ins',
+      options,
+  );
 }
 

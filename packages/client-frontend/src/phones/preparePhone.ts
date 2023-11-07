@@ -6,16 +6,21 @@ export type PhonesPreparePhoneResponse = {
     error: string | null 
 }
 
+export type PhonesPreparePhoneInput = undefined;
+
 export function preparePhone(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: PhonesPreparePhoneInput,
+    options?: RequestOptions<PhonesPreparePhoneInput>,
     development?: boolean,
 ): Promise<PhonesPreparePhoneResponse> {
-    return request<PhonesPreparePhoneResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<PhonesPreparePhoneInput, PhonesPreparePhoneResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/phones/${pathParams.phoneId}/resend',
-        options,
+        {...options, body},
     );
 }

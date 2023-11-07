@@ -50,16 +50,27 @@ export type SignUpsAttemptVerificationResponse = {
 } | null 
 }
 
+export type SignUpsAttemptVerificationInput = {
+    strategy: string  
+    code: string  
+    profile: Record<any, any>  
+    rawProfile: Record<any, any>  
+    tokens: Record<any, any>  
+};
+
 export function attemptVerification(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignUpsAttemptVerificationInput,
+    options?: RequestOptions<SignUpsAttemptVerificationInput>,
     development?: boolean,
 ): Promise<SignUpsAttemptVerificationResponse> {
-    return request<SignUpsAttemptVerificationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignUpsAttemptVerificationInput, SignUpsAttemptVerificationResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ups/${pathParams.id}/attempt-verification',
-        options,
+        {...options, body},
     );
 }

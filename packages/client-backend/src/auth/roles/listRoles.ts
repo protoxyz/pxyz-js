@@ -25,18 +25,21 @@ export type AuthRolesListRolesResponse = {
     next: string | null 
 }  
 }
-
+export type AuthRolesListRolesInput = undefined;
 export function listRoles(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthRolesListRolesInput,
+    options?: RequestOptions<AuthRolesListRolesInput>,
     development?: boolean,
 ): Promise<AuthRolesListRolesResponse> {
-    return request<AuthRolesListRolesResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/tenants/${pathParams.tenantId}/roles',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthRolesListRolesInput, AuthRolesListRolesResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/tenants/${pathParams.tenantId}/roles',
+      options,
+  );
 }
 

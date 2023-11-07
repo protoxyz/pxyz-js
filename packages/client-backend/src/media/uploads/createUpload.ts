@@ -16,18 +16,29 @@ export type MediaUploadsCreateUploadResponse = {
     uploadUrl: string  
     fields: Record<any, any>  
 }
-
+export type MediaUploadsCreateUploadInput = {
+    tenantId: string  
+    path: string  
+    access: string  
+    originalFilename: string | null 
+    mime: string  
+    size: number  
+    meta: Record<any, any>  
+};
 export function createUpload(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaUploadsCreateUploadInput,
+    options?: RequestOptions<MediaUploadsCreateUploadInput>,
     development?: boolean,
 ): Promise<MediaUploadsCreateUploadResponse> {
-    return request<MediaUploadsCreateUploadResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/media/uploads',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaUploadsCreateUploadInput, MediaUploadsCreateUploadResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/media/uploads',
+      options,
+  );
 }
 

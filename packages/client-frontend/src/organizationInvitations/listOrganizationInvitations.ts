@@ -26,16 +26,21 @@ export type OrganizationInvitationsListOrganizationInvitationsResponse = {
 }  
 }
 
+export type OrganizationInvitationsListOrganizationInvitationsInput = undefined;
+
 export function listOrganizationInvitations(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationInvitationsListOrganizationInvitationsInput,
+    options?: RequestOptions<OrganizationInvitationsListOrganizationInvitationsInput>,
     development?: boolean,
 ): Promise<OrganizationInvitationsListOrganizationInvitationsResponse> {
-    return request<OrganizationInvitationsListOrganizationInvitationsResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationInvitationsListOrganizationInvitationsInput, OrganizationInvitationsListOrganizationInvitationsResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/organizations/${pathParams.organizationId}/invitations',
-        options,
+        {...options, body},
     );
 }

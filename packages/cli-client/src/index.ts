@@ -3,7 +3,6 @@
 import { Command } from 'commander';
 
 import { getPackageInfo } from './utils/get-package-info';
-import { login } from './commands/login';
 import { genClient } from './commands/gen-client';
 
 process.on('SIGINT', () => process.exit(0));
@@ -21,9 +20,7 @@ async function main() {
       'display the version number',
     );
 
-  program.addCommand(login).addCommand(genClient);
-
-  // program.addCommand(init).addCommand(add).addCommand(diff);
+  program.addCommand(genClient);
 
   program.parse();
 }

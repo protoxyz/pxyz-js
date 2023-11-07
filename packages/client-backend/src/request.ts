@@ -1,4 +1,6 @@
 
+import paths from "path"
+
 export type HTTPMethod =
   | 'GET'
   | 'POST'
@@ -8,8 +10,8 @@ export type HTTPMethod =
   | 'OPTIONS'
   | 'HEAD';
 
-export interface RequestOptions {
-  body?: unknown;
+export interface RequestOptions<RequestInput> {
+  body?: RequestInput;
   headers?: Record<string, string>;
   path?: Record<string, string>;
   query?: Record<string, string>;
@@ -25,15 +27,15 @@ export type AuthOptions =
       secretKey: string;
     };
 
-export async function request<T>(
+export async function request<RequestInput, RequestOutput>(
   auth: AuthOptions,
   method: HTTPMethod,
   host: string,
   path: string,
-  options?: RequestOptions,
+  options?: RequestOptions<RequestInput>,
   debug?: boolean,
-): Promise<T> {
-  const url = buildUrl(host, path, options);
+): Promise<RequestOutput> {
+  const url = buildUrl<RequestInput>(host, path, options);
 
   if (debug) {
     console.log(`[HTTP] ${method} ${url.toString()}`);
@@ -96,7 +98,7 @@ export async function request<T>(
     }
     return Promise.resolve({
       error: response.message,
-    } as T);
+    } as RequestOutput);
   }
 
   if (debug) {
@@ -112,13 +114,13 @@ export async function request<T>(
     console.log(`[HTTP] ${method} ${url.toString()} ${status.toString()}`);
   }
 
-  return Promise.resolve(body as T);
+  return Promise.resolve(body as RequestOutput);
 }
 
-export function buildUrl(
+export function buildUrl<RequestInput>(
   host: string,
   path: string,
-  options?: RequestOptions,
+  options?: RequestOptions<RequestInput>,
 ): URL {
   const searchParams = new URLSearchParams();
   let updatedPath = path;
@@ -129,7 +131,7 @@ export function buildUrl(
     if (queryParams !== undefined) {
       Object.keys(queryParams).reduce((searchParams, key) => {
         if (queryParams[key] !== undefined)
-          searchParams.append(key, queryParams[key] ?? "");
+          searchParams.append(key, queryParams[key] ?? '');
         return searchParams;
       }, searchParams);
     }
@@ -137,13 +139,25 @@ export function buildUrl(
     if (pathParams !== undefined) {
       updatedPath = Object.keys(pathParams).reduce((path, key) => {
         const reg = new RegExp(`{${key}}`, 'g');
-        path = path.replace(reg, encodeURIComponent(pathParams[key] ?? ""));
+        path = path.replace(reg, encodeURIComponent(pathParams[key] ?? ''));
         return path;
       }, updatedPath);
     }
   }
 
-  const url = new URL(updatedPath + '?' + searchParams.toString(), host);
+  // if host is localhost, replace with 127.0.0.1
+  if (host.includes('localhost')) {
+    host = host.replace('localhost', '127.0.0.1');
+  }
+
+  const existingUrl = new URL(host);
+  const existingPath = existingUrl.pathname;
+
+  const url = new URL(
+    paths.join(existingPath, updatedPath) + '?' + searchParams.toString(),
+    existingUrl.origin,
+  );
 
   return url;
 }
+

@@ -9,16 +9,21 @@ export type WellKnownJwksResponse = {
 } | null 
 }
 
+export type WellKnownJwksInput = undefined;
+
 export function jwks(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: WellKnownJwksInput,
+    options?: RequestOptions<WellKnownJwksInput>,
     development?: boolean,
 ): Promise<WellKnownJwksResponse> {
-    return request<WellKnownJwksResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<WellKnownJwksInput, WellKnownJwksResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/.well-known/jwks/${pathParams.domain}',
-        options,
+        {...options, body},
     );
 }

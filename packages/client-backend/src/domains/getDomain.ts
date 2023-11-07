@@ -16,16 +16,21 @@ export type DomainsGetDomainResponse = {
     updatedAt: string  
 }
 
+export type DomainsGetDomainInput = undefined;
+
 export function getDomain(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: DomainsGetDomainInput,
+    options?: RequestOptions<DomainsGetDomainInput>,
     development?: boolean,
 ): Promise<DomainsGetDomainResponse> {
-    return request<DomainsGetDomainResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<DomainsGetDomainInput, DomainsGetDomainResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/domains/${pathParams.id}',
-        options,
+        {...options, body},
     );
 }

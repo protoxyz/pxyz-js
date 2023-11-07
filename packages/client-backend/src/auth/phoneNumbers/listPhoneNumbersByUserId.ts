@@ -21,18 +21,21 @@ export type AuthPhoneNumbersListPhoneNumbersByUserIdResponse = {
     next: string | null 
 }  
 }
-
+export type AuthPhoneNumbersListPhoneNumbersByUserIdInput = undefined;
 export function listPhoneNumbersByUserId(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthPhoneNumbersListPhoneNumbersByUserIdInput,
+    options?: RequestOptions<AuthPhoneNumbersListPhoneNumbersByUserIdInput>,
     development?: boolean,
 ): Promise<AuthPhoneNumbersListPhoneNumbersByUserIdResponse> {
-    return request<AuthPhoneNumbersListPhoneNumbersByUserIdResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.userId}/phone-numbers',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthPhoneNumbersListPhoneNumbersByUserIdInput, AuthPhoneNumbersListPhoneNumbersByUserIdResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.userId}/phone-numbers',
+      options,
+  );
 }
 

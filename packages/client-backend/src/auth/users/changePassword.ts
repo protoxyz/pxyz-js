@@ -42,18 +42,23 @@ export type AuthUsersChangePasswordResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthUsersChangePasswordInput = {
+    password: string  
+};
 export function changePassword(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthUsersChangePasswordInput,
+    options?: RequestOptions<AuthUsersChangePasswordInput>,
     development?: boolean,
 ): Promise<AuthUsersChangePasswordResponse> {
-    return request<AuthUsersChangePasswordResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.id}/change-password',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthUsersChangePasswordInput, AuthUsersChangePasswordResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.id}/change-password',
+      options,
+  );
 }
 

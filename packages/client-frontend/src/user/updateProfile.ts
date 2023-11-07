@@ -76,16 +76,29 @@ export type UserUpdateProfileResponse = {
 } | null 
 }
 
+export type UserUpdateProfileInput = {
+    name: string | null 
+    username: string | null 
+    imageUri: string | null 
+    phone: string | null 
+    email: string | null 
+    timezone: string | null 
+    locale: string | null 
+};
+
 export function updateProfile(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: UserUpdateProfileInput,
+    options?: RequestOptions<UserUpdateProfileInput>,
     development?: boolean,
 ): Promise<UserUpdateProfileResponse> {
-    return request<UserUpdateProfileResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<UserUpdateProfileInput, UserUpdateProfileResponse>(
         auth,
         'PUT',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/profile',
-        options,
+        {...options, body},
     );
 }

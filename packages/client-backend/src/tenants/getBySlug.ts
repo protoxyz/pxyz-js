@@ -10,21 +10,27 @@ export type TenantsGetBySlugResponse = {
     logoUri: string | null 
     iconId: string | null 
     iconUri: string | null 
+    brand: Record<any, any>  
     environment: string  
     createdAt: string  
     updatedAt: string  
 }
 
+export type TenantsGetBySlugInput = undefined;
+
 export function getBySlug(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: TenantsGetBySlugInput,
+    options?: RequestOptions<TenantsGetBySlugInput>,
     development?: boolean,
 ): Promise<TenantsGetBySlugResponse> {
-    return request<TenantsGetBySlugResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<TenantsGetBySlugInput, TenantsGetBySlugResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/tenants/slug/${pathParams.slug}',
-        options,
+        {...options, body},
     );
 }

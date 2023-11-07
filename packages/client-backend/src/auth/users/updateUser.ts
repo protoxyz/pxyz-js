@@ -42,18 +42,29 @@ export type AuthUsersUpdateUserResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthUsersUpdateUserInput = {
+    name: string  
+    username: string  
+    imageUri: string  | string   
+    roleId: string  
+    status: string  
+    publicMeta: Record<any, any>  
+    privateMeta: Record<any, any>  
+};
 export function updateUser(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthUsersUpdateUserInput,
+    options?: RequestOptions<AuthUsersUpdateUserInput>,
     development?: boolean,
 ): Promise<AuthUsersUpdateUserResponse> {
-    return request<AuthUsersUpdateUserResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthUsersUpdateUserInput, AuthUsersUpdateUserResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.id}',
+      options,
+  );
 }
 

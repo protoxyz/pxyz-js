@@ -63,16 +63,27 @@ export type SignInsCreateSignInResponse = {
 } | null 
 }
 
+export type SignInsCreateSignInInput = {
+    identifier: string  
+    strategy: string  
+    password: string | null 
+    providerKey: string | null 
+    redirectUri: string | null 
+};
+
 export function createSignIn(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: SignInsCreateSignInInput,
+    options?: RequestOptions<SignInsCreateSignInInput>,
     development?: boolean,
 ): Promise<SignInsCreateSignInResponse> {
-    return request<SignInsCreateSignInResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<SignInsCreateSignInInput, SignInsCreateSignInResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/sign-ins',
-        options,
+        {...options, body},
     );
 }

@@ -21,18 +21,21 @@ export type AuthEmailAddressesListEmailAddressesResponse = {
     next: string | null 
 }  
 }
-
+export type AuthEmailAddressesListEmailAddressesInput = undefined;
 export function listEmailAddresses(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesListEmailAddressesInput,
+    options?: RequestOptions<AuthEmailAddressesListEmailAddressesInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesListEmailAddressesResponse> {
-    return request<AuthEmailAddressesListEmailAddressesResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/tenants/${pathParams.tenantId}/auth/email-addresses',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesListEmailAddressesInput, AuthEmailAddressesListEmailAddressesResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/tenants/${pathParams.tenantId}/auth/email-addresses',
+      options,
+  );
 }
 

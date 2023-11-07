@@ -16,16 +16,21 @@ export type DomainsVerifyDomainResponse = {
     updatedAt: string  
 }
 
+export type DomainsVerifyDomainInput = undefined;
+
 export function verifyDomain(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: DomainsVerifyDomainInput,
+    options?: RequestOptions<DomainsVerifyDomainInput>,
     development?: boolean,
 ): Promise<DomainsVerifyDomainResponse> {
-    return request<DomainsVerifyDomainResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<DomainsVerifyDomainInput, DomainsVerifyDomainResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/domains/${pathParams.id}/verify',
-        options,
+        {...options, body},
     );
 }

@@ -16,16 +16,21 @@ export type EmailsSetPrimaryEmailResponse = {
 } | null 
 }
 
+export type EmailsSetPrimaryEmailInput = undefined;
+
 export function setPrimaryEmail(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: EmailsSetPrimaryEmailInput,
+    options?: RequestOptions<EmailsSetPrimaryEmailInput>,
     development?: boolean,
 ): Promise<EmailsSetPrimaryEmailResponse> {
-    return request<EmailsSetPrimaryEmailResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<EmailsSetPrimaryEmailInput, EmailsSetPrimaryEmailResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/emails/${pathParams.emailId}/primary',
-        options,
+        {...options, body},
     );
 }

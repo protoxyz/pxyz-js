@@ -6,16 +6,21 @@ export type PhonesDeletePhoneResponse = {
     error: string | null 
 }
 
+export type PhonesDeletePhoneInput = undefined;
+
 export function deletePhone(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: PhonesDeletePhoneInput,
+    options?: RequestOptions<PhonesDeletePhoneInput>,
     development?: boolean,
 ): Promise<PhonesDeletePhoneResponse> {
-    return request<PhonesDeletePhoneResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<PhonesDeletePhoneInput, PhonesDeletePhoneResponse>(
         auth,
         'DELETE',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/phones/${pathParams.phoneId}',
-        options,
+        {...options, body},
     );
 }

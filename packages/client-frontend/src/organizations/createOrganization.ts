@@ -18,16 +18,25 @@ export type OrganizationsCreateOrganizationResponse = {
 }  
 }
 
+export type OrganizationsCreateOrganizationInput = {
+    name: string  
+    slug: string  
+    description: string | null 
+};
+
 export function createOrganization(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: OrganizationsCreateOrganizationInput,
+    options?: RequestOptions<OrganizationsCreateOrganizationInput>,
     development?: boolean,
 ): Promise<OrganizationsCreateOrganizationResponse> {
-    return request<OrganizationsCreateOrganizationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<OrganizationsCreateOrganizationInput, OrganizationsCreateOrganizationResponse>(
         auth,
         'POST',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/user/organizations',
-        options,
+        {...options, body},
     );
 }

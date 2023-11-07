@@ -21,18 +21,21 @@ export type AuthEmailAddressesListEmailAddressesByUserIdResponse = {
     next: string | null 
 }  
 }
-
+export type AuthEmailAddressesListEmailAddressesByUserIdInput = undefined;
 export function listEmailAddressesByUserId(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthEmailAddressesListEmailAddressesByUserIdInput,
+    options?: RequestOptions<AuthEmailAddressesListEmailAddressesByUserIdInput>,
     development?: boolean,
 ): Promise<AuthEmailAddressesListEmailAddressesByUserIdResponse> {
-    return request<AuthEmailAddressesListEmailAddressesByUserIdResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/users/${pathParams.userId}/email-addresses',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthEmailAddressesListEmailAddressesByUserIdInput, AuthEmailAddressesListEmailAddressesByUserIdResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/users/${pathParams.userId}/email-addresses',
+      options,
+  );
 }
 

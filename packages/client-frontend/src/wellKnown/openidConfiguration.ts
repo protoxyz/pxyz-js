@@ -27,16 +27,21 @@ export type WellKnownOpenidConfigurationResponse = {
 } | null 
 }
 
+export type WellKnownOpenidConfigurationInput = undefined;
+
 export function openidConfiguration(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: WellKnownOpenidConfigurationInput,
+    options?: RequestOptions<WellKnownOpenidConfigurationInput>,
     development?: boolean,
 ): Promise<WellKnownOpenidConfigurationResponse> {
-    return request<WellKnownOpenidConfigurationResponse>(
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+    return request<WellKnownOpenidConfigurationInput, WellKnownOpenidConfigurationResponse>(
         auth,
         'GET',
-        development ? SERVERS.development : SERVERS.production,
+        isDevelopment ? SERVERS.development : SERVERS.production,
         '/.well-known/openid-configuration/${pathParams.domain}',
-        options,
+        {...options, body},
     );
 }

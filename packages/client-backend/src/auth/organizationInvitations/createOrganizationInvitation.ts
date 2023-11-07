@@ -34,18 +34,26 @@ export type AuthOrganizationInvitationsCreateOrganizationInvitationResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthOrganizationInvitationsCreateOrganizationInvitationInput = {
+    organizationId: string  
+    email: string  
+    roleId: string | null 
+    userId: string | null 
+};
 export function createOrganizationInvitation(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthOrganizationInvitationsCreateOrganizationInvitationInput,
+    options?: RequestOptions<AuthOrganizationInvitationsCreateOrganizationInvitationInput>,
     development?: boolean,
 ): Promise<AuthOrganizationInvitationsCreateOrganizationInvitationResponse> {
-    return request<AuthOrganizationInvitationsCreateOrganizationInvitationResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/organization-invitations',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthOrganizationInvitationsCreateOrganizationInvitationInput, AuthOrganizationInvitationsCreateOrganizationInvitationResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/organization-invitations',
+      options,
+  );
 }
 

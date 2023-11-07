@@ -15,6 +15,8 @@ export type AuthTenantsUpdateAuthTenantResponse = null | {
     auth: {
     id: string  
     tenantId: string  
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
     strategyUsernamePasswordEnabled: boolean  
     strategyEmailPasswordEnabled: boolean  
     strategyEmailLinkEnabled: boolean  
@@ -64,6 +66,7 @@ export type AuthTenantsUpdateAuthTenantResponse = null | {
     createdAt: string  
     updatedAt: string  
 } | null 
+    brand: Record<any, any>  
     domains: {
     primary: boolean  
     name: string  
@@ -71,18 +74,76 @@ export type AuthTenantsUpdateAuthTenantResponse = null | {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthTenantsUpdateAuthTenantInput = {
+    signUpEnabled: boolean  
+    signInEnabled: boolean  
+    strategyUsernamePasswordEnabled: boolean  
+    strategyEmailPasswordEnabled: boolean  
+    strategyEmailLinkEnabled: boolean  
+    strategyEmailCodeEnabled: boolean  
+    strategyPhoneCodeEnabled: boolean  
+    strategyPhonePasswordEnabled: boolean  
+    strategyOAuthEnabled: boolean  
+    strategyAuthenticatorCodeEnabled: boolean  
+    strategySecurityKeyEnabled: boolean  
+    passwordsEnabled: boolean  
+    emailSignInEnabled: boolean  
+    phoneSignInEnabled: boolean  
+    usernameSignInEnabled: boolean  
+    nameRequired: boolean  
+    emailRequired: boolean  
+    phoneRequired: boolean  
+    usernameRequired: boolean  
+    passwordRequired: boolean  
+    emailVerificationRequired: boolean  
+    phoneVerificationRequired: boolean  
+    emailVerificationCodeEnabled: boolean  
+    emailVerificationLinkEnabled: boolean  
+    phoneVerificationCodeEnabled: boolean  
+    sessionMaximumLifetimeEnabled: boolean  
+    sessionMaximumLifetime: number  
+    sessionInactivityTimeoutEnabled: boolean  
+    sessionInactivityTimeout: number  
+    organizationsEnabled: boolean  
+    organizationMembershipLimit: number  
+    organizationAdminDeletingEnabled: boolean  
+    organizationCustomDomainManagementEnabled: boolean  
+    organizationAutomaticInvitationEnabled: boolean  
+    organizationAutomaticInvitationSuggestionsEnabled: boolean  
+    homeUri: string  
+    frontendApiUri: string  
+    signUpUri: string  
+    signInRedirectUri: string  
+    signInUri: string  
+    signUpRedirectUri: string  
+    logoutRedirectUri: string  
+    userSettingsUri: string  
+    organizationSettingsUri: string  
+    createOrganizationUri: string  
+    createOrganizationRedirectUri: string  
+    emailChannelId: string | null 
+    smsChannelId: string | null 
+    codeVerificationEmailTemplateId: string | null 
+    codeVerificationSMSMessageTemplateId: string | null 
+    magicLinkEmailTemplateId: string | null 
+    magicLinkSMSMessageTemplateId: string | null 
+    welcomeEmailTemplateId: string | null 
+    welcomeSMSMessageTemplateId: string | null 
+};
 export function updateAuthTenant(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthTenantsUpdateAuthTenantInput,
+    options?: RequestOptions<AuthTenantsUpdateAuthTenantInput>,
     development?: boolean,
 ): Promise<AuthTenantsUpdateAuthTenantResponse> {
-    return request<AuthTenantsUpdateAuthTenantResponse>(
-        auth,
-        'PUT',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/tenants/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthTenantsUpdateAuthTenantInput, AuthTenantsUpdateAuthTenantResponse>(
+      auth,
+      'PUT',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/tenants/${pathParams.id}',
+      options,
+  );
 }
 

@@ -18,18 +18,21 @@ export type MediaFilesGetFileResponse = {
     updatedAt: string  
     deletedAt: string | null 
 }
-
+export type MediaFilesGetFileInput = undefined;
 export function getFile(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: MediaFilesGetFileInput,
+    options?: RequestOptions<MediaFilesGetFileInput>,
     development?: boolean,
 ): Promise<MediaFilesGetFileResponse> {
-    return request<MediaFilesGetFileResponse>(
-        auth,
-        'GET',
-        development ? SERVERS.development : SERVERS.production,
-        '/media/files/${pathParams.id}',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<MediaFilesGetFileInput, MediaFilesGetFileResponse>(
+      auth,
+      'GET',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/media/files/${pathParams.id}',
+      options,
+  );
 }
 

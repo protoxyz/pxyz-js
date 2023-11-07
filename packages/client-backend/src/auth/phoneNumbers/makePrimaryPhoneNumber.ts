@@ -10,18 +10,23 @@ export type AuthPhoneNumbersMakePrimaryPhoneNumberResponse = {
     createdAt: string  
     updatedAt: string  
 }
-
+export type AuthPhoneNumbersMakePrimaryPhoneNumberInput = {
+    id: string  
+};
 export function makePrimaryPhoneNumber(
     auth: AuthOptions,
-    options?: RequestOptions,
+    body?: AuthPhoneNumbersMakePrimaryPhoneNumberInput,
+    options?: RequestOptions<AuthPhoneNumbersMakePrimaryPhoneNumberInput>,
     development?: boolean,
 ): Promise<AuthPhoneNumbersMakePrimaryPhoneNumberResponse> {
-    return request<AuthPhoneNumbersMakePrimaryPhoneNumberResponse>(
-        auth,
-        'POST',
-        development ? SERVERS.development : SERVERS.production,
-        '/auth/phone-numbers/make-primary',
-        options,
-    );
+  console.log(process.env.PROTOCOL_ENV === 'development')
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<AuthPhoneNumbersMakePrimaryPhoneNumberInput, AuthPhoneNumbersMakePrimaryPhoneNumberResponse>(
+      auth,
+      'POST',
+        isDevelopment ? SERVERS.development : SERVERS.production,
+      '/auth/phone-numbers/make-primary',
+      options,
+  );
 }
 
