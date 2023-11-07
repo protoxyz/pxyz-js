@@ -1,5 +1,11 @@
 # @protoxyz/cli
 
+## 1.0.1
+
+### Patch Changes
+
+- c6a53ad: update next dependencies
+
 ## 1.0.5
 
 ### Patch Changes

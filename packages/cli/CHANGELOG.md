@@ -1,5 +1,14 @@
 # @protoxyz/cli
 
+## 1.0.7
+
+### Patch Changes
+
+- c6a53ad: update next dependencies
+- Updated dependencies [c6a53ad]
+  - @protoxyz/client-frontend@1.0.1
+  - @protoxyz/client-backend@1.0.1
+
 ## 1.0.6
 
 ### Patch Changes

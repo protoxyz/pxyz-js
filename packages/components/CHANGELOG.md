@@ -1,5 +1,13 @@
 # @protoxyz/components
 
+## 1.0.13
+
+### Patch Changes
+
+- c6a53ad: update next dependencies
+- Updated dependencies [c6a53ad]
+  - @protoxyz/auth@1.0.12
+
 ## 1.0.12
 
 ### Patch Changes
