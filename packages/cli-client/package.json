@@ -1,6 +1,6 @@
 {
   "name": "pxyz-client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate HTTP clients from OpenAPI specs",
   "keywords": [
     "protocol",

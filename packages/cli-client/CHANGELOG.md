@@ -1,5 +1,11 @@
 # @protoxyz/cli
 
+## 1.0.3
+
+### Patch Changes
+
+- 17ab586: make optional fields optional
+
 ## 1.0.2
 
 ### Patch Changes
