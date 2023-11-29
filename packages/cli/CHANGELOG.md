@@ -1,5 +1,12 @@
 # @protoxyz/cli
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [b1d7cd6]
+  - @protoxyz/client-frontend@1.0.5
+
 ## 1.0.8
 
 ### Patch Changes
