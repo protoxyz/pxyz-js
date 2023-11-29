@@ -285,11 +285,38 @@ export const ProtocolAuthProvider = ({
     Load the tenant if it hasn't already been provided by the server component.
   */
   React.useEffect(() => {
-    if (state.loaded) {
-      return;
+    if (state.loaded && state.user) return;
+
+    async function loadUser() {
+      if (state.user) return;
+
+      const accessToken = getAccessTokenFromLocalStorage(state.tenant);
+      if (accessToken) {
+        state.protocol.setAccessToken(accessToken);
+      }
+
+      const userResponse = await state.protocol.auth.users.profile({});
+      const user = userResponse.data?.user;
+      const sessionUser = userResponse.data?.sessionUser;
+
+      setState((state) => ({
+        ...state,
+
+        user: user ?? null,
+        userId: user?.id ?? null,
+        role: sessionUser?.claims?.role,
+        permissions: sessionUser?.claims?.permissions,
+        orgId: sessionUser?.claims?.orgId,
+        orgRole: sessionUser?.claims?.orgRole,
+        orgPermissions: sessionUser?.claims?.orgPermissions,
+        sessionId: sessionUser?.claims?.sessionId,
+        session: sessionUser ?? null,
+      }));
     }
 
     async function loadTenant() {
+      if (state.loaded) return;
+
       const response = await state.protocol.auth.tenants.getByPublicKey({
         path: { publicKey: state.publicKey ?? '' },
       });
@@ -301,14 +328,6 @@ export const ProtocolAuthProvider = ({
         throw new Error('Failed to get tenant');
       }
 
-      const accessToken = getAccessTokenFromLocalStorage(response.data.tenant);
-      if (accessToken) {
-        state.protocol.setAccessToken(accessToken);
-      }
-
-      const userResponse = await state.protocol.auth.users.profile({});
-      const user = userResponse.data?.user;
-      const sessionUser = userResponse.data?.sessionUser;
       const tenant = response.data?.tenant;
 
       if (tenant) {
@@ -328,21 +347,13 @@ export const ProtocolAuthProvider = ({
           secondFactorStrategies,
           firstFactorStrategy,
           secondFactorStrategy,
-          user: user ?? null,
-          userId: user?.id ?? null,
-          role: sessionUser?.claims?.role,
-          permissions: sessionUser?.claims?.permissions,
-          orgId: sessionUser?.claims?.orgId,
-          orgRole: sessionUser?.claims?.orgRole,
-          orgPermissions: sessionUser?.claims?.orgPermissions,
-          sessionId: sessionUser?.claims?.sessionId,
-          session: sessionUser ?? null,
           loaded: true,
         }));
       }
     }
 
     loadTenant();
+    if (!user) loadUser();
   }, []);
 
   return (
