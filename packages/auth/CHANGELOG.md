@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.14
+
+### Patch Changes
+
+- a444ff5: load user
+
 ## 1.0.13
 
 ### Patch Changes
