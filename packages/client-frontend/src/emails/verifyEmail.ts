@@ -1,38 +1,38 @@
-import { request, RequestOptions, AuthOptions } from "../request";
-import { SERVERS } from "../servers";
+import { request, RequestOptions, AuthOptions } from "../request"
+import { SERVERS } from "../servers"
 
 export type EmailsVerifyEmailResponse = {
-    status: string  
-    error: string | null 
-    data: {
+  status: string
+  error: string | null
+  data: {
     emailAddress: {
-    id: string  
-    userId: string | null 
-    email: string  
-    verifiedAt: string | null 
-    createdAt: string  
-    updatedAt: string  
-}  
-} | null 
+      id: string
+      userId: string | null
+      email: string
+      verifiedAt: string | null
+      createdAt: string
+      updatedAt: string
+    }
+  } | null
 }
 
 export type EmailsVerifyEmailInput = {
-    code: string  
-};
+  code: string
+}
 
 export function verifyEmail(
-    auth: AuthOptions,
-    body?: EmailsVerifyEmailInput,
-    options?: RequestOptions<EmailsVerifyEmailInput>,
-    development?: boolean,
+  auth: AuthOptions,
+  body?: EmailsVerifyEmailInput,
+  options?: RequestOptions<EmailsVerifyEmailInput>,
+  development?: boolean
 ): Promise<EmailsVerifyEmailResponse> {
-  console.log(process.env.PROTOCOL_ENV === 'development')
-  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
-    return request<EmailsVerifyEmailInput, EmailsVerifyEmailResponse>(
-        auth,
-        'POST',
-        isDevelopment ? SERVERS.development : SERVERS.production,
-        '/user/emails/${pathParams.emailId}/verify',
-        {...options, body},
-    );
+  const isDevelopment =
+    development ?? process.env.PROTOCOL_ENV === "development" ?? false
+  return request<EmailsVerifyEmailInput, EmailsVerifyEmailResponse>(
+    auth,
+    "POST",
+    isDevelopment ? SERVERS.development : SERVERS.production,
+    "/user/emails/${pathParams.emailId}/verify",
+    { ...options, body }
+  )
 }

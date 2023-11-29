@@ -4,7 +4,7 @@ import { handleError } from '../utils/handle-error';
 import ora from 'ora';
 import { existsSync, promises as fs } from 'fs';
 import fspath from 'path';
-import http from 'http';
+import https from 'https';
 import execa from 'execa';
 import { logger } from '@/utils/logger';
 import { getPackageManager } from '@/utils/get-package-manager';
@@ -14,6 +14,12 @@ import {
   TSCONFIG,
   TSUPCONFIG,
 } from '@/utils/templates';
+import * as prettier from 'prettier';
+
+const beautifyOptions = {
+  semi: false,
+  parser: 'typescript',
+};
 
 const genClientOptionsSchema = z.object({
   url: z.string().url(),
@@ -160,28 +166,16 @@ export const genClient = new Command()
               'application/json'
             ].schema;
 
+            const hasAuth = !!(operation as any).security;
+
             const request = `import { request, RequestOptions, AuthOptions } from "../../request";
 import { SERVERS } from "../../servers";
 
 export type ${typeName}Response = ${responseObjectToInterface(responseObject)}
-${actionInput(typeName, requestBody)}
-export function ${action}(
-    auth: AuthOptions,
-    body?: ${typeName}Input,
-    options?: RequestOptions<${typeName}Input>,
-    development?: boolean,
-): Promise<${typeName}Response> {
-  console.log(process.env.PROTOCOL_ENV === 'development')
-  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
-  return request<${typeName}Input, ${typeName}Response>(
-      auth,
-      '${method.toUpperCase()}',
-        isDevelopment ? SERVERS.development : SERVERS.production,
-      '${requestPath}',
-      options,
-  );
-}
 
+${actionInput(typeName, requestBody)}
+
+${functionTemplate(action, typeName, requestPath, method, hasAuth)}
 `;
 
             // Make directory for product if it doesn't exist
@@ -196,7 +190,7 @@ export function ${action}(
             // Create action file
             await fs.writeFile(
               fspath.resolve(output, 'src', product, resource, `${action}.ts`),
-              request,
+              prettier.format(request, beautifyOptions),
             );
 
             // Add export to index file
@@ -224,6 +218,8 @@ export function ${action}(
               'application/json'
             ].schema;
 
+            const hasAuth = !!(operation as any).security;
+
             const request = `import { request, RequestOptions, AuthOptions } from "../request";
 import { SERVERS } from "../servers";
 
@@ -231,22 +227,7 @@ export type ${typeName}Response = ${responseObjectToInterface(responseObject)}
 
 ${actionInput(typeName, requestBody)}
 
-export function ${action}(
-    auth: AuthOptions,
-    body?: ${typeName}Input,
-    options?: RequestOptions<${typeName}Input>,
-    development?: boolean,
-): Promise<${typeName}Response> {
-  console.log(process.env.PROTOCOL_ENV === 'development')
-  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
-    return request<${typeName}Input, ${typeName}Response>(
-        auth,
-        '${method.toUpperCase()}',
-        isDevelopment ? SERVERS.development : SERVERS.production,
-        '${requestPath}',
-        {...options, body},
-    );
-}
+${functionTemplate(action, typeName, requestPath, method, hasAuth)}
 `;
 
             // Make directory for resource if it doesn't exist
@@ -258,7 +239,7 @@ export function ${action}(
             // Create action file
             await fs.writeFile(
               fspath.resolve(output, 'src', resource, `${action}.ts`),
-              request,
+              prettier.format(request, beautifyOptions),
             );
             // Add export to index file
             await addResourceExportToIndexFile(output, resource, action);
@@ -281,6 +262,32 @@ function actionInput(typeName: string, requestBody: any) {
       requestBody,
     )};`;
   }
+}
+
+function functionTemplate(
+  action: string,
+  typeName: string,
+  requestPath: string,
+  method: string,
+  hasAuth: boolean,
+) {
+  return `
+export function ${action}(
+    ${hasAuth ? 'auth: AuthOptions,' : ''}
+    body?: ${typeName}Input,
+    options?: RequestOptions<${typeName}Input>,
+    development?: boolean,
+): Promise<${typeName}Response> { 
+  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
+  return request<${typeName}Input, ${typeName}Response>(
+      ${hasAuth ? 'auth' : 'undefined'},
+      '${method.toUpperCase()}',
+      isDevelopment ? SERVERS.development : SERVERS.production,
+      '${requestPath}',
+      {...options, body},
+  );
+}
+  `;
 }
 
 function camelCaseToClassName(camelCase: string) {
@@ -428,7 +435,7 @@ async function addProductResourceExportToIndexFile(
 
 async function getSwaggerDoc(url: string): Promise<Record<any, any>> {
   return new Promise<Record<any, any>>((resolve, reject) => {
-    http.get(url, (res) => {
+    https.get(url, (res) => {
       const { statusCode } = res;
 
       if (statusCode !== 200) {

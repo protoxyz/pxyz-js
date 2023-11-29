@@ -1,4 +1,5 @@
-import paths from 'path';
+
+import paths from "path"
 
 export type HTTPMethod =
   | 'GET'
@@ -27,7 +28,7 @@ export type AuthOptions =
     };
 
 export async function request<RequestInput, RequestOutput>(
-  auth: AuthOptions,
+  auth: AuthOptions | undefined,
   method: HTTPMethod,
   host: string,
   path: string,
@@ -44,7 +45,7 @@ export async function request<RequestInput, RequestOutput>(
   const headers = new Headers();
   headers.set('Content-Type', 'application/json');
 
-  if (
+  if (auth && 
     'token' in auth &&
     auth.token !== undefined &&
     auth.token !== '' &&
@@ -53,7 +54,7 @@ export async function request<RequestInput, RequestOutput>(
     headers.set('Authorization', `Bearer ${auth.token.trim()}`);
   }
 
-  if (
+  if (auth && 
     'publicKey' in auth &&
     auth.publicKey !== undefined &&
     auth.publicKey !== '' &&
@@ -62,7 +63,7 @@ export async function request<RequestInput, RequestOutput>(
     headers.set('x-public-key', auth.publicKey.trim());
   }
 
-  if (
+  if (auth && 
     'secretKey' in auth &&
     auth.secretKey !== undefined &&
     auth.secretKey !== '' &&
@@ -74,12 +75,10 @@ export async function request<RequestInput, RequestOutput>(
   if (options?.headers) {
     const optionsHeaders = options?.headers || {};
     Object.keys(optionsHeaders).reduce((headers, key) => {
-      headers.set(key, optionsHeaders[key] ?? '');
+      headers.append(key, optionsHeaders[key] ?? "");
       return headers;
     }, headers);
   }
-
-  headers.set('x-wtf', 'wtf');
 
   const request = new Request(url.toString(), {
     method,
@@ -89,11 +88,7 @@ export async function request<RequestInput, RequestOutput>(
     cache: debug ? 'no-cache' : 'default',
   });
 
-  const response = await fetch(request).catch((error) => {
-    console.log(`[HTTP] ${method} ${url.toString()} failed: ${error.message}`);
-
-    return error;
-  });
+  const response = await fetch(request).catch((error) => error);
 
   if (response instanceof Error) {
     if (debug) {
@@ -165,3 +160,4 @@ export function buildUrl<RequestInput>(
 
   return url;
 }
+

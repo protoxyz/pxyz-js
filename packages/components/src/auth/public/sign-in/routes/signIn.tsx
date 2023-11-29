@@ -18,7 +18,7 @@ import { Input } from '../../../../ui/input';
 import { z } from 'zod';
 import { AuthComponentType } from '@protoxyz/themes';
 import {
-  useBrandLogo, 
+  useBrandLogo,
   useBrandName,
   useProtocolAuth,
   useProtocolAuthAppearance,
@@ -37,17 +37,11 @@ import {
   CardHeader,
   CardTitle,
 } from '../../../../ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../../../../ui/select';
+
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { SocialLinks } from '../../../custom-ui/social-links';
 import { FooterLinks } from '../../../custom-ui/footer-links';
-import { CardFooterLinks } from '../../../custom-ui/card-footer-links'; 
+import { CardFooterLinks } from '../../../custom-ui/card-footer-links';
 import { Spinner } from '../../../../ui/spinner';
 import { handleSignInResponse } from '..';
 import React from 'react';
@@ -78,7 +72,6 @@ const UsernamePasswordFormSchema = z.object({
   username: z.string().min(4),
   password: z.string(),
 });
- 
 
 export function SignInPhoneCodeForm({
   tenant,
@@ -231,7 +224,7 @@ export function SignInPhonePasswordForm({
       setRoute,
       setCreateSignInError,
       navigate,
-      setToken
+      setToken,
     );
 
     setCreatingSignIn(false);
@@ -327,7 +320,7 @@ export function SignInEmailCodeForm({
       setRoute,
       setCreateSignInError,
       navigate,
-      setToken
+      setToken,
     );
 
     setCreatingSignIn(false);
@@ -421,7 +414,7 @@ export function SignInEmailLinkForm({
       setRoute,
       setCreateSignInError,
       navigate,
-      setToken
+      setToken,
     );
 
     setCreatingSignIn(false);
@@ -517,7 +510,7 @@ export function SignInEmailPasswordForm({
       setRoute,
       setCreateSignInError,
       navigate,
-      setToken
+      setToken,
     );
 
     setCreatingSignIn(false);
@@ -701,12 +694,12 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
   const component: AuthComponentType = 'signIn';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuthTenant();
-  const { firstFactorStrategy } = useProtocolAuth()
+  const { firstFactorStrategy } = useProtocolAuth();
   const brandName = useBrandName({ component });
   const brandLogo = useBrandLogo({ component });
   const usingPasswords = tenant?.auth?.passwordsEnabled;
   const { signIn } = useProtocolAuthFlow();
- 
+
   return (
     <CardWrapper
       component={component}
@@ -735,8 +728,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
         <CardContent className={appearance?.elements?.cardContent}>
           <SocialLinks appearance={appearance} tenant={tenant} />
 
-          {firstFactorStrategy ===
-            AuthVerificationStrategy.email_code && (
+          {firstFactorStrategy === AuthVerificationStrategy.email_code && (
             <SignInEmailCodeForm
               tenant={tenant}
               afterSignInRedirectUri={
@@ -745,18 +737,16 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {firstFactorStrategy ===
-            AuthVerificationStrategy.email_link && (
+          {firstFactorStrategy === AuthVerificationStrategy.email_link && (
             <SignInEmailLinkForm
               tenant={tenant}
               afterSignInRedirectUri={
                 afterSignInRedirectUri ?? tenant?.auth?.homeUri
               }
             />
-          )} 
+          )}
 
-          {firstFactorStrategy ===
-            AuthVerificationStrategy.phone_code && (
+          {firstFactorStrategy === AuthVerificationStrategy.phone_code && (
             <SignInPhoneCodeForm
               tenant={tenant}
               afterSignInRedirectUri={
@@ -765,8 +755,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {firstFactorStrategy ===
-            AuthVerificationStrategy.email_password && (
+          {firstFactorStrategy === AuthVerificationStrategy.email_password && (
             <SignInEmailPasswordForm
               tenant={tenant}
               afterSignInRedirectUri={
@@ -785,8 +774,7 @@ export function SignInRoute({ afterSignInRedirectUri }: SignInRouteOptions) {
             />
           )}
 
-          {firstFactorStrategy ===
-            AuthVerificationStrategy.phone_password && (
+          {firstFactorStrategy === AuthVerificationStrategy.phone_password && (
             <SignInPhonePasswordForm
               tenant={tenant}
               afterSignInRedirectUri={

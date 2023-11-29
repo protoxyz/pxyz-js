@@ -28,7 +28,7 @@ export type AuthOptions =
     };
 
 export async function request<RequestInput, RequestOutput>(
-  auth: AuthOptions,
+  auth: AuthOptions | undefined,
   method: HTTPMethod,
   host: string,
   path: string,
@@ -45,7 +45,7 @@ export async function request<RequestInput, RequestOutput>(
   const headers = new Headers();
   headers.set('Content-Type', 'application/json');
 
-  if (
+  if (auth && 
     'token' in auth &&
     auth.token !== undefined &&
     auth.token !== '' &&
@@ -54,7 +54,7 @@ export async function request<RequestInput, RequestOutput>(
     headers.set('Authorization', \`Bearer \${auth.token.trim()}\`);
   }
 
-  if (
+  if (auth && 
     'publicKey' in auth &&
     auth.publicKey !== undefined &&
     auth.publicKey !== '' &&
@@ -63,7 +63,7 @@ export async function request<RequestInput, RequestOutput>(
     headers.set('x-public-key', auth.publicKey.trim());
   }
 
-  if (
+  if (auth && 
     'secretKey' in auth &&
     auth.secretKey !== undefined &&
     auth.secretKey !== '' &&

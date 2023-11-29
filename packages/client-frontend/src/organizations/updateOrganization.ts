@@ -1,42 +1,45 @@
-import { request, RequestOptions, AuthOptions } from "../request";
-import { SERVERS } from "../servers";
+import { request, RequestOptions, AuthOptions } from "../request"
+import { SERVERS } from "../servers"
 
 export type OrganizationsUpdateOrganizationResponse = {
-    status: string  
-    error: string | null 
-    data: {
+  status: string
+  error: string | null
+  data: {
     organization: {
-    id: string  
-    name: string  
-    slug: string  
-    description: string | null 
-    logoUri: string | null 
-    iconUri: string | null 
-    createdAt: string  | string   
-    updatedAt: string  | string   
-} | null 
-} | null 
+      id: string
+      name: string
+      slug: string
+      description: string | null
+      logoUri: string | null
+      iconUri: string | null
+      createdAt: string | string
+      updatedAt: string | string
+    } | null
+  } | null
 }
 
 export type OrganizationsUpdateOrganizationInput = {
-    name: string  
-    slug: string  
-    description: string | null 
-};
+  name: string
+  slug: string
+  description: string | null
+}
 
 export function updateOrganization(
-    auth: AuthOptions,
-    body?: OrganizationsUpdateOrganizationInput,
-    options?: RequestOptions<OrganizationsUpdateOrganizationInput>,
-    development?: boolean,
+  auth: AuthOptions,
+  body?: OrganizationsUpdateOrganizationInput,
+  options?: RequestOptions<OrganizationsUpdateOrganizationInput>,
+  development?: boolean
 ): Promise<OrganizationsUpdateOrganizationResponse> {
-  console.log(process.env.PROTOCOL_ENV === 'development')
-  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
-    return request<OrganizationsUpdateOrganizationInput, OrganizationsUpdateOrganizationResponse>(
-        auth,
-        'PUT',
-        isDevelopment ? SERVERS.development : SERVERS.production,
-        '/user/organizations/${pathParams.organizationId}',
-        {...options, body},
-    );
+  const isDevelopment =
+    development ?? process.env.PROTOCOL_ENV === "development" ?? false
+  return request<
+    OrganizationsUpdateOrganizationInput,
+    OrganizationsUpdateOrganizationResponse
+  >(
+    auth,
+    "PUT",
+    isDevelopment ? SERVERS.development : SERVERS.production,
+    "/user/organizations/${pathParams.organizationId}",
+    { ...options, body }
+  )
 }

@@ -1,7 +1,6 @@
 export * from "./request"
 export * from "./servers"
 export * from './user'
-export * from './tenants'
 export * from './signIns'
 export * from './signUps'
 export * from './phones'

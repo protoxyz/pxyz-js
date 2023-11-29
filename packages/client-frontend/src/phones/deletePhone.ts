@@ -1,26 +1,26 @@
-import { request, RequestOptions, AuthOptions } from "../request";
-import { SERVERS } from "../servers";
+import { request, RequestOptions, AuthOptions } from "../request"
+import { SERVERS } from "../servers"
 
 export type PhonesDeletePhoneResponse = {
-    status: string  
-    error: string | null 
+  status: string
+  error: string | null
 }
 
-export type PhonesDeletePhoneInput = undefined;
+export type PhonesDeletePhoneInput = undefined
 
 export function deletePhone(
-    auth: AuthOptions,
-    body?: PhonesDeletePhoneInput,
-    options?: RequestOptions<PhonesDeletePhoneInput>,
-    development?: boolean,
+  auth: AuthOptions,
+  body?: PhonesDeletePhoneInput,
+  options?: RequestOptions<PhonesDeletePhoneInput>,
+  development?: boolean
 ): Promise<PhonesDeletePhoneResponse> {
-  console.log(process.env.PROTOCOL_ENV === 'development')
-  const isDevelopment = development ?? process.env.PROTOCOL_ENV === 'development' ?? false
-    return request<PhonesDeletePhoneInput, PhonesDeletePhoneResponse>(
-        auth,
-        'DELETE',
-        isDevelopment ? SERVERS.development : SERVERS.production,
-        '/user/phones/${pathParams.phoneId}',
-        {...options, body},
-    );
+  const isDevelopment =
+    development ?? process.env.PROTOCOL_ENV === "development" ?? false
+  return request<PhonesDeletePhoneInput, PhonesDeletePhoneResponse>(
+    auth,
+    "DELETE",
+    isDevelopment ? SERVERS.development : SERVERS.production,
+    "/user/phones/${pathParams.phoneId}",
+    { ...options, body }
+  )
 }

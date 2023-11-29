@@ -1,4 +1,4 @@
 export const SERVERS = {
-  "production": "https://api.pxyz.dev/api/auth/frontend/v0",
-  "development": "http://localhost:4000/api/auth/frontend/v0"
+  "production": "https://auth.pxyz.io/api/v0",
+  "development": "http://localhost:3002/api/v0"
 }
