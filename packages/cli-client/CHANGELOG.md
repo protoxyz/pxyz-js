@@ -1,5 +1,11 @@
 # @protoxyz/cli
 
+## 1.0.2
+
+### Patch Changes
+
+- 7f8b42e: update frontend client api
+
 ## 1.0.1
 
 ### Patch Changes

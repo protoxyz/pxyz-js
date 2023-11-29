@@ -1,5 +1,11 @@
 # @protoxyz/components
 
+## 1.0.15
+
+### Patch Changes
+
+- 7f8b42e: update frontend client api
+
 ## 1.0.14
 
 ### Patch Changes
