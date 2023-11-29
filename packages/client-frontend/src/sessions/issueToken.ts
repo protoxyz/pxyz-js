@@ -3,15 +3,15 @@ import { SERVERS } from "../servers"
 
 export type SessionsIssueTokenResponse = {
   status: string
-  error: string | null
-  data: {
-    jwt: string | null
-    sessionUser: any | null
+  error?: string | null
+  data?: {
+    jwt?: string | null
+    sessionUser?: any | null
   } | null
 }
 
 export type SessionsIssueTokenInput = {
-  orgId: string | null
+  orgId?: string | null
   ttl: number
 }
 

@@ -3,15 +3,15 @@ import { SERVERS } from "../servers"
 
 export type OrganizationsCreateOrganizationResponse = {
   status: string
-  error: string | null
+  error?: string | null
   data: {
-    organization: {
+    organization?: {
       id: string
       name: string
       slug: string
-      description: string | null
-      logoUri: string | null
-      iconUri: string | null
+      description?: string | null
+      logoUri?: string | null
+      iconUri?: string | null
       createdAt: string | string
       updatedAt: string | string
     } | null
@@ -21,7 +21,7 @@ export type OrganizationsCreateOrganizationResponse = {
 export type OrganizationsCreateOrganizationInput = {
   name: string
   slug: string
-  description: string | null
+  description?: string | null
 }
 
 export function createOrganization(

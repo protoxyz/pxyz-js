@@ -3,23 +3,23 @@ import { SERVERS } from "../servers"
 
 export type OrganizationsListOrganizationsResponse = {
   status: string
-  error: string | null
+  error?: string | null
   data: {
     id: string
     name: string
     slug: string
-    description: string | null
-    logoUri: string | null
-    iconUri: string | null
+    description?: string | null
+    logoUri?: string | null
+    iconUri?: string | null
     createdAt: string | string
     updatedAt: string | string
     membership: {
       id: string
-      roleId: string | null
-      role: {
+      roleId?: string | null
+      role?: {
         name: string
-        description: string | null
-        permissions: string[] | null
+        description?: string | null
+        permissions?: string[] | null
       } | null
     }
   }[]
@@ -28,8 +28,8 @@ export type OrganizationsListOrganizationsResponse = {
     count: number
     numPages: number
     perPage: number
-    prev: string | null
-    next: string | null
+    prev?: string | null
+    next?: string | null
   }
 }
 

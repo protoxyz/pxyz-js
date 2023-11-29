@@ -3,69 +3,69 @@ import { SERVERS } from "../servers"
 
 export type SignInsAttemptFirstFactorResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     signInAttempt: {
       id: string
-      userId: string | null
+      userId?: string | null
       tenantId: string
-      identifier: string | null
+      identifier?: string | null
       status: string
-      strategy: string | null
-      oauthProviderId: string | null
-      oauthProvider: {
+      strategy?: string | null
+      oauthProviderId?: string | null
+      oauthProvider?: {
         id: string
         providerKey: string
       } | null
-      ipAddress: string | null
-      userAgent: string | null
-      redirectUri: string | null
+      ipAddress?: string | null
+      userAgent?: string | null
+      redirectUri?: string | null
       createdAt: string
       updatedAt: string
     }
-    session: {
+    session?: {
       id: string
-      browser: string | null
-      device: string | null
-      engine: string | null
-      os: string | null
-      cpu: string | null
-      ua: string | null
-      ip: string | null
-      userId: string | null
-      signInAttemptId: string | null
-      signUpAttemptId: string | null
+      browser?: string | null
+      device?: string | null
+      engine?: string | null
+      os?: string | null
+      cpu?: string | null
+      ua?: string | null
+      ip?: string | null
+      userId?: string | null
+      signInAttemptId?: string | null
+      signUpAttemptId?: string | null
       expiresAt: string
       createdAt: string
       updatedAt: string
     } | null
-    sessionUser: {
+    sessionUser?: {
       sub: string
       exp: number
       aud: string
       iss: string
-      claims: {
+      claims?: {
         sessionId: string
-        name: string | null
-        username: string | null
-        image: string | null
-        orgId: string | null
-        role: string | null
-        permissions: string[] | null
-        email: string | null
-        phone: string | null
-        orgRole: string | null
-        orgPermissions: string[] | null
+        name?: string | null
+        username?: string | null
+        image?: string | null
+        orgId?: string | null
+        role?: string | null
+        permissions?: string[] | null
+        email?: string | null
+        phone?: string | null
+        orgRole?: string | null
+        orgPermissions?: string[] | null
       } | null
     } | null
-    jwt: string | null
-    authorizeUri: string | null
+    jwt?: string | null
+    authorizeUri?: string | null
   } | null
 }
 
 export type SignInsAttemptFirstFactorInput = {
-  strategy: string | null
-  code: string | null
+  strategy?: string | null
+  code?: string | null
 }
 
 export function attemptFirstFactor(

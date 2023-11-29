@@ -3,25 +3,25 @@ import { SERVERS } from "../servers"
 
 export type SignUpsGetSignUpResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     signUpAttempt: {
       id: string
-      userId: string | null
-      tenantId: string | null
-      name: string | null
-      email: string | null
-      phone: string | null
-      username: string | null
+      userId?: string | null
+      tenantId?: string | null
+      name?: string | null
+      email?: string | null
+      phone?: string | null
+      username?: string | null
       status: string
-      oauthProviderId: string | null
-      oauthProvider: {
+      oauthProviderId?: string | null
+      oauthProvider?: {
         id: string
         providerKey: string
       } | null
-      redirectUri: string | null
-      emailVerificationStrategy: string | null
-      phoneVerificationStrategy: string | null
+      redirectUri?: string | null
+      emailVerificationStrategy?: string | null
+      phoneVerificationStrategy?: string | null
       requiredFields: string[]
       missingFields: string[]
       requiredVerifications: string[]

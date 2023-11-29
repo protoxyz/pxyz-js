@@ -3,16 +3,16 @@ import { SERVERS } from "../servers"
 
 export type ConnectionsListConnectionsResponse = {
   status: string
-  error: string | null
+  error?: string | null
   data: {
     id: string
     status: string
     socialProviderId: string
-    socialProvider: {
+    socialProvider?: {
       providerKey: string
     } | null
-    providerId: string | null
-    scope: string | null
+    providerId?: string | null
+    scope?: string | null
     createdAt: string
     updatedAt: string
   }[]
@@ -21,8 +21,8 @@ export type ConnectionsListConnectionsResponse = {
     count: number
     numPages: number
     perPage: number
-    prev: string | null
-    next: string | null
+    prev?: string | null
+    next?: string | null
   }
 }
 

@@ -3,8 +3,8 @@ import { SERVERS } from "../servers"
 
 export type WellKnownOpenidConfigurationResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     issuer: string
     authorization_endpoint: string
     token_endpoint: string

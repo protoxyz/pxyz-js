@@ -3,25 +3,25 @@ import { SERVERS } from "../servers"
 
 export type SignUpsUpdateSignUpResponse = {
   status: string
-  error: string | null
-  data: {
-    signUpAttempt: {
+  error?: string | null
+  data?: {
+    signUpAttempt?: {
       id: string
-      userId: string | null
-      tenantId: string | null
-      name: string | null
-      email: string | null
-      phone: string | null
-      username: string | null
+      userId?: string | null
+      tenantId?: string | null
+      name?: string | null
+      email?: string | null
+      phone?: string | null
+      username?: string | null
       status: string
-      oauthProviderId: string | null
-      oauthProvider: {
+      oauthProviderId?: string | null
+      oauthProvider?: {
         id: string
         providerKey: string
       } | null
-      redirectUri: string | null
-      emailVerificationStrategy: string | null
-      phoneVerificationStrategy: string | null
+      redirectUri?: string | null
+      emailVerificationStrategy?: string | null
+      phoneVerificationStrategy?: string | null
       requiredFields: string[]
       missingFields: string[]
       requiredVerifications: string[]
@@ -29,24 +29,24 @@ export type SignUpsUpdateSignUpResponse = {
       createdAt: string
       updatedAt: string
     } | null
-    session: {
+    session?: {
       id: string
-      browser: string | null
-      device: string | null
-      engine: string | null
-      os: string | null
-      cpu: string | null
-      ua: string | null
-      ip: string | null
-      userId: string | null
-      signInAttemptId: string | null
-      signUpAttemptId: string | null
+      browser?: string | null
+      device?: string | null
+      engine?: string | null
+      os?: string | null
+      cpu?: string | null
+      ua?: string | null
+      ip?: string | null
+      userId?: string | null
+      signInAttemptId?: string | null
+      signUpAttemptId?: string | null
       expiresAt: string
       createdAt: string
       updatedAt: string
     } | null
-    sessionUser: any | null
-    jwt: string | null
+    sessionUser?: any | null
+    jwt?: string | null
   } | null
 }
 

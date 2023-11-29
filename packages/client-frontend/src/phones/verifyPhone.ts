@@ -3,13 +3,13 @@ import { SERVERS } from "../servers"
 
 export type PhonesVerifyPhoneResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     phoneNumber: {
       id: string
-      userId: string | null
+      userId?: string | null
       phone: string
-      verifiedAt: string | null
+      verifiedAt?: string | null
       createdAt: string
       updatedAt: string
     }

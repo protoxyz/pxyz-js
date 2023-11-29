@@ -3,17 +3,17 @@ import { SERVERS } from "../servers"
 
 export type ConnectionsUpdateConnectionResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     connection: {
       id: string
       status: string
       socialProviderId: string
-      socialProvider: {
+      socialProvider?: {
         providerKey: string
       } | null
-      providerId: string | null
-      scope: string | null
+      providerId?: string | null
+      scope?: string | null
       createdAt: string
       updatedAt: string
     }
@@ -21,7 +21,7 @@ export type ConnectionsUpdateConnectionResponse = {
 }
 
 export type ConnectionsUpdateConnectionInput = {
-  code: string | null
+  code?: string | null
   profile: Record<any, any>
   rawProfile: Record<any, any>
   tokens: Record<any, any>

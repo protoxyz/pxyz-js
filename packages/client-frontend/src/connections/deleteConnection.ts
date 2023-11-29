@@ -3,17 +3,17 @@ import { SERVERS } from "../servers"
 
 export type ConnectionsDeleteConnectionResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     connection: {
       id: string
       status: string
       socialProviderId: string
-      socialProvider: {
+      socialProvider?: {
         providerKey: string
       } | null
-      providerId: string | null
-      scope: string | null
+      providerId?: string | null
+      scope?: string | null
       createdAt: string
       updatedAt: string
     }

@@ -538,49 +538,53 @@ ${Object.entries(responseObject.properties)
   .map(([key, value]) => {
     switch (value.type) {
       case 'array':
-        return `    ${key}: ${responseObjectToInterface(value.items)}[] ${
+        return `    ${key}${
+          value.nullable ? '?' : ''
+        }: ${responseObjectToInterface(value.items)}[] ${
           value.nullable ? '| null' : ''
         } ${value.optional ? '| undefined' : ''}`;
       case 'object':
-        return `    ${key}: ${responseObjectToInterface(value)} ${
+        return `    ${key}${
+          value.nullable ? '?' : ''
+        }: ${responseObjectToInterface(value)} ${
           value.nullable ? '| null' : ''
         } ${value.optional ? '| undefined' : ''}`;
       case 'integer':
       case 'float':
       case 'number':
-        return `    ${key}: number ${value.nullable ? '| null' : ''} ${
-          value.optional ? '| undefined' : ''
-        }`;
+        return `    ${key}${value.nullable ? '?' : ''}: number ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
       case 'undefined':
-        return `    ${key}: any ${value.nullable ? '| null' : ''} ${
-          value.optional ? '| undefined' : ''
-        }`;
+        return `    ${key}${value.nullable ? '?' : ''}: any ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
       case 'string':
-        return `    ${key}: string ${value.nullable ? '| null' : ''} ${
-          value.optional ? '| undefined' : ''
-        }`;
+        return `    ${key}${value.nullable ? '?' : ''}: string ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
       case 'boolean':
-        return `    ${key}: boolean ${value.nullable ? '| null' : ''} ${
-          value.optional ? '| undefined' : ''
-        }`;
+        return `    ${key}${value.nullable ? '?' : ''}: boolean ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
 
       default:
         if (value.anyOf) {
-          return `    ${key}: ${value.anyOf
+          return `    ${key}${value.nullable ? '?' : ''}: ${value.anyOf
             .map((anyOf: ResponseObject) => responseObjectToInterface(anyOf))
             .join(' | ')} ${value.nullable ? '| null' : ''} ${
             value.optional ? '| undefined' : ''
           }`;
         }
         if (typeof value === 'object' && Object.keys(value).length === 0) {
-          return `    ${key}: Record<any, any> ${
+          return `    ${key}${value.nullable ? '?' : ''}: Record<any, any> ${
             value.nullable ? '| null' : ''
           } ${value.optional ? '| undefined' : ''}`;
         }
 
-        return `    ${key}: any ${value.nullable ? '| null' : ''} ${
-          value.optional ? '| undefined' : ''
-        }`;
+        return `    ${key}${value.nullable ? '?' : ''}: any ${
+          value.nullable ? '| null' : ''
+        } ${value.optional ? '| undefined' : ''}`;
       // return `    ${key}: ${value.type}`;
     }
   })

@@ -3,8 +3,8 @@ import { SERVERS } from "../servers"
 
 export type OrganizationsDeleteOrganizationResponse = {
   status: string
-  error: string | null
-  data: any | null
+  error?: string | null
+  data?: any | null
 }
 
 export type OrganizationsDeleteOrganizationInput = undefined

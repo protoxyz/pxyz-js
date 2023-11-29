@@ -3,7 +3,7 @@ import { SERVERS } from "../servers"
 
 export type EmailsPrepareEmailResponse = {
   status: string
-  error: string | null
+  error?: string | null
 }
 
 export type EmailsPrepareEmailInput = undefined

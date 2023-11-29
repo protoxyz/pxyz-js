@@ -3,12 +3,12 @@ import { SERVERS } from "../servers"
 
 export type PhonesListPhonesResponse = {
   status: string
-  error: string | null
+  error?: string | null
   data: {
     id: string
-    userId: string | null
+    userId?: string | null
     phone: string
-    verifiedAt: string | null
+    verifiedAt?: string | null
     createdAt: string
     updatedAt: string
   }[]
@@ -17,8 +17,8 @@ export type PhonesListPhonesResponse = {
     count: number
     numPages: number
     perPage: number
-    prev: string | null
-    next: string | null
+    prev?: string | null
+    next?: string | null
   }
 }
 

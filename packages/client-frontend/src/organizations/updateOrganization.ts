@@ -3,15 +3,15 @@ import { SERVERS } from "../servers"
 
 export type OrganizationsUpdateOrganizationResponse = {
   status: string
-  error: string | null
-  data: {
-    organization: {
+  error?: string | null
+  data?: {
+    organization?: {
       id: string
       name: string
       slug: string
-      description: string | null
-      logoUri: string | null
-      iconUri: string | null
+      description?: string | null
+      logoUri?: string | null
+      iconUri?: string | null
       createdAt: string | string
       updatedAt: string | string
     } | null
@@ -21,7 +21,7 @@ export type OrganizationsUpdateOrganizationResponse = {
 export type OrganizationsUpdateOrganizationInput = {
   name: string
   slug: string
-  description: string | null
+  description?: string | null
 }
 
 export function updateOrganization(

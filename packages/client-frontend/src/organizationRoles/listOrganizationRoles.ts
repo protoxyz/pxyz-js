@@ -3,24 +3,24 @@ import { SERVERS } from "../servers"
 
 export type OrganizationRolesListOrganizationRolesResponse = {
   status: string
-  error: string | null
-  data:
+  error?: string | null
+  data?:
     | {
         id: string
         name: string
-        description: string | null
+        description?: string | null
         permissions: string[]
         createdAt: string
         updatedAt: string
       }[]
     | null
-  meta: {
+  meta?: {
     total: number
     count: number
     numPages: number
     perPage: number
-    prev: string | null
-    next: string | null
+    prev?: string | null
+    next?: string | null
   } | null
 }
 

@@ -3,13 +3,13 @@ import { SERVERS } from "../servers"
 
 export type EmailsCreateEmailResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     emailAddress: {
       id: string
-      userId: string | null
+      userId?: string | null
       email: string
-      verifiedAt: string | null
+      verifiedAt?: string | null
       createdAt: string
       updatedAt: string
     }

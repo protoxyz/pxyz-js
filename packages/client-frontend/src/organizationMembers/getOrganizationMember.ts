@@ -3,23 +3,23 @@ import { SERVERS } from "../servers"
 
 export type OrganizationMembersGetOrganizationMemberResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     id: string
     organizationId: string
     userId: string
-    roleId: string | null
-    role: {
+    roleId?: string | null
+    role?: {
       id: string
       name: string
-      description: string | null
-      permissions: string[] | null
+      description?: string | null
+      permissions?: string[] | null
     } | null
     user: {
       id: string
       name: string
       identifier: string
-      imageUri: string | null
+      imageUri?: string | null
       createdAt: string
       updatedAt: string
     }

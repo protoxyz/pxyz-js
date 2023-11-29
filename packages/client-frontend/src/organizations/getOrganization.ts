@@ -3,15 +3,15 @@ import { SERVERS } from "../servers"
 
 export type OrganizationsGetOrganizationResponse = {
   status: string
-  error: string | null
-  data: {
-    organization: {
+  error?: string | null
+  data?: {
+    organization?: {
       id: string
       name: string
       slug: string
-      description: string | null
-      logoUri: string | null
-      iconUri: string | null
+      description?: string | null
+      logoUri?: string | null
+      iconUri?: string | null
       createdAt: string | string
       updatedAt: string | string
     } | null

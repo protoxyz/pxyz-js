@@ -3,7 +3,7 @@ import { SERVERS } from "../servers"
 
 export type PhonesPreparePhoneResponse = {
   status: string
-  error: string | null
+  error?: string | null
 }
 
 export type PhonesPreparePhoneInput = undefined

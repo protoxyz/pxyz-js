@@ -3,8 +3,8 @@ import { SERVERS } from "../servers"
 
 export type WellKnownJwksResponse = {
   status: string
-  error: string | null
-  data: {
+  error?: string | null
+  data?: {
     jwks: Record<any, any>
   } | null
 }
