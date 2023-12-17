@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.54
+
+### Patch Changes
+
+- 1b431a9: update url
+
 ## 2.0.53
 
 ### Patch Changes

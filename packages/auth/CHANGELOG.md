@@ -1,5 +1,13 @@
 # @protoxyz/auth
 
+## 1.0.15
+
+### Patch Changes
+
+- 1b431a9: update url
+- Updated dependencies [1b431a9]
+  - @protoxyz/core@2.0.54
+
 ## 1.0.14
 
 ### Patch Changes
