@@ -1,5 +1,15 @@
 # @protoxyz/components
 
+## 1.0.17
+
+### Patch Changes
+
+- 1b431a9: update url
+- Updated dependencies [1b431a9]
+  - @protoxyz/core@2.0.54
+  - @protoxyz/auth@1.0.15
+  - @protoxyz/media@1.0.8
+
 ## 1.0.16
 
 ### Patch Changes
