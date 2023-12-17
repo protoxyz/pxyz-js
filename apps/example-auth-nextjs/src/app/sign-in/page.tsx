@@ -4,7 +4,7 @@ import { SignIn } from '@protoxyz/components';
 export default function SignInPage() {
   return (
     <Wrapper>
-      <SignIn />
+      <SignIn afterSignInRedirectUri="/" />
     </Wrapper>
   );
 }
