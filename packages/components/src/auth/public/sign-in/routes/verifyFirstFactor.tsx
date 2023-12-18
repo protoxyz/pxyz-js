@@ -21,14 +21,14 @@ import {
   AuthVerificationStrategy,
   AuthSignInAttemptStatus,
 } from '@protoxyz/types';
-import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo'; 
+import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { z } from 'zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField } from '../../../../ui/form';
 import { Button, LoadingButton } from '../../../../ui/button';
-import { Input } from '../../../../ui/input';  
+import { Input } from '../../../../ui/input';
 import { handleSignInResponse } from '..';
 import { cn } from '../../../../lib/utils';
 
@@ -52,16 +52,17 @@ export function SignInVerifyFirstFactorRoute() {
   const resendCode = async () => {
     setCodeResending(true);
     setCodeResent(false);
-    const resendResponse = signIn ?
-      await protocol?.auth.signInAttempts.prepareFirstFactor({
-        path: {
-          id: signIn.id,
-        },
-        body: {
-          strategy: signIn.strategy as any,
-          identifier: signIn.identifier as any,
-        },
-      }) : null;
+    const resendResponse = signIn
+      ? await protocol?.auth.signInAttempts.prepareFirstFactor({
+          path: {
+            id: signIn.id,
+          },
+          body: {
+            strategy: signIn.strategy as any,
+            identifier: signIn.identifier as any,
+          },
+        })
+      : null;
 
     if (resendResponse?.status === ResponseStatus.Success) {
       setSignIn(resendResponse?.data?.signInAttempt as any);
@@ -142,8 +143,6 @@ export function SignInVerifyFirstFactorRoute() {
         )}
 
         <CardContent className={appearance?.elements?.cardContent}>
-          <Button variant="outline">{signIn?.identifier}</Button>
-
           <SignInVerifyFirstFactorForm setError={setError} />
 
           {error && <div className="text-sm text-red-500">{error}</div>}
@@ -236,16 +235,17 @@ export function SignInVerifyFirstFactorForm({
 
     setVerifying(true);
 
-    const signInResponse = signIn ?
-      await protocol?.auth.signInAttempts.attemptFirstFactor({
-        path: {
-          id: signIn?.id,
-        },
-        body: {
-          strategy: signIn.strategy as any,
-          code,
-        },
-      }) : null;
+    const signInResponse = signIn
+      ? await protocol?.auth.signInAttempts.attemptFirstFactor({
+          path: {
+            id: signIn?.id,
+          },
+          body: {
+            strategy: signIn.strategy as any,
+            code,
+          },
+        })
+      : null;
 
     if (signInResponse?.status === ResponseStatus.Success) {
       if (
