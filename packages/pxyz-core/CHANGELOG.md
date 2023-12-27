@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.55
+
+### Patch Changes
+
+- 73a744b: only set localstorage token if it's localhost
+
 ## 2.0.54
 
 ### Patch Changes

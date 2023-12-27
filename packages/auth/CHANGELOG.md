@@ -1,5 +1,13 @@
 # @protoxyz/auth
 
+## 1.0.16
+
+### Patch Changes
+
+- 73a744b: only set localstorage token if it's localhost
+- Updated dependencies [73a744b]
+  - @protoxyz/core@2.0.55
+
 ## 1.0.15
 
 ### Patch Changes
