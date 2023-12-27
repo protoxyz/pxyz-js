@@ -216,7 +216,11 @@ export const ProtocolAuthProvider = ({
       accessToken: getAccessTokenFromLocalStorage(tenant),
     }),
     setToken: (token: string) => {
-      if (isBrowser() && !isReactNative()) {
+      if (
+        isBrowser() &&
+        !isReactNative() &&
+        process.env.NODE_ENV === 'development'
+      ) {
         localStorage.setItem(SESSION_COOKIE_NAME, token);
       }
 
