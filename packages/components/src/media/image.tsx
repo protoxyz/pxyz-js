@@ -9,7 +9,7 @@ import { cn } from '../lib/utils';
 
 type ImageProps = {
   alt?: string;
-  tenantId?: string;
+  tenantId: string;
   uploadId: string;
   className?: string;
   blurhash?: boolean | string;
