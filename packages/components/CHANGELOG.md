@@ -1,5 +1,11 @@
 # @protoxyz/components
 
+## 1.0.21
+
+### Patch Changes
+
+- e070eb5: add tenant id
+
 ## 1.0.20
 
 ### Patch Changes
