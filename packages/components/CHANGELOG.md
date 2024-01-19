@@ -1,5 +1,11 @@
 # @protoxyz/components
 
+## 1.0.22
+
+### Patch Changes
+
+- 7104c0b: make tenantId mandatory
+
 ## 1.0.21
 
 ### Patch Changes
