@@ -1,5 +1,11 @@
 # @protoxyz/media
 
+## 1.0.11
+
+### Patch Changes
+
+- a1e2334: adf
+
 ## 1.0.10
 
 ### Patch Changes
