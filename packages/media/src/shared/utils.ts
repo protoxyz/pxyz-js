@@ -4,15 +4,17 @@ import {
 } from './types';
 
 export function getImageUri({
+  tenantId,
   imageId,
   options,
 }: {
+  tenantId: string;
   imageId: string;
   options?: ImageProcessorOptions | ImageProcessorTransformationOptions;
 }) {
   const cdnUrl = getCdnUri();
 
-  const src = new URL(`/${imageId}/image?`, cdnUrl);
+  const src = new URL(`/${tenantId}/${imageId}/image?`, cdnUrl);
 
   if (options) {
     if ('transformation' in options && options.transformation) {
@@ -40,12 +42,12 @@ export function getCdnUri() {
   return (
     process.env.PXYZ_CDN_URL ??
     process.env.NEXT_PUBLIC_PXYZ_CDN_URL ??
-    'https://cdn.pxyz.cloud'
+    'https://cdn.prod.pxyz.cloud'
   );
 }
 
-export function getVideoUri(videoId: string) {
+export function getVideoUri(tenantId: string, videoId: string) {
   const cdnUrl = getCdnUri();
 
-  return new URL(`/${videoId}/video`, cdnUrl).toString();
+  return new URL(`/${tenantId}/${videoId}/video`, cdnUrl).toString();
 }

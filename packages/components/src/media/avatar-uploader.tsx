@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Input } from '../ui/input';
 
 export interface AvatarUploaderProps extends PutProps {
+  tenantId: string;
   avatarId?: string;
   initials?: string;
   accept?: string;
@@ -18,6 +19,7 @@ export interface AvatarUploaderProps extends PutProps {
   alt?: string;
 }
 export function AvatarUploader({
+  tenantId,
   avatarId,
   initials,
   accept = 'image/png, image/jpeg',
@@ -39,6 +41,7 @@ export function AvatarUploader({
     () =>
       imageId &&
       getImageUri({
+        tenantId,
         imageId,
         options: {
           format: 'webp',
