@@ -1,5 +1,13 @@
 # @protoxyz/components
 
+## 1.0.20
+
+### Patch Changes
+
+- 8cd1fa0: update media
+- Updated dependencies [8cd1fa0]
+  - @protoxyz/media@1.0.10
+
 ## 1.0.19
 
 ### Patch Changes
