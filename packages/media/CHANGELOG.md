@@ -1,5 +1,12 @@
 # @protoxyz/media
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [73a744b]
+  - @protoxyz/core@2.0.55
+
 ## 1.0.8
 
 ### Patch Changes
