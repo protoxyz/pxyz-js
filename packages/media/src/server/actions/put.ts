@@ -54,6 +54,7 @@ export async function put({
     publicKey: pkey,
     secretKey: skey,
     debug: process.env.NODE_ENV === 'development',
+    baseUrl: process.env.PXYZ_API_URL ?? 'https://api.prod.pxyz.dev',
   });
 
   return protocol.media.uploads.create({
