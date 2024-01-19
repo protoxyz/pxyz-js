@@ -1,5 +1,11 @@
 # @protoxyz/media
 
+## 1.0.10
+
+### Patch Changes
+
+- 8cd1fa0: update media
+
 ## 1.0.9
 
 ### Patch Changes
