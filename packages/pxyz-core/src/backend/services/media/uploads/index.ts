@@ -13,11 +13,11 @@ import {
   ListUploads200Response,
 } from './responses';
 
-export const ListUploadsPath = '/api/v0/tenants/{tenantId}/media/uploads';
-export const CreateUploadPath = '/api/v0/media/uploads';
-export const GetUploadPath = '/api/v0/media/uploads/{uploadId}';
-export const DeleteUploadPath = '/api/v0/uploads/{uploadId}';
-export const FinishUploadPath = '/api/v0/uploads/{uploadId}/finish';
+export const ListUploadsPath = '/v0/tenants/{tenantId}/media/uploads';
+export const CreateUploadPath = '/v0/media/uploads';
+export const GetUploadPath = '/v0/media/uploads/{uploadId}';
+export const DeleteUploadPath = '/v0/uploads/{uploadId}';
+export const FinishUploadPath = '/v0/uploads/{uploadId}/finish';
 
 export class ProtocolMediaUploadsService {
   private protocol: ProtocolBackendClient;

@@ -8,12 +8,12 @@ import {
 } from './requests';
 import { GetTenant200Response, ListTenants200Response } from './responses';
 
-export const ListTenantsPath = '/api/v0/tenants';
-export const GetTenantByIdPath = '/api/v0/tenants/{tenantId}';
-export const GetTenantBySlugPath = '/api/v0/tenants/slug/{tenantId}';
-export const GetTenantByDomainPath = '/api/v0/tenants/domain/{tenantId}';
-export const CreateTenantPath = '/api/v0/tenants';
-export const UpdateTenantPath = '/api/v0/tenants/{tenantId}';
+export const ListTenantsPath = '/v0/tenants';
+export const GetTenantByIdPath = '/v0/tenants/{tenantId}';
+export const GetTenantBySlugPath = '/v0/tenants/slug/{tenantId}';
+export const GetTenantByDomainPath = '/v0/tenants/domain/{tenantId}';
+export const CreateTenantPath = '/v0/tenants';
+export const UpdateTenantPath = '/v0/tenants/{tenantId}';
 
 export class ProtocolTenantsService {
   private protocol: ProtocolBackendClient;

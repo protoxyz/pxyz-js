@@ -15,11 +15,11 @@ import {
 } from './responses';
 
 export const ListNotificationChannelsPath =
-  '/api/v0/tenants/{tenantId}/notifications/channels';
+  '/v0/tenants/{tenantId}/notifications/channels';
 export const GetNotificationChannelPath =
-  '/api/v0/notifications/channels/{channelId}';
+  '/v0/notifications/channels/{channelId}';
 export const DeleteNotificationChannelPath =
-  '/api/v0/notifications/channels/{channelId}';
+  '/v0/notifications/channels/{channelId}';
 
 export class ProtocolNotificationChannelsService {
   private protocol: ProtocolBackendClient;

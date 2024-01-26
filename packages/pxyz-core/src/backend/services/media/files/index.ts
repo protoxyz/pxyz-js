@@ -10,9 +10,9 @@ import {
   ListFiles200Response,
 } from './responses';
 
-export const ListFilesPath = '/api/v0/tenants/{tenantId}/media/files';
-export const GetFilePath = '/api/v0/media/files/{fileId}';
-export const DeleteFilePath = '/api/v0/media/files/{fileId}';
+export const ListFilesPath = '/v0/tenants/{tenantId}/media/files';
+export const GetFilePath = '/v0/media/files/{fileId}';
+export const DeleteFilePath = '/v0/media/files/{fileId}';
 
 export class ProtocolMediaFilesService {
   private protocol: ProtocolBackendClient;

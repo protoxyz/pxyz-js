@@ -8,7 +8,7 @@ import {
 } from './requests';
 import { SendNotification201Response } from './responses';
 
-export const SendNotificationPath = '/api/v0/notifications/send';
+export const SendNotificationPath = '/v0/notifications/send';
 
 export class ProtocolNotificationsService {
   private protocol: ProtocolBackendClient;

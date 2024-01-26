@@ -17,7 +17,6 @@ export * from './frontend/paths';
 // export * from './frontend/services/auth/users';
 // export * from './frontend/services/auth/sessions';
 // export * from './frontend/services/auth/wellKnown';
-
 // export * from './frontend/services/auth/organizations';
 // export * from './frontend/services/auth/organizationInvitations';
 // export * from './frontend/services/auth/organizationMembers';

@@ -14,11 +14,11 @@ import {
   UpdateUser200Response,
 } from './responses';
 
-export const ListUsersPath = '/api/v0/tenants/{tenantId}/auth/users';
-export const CreateUserPath = '/api/v0/auth/users';
-export const GetUserPath = '/api/v0/auth/users/{userId}';
-export const DeleteUserPath = '/api/v0/users/{userId}';
-export const UpdateUserPath = '/api/v0/users/{userId}';
+export const ListUsersPath = '/v0/tenants/{tenantId}/auth/users';
+export const CreateUserPath = '/v0/auth/users';
+export const GetUserPath = '/v0/auth/users/{userId}';
+export const DeleteUserPath = '/v0/users/{userId}';
+export const UpdateUserPath = '/v0/users/{userId}';
 
 export class ProtocolAuthUsersService {
   private protocol: ProtocolBackendClient;

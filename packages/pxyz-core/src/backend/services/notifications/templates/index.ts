@@ -15,11 +15,11 @@ import {
 } from './responses';
 
 export const ListNotificationTemplatesPath =
-  '/api/v0/tenants/{tenantId}/notifications/templates';
+  '/v0/tenants/{tenantId}/notifications/templates';
 export const GetNotificationTemplatePath =
-  '/api/v0/notifications/templates/{templateId}';
+  '/v0/notifications/templates/{templateId}';
 export const DeleteNotificationTemplatePath =
-  '/api/v0/notifications/templates/{templateId}';
+  '/v0/notifications/templates/{templateId}';
 
 export class ProtocolNotificationTemplatesService {
   private protocol: ProtocolBackendClient;

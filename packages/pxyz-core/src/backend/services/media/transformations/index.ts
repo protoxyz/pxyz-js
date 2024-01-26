@@ -13,15 +13,14 @@ import {
   ListTransformations200Response,
 } from './responses';
 
-export const ListTransformationsPath =
-  '/api/v0/tenants/{tenantId}/transformations';
-export const CreateTransformationPath = '/api/v0/transformations';
+export const ListTransformationsPath = '/v0/tenants/{tenantId}/transformations';
+export const CreateTransformationPath = '/v0/transformations';
 export const GetTransformationPath =
-  '/api/v0/media/transformations/{transformationId}';
+  '/v0/media/transformations/{transformationId}';
 export const UpdateTransformationPath =
-  '/api/v0/media/transformations/{transformationId}';
+  '/v0/media/transformations/{transformationId}';
 export const DeleteTransformationPath =
-  '/api/v0/media/transformations/{transformationId}';
+  '/v0/media/transformations/{transformationId}';
 
 export class ProtocolMediaTransformationsService {
   private protocol: ProtocolBackendClient;
