@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.56
+
+### Patch Changes
+
+- e71ba8e: update paths
+
 ## 2.0.55
 
 ### Patch Changes
