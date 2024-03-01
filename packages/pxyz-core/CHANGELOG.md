@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.57
+
+### Patch Changes
+
+- 9b0b398: fix route
+
 ## 2.0.56
 
 ### Patch Changes
