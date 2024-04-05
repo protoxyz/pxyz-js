@@ -1,5 +1,12 @@
 # @protoxyz/components
 
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies [56639eb]
+  - @protoxyz/media@1.0.14
+
 ## 1.0.26
 
 ### Patch Changes
