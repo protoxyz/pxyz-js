@@ -43,6 +43,7 @@ export async function put({
 
   if (!uploadResult.uploadUrl) {
     console.log(`Error getting upload url`);
+    console.log({ uploadResult });
     return;
   }
 
