@@ -7,7 +7,7 @@ import { useState } from 'react';
 export function ImageUploaderPreview() {
   const [upload, setUpload] = useState<Upload | null>(null);
   return (
-    <div className="rounded-xl border bg-background border-muted-foreground p-5">
+    <div className="bg-background border-muted-foreground rounded-xl border p-5">
       <h1 className="text-2xl font-bold">Upload Example</h1>
       <Uploader onFinish={(upload) => setUpload(upload)} />
       {upload && (
@@ -18,6 +18,8 @@ export function ImageUploaderPreview() {
           className=" max-h-[512px] w-auto rounded-xl bg-gray-50"
         />
       )}
+
+      <pre>{JSON.stringify(upload, null, 2)}</pre>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Input } from '../ui/input';
 
 export interface AvatarUploaderProps extends PutProps {
-  tenantId: string;
+  tenantId?: string;
   avatarId?: string;
   initials?: string;
   accept?: string;
@@ -41,7 +41,11 @@ export function AvatarUploader({
     () =>
       imageId &&
       getImageUri({
-        tenantId,
+        tenantId:
+          tenantId ??
+          process.env.PXYZ_TENANT_ID ??
+          process.env.NEXT_PUBLIC_PXYZ_TENANT_ID ??
+          '',
         imageId,
         options: {
           format: 'webp',
@@ -49,7 +53,7 @@ export function AvatarUploader({
           height,
         },
       }),
-    [imageId, width, height],
+    [imageId, width, height, tenantId],
   );
 
   const reset = () => {

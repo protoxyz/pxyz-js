@@ -53,14 +53,26 @@ export async function put({
     );
   }
 
+  console.log({ path, access, originalFilename, mime, size, meta, duration });
+
+  const baseUrl =
+    process.env.PXYZ_API_URL ??
+    process.env.NEXT_PUBLIC_API_URL ??
+    'https://api.prod.pxyz.dev';
+
+  if (!baseUrl) {
+    throw new Error(
+      'Missing baseUrl. Please provide a baseUrl or set PXYZ_API_URL or NEXT_PUBLIC_API_URL',
+    );
+  }
+
+  console.log({ baseUrl });
+
   const protocol = new ProtocolBackendClient({
     publicKey: pkey,
     secretKey: skey,
     debug: process.env.NODE_ENV === 'development',
-    baseUrl:
-      process.env.PXYZ_API_URL ??
-      process.env.NEXT_PUBLIC_API_URL ??
-      'https://api.prod.pxyz.dev',
+    baseUrl,
   });
 
   return protocol.media.uploads.create({

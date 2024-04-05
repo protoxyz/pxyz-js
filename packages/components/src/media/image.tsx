@@ -9,7 +9,7 @@ import { cn } from '../lib/utils';
 
 type ImageProps = {
   alt?: string;
-  tenantId: string;
+  tenantId?: string;
   uploadId: string;
   className?: string;
   blurhash?: boolean | string;
@@ -24,7 +24,11 @@ export function Image({ alt, className, blurhash, ...props }: ImageProps) {
   const uri = useMemo(
     () =>
       getImageUri({
-        tenantId: props.tenantId,
+        tenantId:
+          props.tenantId ??
+          process.env.PXYZ_TENANT_ID ??
+          process.env.NEXT_PUBLIC_PXYZ_TENANT_ID ??
+          '',
         imageId: props.uploadId,
         options: props.options,
       }),
@@ -37,7 +41,11 @@ export function Image({ alt, className, blurhash, ...props }: ImageProps) {
         ? blurhash
         : blurhash === true &&
           getImageUri({
-            tenantId: props.tenantId,
+            tenantId:
+              props.tenantId ??
+              process.env.PXYZ_TENANT_ID ??
+              process.env.NEXT_PUBLIC_PXYZ_TENANT_ID ??
+              '',
             imageId: props.uploadId,
             options: {
               ...props.options,

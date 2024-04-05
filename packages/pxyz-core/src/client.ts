@@ -63,7 +63,7 @@ export class HttpClient {
   }
 
   private formatHost(host: string): string {
-    const isDevOrLocalhost = host.startsWith('localhost') || IS_PROTOCOL_DEV;
+    const isDevOrLocalhost = host.startsWith('localhost'); //|| IS_PROTOCOL_DEV;
 
     if (isDevOrLocalhost && !host.startsWith('http://')) {
       return `http://${host}`;
