@@ -1,5 +1,12 @@
 # @protoxyz/auth
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [9debe1e]
+  - @protoxyz/core@2.0.58
+
 ## 1.0.19
 
 ### Patch Changes

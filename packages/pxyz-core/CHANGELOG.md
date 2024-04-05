@@ -1,5 +1,11 @@
 # @protoxyz/core
 
+## 2.0.58
+
+### Patch Changes
+
+- 9debe1e: update components and media packages
+
 ## 2.0.57
 
 ### Patch Changes

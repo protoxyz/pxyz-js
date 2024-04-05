@@ -1,5 +1,15 @@
 # @protoxyz/components
 
+## 1.0.29
+
+### Patch Changes
+
+- 9debe1e: update components and media packages
+- Updated dependencies [9debe1e]
+  - @protoxyz/core@2.0.58
+  - @protoxyz/media@1.0.16
+  - @protoxyz/auth@1.0.20
+
 ## 1.0.28
 
 ### Patch Changes
