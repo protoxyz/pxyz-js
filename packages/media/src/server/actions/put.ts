@@ -25,7 +25,10 @@ export async function put({
   secretKey,
   tenantId,
 }: ServerUploadOptions): Promise<CreateUpload201Response> {
-  const pkey = publicKey ?? process.env.PXYZ_PUBLIC_KEY;
+  const pkey =
+    publicKey ??
+    process.env.PXYZ_PUBLIC_KEY ??
+    process.env.NEXT_PUBLIC_PXYZ_PUBLIC_KEY;
   const skey = secretKey ?? process.env.PXYZ_SECRET_KEY;
   const tId =
     tenantId ??
@@ -54,7 +57,10 @@ export async function put({
     publicKey: pkey,
     secretKey: skey,
     debug: process.env.NODE_ENV === 'development',
-    baseUrl: process.env.PXYZ_API_URL ?? 'https://api.prod.pxyz.dev',
+    baseUrl:
+      process.env.PXYZ_API_URL ??
+      process.env.NEXT_PUBLIC_API_URL ??
+      'https://api.prod.pxyz.dev',
   });
 
   return protocol.media.uploads.create({
