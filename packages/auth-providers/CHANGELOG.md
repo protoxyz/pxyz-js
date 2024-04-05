@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.11
+
+### Patch Changes
+
+- 91964e8: rename protoxyz/core to protoxyz/api-clients
+
 ## 2.0.10
 
 ### Patch Changes

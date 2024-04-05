@@ -1,5 +1,14 @@
 # @protoxyz/cli
 
+## 1.0.16
+
+### Patch Changes
+
+- 91964e8: rename protoxyz/core to protoxyz/api-clients
+- Updated dependencies [91964e8]
+- Updated dependencies [91964e8]
+  - @protoxyz/api-clients@2.0.58
+
 ## 1.0.15
 
 ### Patch Changes

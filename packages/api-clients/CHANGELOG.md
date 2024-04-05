@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- 91964e8: rename protoxyz/core to protoxyz/api-clients
+- 91964e8: update components and media packages
+
+## 2.0.58
+
+### Patch Changes
+
 - 9debe1e: update components and media packages
 
 ## 2.0.57
