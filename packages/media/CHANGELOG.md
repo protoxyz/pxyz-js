@@ -1,5 +1,11 @@
 # @protoxyz/media
 
+## 1.0.15
+
+### Patch Changes
+
+- c1d4bc9: update config
+
 ## 1.0.14
 
 ### Patch Changes
