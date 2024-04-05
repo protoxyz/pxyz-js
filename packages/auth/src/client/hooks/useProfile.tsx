@@ -3,7 +3,7 @@ import { useProtocolAuth } from '../contexts/protocol-context';
 import {
   FrontendUpdateUserPasswordOptions,
   FrontendUpdateUserProfileOptions,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 export const useProtocolAuthProfile = ({}: PaginatedArgs) => {

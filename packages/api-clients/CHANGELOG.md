@@ -1,4 +1,4 @@
-# @protoxyz/core
+# @protoxyz/api-clients
 
 ## 2.0.58
 

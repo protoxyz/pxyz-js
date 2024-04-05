@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import {
   FrontendListOrganizationMembers200Response,
   FrontendListOrganizationMembersPath,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 interface OrganizationMembersListProps extends PaginatedArgs {

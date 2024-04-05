@@ -5,7 +5,7 @@ import {
   FrontendCreatePhoneNumberOptions,
   FrontendListPhoneNumbers200Response,
   FrontendListPhoneNumbersPath,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 export function phonesListCacheKey({

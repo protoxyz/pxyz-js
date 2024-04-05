@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import {
   FrontendListSessions200Response,
   FrontendListSessionsPath,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 export function sessionsListCacheKey({

@@ -36,7 +36,7 @@
 ### Patch Changes
 
 - Updated dependencies [9b0b398]
-  - @protoxyz/core@2.0.57
+  - @protoxyz/api-clients@2.0.57
   - @protoxyz/auth@1.0.18
   - @protoxyz/media@1.0.13
 
@@ -45,7 +45,7 @@
 ### Patch Changes
 
 - Updated dependencies [e71ba8e]
-  - @protoxyz/core@2.0.56
+  - @protoxyz/api-clients@2.0.56
   - @protoxyz/auth@1.0.17
   - @protoxyz/media@1.0.12
 
@@ -81,7 +81,7 @@
 ### Patch Changes
 
 - Updated dependencies [73a744b]
-  - @protoxyz/core@2.0.55
+  - @protoxyz/api-clients@2.0.55
   - @protoxyz/auth@1.0.16
   - @protoxyz/media@1.0.9
 
@@ -97,7 +97,7 @@
 
 - 1b431a9: update url
 - Updated dependencies [1b431a9]
-  - @protoxyz/core@2.0.54
+  - @protoxyz/api-clients@2.0.54
   - @protoxyz/auth@1.0.15
   - @protoxyz/media@1.0.8
 
@@ -137,7 +137,7 @@
   - @protoxyz/types@2.0.33
   - @protoxyz/auth@1.0.11
   - @protoxyz/media@1.0.7
-  - @protoxyz/core@2.0.53
+  - @protoxyz/api-clients@2.0.53
 
 ## 1.0.11
 
@@ -175,7 +175,7 @@
   - @protoxyz/types@2.0.32
   - @protoxyz/auth@1.0.7
   - @protoxyz/media@1.0.6
-  - @protoxyz/core@2.0.52
+  - @protoxyz/api-clients@2.0.52
 
 ## 1.0.6
 
@@ -194,14 +194,14 @@
   - @protoxyz/types@2.0.31
   - @protoxyz/auth@1.0.5
   - @protoxyz/media@1.0.5
-  - @protoxyz/core@2.0.51
+  - @protoxyz/api-clients@2.0.51
 
 ## 1.0.4
 
 ### Patch Changes
 
 - Updated dependencies [ce00e8b]
-  - @protoxyz/core@2.0.50
+  - @protoxyz/api-clients@2.0.50
   - @protoxyz/types@2.0.30
   - @protoxyz/auth@1.0.4
   - @protoxyz/media@1.0.4
@@ -221,7 +221,7 @@
 - Updated dependencies [836e9d1]
   - @protoxyz/auth@1.0.2
   - @protoxyz/media@1.0.3
-  - @protoxyz/core@2.0.49
+  - @protoxyz/api-clients@2.0.49
   - @protoxyz/themes@2.0.13
   - @protoxyz/types@2.0.29
 
@@ -232,6 +232,6 @@
 - 18c1f45: bump
 - Updated dependencies [18c1f45]
   - @protoxyz/media@1.0.2
-  - @protoxyz/core@2.0.48
+  - @protoxyz/api-clients@2.0.48
   - @protoxyz/themes@2.0.12
   - @protoxyz/types@2.0.28

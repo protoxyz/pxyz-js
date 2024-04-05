@@ -1,5 +1,5 @@
 import { RedirectToSignInProps, RedirectToSignUpProps } from '../types/auth';
-import { ProtocolFrontendClient } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/api-clients';
 import { AuthAppearance, AuthComponentType } from '@protoxyz/themes';
 import {
   Tenant,

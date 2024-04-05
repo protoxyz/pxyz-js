@@ -5,7 +5,7 @@ import {
   FrontendCreateEmailAddressOptions,
   FrontendListEmailAddresses200Response,
   FrontendListEmailAddressesPath,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 export function emailsListCacheKey({

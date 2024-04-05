@@ -54,7 +54,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@protoxyz/core": "workspace:*",
+    "@protoxyz/api-clients": "workspace:*",
     "@protoxyz/types": "workspace:*"
   },
   "devDependencies": {

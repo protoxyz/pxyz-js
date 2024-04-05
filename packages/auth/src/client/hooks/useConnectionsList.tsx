@@ -5,7 +5,7 @@ import {
   FrontendCreateSocialConnectionsOptions,
   FrontendListSocialConnections200Response,
   FrontendListSocialConnectionsPath,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 export function connectionsListCacheKey({

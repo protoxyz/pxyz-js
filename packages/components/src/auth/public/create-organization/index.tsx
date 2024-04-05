@@ -2,7 +2,7 @@ import { AuthComponentType } from '@protoxyz/themes';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useProtocolAuthOrganizationsList
+  useProtocolAuthOrganizationsList,
 } from '@protoxyz/auth/client';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {
@@ -16,8 +16,8 @@ import {
 import { Input } from '../../../ui/input';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod'; 
-import { FrontendCreateOrganization201Response } from '@protoxyz/core';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FrontendCreateOrganization201Response } from '@protoxyz/api-clients';
 import { Button } from '../../../ui/button';
 import {
   Form,

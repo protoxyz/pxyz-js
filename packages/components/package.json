@@ -44,8 +44,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@protoxyz/api-clients": "workspace:*",
     "@protoxyz/auth": "workspace:*",
-    "@protoxyz/core": "workspace:*",
     "@protoxyz/media": "workspace:*",
     "@protoxyz/themes": "workspace:*",
     "@protoxyz/types": "workspace:*",

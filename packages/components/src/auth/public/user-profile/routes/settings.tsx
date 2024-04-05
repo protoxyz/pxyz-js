@@ -1,10 +1,10 @@
 import { AuthComponentType } from '@protoxyz/themes';
-import React from 'react'
+import React from 'react';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useProtocolAuthProfile
-} from '@protoxyz/auth/client'; 
+  useProtocolAuthProfile,
+} from '@protoxyz/auth/client';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,7 +20,7 @@ import {
 import { Input } from '../../../../ui/input';
 import { Button } from '../../../../ui/button';
 import { Spinner } from '../../../../ui/spinner';
-import { FrontendGetUserProfile200Response } from '@protoxyz/core';
+import { FrontendGetUserProfile200Response } from '@protoxyz/api-clients';
 import { Avatar, AvatarFallback, AvatarImage } from '../../../../ui/avatar';
 import {
   userDisplayName,
@@ -28,7 +28,6 @@ import {
   userInitials,
 } from '../../../../lib/display';
 import { SectionHeader } from '../../../custom-ui/section-header';
- 
 
 interface UserSettingsOptions {}
 export function UserSettingsRoute({}: UserSettingsOptions) {

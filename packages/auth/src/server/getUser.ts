@@ -1,5 +1,5 @@
 import { ResponseStatus, UserProfile } from '@protoxyz/types';
-import { ProtocolFrontendClient } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/api-clients';
 import { getToken } from './getToken';
 
 export async function getUser(config?: {

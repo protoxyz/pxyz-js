@@ -4,11 +4,11 @@ import React from 'react';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useProtocolAuthOrganizationsList
+  useProtocolAuthOrganizationsList,
 } from '@protoxyz/auth/client';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import { z } from 'zod';
-import { FrontendUpdateOrganization200Response } from '@protoxyz/core'; 
+import { FrontendUpdateOrganization200Response } from '@protoxyz/api-clients';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ResponseStatus } from '@protoxyz/types';
@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from '../../../../ui/form';
 import { Input } from '../../../../ui/input';
-import { Button, LoadingButton } from '../../../../ui/button'; 
+import { Button, LoadingButton } from '../../../../ui/button';
 import { Divider } from '../../../custom-ui/divider';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../../ui/card';
 

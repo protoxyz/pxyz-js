@@ -3,7 +3,7 @@ import {
   ProtocolAuthContext,
   ProtocolAuthProviderState,
 } from './protocol-context';
-import { ProtocolFrontendClient } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/api-clients';
 import React from 'react';
 import { AuthAppearance, mergeAppearance } from '@protoxyz/themes';
 import {

@@ -1,5 +1,5 @@
 export {};
-// import { CreateUpload201Response } from '@protoxyz/core';
+// import { CreateUpload201Response } from '@protoxyz/api-clients';
 // import { UploadOptions, put } from './put';
 
 // export async function putBlob(blob: Blob, uploadOptions: UploadOptions) {

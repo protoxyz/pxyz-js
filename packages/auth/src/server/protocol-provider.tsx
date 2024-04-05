@@ -1,6 +1,6 @@
 // import 'server-only';
 // import { ProtocolAuthProvider as ProtocolAuthProviderReact } from '../client/contexts/protocol-provider';
-import { ProtocolFrontendClient } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/api-clients';
 import { AuthAppearance } from '@protoxyz/themes';
 import { Tenant, ResponseStatus } from '@protoxyz/types';
 import { getUser } from './getUser';

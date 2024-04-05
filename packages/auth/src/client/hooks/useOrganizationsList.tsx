@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import {
   FrontendListOrganizations200Response,
   FrontendListOrganizationsPath,
-} from '@protoxyz/core';
+} from '@protoxyz/api-clients';
 import React from 'react';
 
 export function organizationsListCacheKey({

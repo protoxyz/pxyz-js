@@ -1,4 +1,7 @@
-import { CreateUpload201Response, ProtocolBackendClient } from '@protoxyz/core';
+import {
+  CreateUpload201Response,
+  ProtocolBackendClient,
+} from '@protoxyz/api-clients';
 
 export interface ServerUploadOptions {
   path: string;

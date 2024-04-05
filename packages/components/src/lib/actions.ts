@@ -3,7 +3,7 @@ import {
   TokenCache,
   setSessionCookie,
 } from '@protoxyz/auth/client';
-import { ProtocolFrontendClient } from '@protoxyz/core';
+import { ProtocolFrontendClient } from '@protoxyz/api-clients';
 import { Organization, ResponseStatus, Tenant } from '@protoxyz/types';
 
 export const createOrgToken = async (

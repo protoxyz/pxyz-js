@@ -1,5 +1,5 @@
 import { PutProps } from './put';
-import { CreateUpload201Response } from '@protoxyz/core';
+import { CreateUpload201Response } from '@protoxyz/api-clients';
 
 type UploadProps = PutProps & {
   upload: CreateUpload201Response['data'];

@@ -1,6 +1,6 @@
 {
-  "name": "@protoxyz/core",
-  "version": "2.0.58",
+  "name": "@protoxyz/api-clients",
+  "version": "2.0.57",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -23,7 +23,7 @@
     "dev": "tsup src/index.ts --format esm,cjs --minify --watch --dts --sourcemap",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
     "type-check": "tsc --noEmit",
-    "update-pxyz": "pnpm update \"@protoxyz/auth-*\" && pnpm update @protoxyz/types && pnpm update @protoxyz/core"
+    "update-pxyz": "pnpm update \"@protoxyz/auth-*\" && pnpm update @protoxyz/types && pnpm update @protoxyz/api-clients"
   },
   "dependencies": {
     "@protoxyz/types": "workspace:*"

@@ -1,4 +1,4 @@
-import { FrontendCreateSignUpAttempt201Response } from '@protoxyz/core';
+import { FrontendCreateSignUpAttempt201Response } from '@protoxyz/api-clients';
 import {
   SignUpFlowRoute,
   useProtocolAuthSignUpFlow,

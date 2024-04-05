@@ -1,4 +1,4 @@
-import { FrontendCreateSignInAttempt201Response } from '@protoxyz/core';
+import { FrontendCreateSignInAttempt201Response } from '@protoxyz/api-clients';
 import {
   SignInFlowRoute,
   setSessionCookie,
