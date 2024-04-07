@@ -69,8 +69,6 @@ export async function put({
     );
   }
 
-  console.log({ baseUrl });
-
   const protocol = new ProtocolBackendClient({
     publicKey: pkey,
     secretKey: skey,

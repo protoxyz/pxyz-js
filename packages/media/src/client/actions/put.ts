@@ -3,6 +3,7 @@ import { upload } from './upload';
 
 export interface PutProps {
   uploadUrl?: string;
+  body?: Record<string, unknown>;
 
   onCreate?: (upload: Upload) => void;
   onProgress?: (upload: Upload, progress: number) => void;
@@ -16,7 +17,7 @@ export interface PutProps {
 
 export async function put({
   file,
-
+  body,
   uploadUrl = '/api/upload-url',
   onCreate,
   onProgress,
@@ -33,6 +34,7 @@ export async function put({
   const res = await fetch(uploadUrl, {
     method: 'POST',
     body: JSON.stringify({
+      ...body,
       originalFilename,
       contentType,
       contentSize,
