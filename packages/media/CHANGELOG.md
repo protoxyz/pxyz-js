@@ -1,5 +1,11 @@
 # @protoxyz/media
 
+## 1.0.18
+
+### Patch Changes
+
+- dda593f: add body param to file upload
+
 ## 1.0.17
 
 ### Patch Changes
