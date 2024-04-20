@@ -1,5 +1,11 @@
 # @protoxyz/components
 
+## 1.0.34
+
+### Patch Changes
+
+- 95a477a: fixes
+
 ## 1.0.33
 
 ### Patch Changes
