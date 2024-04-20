@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@protoxyz/auth": "workspace:*",
+    "@protoxyz/auth-react": "workspace:*",
     "@protoxyz/components": "workspace:*",
     "@protoxyz/media": "workspace:*",
     "@protoxyz/themes": "workspace:*",

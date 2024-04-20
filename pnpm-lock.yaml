@@ -50,6 +50,9 @@ importers:
       '@protoxyz/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@protoxyz/auth-react':
+        specifier: workspace:*
+        version: link:../../packages/auth-react
       '@protoxyz/components':
         specifier: workspace:*
         version: link:../../packages/components

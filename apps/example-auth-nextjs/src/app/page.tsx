@@ -6,9 +6,8 @@ import {
 } from '@protoxyz/components';
 import Image from 'next/image';
 import Link from 'next/link';
- 
-export default function Home() {
 
+export default function Home() {
   return (
     <>
       <main className=" h-100 relative flex min-h-screen flex-1 flex-col">
@@ -31,11 +30,11 @@ export default function Home() {
                 />
               </a>
 
-              <IsLoggedIn>
+              {/* <IsLoggedIn>
                 <div className="text-muted-foreground">Hello world.</div>
-              </IsLoggedIn>
+              </IsLoggedIn> */}
 
-              <IsLoggedOut>
+              {/* <IsLoggedOut>
                 <div className="text-muted-foreground relative">
                   You aren&apos;t logged in.{' '}
                   <Link
@@ -75,7 +74,7 @@ export default function Home() {
                     afterSignUpRedirectUri="/dashboard"
                   />
                 </div>
-              </IsLoggedOut>
+              </IsLoggedOut> */}
             </div>
           </div>
         </div>
