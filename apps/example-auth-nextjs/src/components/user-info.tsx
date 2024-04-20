@@ -1,6 +1,6 @@
 'use client';
 
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 
 export function UserInfo() {
   const { user } = useProtocolAuth();

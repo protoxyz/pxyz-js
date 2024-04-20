@@ -1,6 +1,6 @@
 'use client';
 
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 import { RefreshToken } from './refresh-token';
 
 export function JWTInfo() {

@@ -1,5 +1,5 @@
 'use client';
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 
 const OrgId = () => {
   const { orgId } = useProtocolAuth();

@@ -3,7 +3,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthEmailsList,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { Button, LoadingButton } from '../../../../ui/button'; 
 import { Badge } from '../../../../ui/badge';
 import { CheckIcon, PlusIcon, TrashIcon } from 'lucide-react';

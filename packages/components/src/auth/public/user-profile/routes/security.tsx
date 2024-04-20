@@ -1,5 +1,5 @@
 import { AuthComponentType } from '@protoxyz/themes';
-import { useProtocolAuthAppearance } from '@protoxyz/auth/client';
+import { useProtocolAuthAppearance } from '@protoxyz/auth';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import React from 'react';
 

@@ -22,7 +22,7 @@ import {
   useProtocolAuthSignUpFlow,
   useProtocolAuthClient,
   useBrandName,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import {

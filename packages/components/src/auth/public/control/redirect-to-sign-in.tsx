@@ -1,4 +1,4 @@
-import { RedirectToSignInProps, useProtocolAuth } from '@protoxyz/auth/client';
+import { RedirectToSignInProps, useProtocolAuth } from '@protoxyz/auth';
 import React from 'react';
 
 export function RedirectToSignIn({

@@ -17,22 +17,22 @@ export interface RequestOptions {
 }
 
 export interface HttpClientConfigOptions {
-  host?: string | undefined;
-  accessToken?: string | undefined;
-  publicKey?: string | undefined;
-  secretKey?: string | undefined;
-  credentials?: boolean | undefined;
-  debug?: boolean | undefined;
-  proxyUrl?: string | undefined;
+  host?: string | null | undefined;
+  accessToken?: string | null | undefined;
+  publicKey?: string | null | undefined;
+  secretKey?: string | null | undefined;
+  credentials?: boolean | null | undefined;
+  debug?: boolean | null | undefined;
+  proxyUrl?: string | null | undefined;
 }
 export class HttpClient {
-  private host?: string | undefined;
-  private accessToken?: string | undefined;
-  private publicKey?: string | undefined;
-  private secretKey?: string | undefined;
-  private credentials?: boolean | undefined;
+  private host?: string | null | undefined;
+  private accessToken?: string | null | undefined;
+  private publicKey?: string | null | undefined;
+  private secretKey?: string | null | undefined;
+  private credentials?: boolean | null | undefined;
   private debug: boolean;
-  private proxyUrl?: string | undefined;
+  private proxyUrl?: string | null | undefined;
 
   constructor(options?: HttpClientConfigOptions) {
     this.accessToken = options?.accessToken;
@@ -108,7 +108,7 @@ export class HttpClient {
       }
     }
 
-    const url = new URL(updatedPath + '?' + searchParams.toString(), this.host);
+    const url = new URL(updatedPath + '?' + searchParams.toString(), this.host ?? '');
 
     return url;
   }
@@ -128,8 +128,10 @@ export class HttpClient {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
 
-    if (this.proxyUrl !== undefined) {
-      headers.set('Authority', this.proxyUrl);
+    if (this.proxyUrl !== undefined && 
+      this.proxyUrl !== null && 
+      this.proxyUrl !== '') {
+      headers.set('Authority', this.proxyUrl ?? '');
     }
 
     if (

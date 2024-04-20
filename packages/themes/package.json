@@ -24,9 +24,9 @@
     "devDependencies": {
         "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
         "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
-        "@types/node": "^18.14.2",
-        "eslint": "^8.32.0",
-        "tsup": "^6.2.3",
-        "typescript": "^4.9.5"
+        "@types/node": "^20",
+         "eslint": "^8",
+        "tsup": "^8",
+        "typescript": "^5"
     }
 }

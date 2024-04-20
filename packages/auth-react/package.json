@@ -1,0 +1,63 @@
+{
+  "name": "@protoxyz/auth-react",
+  "version": "1.0.21",
+  "private": false,
+  "homepage": "https://pxyz.dev",
+  "bugs": {
+    "url": "https://github.com/protoxyz/pxyz-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/protoxyz/pxyz-js.git",
+    "directory": "packages/auth-react"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Eric Campbell",
+    "url": "https://pxyz.dev"
+  },
+  "sideEffects": false,
+  "type": "module",
+ 
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+   
+  "files": [
+    "dist",
+    "client"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf .turbo node_modules dist",
+    "dev": "tsup --watch",
+    "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@protoxyz/api-clients": "workspace:*",
+    "@protoxyz/themes": "workspace:*",
+    "@protoxyz/types": "workspace:*",
+    "jose": "^4.12.0",
+    "js-cookie": "^3.0.5",
+    "server-only": "^0.0.1",
+    "swr": "^2.2.4"
+  },
+  "devDependencies": {
+    "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
+    "@protoxyz/eslint-config-custom-next": "github:protoxyz/eslint-config-custom-next",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^20",
+    "esbuild-react18-useclient": "^1.0.7",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.1",
+    
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^8",
+    "typescript": "^5"
+  },
+  "peerDependencies": { 
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

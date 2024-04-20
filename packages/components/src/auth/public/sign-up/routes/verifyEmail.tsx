@@ -14,7 +14,7 @@ import {
   useProtocolAuthSignUpFlow,
   useBrandName,
   SignUpFlowRoute,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 
 import { ResponseStatus, AuthVerificationStrategy } from '@protoxyz/types';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';

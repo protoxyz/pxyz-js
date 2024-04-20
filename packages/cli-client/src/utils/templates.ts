@@ -183,16 +183,16 @@ export const CLIENT_PACKAGE = `
   "devDependencies": {
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
     "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
-    "@types/node": "^18.14.2",
+    "@types/node": "^20",
     "@types/node-fetch": "^2.6.4",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "abort-controller": "3.x",
-    "eslint": "^8.32.0",
+     "eslint": "^8",
     "form-data": "4.x",
     "node-fetch": "^3.3.2",
-    "tsup": "^6.2.3",
-    "typescript": "^4.9.5"
+    "tsup": "^8",
+    "typescript": "^5"
   }
 }
 `;

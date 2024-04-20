@@ -4,7 +4,7 @@ import {
   useProtocolAuthUserProfileFlow,
   useProtocolAuth,
   useProtocolAuthAppearance,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { AuthComponentType } from '@protoxyz/themes';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {

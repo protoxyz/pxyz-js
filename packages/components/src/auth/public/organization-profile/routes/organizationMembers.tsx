@@ -5,7 +5,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthOrganizationMembers
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import {
   Table,

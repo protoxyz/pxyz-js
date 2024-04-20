@@ -5,7 +5,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthOrganizationsList,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { OrganizationMembersRoute } from './routes/organizationMembers';
 import { SidebarNav } from '../../custom-ui/sidebar-nav';
 import { AuthComponentType } from '@protoxyz/themes';

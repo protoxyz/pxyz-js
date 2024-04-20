@@ -14,11 +14,11 @@ import { ProtocolAuthOrganizationMembersService } from './services/auth/organiza
 import { ProtocolAuthOrganizationInvitationsService } from './services/auth/organizationInvitations';
 
 export interface ProtocolFrontendClientConfiguration {
-  baseUrl?: string | undefined;
-  accessToken?: string | undefined;
-  credentials?: boolean | undefined;
+  baseUrl?: string | null | undefined;
+  accessToken?: string | null | undefined;
+  credentials?: boolean | null | undefined;
   debug?: boolean;
-  proxyUrl?: string | undefined;
+  proxyUrl?: string | null | undefined;
 }
 
 export class ProtocolFrontendClient {

@@ -19,6 +19,7 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "import": {
         "types": "./dist/index.d.ts",
@@ -31,17 +32,27 @@
     },
     "./client": {
       "import": {
-        "types": "./client/index.d.ts",
-        "default": "./client/index.js"
+        "types": "./dist/client/index.d.ts",
+        "default": "./dist/client/index.js"
       },
       "require": {
-        "types": "./client/index.d.cts",
-        "default": "./client/index.cjs"
+        "types": "./dist/client/index.d.cts",
+        "default": "./dist/client/index.cjs"
       }
     }
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ],
+      "client": [
+        "dist/client/index.d.ts"
+      ] 
+    }
+  },
   "files": [
     "dist",
     "client"
@@ -60,11 +71,11 @@
   "devDependencies": {
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
     "@protoxyz/eslint-config-custom-next": "github:protoxyz/eslint-config-custom-next",
-    "@types/node": "^18.14.2",
-    "eslint": "^8.32.0",
+    "@types/node": "^20",
+     "eslint": "^8",
     "eslint-config-next": "^13.1.1",
-    "tsup": "^7.1.0",
-    "typescript": "^4.9.5"
+    "tsup": "^8",
+    "typescript": "^5"
   },
   "publishConfig": {
     "access": "public"

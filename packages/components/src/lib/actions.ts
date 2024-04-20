@@ -2,7 +2,7 @@ import {
   SESSION_COOKIE_NAME,
   TokenCache,
   setSessionCookie,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { ProtocolFrontendClient } from '@protoxyz/api-clients';
 import { Organization, ResponseStatus, Tenant } from '@protoxyz/types';
 

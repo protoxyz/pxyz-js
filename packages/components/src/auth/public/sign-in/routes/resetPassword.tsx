@@ -1,7 +1,7 @@
 import { AuthComponentType } from '@protoxyz/themes';
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import { Card } from '../../../../ui/card';
-import { useProtocolAuthAppearance } from '@protoxyz/auth/client';
+import { useProtocolAuthAppearance } from '@protoxyz/auth';
 import React from 'react';
 
 export function SignInResetPasswordRoute() {

@@ -4,7 +4,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthProfile,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

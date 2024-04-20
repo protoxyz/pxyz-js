@@ -12,7 +12,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '../../../ui/dropdown-menu';
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 import { SignOutButton } from '../sign-out-button';
 import {
   userDisplayName,

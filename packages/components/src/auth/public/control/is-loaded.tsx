@@ -1,4 +1,4 @@
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 import React from 'react';
 
 export interface IsLoadedProps {

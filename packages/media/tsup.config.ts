@@ -13,7 +13,7 @@ export default defineConfig([
     clean: true,
     format: ['esm', 'cjs'],
     dts: true,
-    outDir: './client',
+    outDir: './dist/client',
     external: ['react', 'next', 'react-dom'],
 
     esbuildOptions(options, context) {

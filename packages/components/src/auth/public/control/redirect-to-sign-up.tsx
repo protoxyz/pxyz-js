@@ -1,4 +1,4 @@
-import { RedirectToSignUpProps, useProtocolAuth } from '@protoxyz/auth/client';
+import { RedirectToSignUpProps, useProtocolAuth } from '@protoxyz/auth';
 import React from 'react';
 
 export function RedirectToSignUp({

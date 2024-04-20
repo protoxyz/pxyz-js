@@ -60,7 +60,7 @@ export async function put({
 
   const baseUrl =
     process.env.PXYZ_API_URL ??
-    process.env.NEXT_PUBLIC_API_URL ??
+    process.env.NEXT_PUBLIC_PXYZ_API_URL ??
     'https://api.prod.pxyz.dev';
 
   if (!baseUrl) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 
 export interface IsLoggedInProps {
   children?: React.ReactNode;

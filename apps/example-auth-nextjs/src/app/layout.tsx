@@ -1,4 +1,4 @@
-import { ProtocolAuthProvider } from '@protoxyz/auth/client';
+import { ProtocolAuthProvider } from '@protoxyz/auth';
 import './globals.css';
 import type { AuthAppearance } from '@protoxyz/themes';
 import { Inter } from 'next/font/google';

@@ -3,7 +3,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthConnectionsList,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { Button } from '../../../../ui/button';
 import { CheckCircleIcon } from 'lucide-react';
 import CompanyIcons from '../../../../icons';

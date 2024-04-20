@@ -2,7 +2,7 @@ import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
 import { SignUp } from '../sign-up';
 import { Button, ButtonProps } from '../../../ui/button';
 import { DialogContent } from '../../../ui/dialog';
-import { useProtocolAuth } from '@protoxyz/auth/client';
+import { useProtocolAuth } from '@protoxyz/auth';
 import React from 'react';
 
 interface SignUpButtonProps {

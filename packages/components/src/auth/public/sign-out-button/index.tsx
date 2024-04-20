@@ -1,4 +1,4 @@
-import { useProtocolAuthLogout } from '@protoxyz/auth/client';
+import { useProtocolAuthLogout } from '@protoxyz/auth';
 import { Button, ButtonProps } from '../../../ui/button';
 import { Spinner } from '../../../ui/spinner';
 import React from 'react';

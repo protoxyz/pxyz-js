@@ -6,7 +6,7 @@ import {
   UserProfileFlowRoute,
   useProtocolAuthOrganizationProfileFlow,
   useProtocolAuthUserProfileFlow,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 import { cn } from '../../lib/utils';
 import { buttonVariants } from '../../ui/button';
 

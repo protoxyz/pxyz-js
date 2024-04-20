@@ -3,7 +3,7 @@ import {
   useBrandLogo,
   useBrandName,
   useProtocolAuthAppearance,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 
 import React from 'react';
 

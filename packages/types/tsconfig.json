@@ -5,7 +5,8 @@
     "rootDir": "./src",
     "target": "ES6",
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
   },
   "extends": "@protoxyz/config-tsconfig/base.json",
   "include": ["src"],

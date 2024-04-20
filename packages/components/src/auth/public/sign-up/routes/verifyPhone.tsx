@@ -22,7 +22,7 @@ import {
   useProtocolAuthClient,
   useProtocolAuthSignUpFlow,
   SignUpFlowRoute,
-} from '@protoxyz/auth/client';
+} from '@protoxyz/auth';
 
 import { handleSignUpResponse } from '..';
 

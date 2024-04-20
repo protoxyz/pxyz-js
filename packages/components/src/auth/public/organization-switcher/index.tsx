@@ -26,7 +26,7 @@ import {
   userImage,
   userInitials,
 } from '../../../lib/display';
-import {   useProtocolAuth, useProtocolAuthOrganizationsList } from '@protoxyz/auth/client';
+import {   useProtocolAuth, useProtocolAuthOrganizationsList } from '@protoxyz/auth';
 import { OrganizationWithRole   } from '@protoxyz/types';
 import { CreateOrganization } from '../create-organization';
 import { OrganizationProfile } from '../organization-profile'; 
