@@ -1,5 +1,13 @@
 # sandbox
 
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies [348c36b]
+  - @protoxyz/types@2.0.34
+  - @protoxyz/auth@1.0.22
+
 ## 0.1.3
 
 ### Patch Changes

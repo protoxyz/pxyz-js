@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.34
+
+### Patch Changes
+
+- 348c36b: updates
+
 ## 2.0.33
 
 ### Patch Changes

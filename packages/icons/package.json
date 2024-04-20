@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/icons",
-    "version": "2.0.12",
+    "version": "2.0.13",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -31,7 +31,7 @@
     "devDependencies": {
         "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
         "@protoxyz/eslint-config-custom-react": "github:protoxyz/eslint-config-custom-react",
-         "eslint": "^8",
+        "eslint": "^8",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "tsup": "^8",

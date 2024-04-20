@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.13
+
+### Patch Changes
+
+- 348c36b: updates
+
 ## 2.0.12
 
 ### Patch Changes

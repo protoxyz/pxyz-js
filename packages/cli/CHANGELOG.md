@@ -1,5 +1,16 @@
 # @protoxyz/cli
 
+## 1.0.17
+
+### Patch Changes
+
+- 348c36b: updates
+- Updated dependencies [348c36b]
+  - @protoxyz/client-frontend@1.0.7
+  - @protoxyz/client-backend@1.0.2
+  - @protoxyz/api-clients@2.0.59
+  - @protoxyz/types@2.0.34
+
 ## 1.0.16
 
 ### Patch Changes

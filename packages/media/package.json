@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/media",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -50,7 +50,7 @@
       ],
       "client": [
         "dist/client/index.d.ts"
-      ] 
+      ]
     }
   },
   "files": [
@@ -72,7 +72,7 @@
     "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
     "@protoxyz/eslint-config-custom-next": "github:protoxyz/eslint-config-custom-next",
     "@types/node": "^20",
-     "eslint": "^8",
+    "eslint": "^8",
     "eslint-config-next": "^13.1.1",
     "tsup": "^8",
     "typescript": "^5"
