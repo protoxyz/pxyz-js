@@ -1,5 +1,13 @@
 # @protoxyz/api-clients
 
+## 2.0.60
+
+### Patch Changes
+
+- d2f37c8: update types
+- Updated dependencies [d2f37c8]
+  - @protoxyz/types@2.0.35
+
 ## 2.0.59
 
 ### Patch Changes
