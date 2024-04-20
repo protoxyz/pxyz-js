@@ -1,5 +1,12 @@
 # @protoxyz/components
 
+## 1.0.35
+
+### Patch Changes
+
+- Updated dependencies [5cebb31]
+  - @protoxyz/auth@1.0.24
+
 ## 1.0.34
 
 ### Patch Changes

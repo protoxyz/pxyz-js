@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.24
+
+### Patch Changes
+
+- 5cebb31: fixes
+
 ## 1.0.23
 
 ### Patch Changes
