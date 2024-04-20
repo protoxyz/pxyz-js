@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.35
+
+### Patch Changes
+
+- d2f37c8: update types
+
 ## 2.0.34
 
 ### Patch Changes

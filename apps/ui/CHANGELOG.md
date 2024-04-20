@@ -1,5 +1,14 @@
 # sandbox
 
+## 0.1.5
+
+### Patch Changes
+
+- Updated dependencies [d2f37c8]
+  - @protoxyz/media@1.0.20
+  - @protoxyz/types@2.0.35
+  - @protoxyz/auth@1.0.23
+
 ## 0.1.4
 
 ### Patch Changes

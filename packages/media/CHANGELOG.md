@@ -1,5 +1,14 @@
 # @protoxyz/media
 
+## 1.0.20
+
+### Patch Changes
+
+- d2f37c8: update types
+- Updated dependencies [d2f37c8]
+  - @protoxyz/api-clients@2.0.60
+  - @protoxyz/types@2.0.35
+
 ## 1.0.19
 
 ### Patch Changes
