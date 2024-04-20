@@ -1,5 +1,11 @@
 # @protoxyz/auth-providers
 
+## 2.0.12
+
+### Patch Changes
+
+- 348c36b: updates
+
 ## 2.0.11
 
 ### Patch Changes

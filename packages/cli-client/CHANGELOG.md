@@ -1,5 +1,14 @@
 # @protoxyz/cli
 
+## 1.0.10
+
+### Patch Changes
+
+- 348c36b: updates
+- Updated dependencies [348c36b]
+  - @protoxyz/api-clients@2.0.59
+  - @protoxyz/types@2.0.34
+
 ## 1.0.9
 
 ### Patch Changes

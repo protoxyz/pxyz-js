@@ -1,6 +1,6 @@
 {
     "name": "@protoxyz/themes",
-    "version": "2.0.13",
+    "version": "2.0.14",
     "license": "MIT",
     "private": false,
     "homepage": "https://pxyz.dev",
@@ -25,7 +25,7 @@
         "@protoxyz/config-tsconfig": "github:protoxyz/config-tsconfig",
         "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
         "@types/node": "^20",
-         "eslint": "^8",
+        "eslint": "^8",
         "tsup": "^8",
         "typescript": "^5"
     }

@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/types",
-  "version": "2.0.33",
+  "version": "2.0.34",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -32,7 +32,7 @@
     "@protoxyz/eslint-config-custom-library": "github:protoxyz/eslint-config-custom-library",
     "@protoxyz/themes": "workspace:*",
     "@types/node": "^20",
-     "eslint": "^8",
+    "eslint": "^8",
     "tsup": "^8",
     "typescript": "^5"
   }

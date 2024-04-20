@@ -1,5 +1,15 @@
 # @protoxyz/auth
 
+## 1.0.22
+
+### Patch Changes
+
+- 348c36b: updates
+- Updated dependencies [348c36b]
+  - @protoxyz/api-clients@2.0.59
+  - @protoxyz/themes@2.0.14
+  - @protoxyz/types@2.0.34
+
 ## 1.0.21
 
 ### Patch Changes

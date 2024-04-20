@@ -1,5 +1,11 @@
 # @protoxyz/themes
 
+## 2.0.14
+
+### Patch Changes
+
+- 348c36b: updates
+
 ## 2.0.13
 
 ### Patch Changes

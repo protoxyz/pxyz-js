@@ -1,6 +1,6 @@
 {
   "name": "@protoxyz/auth-react",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "private": false,
   "homepage": "https://pxyz.dev",
   "bugs": {
@@ -18,10 +18,8 @@
   },
   "sideEffects": false,
   "type": "module",
- 
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-   
   "files": [
     "dist",
     "client"
@@ -50,13 +48,12 @@
     "esbuild-react18-useclient": "^1.0.7",
     "eslint": "^8",
     "eslint-config-next": "^14.2.1",
-    
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^8",
     "typescript": "^5"
   },
-  "peerDependencies": { 
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
