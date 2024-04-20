@@ -10,6 +10,8 @@ export interface ServerUploadOptions {
   duration?: number;
   mime: string;
   size: number;
+  width?: number;
+  height?: number;
   meta?: Record<string, any>;
   publicKey?: string;
   secretKey?: string;
@@ -24,6 +26,8 @@ export async function put({
   size,
   meta,
   duration,
+  width,
+  height,
   publicKey,
   secretKey,
   tenantId,
@@ -86,6 +90,8 @@ export async function put({
       meta,
       duration,
       tenantId: tId,
+      width,
+      height,
     },
   });
 }

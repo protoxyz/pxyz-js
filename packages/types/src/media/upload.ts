@@ -7,6 +7,9 @@ export interface Upload {
   originalFilename: string | null;
   mime: string | null;
   size: number | null;
+  width: number | null;
+  height: number | null;
+  duration: number | null;
 
   meta: Record<string, any>;
 

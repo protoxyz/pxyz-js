@@ -27,6 +27,8 @@ export interface CreateUploadOptions extends RequestOptions {
     size: number;
     meta?: Record<string, any>;
     duration?: number;
+    width?: number;
+    height?: number;
   };
   path?: never;
   query?: never;

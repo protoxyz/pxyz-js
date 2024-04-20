@@ -162,6 +162,9 @@ importers:
       '@protoxyz/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@protoxyz/media':
+        specifier: workspace:*
+        version: link:../../packages/media
       '@protoxyz/types':
         specifier: workspace:*
         version: link:../../packages/types
