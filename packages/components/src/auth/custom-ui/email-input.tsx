@@ -1,5 +1,5 @@
 import { AuthComponentType } from '@protoxyz/themes';
-import { useProtocolAuthTenant } from '@protoxyz/auth';
+import { useProtocolAuthTenant } from '@protoxyz/auth-react';
 import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { Label } from '../../ui/label';

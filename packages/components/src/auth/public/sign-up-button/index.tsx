@@ -2,7 +2,7 @@ import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
 import { SignUp } from '../sign-up';
 import { Button, ButtonProps } from '../../../ui/button';
 import { DialogContent } from '../../../ui/dialog';
-import { useProtocolAuth } from '@protoxyz/auth';
+import { useProtocolAuth } from '@protoxyz/auth-react';
 import React from 'react';
 
 interface SignUpButtonProps {
@@ -26,7 +26,7 @@ export function SignUpButton({
   const redirectToSignUp = React.useCallback(() => {
     if (mode === 'popup') return;
     navigate?.(tenant?.auth?.signUpUri ?? '/sign-up');
-  }, [tenant, mode]);
+  }, [mode, navigate, tenant?.auth?.signUpUri]);
 
   const childContent = React.useMemo(() => {
     if (children) {
@@ -38,7 +38,7 @@ export function SignUpButton({
         {text}
       </Button>
     );
-  }, [children]);
+  }, [button, children, redirectToSignUp, text]);
 
   switch (mode) {
     case 'redirect':

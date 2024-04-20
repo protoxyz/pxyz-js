@@ -1,5 +1,5 @@
 import { LogOut, User } from 'lucide-react';
-import React from 'react'
+import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../../ui/avatar';
 import { Button } from '../../../ui/button';
 import {
@@ -12,14 +12,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '../../../ui/dropdown-menu';
-import { useProtocolAuth } from '@protoxyz/auth';
+import { useProtocolAuth } from '@protoxyz/auth-react';
 import { SignOutButton } from '../sign-out-button';
 import {
   userDisplayName,
   userImage,
   userInitials,
   userSecondaryDisplayName,
-} from '../../../lib/display'; 
+} from '../../../lib/display';
 import { Dialog, DialogContent } from '../../../ui/dialog';
 import { UserProfile } from '../user-profile';
 
@@ -32,13 +32,14 @@ export function UserButton({
   display = 'avatar',
 }: UserButtonOptions) {
   const { user, navigate } = useProtocolAuth();
-  const [showUserProfileDialog, setShowUserProfileDialog] = React.useState(false);
+  const [showUserProfileDialog, setShowUserProfileDialog] =
+    React.useState(false);
   const [open, setOpen] = React.useState(false);
 
   const redirectToUserProfile = React.useCallback(() => {
     if (mode === 'popup') return;
     navigate?.('/user');
-  }, [mode]);
+  }, [mode, navigate]);
 
   // const { appearance } = useProtocolAuthAppearance({ component: "userButton" });
 

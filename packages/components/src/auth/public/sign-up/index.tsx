@@ -3,7 +3,7 @@ import {
   SignUpFlowRoute,
   useProtocolAuthSignUpFlow,
   setSessionCookie,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { SignUpRoute } from './routes/signUp';
 import { SignUpSuccessRoute } from './routes/success';
 import { SignUpVerifyEmailRoute } from './routes/verifyEmail';

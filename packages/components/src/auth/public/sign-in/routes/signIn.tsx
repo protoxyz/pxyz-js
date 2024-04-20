@@ -1,9 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Tenant,
-  AuthVerificationStrategy,
-  AllowedFirstFactorStrategy,
-} from '@protoxyz/types';
+import { Tenant, AuthVerificationStrategy } from '@protoxyz/types';
 import { useForm } from 'react-hook-form';
 import {
   Form,
@@ -26,7 +22,7 @@ import {
   useProtocolAuthFlow,
   useProtocolAuthSignInFlow,
   useProtocolAuthClient,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import {

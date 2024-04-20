@@ -1,4 +1,4 @@
-import { useProtocolAuth } from '@protoxyz/auth';
+import { useProtocolAuth } from '@protoxyz/auth-react';
 import React from 'react';
 
 export interface IsLoggedOutProps {

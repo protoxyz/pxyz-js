@@ -14,7 +14,7 @@ import {
   useProtocolAuthSignUpFlow,
   useBrandName,
   SignUpFlowRoute,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 
 import { ResponseStatus, AuthVerificationStrategy } from '@protoxyz/types';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
@@ -33,6 +33,10 @@ export function SignUpVerifyEmailRoute() {
   const [codeSending, setCodeSending] = React.useState(false);
   const [codeSent, setCodeSent] = React.useState(false);
   const [error, setError] = React.useState<string>('');
+
+  if (!tenant) {
+    return <div>No tenant</div>;
+  }
 
   const reset = () => {
     setRoute(SignUpFlowRoute.signUp);
@@ -60,7 +64,7 @@ export function SignUpVerifyEmailRoute() {
       setRoute,
       setError,
       navigate,
-      setToken,
+      setToken as any,
     );
   };
 

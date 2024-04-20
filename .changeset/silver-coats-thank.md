@@ -1,0 +1,5 @@
+---
+'@protoxyz/components': patch
+---
+
+fixes

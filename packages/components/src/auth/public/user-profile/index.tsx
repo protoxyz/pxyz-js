@@ -4,7 +4,7 @@ import {
   useProtocolAuthUserProfileFlow,
   useProtocolAuth,
   useProtocolAuthAppearance,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { AuthComponentType } from '@protoxyz/themes';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {
@@ -13,7 +13,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '../../../ui/card'; 
+} from '../../../ui/card';
 import { UserSettingsRoute } from './routes/settings';
 import { userDisplayName } from '../../../lib/display';
 import {
@@ -35,8 +35,7 @@ import { IsLoaded } from '../control/is-loaded';
 
 const component: AuthComponentType = 'userProfile';
 
-interface UpdateProfileCardOptions {}
-export function UserProfile({}: UpdateProfileCardOptions) {
+export function UserProfile() {
   const { tenant, user } = useProtocolAuth();
   const { appearance } = useProtocolAuthAppearance({ component });
   const { route } = useProtocolAuthUserProfileFlow();

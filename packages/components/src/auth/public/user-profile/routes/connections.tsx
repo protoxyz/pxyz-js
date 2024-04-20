@@ -3,16 +3,14 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthConnectionsList,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { Button } from '../../../../ui/button';
 import { CheckCircleIcon } from 'lucide-react';
 import CompanyIcons from '../../../../icons';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import React from 'react';
 
-interface UserConnectionsRouteOptions {}
-
-export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
+export function UserConnectionsRoute() {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuth();
@@ -35,7 +33,10 @@ export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
 
       {connections?.data?.map((connection) => {
         return (
-          <div className="flex items-center justify-between">
+          <div
+            key={connection.id}
+            className="flex items-center justify-between"
+          >
             <div className="flex items-center gap-2">
               <CheckCircleIcon className="h-5 w-5 text-green-400" />
               <div className="text-sm font-medium text-gray-900">
@@ -53,7 +54,7 @@ export function UserConnectionsRoute({}: UserConnectionsRouteOptions) {
       {tenant?.socialProviders?.map((provider) => {
         const Icon = (CompanyIcons as any)[provider.providerKey];
         return (
-          <Button variant="outline">
+          <Button key={provider.providerKey} variant="outline">
             <Icon className="h-5 w-5" />
             <span>Connect {provider.providerKey}</span>
           </Button>

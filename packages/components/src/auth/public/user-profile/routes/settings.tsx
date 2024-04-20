@@ -4,7 +4,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthProfile,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -29,8 +29,7 @@ import {
 } from '../../../../lib/display';
 import { SectionHeader } from '../../../custom-ui/section-header';
 
-interface UserSettingsOptions {}
-export function UserSettingsRoute({}: UserSettingsOptions) {
+export function UserSettingsRoute() {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
 

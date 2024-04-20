@@ -5,7 +5,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthOrganizationsList,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import { z } from 'zod';
 import { FrontendUpdateOrganization200Response } from '@protoxyz/api-clients';

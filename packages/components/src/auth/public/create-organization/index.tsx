@@ -3,7 +3,7 @@ import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthOrganizationsList,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { CardWrapper } from '../../custom-ui/card-wrapper';
 import {
   Card,

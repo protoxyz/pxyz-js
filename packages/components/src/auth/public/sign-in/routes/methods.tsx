@@ -14,7 +14,7 @@ import {
   useBrandName,
   SignInFlowRoute,
   useProtocolAuthSignInFlow,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { Button } from '../../../../ui/button';
 import { AllowedFirstFactorStrategy } from '@protoxyz/types';

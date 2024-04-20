@@ -1,14 +1,14 @@
 import { AuthComponentType } from '@protoxyz/themes';
-import React from 'react'
+import React from 'react';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthPhonesList,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { Button, LoadingButton } from '../../../../ui/button';
 import { Badge } from '../../../../ui/badge';
 import { CheckIcon, PlusIcon, TrashIcon } from 'lucide-react';
-import { SectionHeader } from '../../../custom-ui/section-header'; 
+import { SectionHeader } from '../../../custom-ui/section-header';
 import { z } from 'zod';
 import {
   Form,
@@ -22,10 +22,9 @@ import {
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../../../../ui/input';
-import { ResponseStatus } from '@protoxyz/types'; 
+import { ResponseStatus } from '@protoxyz/types';
 
-interface UserPhonesRouteOptions {}
-export function UserPhonesRoute({}: UserPhonesRouteOptions) {
+export function UserPhonesRoute() {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { user } = useProtocolAuth();
@@ -113,7 +112,12 @@ export function UserPhonesRoute({}: UserPhonesRouteOptions) {
             </div>
 
             {!isVerified && (
-              <VerifyPhoneForm id={phone.id} onVerify={() => {}} />
+              <VerifyPhoneForm
+                id={phone.id}
+                onVerify={() => {
+                  console.log('verify');
+                }}
+              />
             )}
           </div>
         );

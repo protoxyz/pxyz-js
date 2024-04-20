@@ -21,9 +21,9 @@ import {
   useProtocolAuthTenant,
   useProtocolAuthSignUpFlow,
   useProtocolAuthClient,
-  useBrandLogo, 
+  useBrandLogo,
   useBrandName,
-} from '@protoxyz/auth'; 
+} from '@protoxyz/auth-react';
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import {
   Card,
@@ -37,10 +37,9 @@ import {
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { SocialLinks } from '../../../custom-ui/social-links';
 import { FooterLinks } from '../../../custom-ui/footer-links';
-import { CardFooterLinks } from '../../../custom-ui/card-footer-links'; 
+import { CardFooterLinks } from '../../../custom-ui/card-footer-links';
 import { Spinner } from '../../../../ui/spinner';
 import { handleSignUpResponse } from '..';
-
 
 export function SignUpForm({
   tenant,
@@ -56,37 +55,33 @@ export function SignUpForm({
   const [creatingSignUp, setCreatingSignUp] = React.useState(false);
   const [createSignUpError, setCreateSignUpError] = React.useState<string>('');
 
-  let schema = {
-     
-  } as any;
+  const schema = {} as any;
 
   if (tenant.auth.nameRequired) {
-    schema.name = z.string().min(5)
+    schema.name = z.string().min(5);
   }
 
   if (tenant.auth.emailRequired) {
-     schema.email = z.string().email()
+    schema.email = z.string().email();
   }
 
   if (tenant.auth.phoneRequired) {
-     schema.phone = z.string().min(10)
+    schema.phone = z.string().min(10);
   }
 
   if (tenant.auth.usernameRequired) {
-      schema.username = z.string().min(5)
+    schema.username = z.string().min(5);
   }
 
   if (tenant.auth.passwordRequired) {
-      schema.password = z.string().min(8)
+    schema.password = z.string().min(8);
   }
 
-  const FormSchema = z.object(schema)
+  const FormSchema = z.object(schema);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-
-    },
+    defaultValues: {},
   });
 
   async function onSubmit(values: z.infer<typeof FormSchema>) {
@@ -94,7 +89,6 @@ export function SignUpForm({
       return;
     }
     setCreatingSignUp(true);
-  
 
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUri =
@@ -116,22 +110,15 @@ export function SignUpForm({
       setRoute,
       setCreateSignUpError,
       navigate,
-      setToken,
+      setToken as any,
     );
 
     setCreatingSignUp(false);
   }
 
-  function onInvalid(errors: any) {
-    console.log(errors);
-  }
-
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit, onInvalid)}
-        className="space-y-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {tenant?.auth?.nameRequired && (
           <FormField
             control={form.control}
@@ -262,6 +249,10 @@ export function SignUpRoute({ afterSignUpRedirectUri }: SignUpRouteOptions) {
   const { tenant } = useProtocolAuthTenant();
   const brandName = useBrandName({ component });
   const brandLogo = useBrandLogo({ component });
+
+  if (!tenant) {
+    return <div>No tenant</div>;
+  }
 
   return (
     <CardWrapper

@@ -1,10 +1,10 @@
-import { AuthComponentType } from '@protoxyz/themes'; 
+import { AuthComponentType } from '@protoxyz/themes';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
   useProtocolAuthEmailsList,
-} from '@protoxyz/auth';
-import { Button, LoadingButton } from '../../../../ui/button'; 
+} from '@protoxyz/auth-react';
+import { Button, LoadingButton } from '../../../../ui/button';
 import { Badge } from '../../../../ui/badge';
 import { CheckIcon, PlusIcon, TrashIcon } from 'lucide-react';
 import { SectionHeader } from '../../../custom-ui/section-header';
@@ -24,8 +24,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../../../../ui/input';
 import { ResponseStatus } from '@protoxyz/types';
 
-interface UserEmailsRouteOptions {}
-export function UserEmailsRoute({}: UserEmailsRouteOptions) {
+export function UserEmailsRoute() {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { user } = useProtocolAuth();
@@ -114,7 +113,12 @@ export function UserEmailsRoute({}: UserEmailsRouteOptions) {
               </div>
 
               {!isVerified && (
-                <VerifyEmailForm id={email.id} onVerify={() => {}} />
+                <VerifyEmailForm
+                  id={email.id}
+                  onVerify={() => {
+                    console.log('verify');
+                  }}
+                />
               )}
             </div>
           );

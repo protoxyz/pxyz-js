@@ -14,7 +14,7 @@ import {
   useProtocolAuthClient,
   SignInFlowRoute,
   useProtocolAuthSignInFlow,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 
 import {
   ResponseStatus,

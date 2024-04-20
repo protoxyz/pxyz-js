@@ -1,11 +1,9 @@
 import { AuthComponentType } from '@protoxyz/themes';
-import { useProtocolAuthAppearance } from '@protoxyz/auth';
+import { useProtocolAuthAppearance } from '@protoxyz/auth-react';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import React from 'react';
 
-interface SecurityRouteOptions {}
-
-export function SecurityRoute({}: SecurityRouteOptions) {
+export function SecurityRoute() {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
 

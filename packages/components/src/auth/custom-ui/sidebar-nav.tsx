@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import {
@@ -6,7 +5,7 @@ import {
   UserProfileFlowRoute,
   useProtocolAuthOrganizationProfileFlow,
   useProtocolAuthUserProfileFlow,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { cn } from '../../lib/utils';
 import { buttonVariants } from '../../ui/button';
 
@@ -41,7 +40,9 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
           onClick={() =>
             item.orgRoute
               ? setOrgRoute(item.orgRoute)
-              : item.userRoute ? setUserRoute(item.userRoute) : null
+              : item.userRoute
+              ? setUserRoute(item.userRoute)
+              : null
           }
           className={cn(
             buttonVariants({ variant: 'ghost' }),

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useBrandName, useProtocolAuthAppearance } from '@protoxyz/auth';
+import { useBrandName, useProtocolAuthAppearance } from '@protoxyz/auth-react';
 import { AuthComponentType } from '@protoxyz/themes';
 import React from 'react';
 

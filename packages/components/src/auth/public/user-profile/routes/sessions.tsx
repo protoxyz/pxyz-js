@@ -2,13 +2,11 @@ import { AuthComponentType } from '@protoxyz/themes';
 import {
   useProtocolAuthAppearance,
   useProtocolAuthSessionsList,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import React from 'react';
 
-interface SessionsRouteOptions {}
-
-export function SessionsRoute({}: SessionsRouteOptions) {
+export function SessionsRoute() {
   const component: AuthComponentType = 'userProfile';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { sessions } = useProtocolAuthSessionsList({});
@@ -21,7 +19,7 @@ export function SessionsRoute({}: SessionsRouteOptions) {
       />
       {sessions?.data?.map((session) => {
         return (
-          <div className="flex items-center justify-between">
+          <div key={session.id} className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="text-foreground text-sm font-medium">
                 {session.device} {session.os} {session.browser} {session.ip}

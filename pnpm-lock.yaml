@@ -820,6 +820,9 @@ importers:
       '@protoxyz/auth':
         specifier: workspace:*
         version: link:../auth
+      '@protoxyz/auth-react':
+        specifier: workspace:*
+        version: link:../auth-react
       '@protoxyz/media':
         specifier: workspace:*
         version: link:../media

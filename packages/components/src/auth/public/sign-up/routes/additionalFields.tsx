@@ -22,7 +22,7 @@ import {
   useProtocolAuthSignUpFlow,
   useProtocolAuthClient,
   useBrandName,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 
 import { CardWrapper } from '../../../custom-ui/card-wrapper';
 import {
@@ -36,39 +36,38 @@ import {
 
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { FooterLinks } from '../../../custom-ui/footer-links';
-import { CardFooterLinks } from '../../../custom-ui/card-footer-links'; 
+import { CardFooterLinks } from '../../../custom-ui/card-footer-links';
 import { Spinner } from '../../../../ui/spinner';
 import { handleSignUpResponse } from '..';
- 
 
 export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
   const { setRoute } = useProtocolAuthSignUpFlow();
-  const { protocol, navigate,  setToken } = useProtocolAuth();
+  const { protocol, navigate, setToken } = useProtocolAuth();
   const { signUp, setSignUp } = useProtocolAuthClient();
   const [creatingSignUp, setCreatingSignUp] = React.useState(false);
   const [createSignUpError, setCreateSignUpError] = React.useState<string>('');
 
   const FormSchema = z.object({
     name: z
-          .string({
-            required_error: 'Please enter your full name',
-          })
-          .min(4),
+      .string({
+        required_error: 'Please enter your full name',
+      })
+      .min(4),
     email: z
-          .string({
-            required_error: 'Please enter your email address',
-          })
-          .email(),
+      .string({
+        required_error: 'Please enter your email address',
+      })
+      .email(),
     phone: z
-          .string({
-            required_error: 'Please enter your phone number',
-          })
-          .min(8),
+      .string({
+        required_error: 'Please enter your phone number',
+      })
+      .min(8),
     username: z
-          .string({
-            required_error: 'Please enter a username',
-          })
-          .min(5),
+      .string({
+        required_error: 'Please enter a username',
+      })
+      .min(5),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -82,14 +81,16 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
     }
     setCreatingSignUp(true);
 
-    const response = signUp ? await protocol?.auth.signUpAttempts.update({
-      path: {
-        id: signUp.id,
-      },
-      body: {
-        ...values ,
-      },
-    }) : null;
+    const response = signUp
+      ? await protocol?.auth.signUpAttempts.update({
+          path: {
+            id: signUp.id,
+          },
+          body: {
+            ...values,
+          },
+        })
+      : null;
 
     handleSignUpResponse(
       response,
@@ -98,22 +99,15 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
       setRoute,
       setCreateSignUpError,
       navigate,
-      setToken,
+      setToken as any,
     );
 
     setCreatingSignUp(false);
   }
 
-  function onInvalid(errors: any) {
-    console.log(errors);
-  }
-
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit, onInvalid)}
-        className="space-y-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {tenant?.auth?.nameRequired && (
           <FormField
             control={form.control}
@@ -124,7 +118,11 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
                   <FormLabel>Name</FormLabel>
                 </div>
                 <FormControl>
-                  <Input type="text" placeholder="Your Name" value={field.value} />
+                  <Input
+                    type="text"
+                    placeholder="Your Name"
+                    value={field.value}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -217,12 +215,15 @@ export function SignUpAdditionalFieldsForm({ tenant }: { tenant: Tenant }) {
   );
 }
 
-interface SignUpAdditionalFieldsRouteOptions {}
-export function SignUpAdditionalFieldsRoute({}: SignUpAdditionalFieldsRouteOptions) {
+export function SignUpAdditionalFieldsRoute() {
   const component: AuthComponentType = 'signUp';
   const { appearance } = useProtocolAuthAppearance({ component });
   const { tenant } = useProtocolAuthTenant();
   const brandName = useBrandName({ component });
+
+  if (!tenant) {
+    return <div>No tenant</div>;
+  }
 
   return (
     <CardWrapper

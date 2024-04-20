@@ -2,8 +2,8 @@ import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
 import { SignIn } from '../sign-in';
 import { Button, ButtonProps } from '../../../ui/button';
 import { DialogContent } from '../../../ui/dialog';
-import { useProtocolAuth } from '@protoxyz/auth'; 
-import React from 'react'
+import { useProtocolAuth } from '@protoxyz/auth-react';
+import React from 'react';
 
 interface SignInButtonProps {
   mode: 'popup' | 'redirect';

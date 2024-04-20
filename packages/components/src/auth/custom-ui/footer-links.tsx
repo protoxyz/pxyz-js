@@ -4,7 +4,7 @@ import { FooterLink } from './footer-link';
 import {
   SignInFlowRoute,
   useProtocolAuthSignInFlow,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 
 import React from 'react';
 

@@ -3,7 +3,7 @@ import {
   SignInFlowRoute,
   setSessionCookie,
   useProtocolAuthSignInFlow,
-} from '@protoxyz/auth';
+} from '@protoxyz/auth-react';
 import { SignInForgotPasswordRoute } from './routes/forgotPassword';
 import { SignInResetPasswordRoute } from './routes/resetPassword';
 import { SignInResetPasswordSuccessRoute } from './routes/resetPasswordSuccess';

@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '../../../../ui/card';
-import { useProtocolAuthAppearance } from '@protoxyz/auth';
+import { useProtocolAuthAppearance } from '@protoxyz/auth-react';
 import { BrandLogo, BrandLogoWrapper } from '../../../custom-ui/brand-logo';
 import { Spinner } from '../../../../ui/spinner';
 import React from 'react';

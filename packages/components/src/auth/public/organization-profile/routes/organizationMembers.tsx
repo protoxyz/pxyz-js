@@ -4,8 +4,8 @@ import React from 'react';
 import {
   useProtocolAuth,
   useProtocolAuthAppearance,
-  useProtocolAuthOrganizationMembers
-} from '@protoxyz/auth';
+  useProtocolAuthOrganizationMembers,
+} from '@protoxyz/auth-react';
 import { SectionHeader } from '../../../custom-ui/section-header';
 import {
   Table,
@@ -16,7 +16,10 @@ import {
   TableRow,
 } from '../../../../ui/table';
 import { MoreHorizontalIcon } from 'lucide-react';
-import { DropdownMenu, DropdownMenuTrigger } from '../../../../ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from '../../../../ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '../../../../ui/avatar';
 import { initials, userImage } from '../../../../lib/display';
 import { Spinner } from '../../../../ui/spinner';
