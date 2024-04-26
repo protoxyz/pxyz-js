@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.27
+
+### Patch Changes
+
+- cb6ee8f: add withRouteAuth
+
 ## 1.0.26
 
 ### Patch Changes
