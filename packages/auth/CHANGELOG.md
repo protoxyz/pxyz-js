@@ -1,5 +1,12 @@
 # @protoxyz/auth
 
+## 1.0.25
+
+### Patch Changes
+
+- 050ff0d: export types in auth package
+- 8205f3a: bump
+
 ## 1.0.24
 
 ### Patch Changes

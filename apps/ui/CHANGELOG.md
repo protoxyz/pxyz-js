@@ -1,5 +1,13 @@
 # sandbox
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [050ff0d]
+- Updated dependencies [8205f3a]
+  - @protoxyz/auth@1.0.25
+
 ## 0.1.6
 
 ### Patch Changes
