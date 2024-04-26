@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.26
+
+### Patch Changes
+
+- 636a074: add handleCallback to auth package
+
 ## 1.0.25
 
 ### Patch Changes
