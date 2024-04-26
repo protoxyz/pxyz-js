@@ -5,10 +5,11 @@ import { CookieOption, CookiesOptions } from './types';
 
 export interface CookieOptions {
   path: string;
-  domain: string;
+  domain: string | undefined;
   maxAge: number;
   sameSite: 'lax' | 'strict' | 'none';
   secure: boolean;
+  expires: Date;
 }
 
 export type JWTString = string;
@@ -109,7 +110,7 @@ export const deleteSessionCookie = (res: NextResponse) => {
  *
  * @TODO Review cookie settings (names, options)
  */
-export function defaultCookies(useSecureCookies: boolean): CookiesOptions {
+export function defaultCookies(useSecureCookies: boolean = process.env.NODE_ENV === 'production'): CookiesOptions {
   const cookiePrefix = useSecureCookies ? '__Secure-' : '';
   return {
     // default cookie options
@@ -195,8 +196,7 @@ export function defaultCookies(useSecureCookies: boolean): CookiesOptions {
 export function getCookieOptions(
   origin: string | undefined,
   secure: boolean = process.env.NODE_ENV === 'production',
-) {
-  if (!origin) return {} as CookieOptions;
+): CookieOptions {
   const domain = getCookieDomain(origin, secure);
 
   return {
@@ -205,8 +205,8 @@ export function getCookieOptions(
     maxAge: 315360000,
     sameSite: 'lax',
     expires: new Date(Date.now() + 315360000),
-    secure: domain === '.localhost' ? false : secure,
-  } as CookieOptions;
+    secure: !domain || domain === '.localhost' ? false : secure,
+  }
 }
 
 export function getHostnameFromOrigin(origin: string) {

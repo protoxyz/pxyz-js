@@ -12,5 +12,7 @@ export * from './auth';
 export * from './urls';
 export * from './data';
 
+export * from './callback';
+
 // Re-export types
 export * from '@protoxyz/types';
