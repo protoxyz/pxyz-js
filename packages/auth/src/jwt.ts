@@ -24,7 +24,8 @@ export async function verifyJWT({
 
     return payload as unknown as SessionUser;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    console.log("JWT verification failed")
     return null;
   }
 }
