@@ -6,7 +6,6 @@ interface ProtectOptions {
   orgRole?: string;
 }
 
-
 export const protectPage = async (options?: ProtectOptions) => {
   const session = await auth();
 

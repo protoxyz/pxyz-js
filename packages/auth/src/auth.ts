@@ -5,28 +5,31 @@ import { getBearerToken, getCookieToken, getSecretKey } from './util';
 import { redirect } from 'next/navigation';
 import { getLoginUrl } from './urls';
 
-export async function auth(props?: {
+export interface AuthOptions {
   token?: string | null | undefined;
-  secretKey?: string;
-}) {
+  secretKey?: string | null | undefined;
+}
+
+export async function auth(options?: AuthOptions) {
   const authToken =
-    props?.token ||
+    options?.token ||
     (await getCookieToken({ headers: nextHeaders() })) ||
     (await getBearerToken({ headers: nextHeaders() }));
 
   if (!authToken) return null;
 
-  const key = getSecretKey({ secretKey: props?.secretKey });
+  const key = getSecretKey({ secretKey: options?.secretKey });
 
   const session = await verifyJWT({ token: authToken, key });
   return session as SessionUser | null;
 }
 
-export const protectPage = async (options?: {
+export interface ProtectOptions {
   role?: string;
   orgRole?: string;
-}) => {
-  const session = await auth();
+}
+export const protectPage = async (options?: ProtectOptions, authOptions?: AuthOptions) => { 
+  const session = await auth(authOptions);
   if (!session) {
     return redirect(getLoginUrl());
   }
@@ -41,8 +44,9 @@ export const protectPage = async (options?: {
 export const protect = async <T>(
   options: { role?: string; orgRole?: string },
   fn: (session: SessionUser) => Promise<T>,
+  authOptions?: AuthOptions,
 ) => {
-  const session = await auth();
+  const session = await auth(authOptions);
   if (!session) {
     throw new Error('No session');
   }
@@ -60,6 +64,7 @@ export const protect = async <T>(
 
 export const adminOnly = async <T>(
   fn: (session: SessionUser) => Promise<T>,
+  authOptions?: AuthOptions,
 ) => {
-  return protect({ role: 'admin' }, fn);
+  return protect({ role: 'admin' }, fn, authOptions);
 };

@@ -13,6 +13,7 @@ export * from './urls';
 export * from './data';
 
 export * from './callback';
+export * from './withRouteAuth';
 
 // Re-export types
 export * from '@protoxyz/types';
