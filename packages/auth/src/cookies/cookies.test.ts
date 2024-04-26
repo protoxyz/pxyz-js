@@ -3,7 +3,7 @@ import {
   getHostnameFromOrigin,
   getTLDFromHostname,
 } from './cookies';
-
+import { describe, expect, test } from 'vitest';
 const appLocalhostOrigin = 'http://app.localhost:3000';
 const localhostOrigin = 'http://localhost:3000';
 const example = 'https://www.example.com';
@@ -70,5 +70,9 @@ describe('testing utils', () => {
 
       expect(domain).toBe('.example.com');
     });
+  });
+
+  describe('www.nextjskit.com', () => {
+    test('');
   });
 });

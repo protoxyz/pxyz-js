@@ -3,30 +3,29 @@ import { headers as nextHeaders } from 'next/headers';
 import { verifyJWT } from './jwt';
 import { getBearerToken, getCookieToken, getSecretKey } from './util';
 import { redirect } from 'next/navigation';
-import { getLoginUrl } from './urls';  
+import { getLoginUrl } from './urls';
 
 export async function auth(props?: {
   token?: string | null | undefined;
   secretKey?: string;
-})  {
-  const headers = nextHeaders();
+}) {
+  const authToken =
+    props?.token ||
+    (await getCookieToken({ headers: nextHeaders() })) ||
+    (await getBearerToken({ headers: nextHeaders() }));
 
-    const authToken =
-      props?.token ||
-      (await getCookieToken({ headers })) ||
-      (await getBearerToken({ headers }));
+  if (!authToken) return null;
 
-    if (!authToken) return null;
+  const key = getSecretKey({ secretKey: props?.secretKey });
 
-    const key = getSecretKey({ secretKey: props?.secretKey });
-
-    const session = (await verifyJWT({ token: authToken, key })) 
-    return session as SessionUser | null;
-
-   
+  const session = await verifyJWT({ token: authToken, key });
+  return session as SessionUser | null;
 }
- 
-export const protectPage = async (options?: { role?: string; orgRole?: string }) => {
+
+export const protectPage = async (options?: {
+  role?: string;
+  orgRole?: string;
+}) => {
   const session = await auth();
   if (!session) {
     return redirect(getLoginUrl());

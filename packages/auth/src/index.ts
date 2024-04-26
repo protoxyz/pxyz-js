@@ -4,10 +4,13 @@ export * from './getMiddlewareAuth';
 export * from './getToken';
 export * from './currentUser';
 export * from './jwt';
-export * from './paths'; 
+export * from './paths';
 export * from './types';
 export * from './util';
- 
+
 export * from './auth';
-export * from './urls'
-export * from "./data" 
+export * from './urls';
+export * from './data';
+
+// Re-export types
+export * from '@protoxyz/types';

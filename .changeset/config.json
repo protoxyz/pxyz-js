@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["example-auth-nextjs", "example-expo"]
+  "ignore": ["example-nextjs-auth", "example-nextjs", "example-expo"]
 }
