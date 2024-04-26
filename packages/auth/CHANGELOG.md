@@ -1,5 +1,11 @@
 # @protoxyz/auth
 
+## 1.0.28
+
+### Patch Changes
+
+- bb3e837: remove console error msg
+
 ## 1.0.27
 
 ### Patch Changes
