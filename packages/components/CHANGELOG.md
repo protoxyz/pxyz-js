@@ -1,5 +1,19 @@
 # @protoxyz/components
 
+## 1.0.39
+
+### Patch Changes
+
+- c3d81a8: bump versions
+- Updated dependencies [c3d81a8]
+- Updated dependencies [bb3e837]
+  - @protoxyz/api-clients@2.0.61
+  - @protoxyz/auth@1.0.28
+  - @protoxyz/auth-react@1.0.24
+  - @protoxyz/media@1.0.21
+  - @protoxyz/themes@2.0.15
+  - @protoxyz/types@2.0.36
+
 ## 1.0.38
 
 ### Patch Changes

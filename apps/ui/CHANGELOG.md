@@ -1,5 +1,16 @@
 # sandbox
 
+## 0.1.10
+
+### Patch Changes
+
+- c3d81a8: bump versions
+- Updated dependencies [c3d81a8]
+- Updated dependencies [bb3e837]
+  - @protoxyz/auth@1.0.28
+  - @protoxyz/media@1.0.21
+  - @protoxyz/types@2.0.36
+
 ## 0.1.9
 
 ### Patch Changes

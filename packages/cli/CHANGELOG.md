@@ -1,5 +1,16 @@
 # @protoxyz/cli
 
+## 1.0.19
+
+### Patch Changes
+
+- c3d81a8: bump versions
+- Updated dependencies [c3d81a8]
+  - @protoxyz/api-clients@2.0.61
+  - @protoxyz/client-backend@1.0.3
+  - @protoxyz/client-frontend@1.0.8
+  - @protoxyz/types@2.0.36
+
 ## 1.0.18
 
 ### Patch Changes

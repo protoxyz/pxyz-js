@@ -1,5 +1,13 @@
 # @protoxyz/api-clients
 
+## 2.0.61
+
+### Patch Changes
+
+- c3d81a8: bump versions
+- Updated dependencies [c3d81a8]
+  - @protoxyz/types@2.0.36
+
 ## 2.0.60
 
 ### Patch Changes

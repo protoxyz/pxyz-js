@@ -1,5 +1,11 @@
 # @protoxyz/types
 
+## 2.0.36
+
+### Patch Changes
+
+- c3d81a8: bump versions
+
 ## 2.0.35
 
 ### Patch Changes

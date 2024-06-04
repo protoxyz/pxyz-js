@@ -1,5 +1,15 @@
 # @protoxyz/auth
 
+## 1.0.24
+
+### Patch Changes
+
+- c3d81a8: bump versions
+- Updated dependencies [c3d81a8]
+  - @protoxyz/api-clients@2.0.61
+  - @protoxyz/themes@2.0.15
+  - @protoxyz/types@2.0.36
+
 ## 1.0.23
 
 ### Patch Changes
