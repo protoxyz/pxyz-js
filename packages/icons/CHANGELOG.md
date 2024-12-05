@@ -1,5 +1,11 @@
 # @protoxyz/icons
 
+## 2.0.14
+
+### Patch Changes
+
+- c3d81a8: bump versions
+
 ## 2.0.13
 
 ### Patch Changes

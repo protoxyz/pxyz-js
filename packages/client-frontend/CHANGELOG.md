@@ -1,5 +1,11 @@
 # @protoxyz/client-frontend
 
+## 1.0.8
+
+### Patch Changes
+
+- c3d81a8: bump versions
+
 ## 1.0.7
 
 ### Patch Changes

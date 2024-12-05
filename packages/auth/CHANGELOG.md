@@ -1,5 +1,16 @@
 # @protoxyz/auth
 
+## 1.0.28
+
+### Patch Changes
+
+- c3d81a8: bump versions
+- bb3e837: remove console error msg
+- Updated dependencies [c3d81a8]
+  - @protoxyz/api-clients@2.0.61
+  - @protoxyz/themes@2.0.15
+  - @protoxyz/types@2.0.36
+
 ## 1.0.27
 
 ### Patch Changes
